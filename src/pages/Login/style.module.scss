@@ -1,0 +1,36 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.loginContainer {
+  @include justify_content(center);
+  @include align_items(center);
+  height: 80vh;
+}
+
+.login__form {
+  //   width: 550px;
+}
+.login__formContainer {
+  @include flexbox;
+  @include flex_directions(column);
+  @include align_items(flex-start);
+  @include justify_content(center);
+  background-color: var(--default);
+  padding: 20px;
+}
+
+.login__formIcon_wrapper {
+  @include flexbox;
+  @include flex_directions(column);
+  @include align_items(center);
+}
+.login__formIcon {
+  background-color: var(--violate);
+}
+.login__submitBtn {
+  @include margin_top(8px);
+}
+.login__textInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}

@@ -1,0 +1,112 @@
+@mixin flexbox() {
+  display: flex;
+}
+
+// The 'flex' shorthand
+// - applies to: flex items
+// <positive-number>, initial, auto, or none
+
+@mixin flex($values) {
+  flex: $values;
+}
+
+@mixin flex_directions($direction) {
+  flex-direction: $direction;
+}
+
+// Flex Line Wrapping
+// - applies to: flex containers
+// nowrap | wrap | wrap-reverse
+@mixin flex_wrap($wrap) {
+  flex-wrap: $wrap;
+}
+
+// Flex Direction and Wrap
+// - applies to: flex containers
+// <flex-direction> || <flex-wrap>
+@mixin flex_flow($flow) {
+  flex-flow: $flow;
+}
+// Display Order
+// - applies to: flex items
+// <integer>
+@mixin order($val) {
+  order: $val;
+}
+
+// Flex basis
+// - the initial main size of the flex item
+// - applies to: flex itemsnitial main size of the flex item
+// <width>
+@mixin flex_basis($width) {
+  flex-basis: $width;
+}
+// Flex grow factor
+// - applies to: flex items
+// <number>
+@mixin flex_grow($grow) {
+  flex-grow: $grow;
+}
+
+// Flex shrink
+// - applies to: flex item shrink factor
+// <number>
+@mixin flex_shrink($shrink) {
+  flex-shrink: $shrink;
+}
+
+// - applies to: flex containers
+// flex-start | flex-end | center | space-between | space-around
+@mixin justify_content($justify) {
+  justify-content: $justify;
+}
+
+// Packing Flex Lines
+// - applies to: multi-line flex containers
+// flex-start | flex-end | center | space-between | space-around | stretch
+@mixin align_content($align) {
+  align-content: $align;
+}
+
+@mixin align_items($align) {
+  align-items: $align;
+}
+
+// Cross-axis Alignment
+// - applies to: flex items
+// auto | flex-start | flex-end | center | baseline | stretch
+@mixin align_self($align) {
+  align-self: $align;
+}
+
+@mixin inline_flex {
+  display: inline-flex;
+}
+
+@mixin gap($value) {
+  gap: $value;
+}
+
+@mixin all_box_shadow {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 10px 0px,
+    rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
+}
+
+@mixin margin_top($value) {
+  margin-top: $value;
+}
+@mixin margin_bottom($value) {
+  margin-bottom: $value;
+}
+@mixin margin_left($value) {
+  margin-left: $value;
+}
+@mixin margin_right($value) {
+  margin-right: $value;
+}
+
+@mixin flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

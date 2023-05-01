@@ -1,0 +1,66 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.addPortfolio__gridCenter {
+  @include align_items(center);
+  @include justify_content(center);
+  margin-top: 50px;
+}
+
+.addPortfolio__formContainer {
+  @include flexbox;
+  @include flex_directions(column);
+  // @include align_items(flex-start);
+  @include justify_content(center);
+  background-color: var(--default);
+}
+.addPortfolio__formStyles {
+  border-radius: 16px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  width: 700px;
+}
+.addPortfolio__formHeading {
+  @include margin_bottom(10px);
+  text-align: center;
+}
+
+.addPortfolio__formIcon_wrapper {
+  @include flexbox;
+  @include flex_directions(column);
+  @include align_items(center);
+}
+.addPortfolio__formIcon {
+  background-color: var(--violate);
+}
+.addPortfolio__textInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}
+
+.addPortfolio__selectInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}
+
+.addPortfolio__checkBoxInput {
+  @include margin_left(0);
+  @include margin_right(0);
+}
+
+.addPortfolio__submitBtn {
+  width: 735px;
+}
+
+.addPortfolio__errorContainer {
+  width: 700px;
+  @include flexbox;
+  @include justify_content(center);
+  align-items: center;
+  @include margin_bottom(10px);
+  @include margin_top(10px);
+}
+.addPortfolio__tableErrors {
+  color: var(--danger);
+  font-size: 12px;
+}

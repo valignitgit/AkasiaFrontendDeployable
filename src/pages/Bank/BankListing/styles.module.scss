@@ -1,0 +1,12 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.addBankButton {
+  @include margin_bottom(20px);
+}
+
+.banklisting_textCenter {
+  p {
+    text-align: center;
+  }
+}

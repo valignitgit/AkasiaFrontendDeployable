@@ -1,0 +1,45 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.addsecurity__gridCenter {
+  @include align_items(center);
+  @include justify_content(center);
+  margin-top: 50px;
+}
+.addsecurity__formWidth {
+  width: 550px;
+}
+.addsecurity__formContainer {
+  @include flexbox;
+  @include flex_directions(column);
+  @include align_items(flex-start);
+  @include justify_content(center);
+  background-color: var(--default);
+  padding: 20px;
+}
+
+.addsecurity__formIcon_wrapper {
+  @include flexbox;
+  @include flex_directions(column);
+  @include align_items(center);
+}
+.addsecurity__formIcon {
+  background-color: var(--violate);
+}
+.addsecurity__submitBtn {
+  @include align_self(center);
+}
+.addsecurity__textInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}
+
+.addsecurity__selectInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}
+
+.addsecurity__checkBoxInput {
+  @include margin_left(0);
+  @include margin_right(0);
+}

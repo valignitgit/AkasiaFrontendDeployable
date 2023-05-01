@@ -1,0 +1,52 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.bankCard {
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 10px 0px,
+    rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
+  cursor: pointer;
+  &:hover {
+    transform: translate3D(0, -1px, 0) scale(1.03);
+    transition: all 0.4s ease;
+  }
+  height: 200px;
+}
+.bankCard__containWrapper {
+  @include flexbox;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.bankCard__itemKey {
+  color: var(--emperor-grey);
+  font-weight: 600;
+  flex: 0.4;
+  display: inline-block;
+}
+
+.bankCard__itemValue {
+  text-transform: uppercase;
+  display: inline-block;
+  flex: 0.5;
+}
+.bankCard__Actions {
+  @include flex_center;
+  @include gap(5px);
+}
+
+.bankCard__btn {
+  width: 110px;
+}
+
+.bankDetails__wrapper {
+  height: 50vh;
+  @include justify_content(center);
+  @include align_items(center);
+}
+.bankDetails__heading {
+  @include margin_top(15px);
+  @include margin_bottom(25px);
+  text-align: center;
+}

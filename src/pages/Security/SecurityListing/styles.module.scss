@@ -1,0 +1,17 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.addSecurityButton {
+  @include margin_bottom(20px);
+}
+
+.securityListing__paginationContainer {
+  @include flexbox;
+  @include justify_content(flex-end);
+  @include align_items(center);
+  width: 100%;
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
+  margin-top: 20px;
+}

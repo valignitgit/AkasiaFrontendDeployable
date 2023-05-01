@@ -1,0 +1,73 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.portfolioDetails {
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 10px 0px,
+    rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
+  cursor: pointer;
+  height: 300px;
+  width: 400px;
+
+  &:hover {
+    transform: translate3D(0, -1px, 0) scale(1.03);
+    transition: all 0.4s ease;
+  }
+}
+.portfolioDetails__containWrapper {
+  @include flexbox;
+  @include gap(5px);
+}
+
+.portfolioDetails__itemKey {
+  color: var(--emperor-grey);
+  font-weight: 600;
+  display: inline-block;
+  flex: 0.6;
+}
+.portfolioDetails__itemValue {
+  text-transform: capitalize;
+  display: inline-block;
+  flex: 1;
+}
+
+.portfolioDetails__portfolioSecuritiesContainer {
+  @include margin_top(2px);
+  @include flexbox;
+  @include justify_content(flex-start);
+  @include align_items(center);
+  @include gap(10px);
+}
+
+.portfolioDetails__portfolioSecuritiesContainerInner {
+  @include margin_right(5px);
+  @include flexbox;
+  @include justify_content(flex-start);
+  @include align_items(center);
+  @include gap(10px);
+}
+
+.portfolioDetails__notAvailableText {
+  @include margin_top(2px);
+}
+
+.portfolioDetails__Actions {
+  @include flex_center;
+  @include gap(5px);
+}
+
+.portfolioDetails__btn {
+  width: 110px;
+}
+
+.portfolioDetails__wrapper {
+  height: 50vh;
+  @include justify_content(center);
+  @include align_items(center);
+}
+.portfolioDetails__heading {
+  @include margin_top(15px);
+  @include margin_bottom(25px);
+  text-align: center;
+}

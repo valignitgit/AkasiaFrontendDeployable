@@ -1,0 +1,91 @@
+@import "variables";
+@import "mixins";
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+body {
+  margin: 0;
+  background-color: #fefafa;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+}
+
+.active {
+  color: white !important;
+  background-color: #1976d2;
+  .MuiListItemIcon-root {
+    color: white !important;
+  }
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.typography_width {
+  width: 20px !important;
+}
+
+.error {
+  font-size: 12px;
+  margin-top: 5px;
+  color: var(--danger);
+}
+.mt {
+  margin-top: 15px !important;
+}
+.mb {
+  margin-bottom: 5px !important;
+}
+.ml-100 {
+  margin-left: 100px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+.form_styles {
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+.default_margin {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.text_arabic {
+  text-align: right;
+}
+.grid_container_center {
+  justify-content: center;
+  align-items: center;
+}
+
+.text_center {
+  text-align: center;
+}
+
+.mt_10 {
+  margin-top: 10px;
+}
+.mb_10 {
+  margin-bottom: 10px;
+}
+
+.text_uppercase {
+  text-transform: uppercase;
+}
+.text_capitalize {
+  text-transform: capitalize;
+}
+
+.home__container {
+  padding: 12px 16px 30px 260px;
+  margin-top: 60px;
+}
