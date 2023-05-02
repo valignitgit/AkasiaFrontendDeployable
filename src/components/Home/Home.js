@@ -1,32 +1,36 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
-import { Box } from "@mui/material";
+// import { Box } from "@mui/material";
 import { Navigate, Routes, Route } from "react-router-dom";
 
-import Navbar from "../NavBar/Navbar";
-import Sidebar from "../Sidebar/Sidebar";
-import BankListing from "../../pages/Bank/BankListing/BankListing";
-import PortfolioListing from "../../pages/Portfolio/PortfolioListing/PortfolioListing";
-import BankDetails from "../../pages/Bank/BankDetails/BankDetails";
-import AddBank from "../../pages/Bank/AddBank/AddBank";
-import UpdateBank from "../../pages/Bank/UpdateBank/UpdateBank";
-import PortfolioDetails from "../../pages/Portfolio/PortfolioDetails/PortfolioDetails";
-import AddPortfolio from "../../pages/Portfolio/AddPortfolio/AddPortfolio";
-import UpdatePortfolio from "../../pages/Portfolio/UpdatePortfolio/UpdatePortfolio";
-import SecurityListing from "../../pages/Security/SecurityListing/SecurityListing";
-import ViewSecurity from "../../pages/Security/ViewSecurity/ViewSecurity";
-import AddSecurity from "../../pages/Security/AddSecurity/AddSecurity";
-import UpdateSecurity from "../../pages/Security/UpdateSecurity/UpdateSecurity";
+// import Navbar from "../NavBar/Navbar";
+// import Sidebar from "../Sidebar/Sidebar";
+// import BankListing from "../../pages/Bank/BankListing/BankListing";
+// import BankDetails from "../../pages/Bank/BankDetails/BankDetails";
+// import AddBank from "../../pages/Bank/AddBank/AddBank";
+// import UpdateBank from "../../pages/Bank/UpdateBank/UpdateBank";
+// import PortfolioListing from "../../pages/Portfolio/PortfolioListing/PortfolioListing";
+// import PortfolioDetails from "../../pages/Portfolio/PortfolioDetails/PortfolioDetails";
+// import AddPortfolio from "../../pages/Portfolio/AddPortfolio/AddPortfolio";
+// import UpdatePortfolio from "../../pages/Portfolio/UpdatePortfolio/UpdatePortfolio";
+// import SecurityListing from "../../pages/Security/SecurityListing/SecurityListing";
+// import ViewSecurity from "../../pages/Security/ViewSecurity/ViewSecurity";
+// import AddSecurity from "../../pages/Security/AddSecurity/AddSecurity";
+// import UpdateSecurity from "../../pages/Security/UpdateSecurity/UpdateSecurity";
+import Login from "../../pages/Login/Login";
 
 function Home() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  // const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  // const handleDrawerToggle = () => {
+  //   setMobileOpen(!mobileOpen);
+  // };
 
   return (
-    <div>
+    <>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
       <Navbar handleDrawerToggle={handleDrawerToggle} />
       <Sidebar
         mobileOpen={mobileOpen}
@@ -59,8 +63,9 @@ function Home() {
             <Route path="update/:id" element={<UpdateSecurity />} />
           </Route>
         </Routes>
-      </Box>
-    </div>
+      </Box>{" "}
+      */}
+    </>
   );
 }
 

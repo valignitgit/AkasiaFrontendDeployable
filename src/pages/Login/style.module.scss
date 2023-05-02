@@ -7,9 +7,14 @@
   height: 80vh;
 }
 
-.login__form {
-  //   width: 550px;
+.login__logoContainer {
+  width: 120px;
 }
+.login__logo {
+  max-width: 100%;
+  height: auto;
+}
+
 .login__formContainer {
   @include flexbox;
   @include flex_directions(column);

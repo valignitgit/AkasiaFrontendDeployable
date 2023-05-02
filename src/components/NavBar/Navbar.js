@@ -9,10 +9,18 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-
+import { Link } from "react-router-dom";
 import Options from "./Navtabs/Options";
+import { useNavigate } from "react-router-dom";
 
-export default function Navbar({ handleDrawerToggle }) {
+const Navbar = ({ handleDrawerToggle }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("login");
+    navigate("/login");
+  };
+
   return (
     <>
       {" "}
@@ -33,9 +41,13 @@ export default function Navbar({ handleDrawerToggle }) {
           </IconButton> */}
             <Hidden mdDown>
               <Stack direction="row" spacing={2}>
-                <Button color="inherit">Home</Button>
+                <Link to="/bank">
+                  <Button color="inherit">Home</Button>
+                </Link>
                 <Options />
-                <Button color="inherit">Signout</Button>
+                <Button color="inherit" onClick={handleLogout}>
+                  Logout
+                </Button>
               </Stack>
             </Hidden>
 
@@ -52,4 +64,6 @@ export default function Navbar({ handleDrawerToggle }) {
       </Box>
     </>
   );
-}
+};
+
+export default Navbar;

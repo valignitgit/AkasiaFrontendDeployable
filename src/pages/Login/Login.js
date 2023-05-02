@@ -5,7 +5,7 @@ import {
   Paper,
   Grid,
   Box,
-  Typography,
+  // Typography,
   Container,
   FormControl,
   InputLabel,
@@ -18,8 +18,12 @@ import { getEmptyErrorState } from "../../utils/AppUtil";
 import { isEmptyString } from "../../utils/Validator";
 import ErrorMessageGenerator from "../../utils/ErrorMessageGenerator";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
+import logo from "../../assets/logo.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const initialState = {
     user_id: "",
     password: "",
@@ -69,9 +73,8 @@ const Login = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      console.log("form submit");
-    } else {
-      console.log(isValid);
+      localStorage.setItem("login", true);
+      navigate("/bank");
     }
   };
 
@@ -82,9 +85,9 @@ const Login = () => {
         <Grid item xs={12} sm={12} md={6} lg={5}>
           <Paper className={`${styles.login__form} form_styles`}>
             <Box className={styles.login__formIcon_wrapper}>
-              <Typography component="h1" variant="h5">
-                Login
-              </Typography>
+              <Box className={styles.login__logoContainer}>
+                <img src={logo} alt={logo} className={styles.login__logo} />
+              </Box>
             </Box>
             <Box
               component="form"
