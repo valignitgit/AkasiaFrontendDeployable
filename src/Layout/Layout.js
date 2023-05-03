@@ -20,7 +20,7 @@ const Layout = () => {
       <Box
         sx={{
           padding: { xs: "15px", sm: "15px", md: "12px 16px 30px 260px" },
-          marginTop: "60px",
+          marginTop: "70px",
         }}
       >
         <Outlet />

@@ -8,7 +8,6 @@
     rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
   cursor: pointer;
   height: 190px;
-
   &:hover {
     transform: translate3D(0, -1px, 0) scale(1.03);
     transition: all 0.4s ease;
@@ -23,12 +22,40 @@
   color: var(--emperor-grey);
   font-weight: 600;
   display: inline-block;
-  flex: 0.6;
+  flex: 1;
+  font-size: 0.9rem;
+  @include md {
+    font-size: 1rem;
+    flex: 1;
+  }
+  @include sm {
+    font-size: 1rem;
+    flex: 1;
+  }
+
+  @include xs {
+    font-size: 1rem;
+    flex: 1;
+  }
 }
 .portfolioCard__itemValue {
   text-transform: capitalize;
   display: inline-block;
   flex: 1;
+  font-size: 0.9rem;
+  @include md {
+    font-size: 1rem;
+    flex: 1;
+  }
+  @include sm {
+    font-size: 1rem;
+    flex: 1;
+  }
+
+  @include xs {
+    font-size: 1rem;
+    flex: 1;
+  }
 }
 
 .portfolioCard__portfolioSecuritiesContainer {
@@ -57,7 +84,8 @@
 }
 
 .portfolioCard__btn {
-  width: 110px;
+  width: 90px;
+  text-transform: capitalize;
 }
 
 .portfolioDetails__wrapper {

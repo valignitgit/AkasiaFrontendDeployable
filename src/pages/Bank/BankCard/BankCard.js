@@ -14,7 +14,7 @@ const BankCard = ({ bank_id, bank_name, bank_name_ar, handleDelete }) => {
   const renderBankCard = () => {
     return (
       <>
-        <Grid item xs={12} sm={6} md={6} lg={3}>
+        <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <Card className={styles.bankCard}>
             <CardContent>
               <Box className={styles.bankCard__containWrapper}>

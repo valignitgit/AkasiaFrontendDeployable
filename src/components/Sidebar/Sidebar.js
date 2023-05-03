@@ -35,7 +35,7 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: drawerWidth,
-            marginTop: "65px",
+            marginTop: "70px",
           },
         }}
         open

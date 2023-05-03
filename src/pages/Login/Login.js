@@ -18,7 +18,7 @@ import { getEmptyErrorState } from "../../utils/AppUtil";
 import { isEmptyString } from "../../utils/Validator";
 import ErrorMessageGenerator from "../../utils/ErrorMessageGenerator";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
-import logo from "../../assets/logo.jpeg";
+import logo from "../../assets/images/logo.jpeg";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

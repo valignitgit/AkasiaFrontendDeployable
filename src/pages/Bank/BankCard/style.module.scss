@@ -7,11 +7,14 @@
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 10px 0px,
     rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
   cursor: pointer;
+  height: 180px;
   &:hover {
     transform: translate3D(0, -1px, 0) scale(1.03);
     transition: all 0.4s ease;
   }
-  height: 200px;
+  @include lg {
+    height: 190px;
+  }
 }
 .bankCard__containWrapper {
   @include flexbox;
@@ -22,13 +25,11 @@
 .bankCard__itemKey {
   color: var(--emperor-grey);
   font-weight: 600;
-  flex: 0.4;
-  display: inline-block;
+  flex: 0.5;
 }
 
 .bankCard__itemValue {
   text-transform: uppercase;
-  display: inline-block;
   flex: 0.5;
 }
 .bankCard__Actions {
@@ -37,7 +38,9 @@
 }
 
 .bankCard__btn {
-  width: 110px;
+  width: 90px;
+  font-size: 0.8;
+  text-transform: capitalize;
 }
 
 .bankDetails__wrapper {

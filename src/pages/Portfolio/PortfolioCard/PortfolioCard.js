@@ -13,7 +13,7 @@ const PortfolioCard = ({
   const renderPortfolioDetails = () => {
     return (
       <>
-        <Grid item xs={12} sm={6} md={6} lg={3}>
+        <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <Card className={styles.portfolio__card}>
             <CardContent>
               <Box className={styles.portfolioCard__containWrapper}>

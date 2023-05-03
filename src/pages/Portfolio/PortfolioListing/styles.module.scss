@@ -7,6 +7,14 @@
   @include justify_content(flex-end);
   @include gap(5px);
   @include margin_bottom(30px);
+  @include xs {
+    @include justify_content(flex-start);
+    @include margin_top(10px);
+  }
+  @include sm {
+    @include justify_content(flex-start);
+    @include margin_top(10px);
+  }
 }
 
 .portfolioListing__filterSelectInput {

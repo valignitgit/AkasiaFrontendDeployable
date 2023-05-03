@@ -1,0 +1,17 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.navbar {
+  @include flexbox;
+  @include justify_content(space-between);
+  height: 70px;
+}
+
+.logoContainer {
+  width: 50px;
+}
+.logo {
+  width: 100%;
+  object-fit: cover;
+  color: var(--default);
+}
