@@ -7,13 +7,19 @@ body {
   background-color: #fefafa;
   font-family: "Roboto", sans-serif;
   position: relative;
+  text-transform: capitalize !important;
 }
 
 .active {
-  color: white !important;
-  background-color: #1976d2;
+  // color: white !important;
+  // background-color: #1976d2;
+  // .MuiListItemIcon-root {
+  //   color: white !important;
+  // }
+  background-color: var(--dark-maroon);
+  color: var(--light-belge1) !important;
   .MuiListItemIcon-root {
-    color: white !important;
+    color: var(--light-belge1);
   }
 }
 
@@ -89,4 +95,16 @@ p {
 .home__container {
   padding: 12px 16px 30px 260px;
   margin-top: 60px;
+}
+
+// MUI Menu items
+
+.MuiMenuItem-root {
+  font-size: 0.9rem;
+}
+
+//MUI drawer
+
+.MuiDrawer-paper {
+  background-color: var(--light-belge1);
 }

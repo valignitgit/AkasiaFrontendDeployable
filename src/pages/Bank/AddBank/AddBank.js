@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createBank } from "../../../redux/slices/bankSlice";
-import { Grid, Typography, Box, TextField, Button, Paper } from "@mui/material";
+import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
+import FillButton from "../../../components/Buttons/FillButton/FillButton";
+import CustomButton from "../../../components/Buttons/CustomButton/CustomButton";
 import styles from "./style.module.scss";
 
 const AddBank = () => {
@@ -85,7 +87,7 @@ const AddBank = () => {
     return (
       <>
         <Grid container className={styles.addBank__gridCenter}>
-          <Grid item md={4}>
+          <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
             <Paper className={`${styles.addBank__formWidth} form_styles`}>
               <Box className={styles.addBank__formIcon_wrapper}>
                 <Typography component="h1" variant="h5">
@@ -140,18 +142,20 @@ const AddBank = () => {
                   </span>
                 )}
 
-                <Button
+                <FillButton
                   type="submit"
-                  fullWidth
-                  variant="contained"
-                  className="mt_10"
+                  size="fullWidth"
+                  className={styles.addBtn}
+                  onClick={handleSubmit}
                 >
                   Add
-                </Button>
+                </FillButton>
               </Box>
             </Paper>
           </Grid>
         </Grid>
+        <CustomButton>Update</CustomButton>
+        <FillButton>CustomButton</FillButton>
       </>
     );
   };

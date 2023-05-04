@@ -5,10 +5,12 @@
   @include flexbox;
   @include justify_content(space-between);
   height: 70px;
+  background-color: var(--light-belge1);
 }
 
 .logoContainer {
   width: 50px;
+  margin-left: 50px;
 }
 .logo {
   width: 100%;

@@ -26,11 +26,13 @@
   color: var(--emperor-grey);
   font-weight: 600;
   flex: 0.5;
+  font-size: 0.9rem;
 }
 
 .bankCard__itemValue {
   text-transform: uppercase;
   flex: 0.5;
+  font-size: 0.9rem;
 }
 .bankCard__Actions {
   @include flex_center;

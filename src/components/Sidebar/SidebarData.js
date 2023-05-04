@@ -55,10 +55,10 @@ function SidebarData() {
           activeClassName="active"
           className={styles.sidebar__menu}
         >
-          <ListItemIcon className={styles.sidebar__menu_icon}>
+          <ListItemIcon className={styles.sidebar__menuIcon}>
             {item.icon}
           </ListItemIcon>
-          <ListItemText className={styles.sidebar__menu_text}>
+          <ListItemText className={styles.sidebar__menuText}>
             {item.label}
           </ListItemText>
         </ListItem>

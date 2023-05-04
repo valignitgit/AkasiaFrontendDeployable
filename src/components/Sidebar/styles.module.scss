@@ -1,4 +1,14 @@
 @import "../../styles/variables";
+
+.sidebar {
+  background-color: var(--light-belge1);
+}
+
 .sidebar__menu {
-  color: var(--emperor-grey);
+  color: var(--dark-maroon);
+  padding: 10px;
+}
+
+.sidebar__menuIcon {
+  color: var(--dark-maroon);
 }
