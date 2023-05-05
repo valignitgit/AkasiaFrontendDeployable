@@ -17,11 +17,14 @@ const Navbar = ({ handleDrawerToggle }) => {
     <>
       <AppBar position="fixed">
         <Toolbar className={styles.navbar}>
-          <Link to="/bank">
-            <Box className={styles.logoContainer}>
-              <img src={logo} alt={logo} className={styles.logo} />
-            </Box>
-          </Link>
+          <Box className={styles.navbar__leftmenu}>
+            <Link to="/bank">
+              <Box className={styles.logoContainer}>
+                <img src={logo} alt={logo} className={styles.logo} />
+              </Box>
+            </Link>
+            <h2>Akasia Investment Back Office</h2>
+          </Box>
           <Hidden mdDown>
             <Stack direction="row" spacing={2}>
               <UserMenu />

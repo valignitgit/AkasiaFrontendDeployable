@@ -7,7 +7,16 @@
   height: 70px;
   background-color: var(--light-belge1);
 }
-
+.navbar__leftmenu {
+  @include flexbox;
+  @include align_items(center);
+  @include justify_content(space-between);
+  @include flex(0.33);
+  h2 {
+    color: var(--dark-maroon);
+    font-size: 22px;
+  }
+}
 .logoContainer {
   width: 50px;
   margin-left: 50px;

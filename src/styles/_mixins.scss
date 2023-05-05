@@ -98,6 +98,10 @@ $breakpoint_xl: 1536px;
     rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
 }
 
+@mixin card_box_shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 @mixin margin_top($value) {
   margin-top: $value;
 }

@@ -5,11 +5,11 @@ import Grid from "@mui/material/Grid";
 
 import { Link } from "react-router-dom";
 import DialogBox from "../../../components/DialogBox/DialogBox";
-import { Button, Skeleton } from "@mui/material";
+import { Skeleton } from "@mui/material";
 import BankCard from "../BankCard/BankCard";
 import styles from "./styles.module.scss";
 import Loader from "../../../components/Loader/Loader";
-
+import Button from "../../../components/Button/CustomButton";
 const BankListing = () => {
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.bank);
@@ -40,7 +40,7 @@ const BankListing = () => {
 
   const renderAddBankButton = () => (
     <Link to="/bank/add">
-      <Button variant="contained" className={styles.addBankButton}>
+      <Button variant="filled" className={styles.addBankButton}>
         Add Bank
       </Button>
     </Link>

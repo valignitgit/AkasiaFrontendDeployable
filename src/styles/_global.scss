@@ -1,21 +1,20 @@
 @import "variables";
 @import "mixins";
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+html {
+  // font-size: 16px;
+  color: var(--default);
+}
 
 body {
   margin: 0;
-  background-color: #fefafa;
+  background-color: #f9f3f3;
   font-family: "Roboto", sans-serif;
   position: relative;
   text-transform: capitalize !important;
 }
 
 .active {
-  // color: white !important;
-  // background-color: #1976d2;
-  // .MuiListItemIcon-root {
-  //   color: white !important;
-  // }
   background-color: var(--dark-maroon);
   color: var(--light-belge1) !important;
   .MuiListItemIcon-root {

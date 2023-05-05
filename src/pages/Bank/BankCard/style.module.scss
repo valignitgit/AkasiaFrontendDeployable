@@ -4,8 +4,7 @@
 .bankCard {
   padding: 15px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 10px 0px,
-    rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
+  @include card_box_shadow;
   cursor: pointer;
   height: 180px;
   &:hover {
@@ -40,8 +39,8 @@
 }
 
 .bankCard__btn {
-  width: 90px;
-  font-size: 0.8;
+  width: 80px;
+  font-size: 0.8rem !important;
   text-transform: capitalize;
 }
 

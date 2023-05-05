@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   TextField,
-  Button,
   Paper,
   Grid,
   Box,
@@ -20,6 +19,7 @@ import ErrorMessageGenerator from "../../utils/ErrorMessageGenerator";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import logo from "../../assets/images/logo.jpeg";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/CustomButton";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -139,7 +139,7 @@ const Login = () => {
               )}
 
               <Button
-                variant="contained"
+                variant="filled"
                 type="submit"
                 className={styles.login__submitBtn}
                 fullWidth

@@ -46,5 +46,5 @@
 }
 
 .addBtn {
-  width: 250px;
+  @include margin_top(8px);
 }

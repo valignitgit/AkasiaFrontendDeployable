@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  Grid,
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  Button,
-} from "@mui/material";
+import { Grid, Box, Typography, Card, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
+import Button from "../../../components/Button/CustomButton";
 
 const BankCard = ({ bank_id, bank_name, bank_name_ar, handleDelete }) => {
   const renderBankCard = () => {
@@ -71,24 +65,23 @@ const BankCard = ({ bank_id, bank_name, bank_name_ar, handleDelete }) => {
             </CardContent>
             <div className={styles.bankCard__Actions}>
               <Link to={`/bank/${bank_id}`}>
-                <Button
-                  variant="contained"
-                  color="success"
-                  className={styles.bankCard__btn}
-                >
+                <Button className={styles.bankCard__btn} shape="square">
                   View
                 </Button>
               </Link>
               <Link to={`/bank/update/${bank_id}`}>
-                <Button variant="contained" className={styles.bankCard__btn}>
+                <Button
+                  variant="filled"
+                  className={styles.bankCard__btn}
+                  shape="square"
+                >
                   Update
                 </Button>
               </Link>
               <Button
-                variant="contained"
-                color="error"
                 className={styles.bankCard__btn}
                 onClick={() => handleDelete(bank_id)}
+                shape="square"
               >
                 Delete
               </Button>

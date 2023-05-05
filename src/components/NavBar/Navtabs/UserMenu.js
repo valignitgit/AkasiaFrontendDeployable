@@ -21,7 +21,9 @@ function UserMenu() {
 
   return (
     <Box>
-      <Avatar onClick={handleClick}>A</Avatar>
+      <Avatar onClick={handleClick} sx={{ bgcolor: "#89375f" }}>
+        A
+      </Avatar>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

@@ -3,11 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateBank } from "../../../redux/slices/bankSlice";
 import BankService from "../../../services/BankServices";
-import { Grid, Typography, Box, TextField, Button, Paper } from "@mui/material";
+import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import styles from "../AddBank/style.module.scss";
+import Button from "../../../components/Button/CustomButton";
 
 const UpdateBank = () => {
   const initialState = {
@@ -155,10 +156,10 @@ const UpdateBank = () => {
               )}
 
               <Button
+                className="mt_10"
+                variant="filled"
                 type="submit"
                 fullWidth
-                variant="contained"
-                className="mt_10"
               >
                 Update
               </Button>
