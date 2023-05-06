@@ -27,13 +27,16 @@ const Navbar = ({ handleDrawerToggle }) => {
           </Box>
           <Hidden mdDown>
             <Stack direction="row" spacing={2}>
-              <UserMenu />
+              <UserMenu className={styles.UserMenu} />
             </Stack>
           </Hidden>
 
           <Hidden mdUp>
             <IconButton>
-              <MenuIcon sx={{ color: "white" }} onClick={handleDrawerToggle} />
+              <MenuIcon
+                onClick={handleDrawerToggle}
+                className={styles.humburgeMenu}
+              />
             </IconButton>
           </Hidden>
         </Toolbar>

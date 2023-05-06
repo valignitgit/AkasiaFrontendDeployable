@@ -6,9 +6,19 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import SecurityIcon from "@mui/icons-material/Security";
 // import SettingsIcon from "@mui/icons-material/Settings";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
-import { List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Box,
+  Hidden,
+} from "@mui/material";
 import { NavLink } from "react-router-dom";
 import styles from "./styles.module.scss";
+// import logo from "../../assets/images/logoTransparent.png";
+import { Link } from "react-router-dom";
+import UserMenu from "../NavBar/Navtabs/UserMenu";
 
 function SidebarData() {
   const ListItemData = [
@@ -46,6 +56,14 @@ function SidebarData() {
   ];
   return (
     <List>
+      <Hidden mdUp>
+        <Link to="/bank">
+          <Box className={styles.logoContainer}>
+            {/* <img src={logo} alt={logo} className={styles.logo} /> */}
+            <UserMenu />
+          </Box>
+        </Link>
+      </Hidden>
       {ListItemData.map((item) => (
         <ListItem
           component={NavLink}

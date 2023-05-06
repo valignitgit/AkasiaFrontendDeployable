@@ -1,7 +1,8 @@
 import React from "react";
-import { Grid, Box, Card, CardContent, Button } from "@mui/material";
+import { Grid, Box, Card, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
+import Button from "../../../components/Button/CustomButton";
 
 const PortfolioCard = ({
   portfolio_name,
@@ -46,25 +47,21 @@ const PortfolioCard = ({
             </CardContent>
             <div className={styles.portfolioCard__Actions}>
               <Link to={`/portfolio/${portfolio_id}`}>
-                <Button
-                  variant="contained"
-                  color="success"
-                  className={styles.portfolioCard__btn}
-                >
+                <Button className={styles.portfolioCard__btn} shape="square">
                   View
                 </Button>
               </Link>
               <Link to={`/portfolio/update/${portfolio_id}`}>
                 <Button
-                  variant="contained"
+                  variant="filled"
+                  shape="square"
                   className={styles.portfolioCard__btn}
                 >
                   Update
                 </Button>
               </Link>
               <Button
-                variant="contained"
-                color="error"
+                shape="square"
                 className={styles.portfolioCard__btn}
                 onClick={() => handleDelete(portfolio_id)}
               >

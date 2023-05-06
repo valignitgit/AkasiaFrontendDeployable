@@ -7,7 +7,8 @@ import { getAllSecurity } from "../../../redux/slices/securitySlice";
 import "./styles.module.scss";
 import Loader from "../../../components/Loader/Loader";
 import Pagination from "@mui/material/Pagination";
-import { Grid, Button, FormControl, Select, MenuItem } from "@mui/material";
+import { Grid, FormControl, Select, MenuItem } from "@mui/material";
+import Button from "../../../components/Button/CustomButton";
 
 const SecurityListing = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const SecurityListing = () => {
   const renderAddSecurityButton = () => {
     return (
       <Link to="/security/add">
-        <Button variant="contained" className={styles.addSecurityButton}>
+        <Button variant="filled" className={styles.addSecurityButton}>
           Add Security
         </Button>
       </Link>
@@ -45,7 +46,7 @@ const SecurityListing = () => {
   const renderSecurityCards = () => {
     if (Array.isArray(securityList)) {
       return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} className={styles.securityCard_container}>
           {currentSecurityPage.map((card) => (
             <SecurityCard
               key={card.security_id}

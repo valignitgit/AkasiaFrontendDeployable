@@ -1,17 +1,11 @@
 import React, { useEffect } from "react";
-import {
-  Grid,
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  Button,
-} from "@mui/material";
+import { Grid, Box, Typography, Card, CardContent } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPortfolioById } from "../../../redux/slices/portfolioSlice";
 import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
+import Button from "../../../components/Button/CustomButton";
 
 const PortfolioDetails = () => {
   const { id } = useParams();
@@ -147,8 +141,9 @@ const PortfolioDetails = () => {
               <div className={styles.portfolioDetails__Actions}>
                 <Link to={`/portfolio/update/${id}`}>
                   <Button
-                    variant="contained"
+                    variant="filled"
                     className={styles.portfolioDetails__btn}
+                    shape="square"
                   >
                     Update
                   </Button>

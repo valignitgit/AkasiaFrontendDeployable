@@ -2,8 +2,7 @@
 @import "mixins";
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 html {
-  // font-size: 16px;
-  color: var(--default);
+  font-size: 16px;
 }
 
 body {
@@ -106,4 +105,26 @@ p {
 
 .MuiDrawer-paper {
   background-color: var(--light-belge1);
+}
+//MUI paginations component
+
+.MuiPaginationItem-root.Mui-selected {
+  background-color: var(--dark-maroon);
+  color: var(--light-belge1);
+  &:hover {
+    background-color: var(--dark-maroon);
+    color: var(--light-belge1);
+  }
+}
+.MuiPaginationItem-root:focus {
+  background-color: var(--dark-maroon);
+  color: var(--light-belge1);
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--very-light-gray);
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: var(--black);
 }

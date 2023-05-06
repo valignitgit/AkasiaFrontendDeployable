@@ -4,7 +4,6 @@ import {
   Typography,
   Box,
   TextField,
-  Button,
   InputLabel,
   MenuItem,
   FormControl,
@@ -26,6 +25,7 @@ import {
 } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import styles from "../AddPortfolio/styles.module.scss";
+import Button from "../../../components/Button/CustomButton";
 
 const UpdatePortfolio = () => {
   const initialState = {
@@ -309,7 +309,7 @@ const UpdatePortfolio = () => {
               </div>
               <Button
                 type="submit"
-                variant="contained"
+                variant="filled"
                 fullWidth
                 className={styles.addPortfolio__submitBtn}
               >

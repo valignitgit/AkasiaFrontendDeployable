@@ -6,23 +6,34 @@
   @include justify_content(space-between);
   height: 70px;
   background-color: var(--light-belge1);
-}
-.navbar__leftmenu {
-  @include flexbox;
-  @include align_items(center);
-  @include justify_content(space-between);
-  @include flex(0.33);
-  h2 {
-    color: var(--dark-maroon);
-    font-size: 22px;
+
+  &__leftmenu {
+    @include flexbox;
+    @include align_items(center);
+    @include justify_content(space-between);
+    @include flex(0.3);
+    .logoContainer {
+      width: 50px;
+    }
+    .logo {
+      width: 100%;
+      object-fit: cover;
+      color: var(--default);
+    }
+
+    h2 {
+      color: var(--dark-maroon);
+      font-size: 22px;
+    }
   }
 }
-.logoContainer {
-  width: 50px;
-  margin-left: 50px;
+
+.humburgeMenu {
+  color: var(--dark-maroon);
 }
-.logo {
-  width: 100%;
-  object-fit: cover;
-  color: var(--default);
+
+.UserMenu {
+  @include sm_down {
+    display: none;
+  }
 }

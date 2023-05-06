@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useNavigate } from "react-router-dom";
 import { createPortfolio } from "../../../redux/slices/portfolioSlice";
 import {
   Typography,
   Box,
   TextField,
-  Button,
   InputLabel,
   MenuItem,
   FormControl,
@@ -26,6 +24,8 @@ import {
 } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import styles from "./styles.module.scss";
+import Button from "../../../components/Button/CustomButton";
+
 const AddPortfolio = () => {
   const initialState = {
     portfolio_name: "",
@@ -294,7 +294,7 @@ const AddPortfolio = () => {
               </div>
               <Button
                 type="submit"
-                variant="contained"
+                variant="filled"
                 fullWidth
                 className={styles.addPortfolio__submitBtn}
               >

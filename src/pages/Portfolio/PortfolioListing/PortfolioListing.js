@@ -7,13 +7,14 @@ import {
 } from "../../../redux/slices/portfolioSlice";
 import { Link } from "react-router-dom";
 import DialogBox from "../../../components/DialogBox/DialogBox";
-import { Button, Box, FormControl, Select, MenuItem } from "@mui/material";
+import { Box, FormControl, Select, MenuItem } from "@mui/material";
 import PortfolioCard from "../PortfolioCard/PortfolioCard";
 import Loader from "../../../components/Loader/Loader";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import styles from "./styles.module.scss";
 import Pagination from "@mui/material/Pagination";
+import Button from "../../../components/Button/CustomButton";
 
 const Portfolio = () => {
   const dispatch = useDispatch();
@@ -117,7 +118,7 @@ const Portfolio = () => {
 
   const renderAddPortfolioButton = () => (
     <Link to="/portfolio/add">
-      <Button variant="contained">Add Portfolio</Button>
+      <Button variant="filled">Add Portfolio</Button>
     </Link>
   );
   const renderFilterDropDown = () => {
@@ -126,11 +127,15 @@ const Portfolio = () => {
         <Box>
           <Box className={styles.portfolioListing__filterContainer}>
             <Button
-              variant="outlined"
-              startIcon={filter ? <FilterListOffIcon /> : <FilterListIcon />}
+              variant="filled"
+              icon={{
+                position: "left",
+                component: filter ? <FilterListOffIcon /> : <FilterListIcon />,
+              }}
               onClick={handleUnFilter}
+              shape="square"
             >
-              {filter ? "unFilter" : "Filter"}
+              {filter ? "Unfilter" : "Filter"}
             </Button>
             <FormControl className={styles.portfolioListing__filterSelectInput}>
               <Select

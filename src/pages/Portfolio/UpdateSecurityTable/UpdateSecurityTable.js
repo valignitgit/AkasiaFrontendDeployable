@@ -11,7 +11,6 @@ import {
   Select,
   MenuItem,
   TextField,
-  Button,
   InputLabel,
   Box,
   Typography,
@@ -32,6 +31,7 @@ import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import styles from "../AddSecurityTable/styles.module.scss";
+import Button from "../../../components/Button/CustomButton";
 
 const UpdateSecurityTable = () => {
   const [error, setErrors] = useState({
@@ -194,9 +194,10 @@ const UpdateSecurityTable = () => {
             )}
           </Box>
           <Button
-            variant="contained"
+            variant="filled"
             onClick={handleAddFormSubmit}
             className={styles.addSecurityTable__addBtn}
+            shape="square"
           >
             Add
           </Button>

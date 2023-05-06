@@ -11,11 +11,11 @@ import {
   Select,
   MenuItem,
   TextField,
-  Button,
   InputLabel,
   Box,
   Typography,
 } from "@mui/material";
+import Button from "../../../components/Button/CustomButton";
 
 import { nanoid } from "nanoid";
 import ReadOnlyRow from "./ReadOnlyRow";
@@ -195,9 +195,10 @@ const AddSecurityTable = () => {
             )}
           </Box>
           <Button
-            variant="contained"
+            variant="filled"
             onClick={handleAddFormSubmit}
             className={styles.addSecurityTable__addBtn}
+            shape="square"
           >
             Add
           </Button>

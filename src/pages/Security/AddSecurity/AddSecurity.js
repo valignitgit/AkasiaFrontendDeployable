@@ -3,7 +3,6 @@ import {
   Typography,
   Box,
   TextField,
-  Button,
   InputLabel,
   MenuItem,
   FormControl,
@@ -26,6 +25,7 @@ import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import { useNavigate } from "react-router-dom";
+import Button from "../../../components/Button/CustomButton";
 
 const AddSecurity = () => {
   const securityTypeOptions = getSecurityTypeList();
@@ -327,7 +327,7 @@ const AddSecurity = () => {
                 />
               </Box>
               <Button
-                variant="contained"
+                variant="filled"
                 type="submit"
                 className={styles.addsecurity__submitBtn}
                 fullWidth

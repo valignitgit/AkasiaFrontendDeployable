@@ -151,3 +151,60 @@ $breakpoint_xl: 1536px;
     @content;
   }
 }
+
+// for up
+@mixin xs_up {
+  @media only screen and (min-width: $breakpoint_xs) {
+    @content;
+  }
+}
+
+@mixin sm_up {
+  @media only screen and (min-width: $breakpoint_sm) {
+    @content;
+  }
+}
+
+@mixin md_up {
+  @media only screen and (min-width: $breakpoint_md) {
+    @content;
+  }
+}
+
+@mixin lg_up {
+  @media only screen and (min-width: $breakpoint_lg) {
+    @content;
+  }
+}
+
+@mixin xl_up {
+  @media only screen and (min-width: $breakpoint_xl) {
+    @content;
+  }
+}
+
+//for down
+
+@mixin xs_down {
+  @media only screen and (max-width: #{$breakpoint_sm - 1}) {
+    @content;
+  }
+}
+
+@mixin sm_down {
+  @media only screen and (max-width: #{$breakpoint_md - 1}) {
+    @content;
+  }
+}
+
+@mixin md_down {
+  @media only screen and (max-width: #{$breakpoint_lg - 1}) {
+    @content;
+  }
+}
+
+@mixin lg_down {
+  @media only screen and (max-width: #{$breakpoint_xl - 1}) {
+    @content;
+  }
+}

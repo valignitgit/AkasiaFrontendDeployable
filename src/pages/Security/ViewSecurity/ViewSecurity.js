@@ -2,16 +2,11 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSecurityById } from "../../../redux/slices/securitySlice";
-import {
-  Container,
-  Grid,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-} from "@mui/material";
+import { Container, Grid, Card, CardActions, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
+import Button from "../../../components/Button/CustomButton";
+
 const ViewSecurity = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -165,7 +160,8 @@ const ViewSecurity = () => {
               <CardActions className={styles.viewSecurity__buttonContainer}>
                 <Link to={`/security/update/${security_id}`}>
                   <Button
-                    variant="contained"
+                    variant="filled"
+                    shape="square"
                     className={styles.viewSecurity__button}
                   >
                     Update

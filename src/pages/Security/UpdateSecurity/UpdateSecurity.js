@@ -3,8 +3,6 @@ import {
   Typography,
   Box,
   TextField,
-  Avatar,
-  Button,
   InputLabel,
   MenuItem,
   FormControl,
@@ -14,7 +12,6 @@ import {
   Checkbox,
   FormControlLabel,
 } from "@mui/material";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import styles from "../AddSecurity/style.module.scss";
 import {
   getSecurityTypeList,
@@ -29,6 +26,7 @@ import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import { useNavigate, useParams } from "react-router-dom";
 import SecurityService from "../../../services/SecurityServices";
+import Button from "../../../components/Button/CustomButton";
 
 const AddSecurity = () => {
   const securityTypeOptions = getSecurityTypeList();
@@ -192,9 +190,6 @@ const AddSecurity = () => {
         <Grid item md={4}>
           <Paper className={`${styles.addsecurity__formWidth} form_styles`}>
             <Box className={styles.addsecurity__formIcon_wrapper}>
-              <Avatar className={styles.addsecurity__formIcon}>
-                <AddCircleOutlineIcon />
-              </Avatar>
               <Typography component="h1" variant="h5">
                 Update Security
               </Typography>
@@ -347,7 +342,7 @@ const AddSecurity = () => {
                 />
               </Box>
               <Button
-                variant="contained"
+                variant="filled"
                 type="submit"
                 className={styles.addsecurity__submitBtn}
                 fullWidth

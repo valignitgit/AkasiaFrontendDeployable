@@ -1,29 +1,20 @@
 :root {
   /*-------------App Colors-------------*/
-  --primary: #1976d2;
-  --default: #ffffff;
-  --danger: #d32f2f;
-  --success: #2e7d32;
-  --warning: #cccc00;
+
   /*-------------Colors-------------*/
-
-  --green-haze: #05955f;
-  --ivory: #eeeeee;
+  --default: #ffffff;
+  --black: #000000;
   --emperor-grey: #666666;
-  --empty-tile-grey: #959595;
-  --progress-green: #32c92f;
-  --dirty-grey: #a9a9a9;
-  --mustard-yellow: #d9a10a;
-  --violate: #9c27b0;
-
-  --card-border-radius: 10px;
-  --card-padding: 15px;
-
-  //Color theme
+  --ivory: #eeeeee;
   --light-belge1: #f8ede3;
   --light-belge2: #dfd3c3;
   --dark-belge1: #d0b8a8;
   --dark-belgen2: #7d6e83;
   --dark-brown: #867070;
   --dark-maroon: #89375f;
+  --very-light-gray: #cacaca;
+
+  //card
+  --card-border-radius: 10px;
+  --card-padding: 15px;
 }

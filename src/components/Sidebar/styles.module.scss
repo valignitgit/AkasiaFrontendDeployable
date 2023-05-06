@@ -1,4 +1,5 @@
 @import "../../styles/variables";
+@import "../../styles/mixins";
 
 .sidebar {
   background-color: var(--light-belge1);
@@ -11,4 +12,19 @@
 
 .sidebar__menuIcon {
   color: var(--dark-maroon);
+}
+
+.logoContainer {
+  @include flexbox;
+  @include align_items(center);
+  @include justify_content(center);
+  @include flex_directions(column);
+  width: 100%;
+  @include gap(15px);
+  @include margin_bottom(10px);
+}
+.logo {
+  width: 60px;
+  object-fit: cover;
+  color: var(--default);
 }

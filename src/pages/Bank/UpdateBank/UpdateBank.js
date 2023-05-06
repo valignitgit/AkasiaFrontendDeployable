@@ -99,7 +99,7 @@ const UpdateBank = () => {
   const renderUpdateBankDetailsForm = () => {
     return (
       <Grid container className={styles.addBank__gridCenter}>
-        <Grid item md={4}>
+        <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
           <Paper className={`${styles.addBank__formWidth} form_styles`}>
             <Box className={styles.addBank__formIcon_wrapper}>
               <Typography component="h1" variant="h5">

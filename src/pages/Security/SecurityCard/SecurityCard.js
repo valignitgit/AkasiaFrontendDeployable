@@ -1,13 +1,13 @@
 import React from "react";
-import { Grid, CardActions, Card, CardContent, Button } from "@mui/material";
+import { Grid, CardActions, Card, CardContent } from "@mui/material";
 import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
+import Button from "../../../components/Button/CustomButton";
 
 const SecurityCard = (card, id) => {
   const { security_id, security_name, security_type, exchange_id } = card;
-  console.log(id);
   return (
-    <Grid item xs={12} sm={6} md={6} lg={3}>
+    <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
       <Card className={styles.securityCard}>
         <CardContent>
           <div className={styles.securityCard__body}>
@@ -46,8 +46,8 @@ const SecurityCard = (card, id) => {
           <CardActions className={styles.securityCard__buttonContainer}>
             <Link to={`/security/${security_id}`}>
               <Button
-                variant="contained"
                 color="success"
+                shape="square"
                 className={styles.securityCard__button}
               >
                 View
@@ -55,7 +55,8 @@ const SecurityCard = (card, id) => {
             </Link>
             <Link to={`/security/update/${security_id}`}>
               <Button
-                variant="contained"
+                variant="filled"
+                shape="square"
                 className={styles.securityCard__button}
               >
                 Update

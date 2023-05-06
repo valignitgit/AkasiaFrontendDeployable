@@ -1,17 +1,11 @@
 import React, { useEffect } from "react";
-import {
-  Grid,
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  Button,
-} from "@mui/material";
+import { Grid, Box, Typography, Card, CardContent } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getBankById } from "../../../redux/slices/bankSlice";
 import styles from "../BankCard/style.module.scss";
 import { Link } from "react-router-dom";
+import Button from "../../../components/Button/CustomButton";
 
 const BankDetails = () => {
   const { id } = useParams();
@@ -88,7 +82,11 @@ const BankDetails = () => {
             </CardContent>
             <div className={styles.bankCard__Actions}>
               <Link to={`/bank/update/${bank_id}`}>
-                <Button variant="contained" className={styles.bankCard__btn}>
+                <Button
+                  variant="filled"
+                  shape="square"
+                  className={styles.bankCard__btn}
+                >
                   Update
                 </Button>
               </Link>
