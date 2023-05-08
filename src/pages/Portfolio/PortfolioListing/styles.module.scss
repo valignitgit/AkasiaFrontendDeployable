@@ -1,12 +1,17 @@
 @import "../../../styles/mixins";
 @import "../../../styles/variables";
 
+.portfolioContainer {
+  min-height: 100vh; /* Set a minimum height to occupy the full viewport */
+}
+
 .portfolioListing__filterContainer {
   @include flexbox;
   @include align_items(center);
   @include justify_content(flex-end);
   @include gap(5px);
   @include margin_bottom(30px);
+
   @include xs {
     @include justify_content(flex-start);
     @include margin_top(10px);
@@ -25,7 +30,13 @@
   @include justify_content(flex-end);
   @include align_items(center);
   width: 100%;
-  position: fixed;
+  position: absolute;
   right: 20px;
-  bottom: 10px;
+  bottom: 100px;
+  @include lg_down {
+    bottom: 50px;
+  }
+  @include md_down {
+    bottom: -50px;
+  }
 }

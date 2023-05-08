@@ -69,19 +69,11 @@ const BankCard = ({ bank_id, bank_name, bank_name_ar, handleDelete }) => {
                   View
                 </Button>
               </Link>
-              <Link to={`/bank/update/${bank_id}`}>
-                <Button
-                  variant="filled"
-                  className={styles.bankCard__btn}
-                  shape="square"
-                >
-                  Update
-                </Button>
-              </Link>
               <Button
                 className={styles.bankCard__btn}
                 onClick={() => handleDelete(bank_id)}
                 shape="square"
+                variant="filled"
               >
                 Delete
               </Button>

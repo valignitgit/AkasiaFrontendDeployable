@@ -1,9 +1,10 @@
 @import "../../../styles/variables";
 @import "../../../styles/mixins";
 
-// .securityCard_container {
-//   @include flexbox;
-// }
+.securityContainer {
+  min-height: 100vh;
+  padding-bottom: 20px;
+}
 .addSecurityButton {
   @include margin_bottom(20px);
 }
@@ -13,8 +14,8 @@
   @include justify_content(flex-end);
   @include align_items(center);
   width: 100%;
-  position: fixed;
+  position: absolute;
+  padding-bottom: 20px;
   right: 20px;
-  bottom: 10px;
   margin-top: 20px;
 }

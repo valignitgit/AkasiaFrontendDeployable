@@ -10,7 +10,6 @@ import {
   MenuItem,
   FormControl,
   Select,
-  Paper,
   Grid,
 } from "@mui/material";
 import AddSecurityTable from "../AddSecurityTable/AddSecurityTable";
@@ -188,14 +187,14 @@ const AddPortfolio = () => {
     return (
       <>
         <Grid container className={styles.addPortfolio__gridCenter}>
-          <Grid item md={4}>
+          <Grid item xs={12} sm={12} md={8} lg={5} xl={5}>
             <Box
               component="form"
               onSubmit={handleSubmit}
               noValidate
               className={styles.addPortfolio__formContainer}
             >
-              <Paper className={styles.addPortfolio__formStyles}>
+              <Box className={styles.addPortfolio__formStyles}>
                 <Typography
                   component="h1"
                   variant="h5"
@@ -277,7 +276,7 @@ const AddPortfolio = () => {
                     {error.avg_growth_pct.errorMessage}
                   </span>
                 )}
-              </Paper>
+              </Box>
               <br />
               <AddSecurityTable />
               <div className={styles.addPortfolio__errorContainer}>

@@ -6,9 +6,9 @@
   @include justify_content(center);
   margin-top: 50px;
 }
-.addsecurity__formWidth {
-  width: 550px;
-}
+// .addsecurity__formWidth {
+//   width: 550px;
+// }
 .addsecurity__formContainer {
   @include flexbox;
   @include flex_directions(column);

@@ -26,17 +26,7 @@
   display: inline-block;
   flex: 1;
   font-size: 0.9rem;
-  @include md {
-    font-size: 1rem;
-    flex: 1;
-  }
-  @include sm {
-    font-size: 1rem;
-    flex: 1;
-  }
-
-  @include xs {
-    font-size: 1rem;
+  @include lg_down {
     flex: 1;
   }
 }
@@ -45,17 +35,7 @@
   display: inline-block;
   flex: 1;
   font-size: 0.9rem;
-  @include md {
-    font-size: 1rem;
-    flex: 1;
-  }
-  @include sm {
-    font-size: 1rem;
-    flex: 1;
-  }
-
-  @include xs {
-    font-size: 1rem;
+  @include lg_down {
     flex: 1;
   }
 }

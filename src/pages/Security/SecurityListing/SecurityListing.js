@@ -80,11 +80,11 @@ const SecurityListing = () => {
     );
   };
   return (
-    <>
+    <div className={styles.securityContainer}>
       {renderAddSecurityButton()}
       {renderSecurityCards()}
       {securityList.length > 0 && renderPagination()}
-    </>
+    </div>
   );
 };
 

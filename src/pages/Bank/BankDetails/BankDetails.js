@@ -21,7 +21,7 @@ const BankDetails = () => {
   const renderBankDetails = () => {
     return (
       <Grid container spacing={4} className={styles.bankDetails__wrapper}>
-        <Grid item xs={12} sm={6} md={6} lg={3}>
+        <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <h2 className={styles.bankDetails__heading}>Bank Details</h2>
 
           <Card className={styles.bankCard}>

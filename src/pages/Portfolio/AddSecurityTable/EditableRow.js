@@ -8,9 +8,11 @@ import {
   TextField,
   IconButton,
   InputLabel,
+  Box,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import CloseIcon from "@mui/icons-material/Close";
+import styles from "./styles.module.scss";
 
 const EditableRow = ({
   handleEditFormChange,
@@ -30,6 +32,7 @@ const EditableRow = ({
             value={editFormData.security_id}
             onChange={handleEditFormChange}
             label="Security"
+            className={styles.securityTable_selectEdit}
           >
             {securityOptions.map((option) => (
               <MenuItem key={option.security_id} value={option.security_id}>
@@ -46,11 +49,12 @@ const EditableRow = ({
           value={editFormData.weightage_pct}
           onChange={handleEditFormChange}
           placeholder="Weightage"
+          className={styles.securityTable_TextEdit}
         />
       </TableCell>
 
       <TableCell align="center">
-        <>
+        <Box className={styles.securityTable_editBtnContainer}>
           <IconButton onClick={(e) => handleEditFormSubmit(e)}>
             <SaveIcon />
           </IconButton>
@@ -58,7 +62,7 @@ const EditableRow = ({
           <IconButton onClick={handleCancelClick}>
             <CloseIcon />
           </IconButton>
-        </>
+        </Box>
       </TableCell>
     </TableRow>
   );

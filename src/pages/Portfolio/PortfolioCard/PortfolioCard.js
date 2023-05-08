@@ -51,19 +51,11 @@ const PortfolioCard = ({
                   View
                 </Button>
               </Link>
-              <Link to={`/portfolio/update/${portfolio_id}`}>
-                <Button
-                  variant="filled"
-                  shape="square"
-                  className={styles.portfolioCard__btn}
-                >
-                  Update
-                </Button>
-              </Link>
               <Button
                 shape="square"
                 className={styles.portfolioCard__btn}
                 onClick={() => handleDelete(portfolio_id)}
+                variant="filled"
               >
                 Delete
               </Button>

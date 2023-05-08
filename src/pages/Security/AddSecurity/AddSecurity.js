@@ -173,8 +173,8 @@ const AddSecurity = () => {
   return (
     <>
       <Grid container className={styles.addsecurity__gridCenter}>
-        <Grid item md={4}>
-          <Paper className={`${styles.addsecurity__formWidth} form_styles`}>
+        <Grid item xs={12} sm={10} md={7} lg={6} xl={4}>
+          <Paper className="form_styles">
             <Box className={styles.addsecurity__formIcon_wrapper}>
               <Typography component="h1" variant="h5">
                 Add Security

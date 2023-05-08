@@ -192,7 +192,7 @@ const UpdatePortfolio = () => {
         .then((res) => {
           setCurrentPortfolio(res.data);
           dispatch(setData([]));
-          navigate("/portfolio");
+          navigate(`/portfolio/${id}`);
         })
         .catch((err) => {
           console.error(err);
@@ -203,7 +203,7 @@ const UpdatePortfolio = () => {
     return (
       <>
         <Grid container className={styles.addPortfolio__gridCenter}>
-          <Grid item md={4}>
+          <Grid item xs={12} sm={12} md={8} lg={5} xl={5}>
             <Box
               component="form"
               onSubmit={handleSubmit}
@@ -216,7 +216,7 @@ const UpdatePortfolio = () => {
                   variant="h5"
                   className={styles.addPortfolio__formHeading}
                 >
-                  Add Portfolio
+                  Update Portfolio
                 </Typography>
 
                 <TextField

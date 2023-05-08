@@ -7,10 +7,10 @@
 }
 
 .addSecurityTable__Container {
-  width: 700px;
+  // width: 700px;
   border-radius: 16px;
   padding: 15px;
-  @include all_box_shadow;
+  @include card_box_shadow;
 }
 .addSecurityTable__form {
   @include flexbox;
@@ -20,20 +20,37 @@
 .addSecurityTable_selectInput {
   @include flexbox;
   @include flex_directions(column);
-  @include flex(1.8);
+  width: 70%;
+  @include lg_down {
+    width: 60%;
+  }
 }
 
 .addSecurityTable_textInput {
   @include flexbox;
   @include flex_directions(column);
+  width: 20%;
+  @include lg_down {
+    width: 30%;
+  }
 }
 
 .addSecurityTable__addBtn {
   height: 56px;
+  width: 10%;
 }
 .addSecurityTable_dataTableWrapper {
-  width: 700px;
-  padding: 18px 15px;
   border-radius: 20px;
-  @include all_box_shadow;
+  @include card_box_shadow;
 }
+
+// .addSecurityTable_selectEdit {
+//   width: 90%;
+// }
+
+// .addSecurityTable_TextEdit {
+//   width: 50%;
+// }
+
+// .addSecurityTable_editBtnContainer {
+// }

@@ -10,15 +10,13 @@
 .addPortfolio__formContainer {
   @include flexbox;
   @include flex_directions(column);
-  // @include align_items(flex-start);
   @include justify_content(center);
-  background-color: var(--default);
 }
 .addPortfolio__formStyles {
   border-radius: 16px;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-  padding: 15px;
-  width: 700px;
+  padding: 18px;
+  @include card_box_shadow;
+  background-color: var(--default);
 }
 .addPortfolio__formHeading {
   @include margin_bottom(10px);
@@ -48,12 +46,7 @@
   @include margin_right(0);
 }
 
-.addPortfolio__submitBtn {
-  width: 735px;
-}
-
 .addPortfolio__errorContainer {
-  width: 700px;
   @include flexbox;
   @include justify_content(center);
   align-items: center;

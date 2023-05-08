@@ -93,7 +93,7 @@ const UpdateBank = () => {
     const isValid = validateForm();
     if (isValid) {
       dispatch(updateBank({ id: bank_id, data: currentBank }));
-      navigate("/bank");
+      navigate(`/bank/${id}`);
     }
   };
   const renderUpdateBankDetailsForm = () => {

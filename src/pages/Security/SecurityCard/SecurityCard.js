@@ -49,17 +49,9 @@ const SecurityCard = (card, id) => {
                 color="success"
                 shape="square"
                 className={styles.securityCard__button}
+                variant="filled"
               >
                 View
-              </Button>
-            </Link>
-            <Link to={`/security/update/${security_id}`}>
-              <Button
-                variant="filled"
-                shape="square"
-                className={styles.securityCard__button}
-              >
-                Update
               </Button>
             </Link>
           </CardActions>

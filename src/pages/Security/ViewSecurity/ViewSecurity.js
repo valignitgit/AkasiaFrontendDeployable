@@ -6,6 +6,7 @@ import { Container, Grid, Card, CardActions, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import Button from "../../../components/Button/CustomButton";
+import Loader from "../../../components/Loader/Loader";
 
 const ViewSecurity = () => {
   const { id } = useParams();
@@ -31,148 +32,158 @@ const ViewSecurity = () => {
   useEffect(() => {
     dispatch(getSecurityById(id));
   }, []);
+  console.log(" security", currentSecurity);
+
   const renderSecurityDetails = () => {
-    return (
-      <Container>
-        <div className={styles.viewSecurity__container}>
-          <Grid item xs={12} sm={6} md={5}>
-            <h1 className={styles.viewSecurity__heading}>Security Details</h1>
+    if (
+      typeof currentSecurity === "object" &&
+      currentSecurity !== null &&
+      !Array.isArray(currentSecurity)
+    ) {
+      return (
+        <Container>
+          <div className={styles.viewSecurity__container}>
+            <Grid item xs={12} sm={6} md={6} lg={5} xl={5}>
+              <h1 className={styles.viewSecurity__heading}>Security Details</h1>
 
-            <Card className={styles.viewSecurity}>
-              <CardContent>
-                <div className={styles.viewSecurity__body}>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Security ID:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {security_id || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Security Name:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {security_name || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Security Name (Arabic):
-                    </span>
-                    <span className={`${styles.viewSecurity__itemValue} `}>
-                      {security_name_ar || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Security Ref:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {security_ref || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Currency ID:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {currency_id || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Market Price Amount:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {market_price_amt || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Security Class:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {security_class || "NA"}
-                    </span>
-                  </div>
+              <Card className={styles.viewSecurity}>
+                <CardContent>
+                  <div className={styles.viewSecurity__body}>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Security ID:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {security_id || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Security Name:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {security_name || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Security Name (Arabic):
+                      </span>
+                      <span className={`${styles.viewSecurity__itemValue} `}>
+                        {security_name_ar || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Security Ref:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {security_ref || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Currency ID:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {currency_id || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Market Price Amount:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {market_price_amt || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Security Class:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {security_class || "NA"}
+                      </span>
+                    </div>
 
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Security Type:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {security_type || "NA"}
-                    </span>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Security Type:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {security_type || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Is Tradable:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {is_tradable || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Is Marginable:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {is_marginable || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Is Fractionable:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {is_fractionable || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Exchange ID:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {exchange_id || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Is Islamic:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {is_islamic || "NA"}
+                      </span>
+                    </div>
+                    <div>
+                      <span className={styles.viewSecurity__itemKey}>
+                        Is Shariah:
+                      </span>
+                      <span className={styles.viewSecurity__itemValue}>
+                        {is_shariah || "NA"}
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Is Tradable:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {is_tradable || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Is Marginable:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {is_marginable || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Is Fractionable:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {is_fractionable || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Exchange ID:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {exchange_id || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Is Islamic:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {is_islamic || "NA"}
-                    </span>
-                  </div>
-                  <div>
-                    <span className={styles.viewSecurity__itemKey}>
-                      Is Shariah:
-                    </span>
-                    <span className={styles.viewSecurity__itemValue}>
-                      {is_shariah || "NA"}
-                    </span>
-                  </div>
-                </div>
-              </CardContent>
+                </CardContent>
 
-              <CardActions className={styles.viewSecurity__buttonContainer}>
-                <Link to={`/security/update/${security_id}`}>
-                  <Button
-                    variant="filled"
-                    shape="square"
-                    className={styles.viewSecurity__button}
-                  >
-                    Update
-                  </Button>
-                </Link>
-              </CardActions>
-            </Card>
-          </Grid>
-        </div>
-      </Container>
-    );
+                <CardActions className={styles.viewSecurity__buttonContainer}>
+                  <Link to={`/security/update/${security_id}`}>
+                    <Button
+                      variant="filled"
+                      shape="square"
+                      className={styles.viewSecurity__button}
+                    >
+                      Update
+                    </Button>
+                  </Link>
+                </CardActions>
+              </Card>
+            </Grid>
+          </div>
+        </Container>
+      );
+    } else {
+      return <Loader />;
+    }
   };
 
   return <>{renderSecurityDetails()}</>;

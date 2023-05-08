@@ -5,14 +5,14 @@
   @include flexbox;
   @include justify_content(center);
   @include align_items(center);
-  height: 80vh;
+  // height: 80vh;
 }
 .viewSecurity__heading {
   margin-bottom: 30px;
   text-align: center;
 }
 .viewSecurity {
-  @include all_box_shadow;
+  @include card_box_shadow;
   border-radius: var(--card-border-radius);
   padding: 18px 20px;
   @include flex_wrap(wrap);
@@ -26,7 +26,6 @@
 .viewSecurity__body {
   div {
     @include margin_bottom(15px);
-    @include flexbox;
   }
 }
 
@@ -34,13 +33,13 @@
   color: var(--emperor-grey);
   font-weight: 600;
   display: inline-block;
-  flex: 0.6;
+  width: 35%;
 }
 
 .viewSecurity__itemValue {
   text-transform: capitalize;
   display: inline-block;
-  flex: 1;
+  width: 60%;
 }
 
 .viewSecurity__buttonContainer {

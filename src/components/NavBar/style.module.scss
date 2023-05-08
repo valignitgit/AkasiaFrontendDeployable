@@ -11,7 +11,8 @@
     @include flexbox;
     @include align_items(center);
     @include justify_content(space-between);
-    @include flex(0.3);
+    max-width: 600px;
+    width: 30%;
     .logoContainer {
       width: 50px;
     }
@@ -24,6 +25,10 @@
     h2 {
       color: var(--dark-maroon);
       font-size: 22px;
+
+      @include sm_down {
+        display: none;
+      }
     }
   }
 }

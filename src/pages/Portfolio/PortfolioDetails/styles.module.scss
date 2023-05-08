@@ -8,7 +8,9 @@
     rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
   cursor: pointer;
   height: 300px;
-  width: 400px;
+  @include lg_down {
+    height: 320px;
+  }
 
   &:hover {
     transform: translate3D(0, -1px, 0) scale(1.03);
@@ -24,12 +26,12 @@
   color: var(--emperor-grey);
   font-weight: 600;
   display: inline-block;
-  flex: 0.6;
+  width: 60%;
 }
 .portfolioDetails__itemValue {
   text-transform: capitalize;
   display: inline-block;
-  flex: 1;
+  width: 40%;
 }
 
 .portfolioDetails__portfolioSecuritiesContainer {

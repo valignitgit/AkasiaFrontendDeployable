@@ -218,13 +218,13 @@ const Portfolio = () => {
   };
 
   return (
-    <>
+    <div className={styles.portfolioContainer}>
       {renderAddPortfolioButton()}
       {portfolioList.length > 0 && renderFilterDropDown()}
       {renderPortfolioList()}
       {portfolioList.length > 0 && renderPagination()}
       {renderDialog()}
-    </>
+    </div>
   );
 };
 
