@@ -161,8 +161,16 @@ const Portfolio = () => {
     const renderActionButtons = () => {
       return (
         <>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={() => onDelete(deletedItem)}>Delete</Button>
+          <Button shape="square" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button
+            variant="filled"
+            shape="square"
+            onClick={() => onDelete(deletedItem)}
+          >
+            Delete
+          </Button>
         </>
       );
     };

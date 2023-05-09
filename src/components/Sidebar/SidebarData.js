@@ -19,8 +19,16 @@ import styles from "./styles.module.scss";
 // import logo from "../../assets/images/logoTransparent.png";
 import { Link } from "react-router-dom";
 import UserMenu from "../NavBar/Navtabs/UserMenu";
+import { toggleMobileOpen } from "../../redux/slices/layoutSlice";
+import { useDispatch } from "react-redux";
 
 function SidebarData() {
+  const dispatch = useDispatch();
+
+  const handleDrawerToggle = () => {
+    dispatch(toggleMobileOpen());
+  };
+
   const ListItemData = [
     // {
     //   label: "Dashboard",
@@ -72,6 +80,7 @@ function SidebarData() {
           key={item.link}
           activeClassName="active"
           className={styles.sidebar__menu}
+          onClick={handleDrawerToggle}
         >
           <ListItemIcon className={styles.sidebar__menuIcon}>
             {item.icon}

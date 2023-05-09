@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../components/NavBar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
+import { toggleMobileOpen } from "../redux/slices/layoutSlice";
 
 const Layout = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const mobileOpen = useSelector((state) => state.layout.mobileOpen);
+  const dispatch = useDispatch();
+
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+    dispatch(toggleMobileOpen());
   };
 
   return (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Avatar, Box, Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import styles from "../style.module.scss";
 
 function UserMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -21,7 +22,7 @@ function UserMenu() {
 
   return (
     <Box>
-      <Avatar onClick={handleClick} sx={{ bgcolor: "#89375f" }}>
+      <Avatar onClick={handleClick} className={styles.userAvatar}>
         A
       </Avatar>
       <Menu
