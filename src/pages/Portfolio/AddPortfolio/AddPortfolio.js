@@ -277,7 +277,6 @@ const AddPortfolio = () => {
                   </span>
                 )}
               </Box>
-              <br />
               <AddSecurityTable />
               <div className={styles.addPortfolio__errorContainer}>
                 {error.security.errorState && (

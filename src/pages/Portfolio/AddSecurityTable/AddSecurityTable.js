@@ -204,7 +204,6 @@ const AddSecurityTable = () => {
           </Button>
         </Box>
       </Paper>
-      <br />
       {data.length ? (
         <TableContainer
           component={Paper}

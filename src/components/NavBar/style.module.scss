@@ -5,28 +5,34 @@
   @include flexbox;
   @include justify_content(space-between);
   height: 70px;
-  background-color: var(--light-belge1);
 
   &__leftmenu {
     @include flexbox;
     @include align_items(center);
-    @include justify_content(space-between);
-    max-width: 600px;
-    width: 30%;
+    width: 60%;
     .logoContainer {
-      width: 50px;
+      width: 225px;
     }
     .logo {
-      width: 100%;
+      width: 50px;
       object-fit: cover;
       color: var(--default);
+    }
+
+    @include sm {
+      width: 100%;
+      .logoContainer {
+        width: 100px;
+      }
     }
 
     h2 {
       color: var(--dark-maroon);
       font-size: 22px;
-
-      @include sm_down {
+      @include sm {
+        font-size: 18px;
+      }
+      @include xs {
         display: none;
       }
     }

@@ -14,15 +14,6 @@ const CustomButton = ({
   onClick,
   fullWidth,
 }) => {
-  // const btnClasses = classNames("custom-button", className, {
-  //   "custom-button--filled": variant === "filled",
-  //   "custom-button--unfilled": variant === "unfilled",
-  //   "custom-button--rounded": shape === "rounded",
-  //   "custom-button--square": shape === "square",
-  //   "custom-button--disabled": disabled,
-  //   "custom-button--full-width": fullWidth,
-  // });
-
   const buttonClassNames = classNames(styles["custom-button"], className, {
     [styles["custom-button--disabled"]]: disabled,
     [styles["custom-button--unfilled"]]: variant === "unfilled",
@@ -74,7 +65,7 @@ CustomButton.propTypes = {
 CustomButton.defaultProps = {
   className: "",
   type: "button",
-  variant: "unfilled",
+  variant: "filled",
   shape: "rounded",
   disabled: false,
   icon: null,

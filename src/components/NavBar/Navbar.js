@@ -23,6 +23,7 @@ const Navbar = ({ handleDrawerToggle }) => {
                 <img src={logo} alt={logo} className={styles.logo} />
               </Box>
             </Link>
+
             <h2>Akasia Investment Back Office</h2>
           </Box>
           <Hidden mdDown>
@@ -32,11 +33,8 @@ const Navbar = ({ handleDrawerToggle }) => {
           </Hidden>
 
           <Hidden mdUp>
-            <IconButton>
-              <MenuIcon
-                onClick={handleDrawerToggle}
-                className={styles.humburgeMenu}
-              />
+            <IconButton onClick={handleDrawerToggle}>
+              <MenuIcon className={styles.humburgeMenu} />
             </IconButton>
           </Hidden>
         </Toolbar>

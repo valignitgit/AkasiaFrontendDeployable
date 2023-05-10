@@ -50,7 +50,7 @@ const UpdatePortfolio = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const securityData = useSelector((state) => state.securityTableData.data);
-  const portfolioSecurities = securityData.map(
+  const portfolioSecurities = securityData?.map(
     ({ security_id, weightage_pct }) => ({
       security_id,
       weightage_pct: parseFloat(weightage_pct),
@@ -293,7 +293,6 @@ const UpdatePortfolio = () => {
                   </span>
                 )}
               </Paper>
-              <br />
               <UpdateSecurityTable />
               <div className={styles.addPortfolio__errorContainer}>
                 {error.security.errorState && (

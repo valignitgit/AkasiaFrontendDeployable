@@ -12,20 +12,15 @@
   transition: all 0.2s ease-in-out;
 
   &--filled {
-    color: var(--light-belge1);
+    color: var(--default);
     background-color: var(--dark-maroon);
     border: 2px solid var(--dark-maroon);
 
-    &:hover {
-      color: var(--dark-maroon);
-      background-color: var(--light-belge1);
-      border: 2px solid var(--dark-maroon);
-    }
-
-    &:active {
-      background-color: darken(#89375f, 10%);
-      color: var(--light-belge1);
-    }
+    // &:hover {
+    //   color: var(--dark-maroon);
+    //   background-color: var(--default);
+    //   border: 2px solid var(--dark-maroon);
+    // }
 
     &:focus {
       box-shadow: 0 0 0 0.2rem rgba(var(--dark-maroon), 0.5);
@@ -42,11 +37,6 @@
       color: var(--light-belge1);
       background-color: var(--dark-maroon);
       border: 2px solid var(--dark-maroon);
-    }
-
-    &:active {
-      background-color: darken(#89375f, 10%);
-      color: var(--light-belge1);
     }
 
     &:focus {

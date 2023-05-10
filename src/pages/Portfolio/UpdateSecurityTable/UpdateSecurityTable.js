@@ -46,7 +46,7 @@ const UpdateSecurityTable = () => {
   const { security_id, weightage_pct } = addFormData;
 
   const securityData = useSelector((state) => state.security.data);
-  const securityOptions = securityData.map(
+  const securityOptions = securityData?.map(
     ({ security_name, security_id }) => ({
       security_name,
       security_id,
@@ -203,7 +203,6 @@ const UpdateSecurityTable = () => {
           </Button>
         </Box>
       </Paper>
-      <br />
       {data.length ? (
         <TableContainer
           component={Paper}

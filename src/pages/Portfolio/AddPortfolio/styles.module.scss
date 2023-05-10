@@ -17,6 +17,7 @@
   padding: 18px;
   @include card_box_shadow;
   background-color: var(--default);
+  @include margin_bottom(30px);
 }
 .addPortfolio__formHeading {
   @include margin_bottom(10px);

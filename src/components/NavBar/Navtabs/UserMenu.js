@@ -3,9 +3,17 @@ import React, { useState } from "react";
 import { Avatar, Box, Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styles from "../style.module.scss";
+// import { toggleMobileOpen } from "../../../redux/slices/layoutSlice";
+// import { useDispatch } from "react-redux";
 
 function UserMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
+  // const dispatch = useDispatch();
+
+  // const handleDrawerToggle = () => {
+  //   dispatch(toggleMobileOpen());
+  // };
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -15,7 +23,7 @@ function UserMenu() {
   };
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem("login");
     navigate("/login");
   };

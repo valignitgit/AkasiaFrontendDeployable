@@ -7,17 +7,16 @@ html {
 
 body {
   margin: 0;
-  background-color: #f9f3f3;
+  background-color: var(--light-peach);
   font-family: "Roboto", sans-serif;
   position: relative;
-  text-transform: capitalize !important;
 }
 
 .active {
-  background-color: var(--dark-maroon);
-  color: var(--light-belge1) !important;
-  .MuiListItemIcon-root {
-    color: var(--light-belge1);
+  background-color: var(--dark-belge);
+  .MuiListItemIcon-root,
+  .MuiListItemText-root {
+    font-weight: bold;
   }
 }
 
@@ -95,6 +94,11 @@ p {
   margin-top: 60px;
 }
 
+//App bar
+.MuiAppBar-root {
+  background-color: var(--light-belge1);
+}
+
 // MUI Menu items
 
 .MuiMenuItem-root {
@@ -104,7 +108,7 @@ p {
 //MUI drawer
 
 .MuiDrawer-paper {
-  background-color: var(--light-belge1);
+  background-color: var(--light-belge2);
 }
 //MUI paginations component
 
