@@ -22,7 +22,7 @@ const Portfolio = () => {
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState("");
   const [filter, setFilter] = useState("");
-  const [portfolioList, setPortfolioList] = useState(data);
+  const [portfolioList, setPortfolioList] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
 
@@ -39,6 +39,12 @@ const Portfolio = () => {
       setPortfolioList(data);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (data) {
+      setPortfolioList(data);
+    }
+  }, []);
 
   const handleDelete = (id) => {
     setOpen(true);
@@ -111,10 +117,8 @@ const Portfolio = () => {
 
   const lastDataIndex = page * perPage;
   const firstDataIndex = lastDataIndex - perPage;
-  const currentPortfolio = Array.from(portfolioList).slice(
-    firstDataIndex,
-    lastDataIndex
-  );
+  const currentPortfolio = portfolioList.slice(firstDataIndex, lastDataIndex);
+  console.log("portfolioList", portfolioList);
 
   const renderAddPortfolioButton = () => (
     <Link to="/portfolio/add">

@@ -12,21 +12,19 @@ import Button from "../../../components/Button/CustomButton";
 
 const SecurityListing = () => {
   const dispatch = useDispatch();
-  const securityList = useSelector((state) => state.security?.data);
+  const data = useSelector((state) => state.security?.data);
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage, setDataPerPage] = useState(12);
-
+  const [securityList, setSecurityList] = useState(data || []);
   const lastDataIndex = currentPage * dataPerPage;
   const firstDataIndex = lastDataIndex - dataPerPage;
-  const currentSecurityPage = Array.from(securityList).slice(
-    firstDataIndex,
-    lastDataIndex
-  );
-
+  const currentSecurityPage = Array.isArray(securityList)
+    ? securityList.slice(firstDataIndex, lastDataIndex)
+    : [];
   const handleCurrentPageChange = (event, value) => {
     setCurrentPage(value);
   };
-
+  console.log("securityList", securityList);
   const handlePerPageChange = (e) => {
     setDataPerPage(e.target.value);
   };
@@ -34,6 +32,19 @@ const SecurityListing = () => {
   useEffect(() => {
     dispatch(getAllSecurity());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (Array.isArray(data)) {
+      setSecurityList(data);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (data) {
+      setSecurityList(data);
+    }
+  });
+
   const renderAddSecurityButton = () => {
     return (
       <Link to="/security/add">
