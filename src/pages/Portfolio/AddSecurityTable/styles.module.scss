@@ -44,13 +44,8 @@
   @include card_box_shadow;
 }
 
-// .addSecurityTable_selectEdit {
-//   width: 90%;
-// }
-
-// .addSecurityTable_TextEdit {
-//   width: 50%;
-// }
-
-// .addSecurityTable_editBtnContainer {
-// }
+.addSecurityTable_selectEdit {
+  .MuiFormControl-root {
+    width: 250px;
+  }
+}

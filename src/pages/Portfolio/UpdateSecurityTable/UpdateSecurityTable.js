@@ -229,12 +229,14 @@ const UpdateSecurityTable = () => {
                       handleEditFormSubmit={handleEditFormSubmit}
                       handleCancelClick={handleCancelClick}
                       securityOptions={securityOptions}
+                      key={row.id}
                     />
                   ) : (
                     <ReadOnlyRow
                       row={row}
                       handleEditClick={handleEditClick}
                       handleDeleteClick={() => handleDeleteClick(row.id)}
+                      key={row.id}
                     />
                   )}
                 </>

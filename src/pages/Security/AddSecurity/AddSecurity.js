@@ -31,6 +31,7 @@ const AddSecurity = () => {
   const securityTypeOptions = getSecurityTypeList();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log(navigate);
   const currencyArray = useSelector((state) => state.currency.data);
   const currencyOptions = getCurrencyList(currencyArray);
   const initialState = {
@@ -156,9 +157,8 @@ const AddSecurity = () => {
     const isValid = validateForm();
     if (isValid) {
       await dispatch(createSecurity(security))
-        .then((res) => {
-          console.log(res);
-          navigate("/security");
+        .then(() => {
+          navigate("/security", { state: { newData: security } });
         })
         .catch((err) => {
           console.log(err);

@@ -15,9 +15,12 @@ import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import styles from "./styles.module.scss";
 import Pagination from "@mui/material/Pagination";
 import Button from "../../../components/Button/CustomButton";
+import { useLocation } from "react-router-dom";
 
-const Portfolio = () => {
+const PortfolioListing = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const newData = location.state?.newData;
   const data = useSelector((state) => state.portfolio?.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState("");
@@ -46,6 +49,11 @@ const Portfolio = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (newData) {
+      setPortfolioList((prevData) => [...prevData, newData]);
+    }
+  }, [newData]);
   const handleDelete = (id) => {
     setOpen(true);
     setDeletedItem(id);
@@ -117,9 +125,9 @@ const Portfolio = () => {
 
   const lastDataIndex = page * perPage;
   const firstDataIndex = lastDataIndex - perPage;
-  const currentPortfolio = portfolioList.slice(firstDataIndex, lastDataIndex);
-  console.log("portfolioList", portfolioList);
-
+  const currentPortfolio = Array.isArray(portfolioList)
+    ? portfolioList.slice(firstDataIndex, lastDataIndex)
+    : [];
   const renderAddPortfolioButton = () => (
     <Link to="/portfolio/add">
       <Button variant="filled">Add Portfolio</Button>
@@ -240,4 +248,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default PortfolioListing;

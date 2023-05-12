@@ -24,7 +24,7 @@ const EditableRow = ({
   return (
     <TableRow>
       <TableCell>
-        <FormControl fullWidth>
+        <FormControl className={styles.addSecurityTable_selectEdit}>
           <InputLabel>Security</InputLabel>
 
           <Select
@@ -32,7 +32,6 @@ const EditableRow = ({
             value={editFormData.security_id}
             onChange={handleEditFormChange}
             label="Security"
-            className={styles.securityTable_selectEdit}
           >
             {securityOptions.map((option) => (
               <MenuItem key={option.security_id} value={option.security_id}>

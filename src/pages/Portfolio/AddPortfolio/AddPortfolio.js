@@ -171,11 +171,10 @@ const AddPortfolio = () => {
     if (isValid) {
       await dispatch(createPortfolio(data))
         .unwrap()
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           dispatch(setData([]));
           setPortfolioData(initialState);
-          navigate("/portfolio");
+          navigate("/portfolio", { state: { newData: data } });
         })
         .catch((err) => {
           console.error(err);

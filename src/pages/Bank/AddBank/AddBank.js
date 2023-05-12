@@ -78,7 +78,7 @@ const AddBank = () => {
     const isValid = validateForm();
     if (isValid) {
       dispatch(createBank(bankData));
-      navigate("/bank");
+      navigate("/bank", { state: { newData: bankData } });
     }
   };
 

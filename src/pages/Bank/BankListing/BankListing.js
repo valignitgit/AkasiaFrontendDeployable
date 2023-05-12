@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllBank, deleteBank } from "../../../redux/slices/bankSlice";
 import Grid from "@mui/material/Grid";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import DialogBox from "../../../components/DialogBox/DialogBox";
 import { Skeleton } from "@mui/material";
 import BankCard from "../BankCard/BankCard";
@@ -12,7 +12,10 @@ import Loader from "../../../components/Loader/Loader";
 import Button from "../../../components/Button/CustomButton";
 const BankListing = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const newData = location.state?.newData;
   const { data, loading } = useSelector((state) => state.bank);
+  const [bankList, setBankList] = useState(data || []);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState("");
   const handleClose = () => {
@@ -23,10 +26,29 @@ const BankListing = () => {
     dispatch(getAllBank());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (Array.isArray(data)) {
+      setBankList(data);
+    }
+  }, [data]);
+
+  // useEffect(() => {
+  //   if (data) {
+  //     setBankList(data);
+  //   }
+  // }, []);
+  console.log("bankList", bankList);
+  useEffect(() => {
+    if (newData) {
+      setBankList((prevData) => [...prevData, newData]);
+    }
+  }, [newData]);
+
   const handleDelete = (id) => {
     setOpen(true);
     setDeletedItem(id);
   };
+
   const onDelete = async (id) => {
     if (id)
       await dispatch(deleteBank(id))
@@ -91,10 +113,10 @@ const BankListing = () => {
       );
     }
 
-    if (Array.isArray(data)) {
+    if (Array.isArray(bankList)) {
       return (
         <Grid container spacing={3}>
-          {data?.map((bank) => (
+          {bankList?.map((bank) => (
             <BankCard
               key={bank.bank_id}
               {...bank}
