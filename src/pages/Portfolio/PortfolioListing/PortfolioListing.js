@@ -201,7 +201,7 @@ const PortfolioListing = () => {
   const renderPortfolioList = () => {
     if (Array.isArray(portfolioList)) {
       return (
-        <>
+        <div className={styles.portfolioListing__container}>
           <Grid container spacing={2}>
             {currentPortfolio.map((portfolio) => (
               <PortfolioCard
@@ -211,7 +211,7 @@ const PortfolioListing = () => {
               />
             ))}
           </Grid>
-        </>
+        </div>
       );
     } else {
       return <Loader />;
@@ -238,13 +238,13 @@ const PortfolioListing = () => {
   };
 
   return (
-    <div className={styles.portfolioContainer}>
+    <>
       {renderAddPortfolioButton()}
       {portfolioList.length > 0 && renderFilterDropDown()}
       {renderPortfolioList()}
       {portfolioList.length > 0 && renderPagination()}
       {renderDialog()}
-    </div>
+    </>
   );
 };
 

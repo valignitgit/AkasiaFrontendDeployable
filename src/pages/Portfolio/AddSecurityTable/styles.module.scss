@@ -43,9 +43,3 @@
   border-radius: 20px;
   @include card_box_shadow;
 }
-
-.addSecurityTable_selectEdit {
-  .MuiFormControl-root {
-    width: 250px;
-  }
-}

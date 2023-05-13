@@ -21,8 +21,8 @@ const EditableRow = ({
 }) => {
   return (
     <TableRow>
-      <TableCell>
-        <FormControl fullWidth>
+      <TableCell align="center">
+        <FormControl sx={{ width: "250px" }}>
           <InputLabel htmlFor="name-multiple">Security</InputLabel>
 
           <Select
@@ -39,13 +39,14 @@ const EditableRow = ({
           </Select>
         </FormControl>
       </TableCell>
-      <TableCell align="left">
+      <TableCell align="center">
         <TextField
           fullWidth
           name="weightage_pct"
           value={editFormData.weightage_pct}
           onChange={handleEditFormChange}
           placeholder="Weightage"
+          sx={{ width: "100px" }}
         />
       </TableCell>
 

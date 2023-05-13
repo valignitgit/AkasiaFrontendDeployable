@@ -1,10 +1,10 @@
 @import "../../../styles/mixins";
 @import "../../../styles/variables";
 
-.portfolioContainer {
-  min-height: 100vh; /* Set a minimum height to occupy the full viewport */
+.portfolioListing__container {
+  @include margin_bottom(20px);
+  min-height: 60vh;
 }
-
 .portfolioListing__filterContainer {
   @include flexbox;
   @include align_items(center);
@@ -30,13 +30,5 @@
   @include justify_content(flex-end);
   @include align_items(center);
   width: 100%;
-  position: absolute;
-  right: 20px;
-  bottom: 100px;
-  @include lg_down {
-    bottom: 50px;
-  }
-  @include md_down {
-    bottom: -50px;
-  }
+  @include margin_bottom(20px);
 }

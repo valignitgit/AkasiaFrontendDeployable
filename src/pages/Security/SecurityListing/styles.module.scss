@@ -1,9 +1,9 @@
 @import "../../../styles/variables";
 @import "../../../styles/mixins";
 
-.securityContainer {
-  min-height: 100vh;
-  padding-bottom: 20px;
+.securityListing_container {
+  @include margin_bottom(20px);
+  min-height: 80vh;
 }
 .addSecurityButton {
   @include margin_bottom(20px);
@@ -14,8 +14,7 @@
   @include justify_content(flex-end);
   @include align_items(center);
   width: 100%;
-  position: absolute;
-  padding-bottom: 20px;
-  right: 20px;
-  margin-top: 20px;
+  @include margin_bottom(20px);
+  @include xs {
+  }
 }

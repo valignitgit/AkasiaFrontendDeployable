@@ -64,15 +64,17 @@ const SecurityListing = () => {
   const renderSecurityCards = () => {
     if (Array.isArray(securityList)) {
       return (
-        <Grid container spacing={2} className={styles.securityCard_container}>
-          {currentSecurityPage.map((card) => (
-            <SecurityCard
-              key={card.security_id}
-              isSingleSecurityCard={false}
-              {...card}
-            />
-          ))}
-        </Grid>
+        <div className={styles.securityListing_container}>
+          <Grid container spacing={2}>
+            {currentSecurityPage.map((card) => (
+              <SecurityCard
+                key={card.security_id}
+                isSingleSecurityCard={false}
+                {...card}
+              />
+            ))}
+          </Grid>
+        </div>
       );
     } else {
       return <Loader />;
@@ -98,11 +100,11 @@ const SecurityListing = () => {
     );
   };
   return (
-    <div className={styles.securityContainer}>
+    <>
       {renderAddSecurityButton()}
       {renderSecurityCards()}
       {securityList.length > 0 && renderPagination()}
-    </div>
+    </>
   );
 };
 

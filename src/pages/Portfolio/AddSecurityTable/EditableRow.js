@@ -23,8 +23,8 @@ const EditableRow = ({
 }) => {
   return (
     <TableRow>
-      <TableCell>
-        <FormControl className={styles.addSecurityTable_selectEdit}>
+      <TableCell align="center">
+        <FormControl sx={{ width: "250px" }}>
           <InputLabel>Security</InputLabel>
 
           <Select
@@ -41,14 +41,14 @@ const EditableRow = ({
           </Select>
         </FormControl>
       </TableCell>
-      <TableCell align="left">
+      <TableCell align="center">
         <TextField
           fullWidth
           name="weightage_pct"
           value={editFormData.weightage_pct}
           onChange={handleEditFormChange}
           placeholder="Weightage"
-          className={styles.securityTable_TextEdit}
+          sx={{ width: "100px" }}
         />
       </TableCell>
 
