@@ -49,6 +49,8 @@
   }
 }
 
-.userAvatar {
-  background-color: var(--dark-maroon);
+.userName {
+  color: var(--dark-maroon);
+  text-transform: capitalize;
+  font-weight: 800;
 }

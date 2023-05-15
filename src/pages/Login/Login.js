@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import {
   TextField,
@@ -19,25 +20,29 @@ import { VisibilityOff, Visibility } from "@mui/icons-material";
 import logo from "../../assets/images/logo.jpeg";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/CustomButton";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/slices/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.auth?.data);
   const initialState = {
     user_id: "",
     password: "",
   };
-  const [login, setLogin] = useState(initialState);
+  const [loginData, setLoginData] = useState(initialState);
   const [error, setError] = useState({
     user_id: getEmptyErrorState(),
     password: getEmptyErrorState(),
   });
+  const { user_id, password } = loginData;
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const onChange = (e) => {
-    setLogin({
-      ...login,
+    setLoginData({
+      ...loginData,
       [e.target.name]: e.target.value,
     });
   };
@@ -71,13 +76,20 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validateForm();
+
     if (isValid) {
-      localStorage.setItem("login", true);
-      navigate("/bank");
+      dispatch(login(loginData));
+      if (
+        data.status === 200 &&
+        data.result &&
+        data.message === "Successfully Logged in"
+      ) {
+        localStorage.setItem("login", true);
+        navigate("/bank");
+      }
     }
   };
 
-  const { user_id, password } = login;
   return (
     <Container fixed>
       <Grid container className={styles.loginContainer}>

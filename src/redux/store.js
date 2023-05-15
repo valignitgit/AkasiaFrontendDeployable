@@ -6,6 +6,7 @@ import portfolioSecurityReducer from "./slices/portfolioSecuritySlice";
 import securityTableReducer from "./slices/securityTableSlice";
 import currencyReducer from "./slices/currencySlice";
 import layoutReducer from "./slices/layoutSlice";
+import authReducer from "./slices/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     securityTableData: securityTableReducer,
     currency: currencyReducer,
     layout: layoutReducer,
+    auth: authReducer,
   },
 });

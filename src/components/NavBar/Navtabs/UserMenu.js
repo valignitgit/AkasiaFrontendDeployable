@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import { Avatar, Box, Menu, MenuItem } from "@mui/material";
+import { Box, Menu, MenuItem, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styles from "../style.module.scss";
 // import { toggleMobileOpen } from "../../../redux/slices/layoutSlice";
-// import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function UserMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -13,7 +13,7 @@ function UserMenu() {
   // const handleDrawerToggle = () => {
   //   dispatch(toggleMobileOpen());
   // };
-
+  const user = useSelector((state) => state.auth.data.result.username);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,13 +26,14 @@ function UserMenu() {
   const handleLogout = async () => {
     localStorage.removeItem("login");
     navigate("/login");
+    window.location.reload();
   };
 
   return (
     <Box>
-      <Avatar onClick={handleClick} className={styles.userAvatar}>
-        A
-      </Avatar>
+      <Button onClick={handleClick} className={styles.userName}>
+        {user}
+      </Button>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
