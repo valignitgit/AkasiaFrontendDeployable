@@ -2,6 +2,7 @@ import React from "react";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import SecurityIcon from "@mui/icons-material/Security";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+// import MoneyIcon from "@mui/icons-material/Money";
 import {
   List,
   ListItem,
@@ -40,6 +41,11 @@ function SidebarData() {
       icon: <SecurityIcon />,
       link: "/security",
     },
+    // {
+    //   label: "Currency",
+    //   icon: <MoneyIcon />,
+    //   link: "/currency",
+    // },
   ];
 
   return (

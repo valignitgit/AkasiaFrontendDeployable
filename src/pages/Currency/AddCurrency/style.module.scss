@@ -1,12 +1,12 @@
 @import "../../../styles/mixins";
 @import "../../../styles/variables";
 
-.addBank__gridCenter {
+.addCurrency__gridCenter {
   @include align_items(center);
   @include justify_content(center);
   margin-top: 50px;
 }
-.addBank__formContainer {
+.addCurrency__formContainer {
   @include flexbox;
   @include flex_directions(column);
   @include align_items(flex-start);
@@ -15,28 +15,28 @@
   padding: 20px;
 }
 
-.addBank__formIcon_wrapper {
+.addCurrency__formIcon_wrapper {
   @include flexbox;
   @include flex_directions(column);
   @include align_items(center);
 }
-.addBank__formIcon {
+.addCurrency__formIcon {
   background-color: var(--violate);
 }
-.addBank__submitBtn {
+.addCurrency__submitBtn {
   @include align_self(center);
 }
-.addBank__textInput {
+.addCurrency__textInput {
   @include margin_top(8px);
   @include margin_bottom(8px);
 }
 
-.addBank__selectInput {
+.addCurrency__selectInput {
   @include margin_top(8px);
   @include margin_bottom(8px);
 }
 
-.addBank__checkBoxInput {
+.addCurrency__checkBoxInput {
   @include margin_left(0);
   @include margin_right(0);
 }

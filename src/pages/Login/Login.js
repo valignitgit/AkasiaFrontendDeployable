@@ -26,7 +26,6 @@ import { login } from "../../redux/slices/authSlice";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.auth?.data);
   const initialState = {
     user_id: "",
     password: "",
@@ -76,16 +75,21 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validateForm();
-
     if (isValid) {
-      dispatch(login(loginData));
-      if (
-        data.status === 200 &&
-        data.result &&
-        data.message === "Successfully Logged in"
-      ) {
-        localStorage.setItem("login", true);
-        navigate("/bank");
+      try {
+        const data = await dispatch(login(loginData)).unwrap();
+
+        if (
+          data &&
+          data.status === 200 &&
+          data.result &&
+          data.message === "Successfully Logged in"
+        ) {
+          localStorage.setItem("user", JSON.stringify(data.result));
+          navigate("/bank");
+        }
+      } catch (error) {
+        console.log("error", error);
       }
     }
   };

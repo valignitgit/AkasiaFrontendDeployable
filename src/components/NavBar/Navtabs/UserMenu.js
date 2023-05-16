@@ -1,19 +1,18 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 
 import { Box, Menu, MenuItem, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styles from "../style.module.scss";
-// import { toggleMobileOpen } from "../../../redux/slices/layoutSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setData } from "../../../redux/slices/authSlice";
 
 function UserMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const handleDrawerToggle = () => {
-  //   dispatch(toggleMobileOpen());
-  // };
-  const user = useSelector((state) => state.auth.data.result.username);
+  // const user = useSelector((state) => state.auth.data.result?.username);
+  const user = JSON.parse(localStorage.getItem("user"));
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -24,15 +23,16 @@ function UserMenu() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    localStorage.removeItem("login");
+    localStorage.removeItem("user");
+
+    dispatch(setData([]));
     navigate("/login");
-    window.location.reload();
   };
 
   return (
     <Box>
       <Button onClick={handleClick} className={styles.userName}>
-        {user}
+        {user?.username}
       </Button>
       <Menu
         id="basic-menu"
