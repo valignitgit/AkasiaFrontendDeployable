@@ -59,14 +59,6 @@ const UpdateCurrency = () => {
       currency_name: getEmptyErrorState(),
       currency_name_ar: getEmptyErrorState(),
     };
-    // if (isEmptyString(currency)) {
-    //   newErrors.currency = {
-    //     errorMessage:
-    //       ErrorMessageGenerator.getMandatoryFieldMessage("Currency"),
-    //     errorState: "error",
-    //   };
-    //   isValid = false;
-    // }
     if (isEmptyString(currency_id)) {
       newErrors.currency_id = {
         errorMessage:
@@ -113,7 +105,9 @@ const UpdateCurrency = () => {
           updateCurrency({ id: currency_name, data: currentCurrency })
         ).unwrap();
 
-        // navigate("/currency", { state: { newData: currentCurrency } });
+        navigate(`/currency/${currency_name}`, {
+          state: { newData: currentCurrency },
+        });
       } catch (error) {
         console.log("error", error);
       }
@@ -137,20 +131,6 @@ const UpdateCurrency = () => {
                 onSubmit={handleSubmit}
                 noValidate
               >
-                {/* <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Currency"
-                  name="currency"
-                  value={currency}
-                  autoFocus
-                  onChange={(e) => onChange(e)}
-                />
-                {error.currency.errorState && (
-                  <span className="error">{error.currency.errorMessage}</span>
-                )} */}
-
                 <TextField
                   margin="normal"
                   required

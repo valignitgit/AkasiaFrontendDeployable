@@ -1,17 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 
-import { Box, Menu, MenuItem, Button } from "@mui/material";
+import { Box, Menu, MenuItem, Button, Avatar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styles from "../style.module.scss";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setData } from "../../../redux/slices/authSlice";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function UserMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
 
-  // const user = useSelector((state) => state.auth.data.result?.username);
   const user = JSON.parse(localStorage.getItem("user"));
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -31,9 +31,15 @@ function UserMenu() {
 
   return (
     <Box>
-      <Button onClick={handleClick} className={styles.userName}>
-        {user?.username}
-      </Button>
+      <Box>
+        <Box onClick={handleClick} className={styles.userName}>
+          {/* <Avatar className={styles.userAvatar}>
+            {user?.username.charAt(0)}
+          </Avatar> */}
+          <AccountCircleIcon />
+          <p>{user?.username}</p>
+        </Box>
+      </Box>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

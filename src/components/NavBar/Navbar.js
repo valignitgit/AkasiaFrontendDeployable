@@ -11,8 +11,12 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/images/logoTransparent.png";
 import styles from "./style.module.scss";
 import UserMenu from "./Navtabs/UserMenu";
+import api from "../../api/api";
 
 const Navbar = ({ handleDrawerToggle }) => {
+  const isProdEnvironment =
+    api.defaults.baseURL === process.env.REACT_APP_API_URL_PROD;
+
   return (
     <>
       <AppBar position="fixed">
@@ -24,7 +28,10 @@ const Navbar = ({ handleDrawerToggle }) => {
               </Box>
             </Link>
 
-            <h2>Akasia Investment Back Office</h2>
+            <h2>
+              Akasia Investment Back Office
+              {isProdEnvironment ? " (prod)" : " (dev)"}
+            </h2>
           </Box>
           <Hidden mdDown>
             <Stack direction="row" spacing={2}>

@@ -11,14 +11,9 @@ import { getCurrencyById } from "../../../redux/slices/currencySlice";
 const ViewSecurity = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const currentCurrency = useSelector((state) => state.security?.data);
-  const {
-    // currency,
-    currency_id,
-    currency_name,
-    currency_name_ar,
-  } = currentCurrency;
-  console.log("currentCurrency", currentCurrency);
+  const currentCurrency = useSelector((state) => state.currency?.data);
+  const { currency_id, currency_name, currency_name_ar } = currentCurrency;
+
   useEffect(() => {
     dispatch(getCurrencyById(id));
   }, []);
@@ -31,7 +26,7 @@ const ViewSecurity = () => {
     ) {
       return (
         <Grid container className={styles.currencyDetails__container}>
-          <Grid item xs={12} sm={6} md={6} lg={5} xl={4}>
+          <Grid item xs={12} sm={8} md={8} lg={5} xl={4}>
             <h1 className={styles.currencyDetails__heading}>
               Currency Details
             </h1>
@@ -67,7 +62,7 @@ const ViewSecurity = () => {
               </CardContent>
 
               <CardActions className={styles.currencyDetails__buttonContainer}>
-                <Link to={`/security/update/${currency_name}`}>
+                <Link to={`/currency/update/${currency_name}`}>
                   <Button
                     variant="filled"
                     shape="square"

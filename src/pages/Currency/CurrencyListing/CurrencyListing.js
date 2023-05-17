@@ -1,133 +1,169 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBank, deleteBank } from "../../../redux/slices/bankSlice";
 import Grid from "@mui/material/Grid";
-
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DialogBox from "../../../components/DialogBox/DialogBox";
-import { Skeleton } from "@mui/material";
-import styles from "./style.module.scss";
+import { FormControl, Select, MenuItem } from "@mui/material";
 import Loader from "../../../components/Loader/Loader";
+import styles from "./style.module.scss";
+import Pagination from "@mui/material/Pagination";
 import Button from "../../../components/Button/CustomButton";
+import { useLocation } from "react-router-dom";
+import {
+  getAllCurrency,
+  deleteCurrency,
+} from "../../../redux/slices/currencySlice";
+import CurrencyCard from "../CurrencyCard/CurrencyCard";
+
 const CurrencyListing = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const newData = location.state?.newData;
-  const { data, loading } = useSelector((state) => state.bank);
-  const [bankList, setBankList] = useState(data || []);
+  const data = useSelector((state) => state.currency?.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState("");
+  const [currencyListing, setCurrencyListing] = useState(data || []);
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(12);
+
   const handleClose = () => {
     setOpen(false);
   };
 
   useEffect(() => {
-    dispatch(getAllBank());
+    dispatch(getAllCurrency());
   }, [dispatch]);
 
   useEffect(() => {
     if (Array.isArray(data)) {
-      setBankList(data);
+      setCurrencyListing(data);
     }
   }, [data]);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setBankList(data);
-  //   }
-  // }, []);
-  console.log("bankList", bankList);
+  useEffect(() => {
+    if (data) {
+      setCurrencyListing(data);
+    }
+  }, []);
+
   useEffect(() => {
     if (newData) {
-      setBankList((prevData) => [...prevData, newData]);
+      setCurrencyListing((prevData) => [...prevData, newData]);
     }
   }, [newData]);
-
   const handleDelete = (id) => {
     setOpen(true);
     setDeletedItem(id);
   };
-
   const onDelete = async (id) => {
     if (id)
-      await dispatch(deleteBank(id))
+      await dispatch(deleteCurrency(id))
         .unwrap()
         .then(() => {
           setOpen(false);
-
-          dispatch(getAllBank());
+          dispatch(getAllCurrency());
         });
   };
 
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const handlePerPageChange = (event) => {
+    setPerPage(parseInt(event.target.value, 10));
+    setPage(1);
+  };
+
+  const lastDataIndex = page * perPage;
+  const firstDataIndex = lastDataIndex - perPage;
+  const currentCurrency = Array.isArray(currencyListing)
+    ? currencyListing.slice(firstDataIndex, lastDataIndex)
+    : [];
+
   const renderAddCurrencyButton = () => (
     <Link to="/currency/add">
-      <Button variant="filled" className={styles.addBankButton}>
+      <Button variant="filled" className={styles.addCurrencyButton}>
         Add Currency
       </Button>
     </Link>
   );
 
-  // const renderDialog = () => {
-  //   const renderActionButtons = () => {
-  //     return (
-  //       <>
-  //         <Button shape="square" onClick={handleClose}>
-  //           Cancel
-  //         </Button>
-  //         <Button
-  //           variant="filled"
-  //           shape="square"
-  //           onClick={() => onDelete(deletedItem)}
-  //         >
-  //           Delete
-  //         </Button>
-  //       </>
-  //     );
-  //   };
-  //   return (
-  //     <>
-  //       <DialogBox
-  //         open={open}
-  //         handleClose={handleClose}
-  //         title="Delete"
-  //         content="Are sure you want to delete?"
-  //         actions={renderActionButtons()}
-  //       />
-  //     </>
-  //   );
-  // };
-  // const renderBankList = () => {
-  //   if (data && data.length === 0) {
-  //     return <Loader />;
-  //   }
-  //   if (!data || loading) {
-  //     return (
-  //       <Grid container spacing={3}>
-  //         {[...Array(8)].map((_, index) => (
-  //           <Grid item xs={12} sm={6} md={6} lg={3} key={index}>
-  //             <Skeleton variant="rectangular" width={350} height={200} />
-  //           </Grid>
-  //         ))}
-  //       </Grid>
-  //     );
-  //   }
+  const renderDialog = () => {
+    const renderActionButtons = () => {
+      return (
+        <>
+          <Button shape="square" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button
+            variant="filled"
+            shape="square"
+            onClick={() => onDelete(deletedItem)}
+          >
+            Delete
+          </Button>
+        </>
+      );
+    };
+    return (
+      <>
+        <DialogBox
+          open={open}
+          handleClose={handleClose}
+          title="Delete"
+          content="Are sure you want to delete?"
+          actions={renderActionButtons()}
+        />
+      </>
+    );
+  };
+  const renderCurrencyList = () => {
+    if (Array.isArray(currencyListing)) {
+      return (
+        <div className={styles.currencyListinging__container}>
+          <Grid container spacing={2}>
+            {currentCurrency.map((currency) => (
+              <CurrencyCard
+                key={currency.currency_id}
+                {...currency}
+                handleDelete={handleDelete}
+              />
+            ))}
+          </Grid>
+        </div>
+      );
+    } else {
+      return <Loader />;
+    }
+  };
+  const renderPagination = () => {
+    return (
+      <div className={styles.currencyListing__paginationContainer}>
+        <Pagination
+          color="primary"
+          count={Math.ceil(currencyListing.length / perPage)}
+          page={page}
+          onChange={handlePageChange}
+        />
+        <FormControl>
+          <Select value={perPage} onChange={handlePerPageChange}>
+            <MenuItem value={4}>4 per page</MenuItem>
+            <MenuItem value={8}>8 per page</MenuItem>
+            <MenuItem value={12}>12 per page</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+    );
+  };
 
-  //   if (Array.isArray(bankList)) {
-  //     return (
-  //       <Grid container spacing={3}>
-  //         {bankList?.map((bank) => (
-  //           <BankCard
-  //             key={bank.bank_id}
-  //             {...bank}
-  //             handleDelete={handleDelete}
-  //           />
-  //         ))}
-  //       </Grid>
-  //     );
-  //   }
-  // };
-  return <>{renderAddCurrencyButton()}</>;
+  return (
+    <>
+      {renderAddCurrencyButton()}
+      {renderCurrencyList()}
+      {currencyListing.length > 0 && renderPagination()}
+      {renderDialog()}
+    </>
+  );
 };
 
 export default CurrencyListing;

@@ -31,13 +31,12 @@ const BankListing = () => {
       setBankList(data);
     }
   }, [data]);
+  useEffect(() => {
+    if (data) {
+      setBankList(data);
+    }
+  }, [data]);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setBankList(data);
-  //   }
-  // }, []);
-  console.log("bankList", bankList);
   useEffect(() => {
     if (newData) {
       setBankList((prevData) => [...prevData, newData]);

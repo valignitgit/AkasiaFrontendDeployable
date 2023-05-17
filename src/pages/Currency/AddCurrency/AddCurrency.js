@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -32,8 +31,7 @@ const AddCurrency = () => {
   const onChange = (e) => {
     setCurrencyData({ ...currencyData, [e.target.name]: e.target.value });
   };
-  const { currency, currency_id, currency_name, currency_name_ar } =
-    currencyData;
+  const { currency_id, currency_name, currency_name_ar } = currencyData;
 
   const validateForm = () => {
     let isValid = true;
@@ -43,14 +41,6 @@ const AddCurrency = () => {
       currency_name: getEmptyErrorState(),
       currency_name_ar: getEmptyErrorState(),
     };
-    // if (isEmptyString(currency)) {
-    //   newErrors.currency = {
-    //     errorMessage:
-    //       ErrorMessageGenerator.getMandatoryFieldMessage("Currency"),
-    //     errorState: "error",
-    //   };
-    //   isValid = false;
-    // }
     if (isEmptyString(currency_id)) {
       newErrors.currency_id = {
         errorMessage:
@@ -93,7 +83,7 @@ const AddCurrency = () => {
     const isValid = validateForm();
     if (isValid) {
       dispatch(createCurrency(currencyData));
-      // navigate("/currency", { state: { newData: currencyData } });
+      navigate("/currency", { state: { newData: currencyData } });
     }
   };
 
@@ -114,20 +104,6 @@ const AddCurrency = () => {
                 onSubmit={handleSubmit}
                 noValidate
               >
-                {/* <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Currency"
-                  name="currency"
-                  value={currency}
-                  autoFocus
-                  onChange={(e) => onChange(e)}
-                />
-                {error.currency.errorState && (
-                  <span className="error">{error.currency.errorMessage}</span>
-                )} */}
-
                 <TextField
                   margin="normal"
                   required

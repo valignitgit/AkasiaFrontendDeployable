@@ -1,64 +1,56 @@
 import React from "react";
-import { Grid, CardActions, Card, CardContent } from "@mui/material";
-import styles from "./styles.module.scss";
+import { Grid, Box, Card, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
+import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 
-const SecurityCard = (card, id) => {
-  const { security_id, security_name, security_type, exchange_id } = card;
-  return (
-    <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
-      <Card className={styles.securityCard}>
-        <CardContent>
-          <div className={styles.securityCard__body}>
-            <div>
-              <span className={styles.securityCard__itemKey}>Security ID:</span>
-              <span className={styles.securityCard__itemValue}>
-                {security_id || "NA"}
-              </span>
-            </div>
-            <div>
-              <span className={styles.securityCard__itemKey}>
-                Security Name:
-              </span>
-              <span className={styles.securityCard__itemValue}>
-                {security_name || "NA"}
-              </span>
-            </div>
-            <div>
-              <span className={styles.securityCard__itemKey}>
-                Security Type:
-              </span>
-              <span className={styles.securityCard__itemValue}>
-                {security_type || "NA"}
-              </span>
-            </div>
-            <div>
-              <span className={styles.securityCard__itemKey}>Exchange Id:</span>
-              <span className={styles.securityCard__itemValue}>
-                {exchange_id || "NA"}
-              </span>
-            </div>
-          </div>
-        </CardContent>
-
-        {id && (
-          <CardActions className={styles.securityCard__buttonContainer}>
-            <Link to={`/security/${security_id}`}>
+const CurrencyCard = ({ currency_id, currency_name, handleDelete }) => {
+  const renderCurrencyDetails = () => {
+    return (
+      <>
+        <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
+          <Card className={styles.currencyCard}>
+            <CardContent>
+              <Box className={styles.currencyCard__containWrapper}>
+                <span className={styles.currencyCard__itemKey}>
+                  Currency Id:
+                </span>
+                <span className={styles.currencyCard__itemValue}>
+                  {currency_id}
+                </span>
+              </Box>
+              <br />
+              <Box className={styles.currencyCard__containWrapper}>
+                <span className={styles.currencyCard__itemKey}>
+                  Currency Name:
+                </span>
+                <span className={styles.currencyCard__itemValue}>
+                  {currency_name || "Not Available"}
+                </span>
+              </Box>
+              <br />
+            </CardContent>
+            <div className={styles.currencyCard__Actions}>
+              <Link to={`/currency/${currency_name}`}>
+                <Button className={styles.currencyCard__btn} shape="square">
+                  View
+                </Button>
+              </Link>
               <Button
-                color="success"
                 shape="square"
-                className={styles.securityCard__button}
+                className={styles.currencyCard__btn}
+                onClick={() => handleDelete(currency_name)}
                 variant="filled"
               >
-                View
+                Delete
               </Button>
-            </Link>
-          </CardActions>
-        )}
-      </Card>
-    </Grid>
-  );
+            </div>
+          </Card>
+        </Grid>
+      </>
+    );
+  };
+  return <>{renderCurrencyDetails()}</>;
 };
 
-export default SecurityCard;
+export default CurrencyCard;
