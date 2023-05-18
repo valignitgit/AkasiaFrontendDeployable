@@ -36,7 +36,7 @@ const Login = () => {
     password: getEmptyErrorState(),
   });
   const { user_id, password } = loginData;
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const onChange = (e) => {
@@ -77,16 +77,27 @@ const Login = () => {
     const isValid = validateForm();
     if (isValid) {
       try {
-        const data = await dispatch(login(loginData)).unwrap();
-
+        const response = await dispatch(login(loginData)).unwrap();
         if (
-          data &&
-          data.status === 200 &&
-          data.result &&
-          data.message === "Successfully Logged in"
+          response &&
+          response.status === 200 &&
+          response.result &&
+          response.message === "Successfully Logged in"
         ) {
-          localStorage.setItem("user", JSON.stringify(data.result));
+          localStorage.setItem("user", JSON.stringify(response.result));
           navigate("/bank");
+        } else if (
+          response &&
+          response.status === 400 &&
+          response.data === "Bad credentials"
+        ) {
+          alert("Password is incorrect");
+        } else if (
+          response &&
+          response.status === 404 &&
+          response.data === "No value present | No User Found"
+        ) {
+          alert("User Id is incorrect");
         }
       } catch (error) {
         console.log("error", error);

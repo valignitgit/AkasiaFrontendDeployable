@@ -7,13 +7,22 @@ import styles from "../style.module.scss";
 import { useDispatch } from "react-redux";
 import { setData } from "../../../redux/slices/authSlice";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ChangePasswordDialogBox from "../ChangePassword/ChangePasswordDialog";
 
 function UserMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
-
   const user = JSON.parse(localStorage.getItem("user"));
   const open = Boolean(anchorEl);
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -28,32 +37,37 @@ function UserMenu() {
     dispatch(setData([]));
     navigate("/login");
   };
+  const renderUserMenu = () => {
+    return (
+      <Box>
+        <Box>
+          <Box onClick={handleClick} className={styles.userName}>
+            <AccountCircleIcon />
+            <p>{user?.username}</p>
+          </Box>
+        </Box>
+        <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+          <MenuItem onClick={handleOpenDialog}>Change Password</MenuItem>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        </Menu>
+      </Box>
+    );
+  };
+
+  const renderChangePasswordDialog = () => {
+    return (
+      <ChangePasswordDialogBox
+        openDialog={openDialog}
+        handleCloseDialog={handleCloseDialog}
+      />
+    );
+  };
 
   return (
-    <Box>
-      <Box>
-        <Box onClick={handleClick} className={styles.userName}>
-          {/* <Avatar className={styles.userAvatar}>
-            {user?.username.charAt(0)}
-          </Avatar> */}
-          <AccountCircleIcon />
-          <p>{user?.username}</p>
-        </Box>
-      </Box>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <MenuItem>Change Password</MenuItem>
-
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
-      </Menu>
-    </Box>
+    <>
+      {renderUserMenu()}
+      {renderChangePasswordDialog()}
+    </>
   );
 }
 

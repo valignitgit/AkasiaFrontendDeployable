@@ -1,0 +1,19 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.changePassword_title {
+  text-align: center;
+}
+.changePassword_formInput {
+  display: block;
+  @include margin_top(10px);
+  @include margin_bottom(10px);
+}
+
+.changePassword_btnContainer {
+  width: 100%;
+  @include flexbox;
+  @include justify_content(center);
+  @include gap(10px);
+  @include margin_top(20px);
+}

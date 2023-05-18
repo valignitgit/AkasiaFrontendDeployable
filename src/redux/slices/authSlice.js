@@ -8,14 +8,36 @@ const initialState = {
 };
 
 export const login = createAsyncThunk("auth/login", async (data) => {
-  const res = await AuthServices.login(data);
-  return res.data;
+  try {
+    const response = await AuthServices.login(data);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
+    }
+    throw error;
+  }
 });
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   const res = AuthServices.logout();
   return res.data;
 });
+
+export const changePassword = createAsyncThunk(
+  "auth/changePassword",
+  async ({ email, data }) => {
+    try {
+      const response = await AuthServices.changePassword(email, data);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return error.response;
+      }
+      throw error;
+    }
+  }
+);
 
 const authReducer = createSlice({
   name: "auth",
@@ -25,30 +47,43 @@ const authReducer = createSlice({
       state.data = action.payload;
     },
   },
-  extraReducers: {
-    [login.pending]: (state) => {
-      state.loading = true;
-    },
-    [login.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [login.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [logout.pending]: (state) => {
-      state.loading = true;
-    },
-    [logout.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [logout.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(login.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(logout.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(changePassword.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(changePassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
+
 export const { setData } = authReducer.actions;
 export default authReducer.reducer;

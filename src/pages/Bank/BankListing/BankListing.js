@@ -18,6 +18,7 @@ const BankListing = () => {
   const [bankList, setBankList] = useState(data || []);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState("");
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -54,7 +55,6 @@ const BankListing = () => {
         .unwrap()
         .then(() => {
           setOpen(false);
-
           dispatch(getAllBank());
         });
   };
