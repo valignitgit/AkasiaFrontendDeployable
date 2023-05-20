@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import {
   TextField,
@@ -20,7 +19,7 @@ import { VisibilityOff, Visibility } from "@mui/icons-material";
 import logo from "../../assets/images/logo.jpeg";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/CustomButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/authSlice";
 
 const Login = () => {

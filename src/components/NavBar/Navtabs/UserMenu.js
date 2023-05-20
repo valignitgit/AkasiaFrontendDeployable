@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { setData } from "../../../redux/slices/authSlice";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ChangePasswordDialogBox from "../ChangePassword/ChangePasswordDialog";
+import { toggleMobileOpen } from "../../../redux/slices/layoutSlice";
 
 function UserMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -16,17 +17,22 @@ function UserMenu() {
   const open = Boolean(anchorEl);
   const [openDialog, setOpenDialog] = useState(false);
 
+  const handleDrawerToggle = () => {
+    dispatch(toggleMobileOpen());
+  };
+
   const handleOpenDialog = () => {
     setOpenDialog(true);
+    handleCloseMenu();
   };
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
 
-  const handleClick = (event) => {
+  const handleClickMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleCloseMenu = () => {
     setAnchorEl(null);
   };
   const navigate = useNavigate();
@@ -35,18 +41,20 @@ function UserMenu() {
     localStorage.removeItem("user");
 
     dispatch(setData([]));
+    handleCloseMenu();
+    handleDrawerToggle();
     navigate("/login");
   };
   const renderUserMenu = () => {
     return (
       <Box>
         <Box>
-          <Box onClick={handleClick} className={styles.userName}>
+          <Box onClick={handleClickMenu} className={styles.userName}>
             <AccountCircleIcon />
             <p>{user?.username}</p>
           </Box>
         </Box>
-        <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+        <Menu anchorEl={anchorEl} open={open} onClose={handleCloseMenu}>
           <MenuItem onClick={handleOpenDialog}>Change Password</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>

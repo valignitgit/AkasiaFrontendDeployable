@@ -14,6 +14,9 @@ import Button from "../../../components/Button/CustomButton";
 import styles from "./style.module.scss";
 import { useDispatch } from "react-redux";
 import { changePassword } from "../../../redux/slices/authSlice";
+import { getEmptyErrorState } from "../../../utils/AppUtil";
+import { isEmptyString } from "../../../utils/Validator";
+import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 
 const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
   const initialState = {
@@ -26,6 +29,11 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   const [changePasswordData, setChangePasswordData] = useState(initialState);
   const { oldPassword, newPassword, repeatPassword } = changePasswordData;
+  const [error, setError] = useState({
+    oldPassword: getEmptyErrorState(),
+    newPassword: getEmptyErrorState(),
+    repeatPassword: getEmptyErrorState(),
+  });
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
   const email = user?.email;
@@ -53,28 +61,67 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
     setChangePasswordData(initialState);
   };
 
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {
+      oldPassword: getEmptyErrorState(),
+      newPassword: getEmptyErrorState(),
+      repeatPassword: getEmptyErrorState(),
+    };
+
+    if (isEmptyString(oldPassword)) {
+      newErrors.oldPassword = {
+        errorMessage:
+          ErrorMessageGenerator.getMandatoryFieldMessage("Current Password"),
+        errorState: "error",
+      };
+      isValid = false;
+    }
+    if (isEmptyString(newPassword)) {
+      newErrors.newPassword = {
+        errorMessage:
+          ErrorMessageGenerator.getMandatoryFieldMessage("New Password"),
+        errorState: "error",
+      };
+      isValid = false;
+    }
+    if (isEmptyString(repeatPassword)) {
+      newErrors.repeatPassword = {
+        errorMessage:
+          ErrorMessageGenerator.getMandatoryFieldMessage("Confirm Password"),
+        errorState: "error",
+      };
+      isValid = false;
+    }
+    setError(newErrors);
+    return isValid;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await dispatch(
-        changePassword({ email, data: changePasswordData })
-      ).unwrap();
-      console.log(response);
-      if (response === "Password Changed Successfully") {
-        alert("Password changed successfully");
-      } else if (
-        response.data === "New Password & Repeat password Should be Same" &&
-        response.status === 400
-      ) {
-        alert("New Password & Confirm password Should be Same");
-      } else if (
-        response.data === "Current Password Is Not Matching." &&
-        response.status === 400
-      ) {
-        alert("Current Password Is Wrong");
+    const isValid = validateForm();
+    if (isValid) {
+      try {
+        const response = await dispatch(
+          changePassword({ email, data: changePasswordData })
+        ).unwrap();
+        if (response === "Password Changed Successfully") {
+          alert("Password changed successfully");
+          handleCloseDialog();
+        } else if (
+          response.data === "New Password & Repeat password Should be Same" &&
+          response.status === 400
+        ) {
+          alert("New Password & Confirm password Should be Same");
+        } else if (
+          response.data === "Current Password Is Not Matching." &&
+          response.status === 400
+        ) {
+          alert("Current Password Is Wrong");
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -114,6 +161,10 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
               label="Current Password"
             />
           </FormControl>
+          {error.oldPassword.errorState && (
+            <span className="error">{error.oldPassword.errorMessage}</span>
+          )}
+
           <FormControl
             variant="outlined"
             className={styles.changePassword_formInput}
@@ -139,6 +190,9 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
               label="New Password"
             />
           </FormControl>
+          {error.newPassword.errorState && (
+            <span className="error">{error.newPassword.errorMessage}</span>
+          )}
 
           <FormControl
             variant="outlined"
@@ -166,6 +220,10 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
               label="Confirm Password"
             />
           </FormControl>
+          {error.repeatPassword.errorState && (
+            <span className="error">{error.repeatPassword.errorMessage}</span>
+          )}
+
           <Box className={styles.changePassword_btnContainer}>
             <Button shape="square" onClick={handleCancelClick}>
               Cancel
