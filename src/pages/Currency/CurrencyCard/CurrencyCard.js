@@ -5,7 +5,7 @@ import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 
 const CurrencyCard = ({ currency_id, currency_name, handleDelete }) => {
-  const renderCurrencyDetails = () => {
+  const renderCurrencyCard = () => {
     return (
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
@@ -50,7 +50,7 @@ const CurrencyCard = ({ currency_id, currency_name, handleDelete }) => {
       </>
     );
   };
-  return <>{renderCurrencyDetails()}</>;
+  return <>{renderCurrencyCard()}</>;
 };
 
 export default CurrencyCard;

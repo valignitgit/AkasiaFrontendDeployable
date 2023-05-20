@@ -42,10 +42,22 @@ const AddCurrency = lazy(() =>
   import("./pages/Currency/AddCurrency/AddCurrency")
 );
 const CurrencyDetails = lazy(() =>
-  import("./pages/Currency/CurrenyDetails/CurrencyDetails")
+  import("./pages/Currency/CurrencyDetails/CurrencyDetails")
 );
 const UpdateCurrency = lazy(() =>
   import("./pages/Currency/UpdateCurrency/UpdateCurrency")
+);
+const ExchangeListing = lazy(() =>
+  import("./pages/Exchange/ExchangeListing/ExchangeListing")
+);
+const AddExchange = lazy(() =>
+  import("./pages/Exchange/AddExchange/AddExchange")
+);
+const ExchangeDetails = lazy(() =>
+  import("./pages/Exchange/ExchangeDetails/ExchangeDetails")
+);
+const UpdateExchange = lazy(() =>
+  import("./pages/Exchange/UpdateExchange/UpdateExchange")
 );
 
 const App = () => {
@@ -90,6 +102,14 @@ const App = () => {
                     <Route path=":id" element={<CurrencyDetails />} />
                     <Route path="add" element={<AddCurrency />} />
                     <Route path="update/:id" element={<UpdateCurrency />} />
+                  </Route>
+                </Route>
+                <Route element={<RequireAuth />}>
+                  <Route path="exchange">
+                    <Route index element={<ExchangeListing />} />
+                    <Route path=":id" element={<ExchangeDetails />} />
+                    <Route path="add" element={<AddExchange />} />
+                    <Route path="update/:id" element={<UpdateExchange />} />
                   </Route>
                 </Route>
               </Route>

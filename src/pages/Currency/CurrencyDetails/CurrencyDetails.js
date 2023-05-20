@@ -8,7 +8,7 @@ import Button from "../../../components/Button/CustomButton";
 import Loader from "../../../components/Loader/Loader";
 import { getCurrencyById } from "../../../redux/slices/currencySlice";
 
-const ViewSecurity = () => {
+const CurrencyDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentCurrency = useSelector((state) => state.currency?.data);
@@ -18,11 +18,11 @@ const ViewSecurity = () => {
     dispatch(getCurrencyById(id));
   }, []);
 
-  const renderSecurityDetails = () => {
+  const renderCurrencyDetails = () => {
     if (
-      // typeof currentCurrency === "object" &&
-      currentCurrency !== null
-      // !Array.isArray(currentCurrency)
+      typeof currentCurrency === "object" &&
+      currentCurrency !== null &&
+      !Array.isArray(currentCurrency)
     ) {
       return (
         <Grid container className={styles.currencyDetails__container}>
@@ -81,7 +81,7 @@ const ViewSecurity = () => {
     }
   };
 
-  return <>{renderSecurityDetails()}</>;
+  return <>{renderCurrencyDetails()}</>;
 };
 
-export default ViewSecurity;
+export default CurrencyDetails;
