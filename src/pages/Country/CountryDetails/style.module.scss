@@ -1,0 +1,50 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.countryDetails__container {
+  @include flexbox;
+  @include justify_content(center);
+  @include align_items(center);
+}
+.countryDetails__heading {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.countryDetails {
+  @include card_box_shadow;
+  border-radius: var(--card-border-radius);
+  padding: 18px 20px;
+  @include flex_wrap(wrap);
+  cursor: pointer;
+  &:hover {
+    transform: translate3D(0, -1px, 0) scale(1.03);
+    transition: all 0.4s ease;
+  }
+}
+
+.countryDetails__body {
+  div {
+    @include margin_bottom(15px);
+  }
+}
+
+.countryDetails__itemKey {
+  color: var(--emperor-grey);
+  font-weight: 600;
+  display: inline-block;
+  width: 45%;
+}
+
+.countryDetails__itemValue {
+  text-transform: capitalize;
+  display: inline-block;
+  width: 55%;
+}
+
+.countryDetails__buttonContainer {
+  @include flex_center;
+}
+
+.countryDetails__button {
+  width: 120px;
+}

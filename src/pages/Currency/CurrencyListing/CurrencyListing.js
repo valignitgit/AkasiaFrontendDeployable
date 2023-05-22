@@ -44,7 +44,7 @@ const CurrencyListing = () => {
     if (data) {
       setCurrencyListing(data);
     }
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     if (newData) {

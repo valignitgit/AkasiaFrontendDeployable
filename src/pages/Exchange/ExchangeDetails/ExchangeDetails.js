@@ -62,7 +62,7 @@ const ExchangeDetails = () => {
               </CardContent>
 
               <CardActions className={styles.exchangeDetails__buttonContainer}>
-                <Link to={`/exchange/update/${exchange_name}`}>
+                <Link to={`/exchange/update/${exchange_id}`}>
                   <Button
                     variant="filled"
                     shape="square"

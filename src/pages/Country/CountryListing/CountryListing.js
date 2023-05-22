@@ -11,45 +11,45 @@ import Pagination from "@mui/material/Pagination";
 import Button from "../../../components/Button/CustomButton";
 import { useLocation } from "react-router-dom";
 import {
-  deleteExchange,
-  getAllExchanges, // Import the correct function here
-} from "../../../redux/slices/exchangeSlice";
-import ExchangeCard from "../ExchangeCard/ExchangeCard";
+  deleteCountry,
+  getAllCountry,
+} from "../../../redux/slices/countrySlice";
+import CountryCard from "../CountryCard/CountryCard";
 
-const ExchangeListing = () => {
+const CountryListing = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const newData = location.state?.newData;
-  const data = useSelector((state) => state.exchange?.data);
+  const data = useSelector((state) => state.country?.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState("");
-  const [exchangeListing, setExchangeListing] = useState(data || []);
+  const [countryListing, setCountryListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
-  console.log("exchangeListing", exchangeListing);
+  console.log("countryListing", countryListing);
   const handleClose = () => {
     setOpen(false);
   };
 
   useEffect(() => {
-    dispatch(getAllExchanges());
+    dispatch(getAllCountry());
   }, [dispatch]);
 
   useEffect(() => {
     if (Array.isArray(data)) {
-      setExchangeListing(data);
+      setCountryListing(data.data);
     }
   }, [data]);
 
   useEffect(() => {
     if (data) {
-      setExchangeListing(data);
+      setCountryListing(data.data);
     }
   }, []);
 
   useEffect(() => {
     if (newData) {
-      setExchangeListing((prevData) => [...prevData, newData]);
+      setCountryListing((prevData) => [...prevData, newData]);
     }
   }, [newData]);
 
@@ -60,11 +60,11 @@ const ExchangeListing = () => {
 
   const onDelete = async (id) => {
     if (id)
-      await dispatch(deleteExchange(id))
+      await dispatch(deleteCountry(id))
         .unwrap()
         .then(() => {
           setOpen(false);
-          dispatch(getAllExchanges());
+          dispatch(getAllCountry());
         });
   };
 
@@ -79,14 +79,14 @@ const ExchangeListing = () => {
 
   const lastDataIndex = page * perPage;
   const firstDataIndex = lastDataIndex - perPage;
-  const currentExchange = Array.isArray(exchangeListing)
-    ? exchangeListing.slice(firstDataIndex, lastDataIndex)
+  const currentCountry = Array.isArray(countryListing)
+    ? countryListing.slice(firstDataIndex, lastDataIndex)
     : [];
 
-  const renderAddExchangeButton = () => (
-    <Link to="/exchange/add">
-      <Button variant="filled" className={styles.addExchangeButton}>
-        Add Exchange
+  const renderAddCountryButton = () => (
+    <Link to="/country/add">
+      <Button variant="filled" className={styles.addCountryButton}>
+        Add Country
       </Button>
     </Link>
   );
@@ -121,15 +121,15 @@ const ExchangeListing = () => {
     );
   };
 
-  const renderExchangeList = () => {
-    if (Array.isArray(exchangeListing)) {
+  const renderCountryList = () => {
+    if (Array.isArray(countryListing)) {
       return (
-        <div className={styles.exchangeListing__container}>
+        <div className={styles.countryListing__container}>
           <Grid container spacing={2}>
-            {currentExchange.map((exchange) => (
-              <ExchangeCard
-                key={exchange.exchange_id}
-                {...exchange}
+            {currentCountry.map((country) => (
+              <CountryCard
+                key={country.country_id}
+                {...country}
                 handleDelete={handleDelete}
               />
             ))}
@@ -143,10 +143,10 @@ const ExchangeListing = () => {
 
   const renderPagination = () => {
     return (
-      <div className={styles.exchangeListing__paginationContainer}>
+      <div className={styles.countryListing__paginationContainer}>
         <Pagination
           color="primary"
-          count={Math.ceil(exchangeListing.length / perPage)}
+          count={Math.ceil(countryListing.length / perPage)}
           page={page}
           onChange={handlePageChange}
         />
@@ -163,12 +163,12 @@ const ExchangeListing = () => {
 
   return (
     <>
-      {renderAddExchangeButton()}
-      {renderExchangeList()}
-      {exchangeListing.length > 0 && renderPagination()}
+      {renderAddCountryButton()}
+      {renderCountryList()}
+      {countryListing.length > 0 && renderPagination()}
       {renderDialog()}
     </>
   );
 };
 
-export default ExchangeListing;
+export default CountryListing;

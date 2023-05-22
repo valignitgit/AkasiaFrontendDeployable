@@ -1,11 +1,11 @@
 @import "../../../styles/mixins";
 @import "../../../styles/variables";
 
-.exchangeListing__container {
+.countryListing__container {
   @include margin_top(30px);
   min-height: 80vh;
 }
-.exchangeListing__filterContainer {
+.countryListing__filterContainer {
   @include flexbox;
   @include align_items(center);
   @include justify_content(flex-end);
@@ -22,10 +22,10 @@
   }
 }
 
-.exchangeListing__filterSelectInput {
+.countryListing__filterSelectInput {
   width: 200px;
 }
-.exchangeListing__paginationContainer {
+.countryListing__paginationContainer {
   @include flexbox;
   @include justify_content(flex-end);
   @include align_items(center);

@@ -59,6 +59,16 @@ const ExchangeDetails = lazy(() =>
 const UpdateExchange = lazy(() =>
   import("./pages/Exchange/UpdateExchange/UpdateExchange")
 );
+const CountryListing = lazy(() =>
+  import("./pages/Country/CountryListing/CountryListing")
+);
+const AddCountry = lazy(() => import("./pages/Country/AddCountry/AddCountry"));
+const CountryDetails = lazy(() =>
+  import("./pages/Country/CountryDetails/CountryDetails")
+);
+const UpdateCountry = lazy(() =>
+  import("./pages/Country/UpdateCountry/UpdateCountry")
+);
 
 const App = () => {
   return (
@@ -110,6 +120,14 @@ const App = () => {
                     <Route path=":id" element={<ExchangeDetails />} />
                     <Route path="add" element={<AddExchange />} />
                     <Route path="update/:id" element={<UpdateExchange />} />
+                  </Route>
+                </Route>
+                <Route element={<RequireAuth />}>
+                  <Route path="country">
+                    <Route index element={<CountryListing />} />
+                    <Route path=":id" element={<CountryDetails />} />
+                    <Route path="add" element={<AddCountry />} />
+                    <Route path="update/:id" element={<UpdateCountry />} />
                   </Route>
                 </Route>
               </Route>

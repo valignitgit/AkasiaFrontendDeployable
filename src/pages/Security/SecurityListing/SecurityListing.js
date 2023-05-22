@@ -12,7 +12,6 @@ import Button from "../../../components/Button/CustomButton";
 const SecurityListing = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location);
   const newData = location.state?.newData;
   const data = useSelector((state) => state.security?.data);
   const [currentPage, setCurrentPage] = useState(1);

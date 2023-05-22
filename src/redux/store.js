@@ -8,6 +8,7 @@ import currencyReducer from "./slices/currencySlice";
 import layoutReducer from "./slices/layoutSlice";
 import authReducer from "./slices/authSlice";
 import exchangeReducer from "./slices/exchangeSlice";
+import countryReducer from "./slices/countrySlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     layout: layoutReducer,
     auth: authReducer,
     exchange: exchangeReducer,
+    country: countryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

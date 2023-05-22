@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateExchange } from "../../../redux/slices/exchangeSlice";
-import ExchangeService from "../../../services/ExchangeServices";
+import { updateCountry } from "../../../redux/slices/countrySlice";
+import CountryService from "../../../services/CountryServices";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
-import styles from "../AddExchange/style.module.scss";
+import styles from "../AddCountry/style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 
-const UpdateExchange = () => {
+const UpdateCountry = () => {
   const initialState = {
-    exchange_id: "",
-    exchange_name: "",
-    exchange_name_ar: "",
+    country_id: "",
+    country_name: "",
+    country_name_ar: "",
   };
-  const [currentExchange, setcurrentExchange] = useState(initialState);
+  const [currentCountry, setcurrentCountry] = useState(initialState);
   const [error, setErrors] = useState({
-    exchange_id: getEmptyErrorState(),
-    exchange_name: getEmptyErrorState(),
-    exchange_name_ar: getEmptyErrorState(),
+    country_id: getEmptyErrorState(),
+    country_name: getEmptyErrorState(),
+    country_name_ar: getEmptyErrorState(),
   });
 
   const { id } = useParams();
@@ -28,14 +28,14 @@ const UpdateExchange = () => {
   const dispatch = useDispatch();
 
   const onChange = (e) => {
-    setcurrentExchange({ ...currentExchange, [e.target.name]: e.target.value });
+    setcurrentCountry({ ...currentCountry, [e.target.name]: e.target.value });
   };
-  const { exchange_id, exchange_name, exchange_name_ar } = currentExchange;
+  const { country_id, country_name, country_name_ar } = currentCountry;
 
-  const getExchange = (id) => {
-    ExchangeService.getExchangeById(id)
+  const getCountry = (id) => {
+    CountryService.getCountryById(id)
       .then((res) => {
-        setcurrentExchange(res.data);
+        setcurrentCountry(res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -43,45 +43,45 @@ const UpdateExchange = () => {
   };
 
   useEffect(() => {
-    getExchange(id);
+    getCountry(id);
   }, []);
 
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
-      exchange_id: getEmptyErrorState(),
-      exchange_name: getEmptyErrorState(),
-      exchange_name_ar: getEmptyErrorState(),
+      country_id: getEmptyErrorState(),
+      country_name: getEmptyErrorState(),
+      country_name_ar: getEmptyErrorState(),
     };
-    if (isEmptyString(exchange_id)) {
-      newErrors.exchange_id = {
+    if (isEmptyString(country_id)) {
+      newErrors.country_id = {
         errorMessage:
-          ErrorMessageGenerator.getMandatoryFieldMessage("Exchange Id"),
+          ErrorMessageGenerator.getMandatoryFieldMessage("Country Id"),
         errorState: "error",
       };
       isValid = false;
     }
-    if (isEmptyString(exchange_name)) {
-      newErrors.exchange_name = {
+    if (isEmptyString(country_name)) {
+      newErrors.country_name = {
         errorMessage:
-          ErrorMessageGenerator.getMandatoryFieldMessage("Exchange Name"),
+          ErrorMessageGenerator.getMandatoryFieldMessage("Country Name"),
         errorState: "error",
       };
       isValid = false;
     }
 
-    if (isEmptyString(exchange_name_ar)) {
-      newErrors.exchange_name_ar = {
+    if (isEmptyString(country_name_ar)) {
+      newErrors.country_name_ar = {
         errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
-          "Exchange Name Arabic"
+          "Country Name Arabic"
         ),
         errorState: "error",
       };
       isValid = false;
-    } else if (isArabic(exchange_name_ar)) {
-      newErrors.exchange_name_ar = {
+    } else if (isArabic(country_name_ar)) {
+      newErrors.country_name_ar = {
         errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Exchange Name"),
+          ErrorMessageGenerator.getStringInArabicMessage("Country Name"),
         errorState: "error",
       };
       isValid = false;
@@ -96,10 +96,10 @@ const UpdateExchange = () => {
     if (isValid) {
       try {
         const response = await dispatch(
-          updateExchange({ id: exchange_id, data: currentExchange })
+          updateCountry({ id: country_id, data: currentCountry })
         ).unwrap();
         if (response.status === 200 || response.status === 201) {
-          navigate(`/exchange/${exchange_id}`);
+          navigate(`/country/${country_id}`);
         }
       } catch (error) {
         console.log(error.response);
@@ -107,19 +107,19 @@ const UpdateExchange = () => {
     }
   };
 
-  const renderUpdateExchangeDetailsForm = () => {
+  const renderUpdateCountryDetailsForm = () => {
     return (
-      <Grid container className={styles.addExchange__gridCenter}>
+      <Grid container className={styles.addCountry__gridCenter}>
         <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
-          <Paper className={`${styles.addExchange__formWidth} form_styles`}>
-            <Box className={styles.addExchange__formIcon_wrapper}>
+          <Paper className={`${styles.addCountry__formWidth} form_styles`}>
+            <Box className={styles.addCountry__formIcon_wrapper}>
               <Typography component="h1" variant="h5">
-                Update Exchange
+                Update Country
               </Typography>
             </Box>
             <Box
               component="form"
-              className={styles.addExchange__formContainer}
+              className={styles.addCountry__formContainer}
               onSubmit={handleSubmit}
               noValidate
             >
@@ -127,46 +127,44 @@ const UpdateExchange = () => {
                 margin="normal"
                 required
                 fullWidth
-                label="Exchange Id"
-                name="exchange_id"
-                value={exchange_id}
+                label="Country Id"
+                name="country_id"
+                value={country_id}
                 autoComplete="email"
                 autoFocus
                 onChange={(e) => onChange(e)}
                 disabled={true}
               />
-              {error.exchange_id.errorState && (
-                <span className="error">{error.exchange_id.errorMessage}</span>
+              {error.country_id.errorState && (
+                <span className="error">{error.country_id.errorMessage}</span>
               )}
 
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="exchange_name"
-                value={exchange_name}
-                label="Exchange Name"
+                name="country_name"
+                value={country_name}
+                label="Country Name"
                 onChange={(e) => onChange(e)}
               />
-              {error.exchange_name.errorState && (
-                <span className="error">
-                  {error.exchange_name.errorMessage}
-                </span>
+              {error.country_name.errorState && (
+                <span className="error">{error.country_name.errorMessage}</span>
               )}
 
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="exchange_name_ar"
-                value={exchange_name_ar}
-                label="Exchange Name Arabic"
+                name="country_name_ar"
+                value={country_name_ar}
+                label="Country Name Arabic"
                 autoComplete="current-password"
                 onChange={(e) => onChange(e)}
               />
-              {error.exchange_name_ar.errorState && (
+              {error.country_name_ar.errorState && (
                 <span className="error">
-                  {error.exchange_name_ar.errorMessage}
+                  {error.country_name_ar.errorMessage}
                 </span>
               )}
 
@@ -185,7 +183,7 @@ const UpdateExchange = () => {
     );
   };
 
-  return <>{renderUpdateExchangeDetailsForm()}</>;
+  return <>{renderUpdateCountryDetailsForm()}</>;
 };
 
-export default UpdateExchange;
+export default UpdateCountry;

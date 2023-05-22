@@ -4,6 +4,7 @@ import SecurityIcon from "@mui/icons-material/Security";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import MoneyIcon from "@mui/icons-material/Money";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import LanguageIcon from "@mui/icons-material/Language";
 import {
   List,
   ListItem,
@@ -51,6 +52,11 @@ function SidebarData() {
       label: "Exchange",
       icon: <CurrencyExchangeIcon />,
       link: "/exchange",
+    },
+    {
+      label: "Country",
+      icon: <LanguageIcon />,
+      link: "/country",
     },
   ];
 
