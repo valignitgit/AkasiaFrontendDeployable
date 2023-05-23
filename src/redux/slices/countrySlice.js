@@ -77,7 +77,7 @@ export const deleteCountry = createAsyncThunk("country/delete", async (id) => {
 });
 
 export const resetCountryState = createAsyncThunk("country/reset", async () => {
-  return initialState.data;
+  return [];
 });
 
 const countryReducer = createSlice({

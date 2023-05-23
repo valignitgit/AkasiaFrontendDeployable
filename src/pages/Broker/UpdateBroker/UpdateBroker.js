@@ -31,7 +31,6 @@ const UpdateExchange = () => {
     setcurrentExchange({ ...currentExchange, [e.target.name]: e.target.value });
   };
   const { exchange_id, exchange_name, exchange_name_ar } = currentExchange;
-  console.log("currentExchange", currentExchange);
 
   const getExchange = (id) => {
     ExchangeService.getExchangeById(id)

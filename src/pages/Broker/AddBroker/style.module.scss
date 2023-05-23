@@ -1,0 +1,46 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.addExchange__gridCenter {
+  @include align_items(center);
+  @include justify_content(center);
+  margin-top: 50px;
+}
+.addExchange__formContainer {
+  @include flexbox;
+  @include flex_directions(column);
+  @include align_items(flex-start);
+  @include justify_content(center);
+  background-color: var(--default);
+  padding: 20px;
+}
+
+.addExchange__formIcon_wrapper {
+  @include flexbox;
+  @include flex_directions(column);
+  @include align_items(center);
+}
+.addExchange__formIcon {
+  background-color: var(--violate);
+}
+.addExchange__submitBtn {
+  @include align_self(center);
+}
+.addExchange__textInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}
+
+.addExchange__selectInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}
+
+.addExchange__checkBoxInput {
+  @include margin_left(0);
+  @include margin_right(0);
+}
+
+.addBtn {
+  @include margin_top(8px);
+}

@@ -86,10 +86,11 @@ const AddCountry = () => {
     if (isValid) {
       try {
         const res = await dispatch(createCountry(countryData)).unwrap();
-        console.log(res);
 
         if (res.status === 201 || res.status === 200);
         {
+          console.log("res", res);
+
           dispatch(resetCountryState());
           navigate("/country", { state: { newData: countryData } });
         }

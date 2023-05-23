@@ -20,13 +20,14 @@ const CountryListing = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const newData = location.state?.newData;
-  const data = useSelector((state) => state.country?.data);
+  const data = useSelector((state) => state.country?.data.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState("");
   const [countryListing, setCountryListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
   console.log("countryListing", countryListing);
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -37,13 +38,13 @@ const CountryListing = () => {
 
   useEffect(() => {
     if (Array.isArray(data)) {
-      setCountryListing(data.data);
+      setCountryListing(data);
     }
   }, [data]);
 
   useEffect(() => {
     if (data) {
-      setCountryListing(data.data);
+      setCountryListing(data);
     }
   }, []);
 
@@ -165,7 +166,7 @@ const CountryListing = () => {
     <>
       {renderAddCountryButton()}
       {renderCountryList()}
-      {countryListing.length > 0 && renderPagination()}
+      {renderPagination()}
       {renderDialog()}
     </>
   );

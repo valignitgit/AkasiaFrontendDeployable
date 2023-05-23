@@ -11,19 +11,15 @@ import { getCountryById } from "../../../redux/slices/countrySlice";
 const CountryDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const currentCountry = useSelector((state) => state.country?.data);
-  const { country_id, country_name, country_name_ar } = currentCountry;
-
+  const currentCountry = useSelector((state) => state.country?.data.data);
+  const { country_id, country_name, country_name_ar } = currentCountry || {};
+  console.log("currentCountry", currentCountry);
   useEffect(() => {
     dispatch(getCountryById(id));
   }, []);
 
   const renderCountryDetails = () => {
-    if (
-      typeof currentCountry === "object" &&
-      currentCountry !== null &&
-      !Array.isArray(currentCountry)
-    ) {
+    if (!Array.isArray(currentCountry)) {
       return (
         <Grid container className={styles.countryDetails__container}>
           <Grid item xs={12} sm={8} md={8} lg={5} xl={4}>

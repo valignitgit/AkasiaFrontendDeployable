@@ -14,7 +14,7 @@ import {
   deleteExchange,
   getAllExchanges,
 } from "../../../redux/slices/exchangeSlice";
-import ExchangeCard from "../ExchangeCard/ExchangeCard";
+import ExchangeCard from "../BrokerCard/BrokerCard";
 
 const ExchangeListing = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,6 @@ const ExchangeListing = () => {
   const [exchangeListing, setExchangeListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
-  console.log("portfolioListing", data);
   const handleClose = () => {
     setOpen(false);
   };
