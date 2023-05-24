@@ -1,26 +1,35 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateExchange } from "../../../redux/slices/exchangeSlice";
-import ExchangeService from "../../../services/ExchangeServices";
+import { updateBroker } from "../../../redux/slices/brokerSlice";
+import BrokerService from "../../../services/BrokerServices";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
-import styles from "../AddExchange/style.module.scss";
+import styles from "../AddBroker/style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 
-const UpdateExchange = () => {
+const UpdateBroker = () => {
   const initialState = {
-    exchange_id: "",
-    exchange_name: "",
-    exchange_name_ar: "",
+    broker_id: "",
+    broker_name: "",
+    broker_name_ar: "",
+    currency_id: "",
+    investment_account_id: "",
+    bank_account_id: "",
+    broker_abbr: "",
   };
-  const [currentExchange, setcurrentExchange] = useState(initialState);
+  const [currentBroker, setCurrentBroker] = useState(initialState);
   const [error, setErrors] = useState({
-    exchange_id: getEmptyErrorState(),
-    exchange_name: getEmptyErrorState(),
-    exchange_name_ar: getEmptyErrorState(),
+    broker_id: getEmptyErrorState(),
+    broker_name: getEmptyErrorState(),
+    broker_name_ar: getEmptyErrorState(),
+    currency_id: getEmptyErrorState(),
+    investment_account_id: getEmptyErrorState(),
+    bank_account_id: getEmptyErrorState(),
+    broker_abbr: getEmptyErrorState(),
   });
 
   const { id } = useParams();
@@ -28,14 +37,23 @@ const UpdateExchange = () => {
   const dispatch = useDispatch();
 
   const onChange = (e) => {
-    setcurrentExchange({ ...currentExchange, [e.target.name]: e.target.value });
+    setCurrentBroker({ ...currentBroker, [e.target.name]: e.target.value });
   };
-  const { exchange_id, exchange_name, exchange_name_ar } = currentExchange;
+  const {
+    broker_id,
+    broker_name,
+    broker_name_ar,
+    currency_id,
+    investment_account_id,
+    bank_account_id,
+    broker_abbr,
+  } = currentBroker;
+  console.log("currentBroker", currentBroker);
 
-  const getExchange = (id) => {
-    ExchangeService.getExchangeById(id)
+  const getBroker = (id) => {
+    BrokerService.getBrokerById(id)
       .then((res) => {
-        setcurrentExchange(res.data);
+        setCurrentBroker(res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -43,49 +61,55 @@ const UpdateExchange = () => {
   };
 
   useEffect(() => {
-    getExchange(id);
+    getBroker(id);
   }, []);
 
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
-      exchange_id: getEmptyErrorState(),
-      exchange_name: getEmptyErrorState(),
-      exchange_name_ar: getEmptyErrorState(),
+      broker_id: getEmptyErrorState(),
+      broker_name: getEmptyErrorState(),
+      broker_name_ar: getEmptyErrorState(),
+      currency_id: getEmptyErrorState(),
+      investment_account_id: getEmptyErrorState(),
+      bank_account_id: getEmptyErrorState(),
+      broker_abbr: getEmptyErrorState(),
     };
-    if (isEmptyString(exchange_id)) {
-      newErrors.exchange_id = {
+
+    if (isEmptyString(broker_id)) {
+      newErrors.broker_id = {
         errorMessage:
-          ErrorMessageGenerator.getMandatoryFieldMessage("Exchange Id"),
-        errorState: "error",
-      };
-      isValid = false;
-    }
-    if (isEmptyString(exchange_name)) {
-      newErrors.exchange_name = {
-        errorMessage:
-          ErrorMessageGenerator.getMandatoryFieldMessage("Exchange Name"),
+          ErrorMessageGenerator.getMandatoryFieldMessage("Broker Id"),
         errorState: "error",
       };
       isValid = false;
     }
 
-    if (isEmptyString(exchange_name_ar)) {
-      newErrors.exchange_name_ar = {
-        errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
-          "Exchange Name Arabic"
-        ),
-        errorState: "error",
-      };
-      isValid = false;
-    } else if (isArabic(exchange_name_ar)) {
-      newErrors.exchange_name_ar = {
+    if (isEmptyString(broker_name)) {
+      newErrors.broker_name = {
         errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Exchange Name"),
+          ErrorMessageGenerator.getMandatoryFieldMessage("Broker Name"),
         errorState: "error",
       };
       isValid = false;
     }
+
+    if (isEmptyString(broker_name_ar)) {
+      newErrors.broker_name_ar = {
+        errorMessage:
+          ErrorMessageGenerator.getMandatoryFieldMessage("Broker Name Arabic"),
+        errorState: "error",
+      };
+      isValid = false;
+    } else if (isArabic(broker_name_ar)) {
+      newErrors.broker_name_ar = {
+        errorMessage:
+          ErrorMessageGenerator.getStringInArabicMessage("Broker Name"),
+        errorState: "error",
+      };
+      isValid = false;
+    }
+
     setErrors(newErrors);
     return isValid;
   };
@@ -96,30 +120,28 @@ const UpdateExchange = () => {
     if (isValid) {
       try {
         const response = await dispatch(
-          updateExchange({ id: exchange_id, data: currentExchange })
+          updateBroker({ id: broker_id, data: currentBroker })
         ).unwrap();
-        if (response.status === 200 || response.status === 201) {
-          navigate(`/exchange/${exchange_id}`);
-        }
+        navigate(`/broker/${broker_id}`);
       } catch (error) {
         console.log(error.response);
       }
     }
   };
 
-  const renderUpdateExchangeDetailsForm = () => {
+  const renderUpdateBrokerDetailsForm = () => {
     return (
-      <Grid container className={styles.addExchange__gridCenter}>
+      <Grid container className={styles.addBroker__gridCenter}>
         <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
-          <Paper className={`${styles.addExchange__formWidth} form_styles`}>
-            <Box className={styles.addExchange__formIcon_wrapper}>
+          <Paper className={`${styles.addBroker__formWidth} form_styles`}>
+            <Box className={styles.addBroker__formIcon_wrapper}>
               <Typography component="h1" variant="h5">
-                Update Exchange
+                Update Broker
               </Typography>
             </Box>
             <Box
               component="form"
-              className={styles.addExchange__formContainer}
+              className={styles.addBroker__formContainer}
               onSubmit={handleSubmit}
               noValidate
             >
@@ -127,47 +149,101 @@ const UpdateExchange = () => {
                 margin="normal"
                 required
                 fullWidth
-                label="Exchange Id"
-                name="exchange_id"
-                value={exchange_id}
+                label="Broker Id"
+                name="broker_id"
+                value={broker_id}
                 autoComplete="email"
                 autoFocus
                 onChange={(e) => onChange(e)}
                 disabled={true}
               />
-              {error.exchange_id.errorState && (
-                <span className="error">{error.exchange_id.errorMessage}</span>
+              {error.broker_id.errorState && (
+                <span className="error">{error.broker_id.errorMessage}</span>
               )}
 
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="exchange_name"
-                value={exchange_name}
-                label="Exchange Name"
+                name="broker_name"
+                value={broker_name}
+                label="Broker Name"
                 onChange={(e) => onChange(e)}
               />
-              {error.exchange_name.errorState && (
-                <span className="error">
-                  {error.exchange_name.errorMessage}
-                </span>
+              {error.broker_name.errorState && (
+                <span className="error">{error.broker_name.errorMessage}</span>
               )}
 
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="exchange_name_ar"
-                value={exchange_name_ar}
-                label="Exchange Name Arabic"
+                name="broker_name_ar"
+                value={broker_name_ar}
+                label="Broker Name Arabic"
                 autoComplete="current-password"
                 onChange={(e) => onChange(e)}
               />
-              {error.exchange_name_ar.errorState && (
+              {error.broker_name_ar.errorState && (
                 <span className="error">
-                  {error.exchange_name_ar.errorMessage}
+                  {error.broker_name_ar.errorMessage}
                 </span>
+              )}
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="currency_id"
+                value={currency_id}
+                label="Currency Id"
+                onChange={(e) => onChange(e)}
+              />
+              {error.currency_id.errorState && (
+                <span className="error">{error.currency_id.errorMessage}</span>
+              )}
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="investment_account_id"
+                value={investment_account_id}
+                label="Investment Account Id"
+                onChange={(e) => onChange(e)}
+              />
+              {error.investment_account_id.errorState && (
+                <span className="error">
+                  {error.investment_account_id.errorMessage}
+                </span>
+              )}
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="bank_account_id"
+                value={bank_account_id}
+                label="Bank Account Id"
+                onChange={(e) => onChange(e)}
+              />
+              {error.bank_account_id.errorState && (
+                <span className="error">
+                  {error.bank_account_id.errorMessage}
+                </span>
+              )}
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="broker_abbr"
+                value={broker_abbr}
+                label="Broker Abbreviation"
+                onChange={(e) => onChange(e)}
+              />
+              {error.broker_abbr.errorState && (
+                <span className="error">{error.broker_abbr.errorMessage}</span>
               )}
 
               <Button
@@ -185,7 +261,7 @@ const UpdateExchange = () => {
     );
   };
 
-  return <>{renderUpdateExchangeDetailsForm()}</>;
+  return <>{renderUpdateBrokerDetailsForm()}</>;
 };
 
-export default UpdateExchange;
+export default UpdateBroker;

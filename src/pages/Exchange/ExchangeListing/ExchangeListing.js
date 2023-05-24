@@ -26,7 +26,7 @@ const ExchangeListing = () => {
   const [exchangeListing, setExchangeListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
-  console.log("portfolioListing", data);
+  console.log("exchangeListing", data);
   const handleClose = () => {
     setOpen(false);
   };

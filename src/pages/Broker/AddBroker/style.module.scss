@@ -1,12 +1,12 @@
 @import "../../../styles/mixins";
 @import "../../../styles/variables";
 
-.addExchange__gridCenter {
+.addBroker__gridCenter {
   @include align_items(center);
   @include justify_content(center);
   margin-top: 50px;
 }
-.addExchange__formContainer {
+.addBroker__formContainer {
   @include flexbox;
   @include flex_directions(column);
   @include align_items(flex-start);
@@ -15,28 +15,28 @@
   padding: 20px;
 }
 
-.addExchange__formIcon_wrapper {
+.addBroker__formIcon_wrapper {
   @include flexbox;
   @include flex_directions(column);
   @include align_items(center);
 }
-.addExchange__formIcon {
+.addBroker__formIcon {
   background-color: var(--violate);
 }
-.addExchange__submitBtn {
+.addBroker__submitBtn {
   @include align_self(center);
 }
-.addExchange__textInput {
+.addBroker__textInput {
   @include margin_top(8px);
   @include margin_bottom(8px);
 }
 
-.addExchange__selectInput {
+.addBroker__selectInput {
   @include margin_top(8px);
   @include margin_bottom(8px);
 }
 
-.addExchange__checkBoxInput {
+.addBroker__checkBoxInput {
   @include margin_left(0);
   @include margin_right(0);
 }

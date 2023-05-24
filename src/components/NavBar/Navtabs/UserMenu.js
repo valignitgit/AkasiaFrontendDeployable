@@ -39,11 +39,10 @@ function UserMenu() {
 
   const handleLogout = async () => {
     localStorage.removeItem("user");
-
-    dispatch(setData([]));
     handleCloseMenu();
     handleDrawerToggle();
     navigate("/login");
+    window.location.reload();
   };
   const renderUserMenu = () => {
     return (

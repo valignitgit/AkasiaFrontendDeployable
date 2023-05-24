@@ -1,76 +1,127 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createExchange } from "../../../redux/slices/exchangeSlice";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import Button from "../../../components/Button/CustomButton";
 import styles from "./style.module.scss";
+import { createBroker } from "../../../redux/slices/brokerSlice";
 
-const AddExchange = () => {
+const AddBroker = () => {
   const initialState = {
-    exchange_id: "",
-    exchange_name: "",
-    exchange_name_ar: "",
+    broker_id: "",
+    broker_name: "",
+    broker_name_ar: "",
+    currency_id: "",
+    investment_account_id: "",
+    bank_account_id: "",
+    broker_abbr: "",
   };
 
-  const [exchangeData, setExchangeData] = useState(initialState);
+  const [brokerData, setBrokerData] = useState(initialState);
   const [error, setErrors] = useState({
-    exchange_id: getEmptyErrorState(),
-    exchange_name: getEmptyErrorState(),
-    exchange_name_ar: getEmptyErrorState(),
+    broker_id: getEmptyErrorState(),
+    broker_name: getEmptyErrorState(),
+    broker_name_ar: getEmptyErrorState(),
+    currency_id: getEmptyErrorState(),
+    investment_account_id: getEmptyErrorState(),
+    bank_account_id: getEmptyErrorState(),
+    broker_abbr: getEmptyErrorState(),
   });
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onChange = (e) => {
-    setExchangeData({ ...exchangeData, [e.target.name]: e.target.value });
+    setBrokerData({ ...brokerData, [e.target.name]: e.target.value });
   };
-  const { exchange_id, exchange_name, exchange_name_ar } = exchangeData;
+  const {
+    broker_id,
+    broker_name,
+    broker_name_ar,
+    currency_id,
+    investment_account_id,
+    bank_account_id,
+    broker_abbr,
+  } = brokerData;
 
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
-      exchange_id: getEmptyErrorState(),
-      exchange_name: getEmptyErrorState(),
-      exchange_name_ar: getEmptyErrorState(),
+      broker_id: getEmptyErrorState(),
+      broker_name: getEmptyErrorState(),
+      broker_name_ar: getEmptyErrorState(),
+      currency_id: getEmptyErrorState(),
+      investment_account_id: getEmptyErrorState(),
+      bank_account_id: getEmptyErrorState(),
+      broker_abbr: getEmptyErrorState(),
     };
-    if (isEmptyString(exchange_id)) {
-      newErrors.exchange_id = {
+    if (isEmptyString(broker_name)) {
+      newErrors.broker_name = {
         errorMessage:
-          ErrorMessageGenerator.getMandatoryFieldMessage("Exchange Id"),
-        errorState: "error",
-      };
-      isValid = false;
-    }
-    if (isEmptyString(exchange_name)) {
-      newErrors.exchange_name = {
-        errorMessage:
-          ErrorMessageGenerator.getMandatoryFieldMessage("Exchange Name"),
+          ErrorMessageGenerator.getMandatoryFieldMessage("Broker Name"),
         errorState: "error",
       };
       isValid = false;
     }
 
-    if (isEmptyString(exchange_name_ar)) {
-      newErrors.exchange_name_ar = {
-        errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
-          "Exchange Name Arabic"
-        ),
+    if (isEmptyString(broker_name_ar)) {
+      newErrors.broker_name_ar = {
+        errorMessage:
+          ErrorMessageGenerator.getMandatoryFieldMessage("Broker Name Arabic"),
         errorState: "error",
       };
       isValid = false;
-    } else if (isArabic(exchange_name_ar)) {
-      newErrors.exchange_name_ar = {
+    } else if (isArabic(broker_name_ar)) {
+      newErrors.broker_name_ar = {
         errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Exchange Name"),
+          ErrorMessageGenerator.getStringInArabicMessage("Broker Name"),
         errorState: "error",
       };
       isValid = false;
     }
+
+    if (isEmptyString(currency_id)) {
+      newErrors.currency_id = {
+        errorMessage:
+          ErrorMessageGenerator.getMandatoryFieldMessage("Currency Id"),
+        errorState: "error",
+      };
+      isValid = false;
+    }
+
+    if (isEmptyString(investment_account_id)) {
+      newErrors.investment_account_id = {
+        errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
+          "Investment Account Id"
+        ),
+        errorState: "error",
+      };
+      isValid = false;
+    }
+
+    if (isEmptyString(bank_account_id)) {
+      newErrors.bank_account_id = {
+        errorMessage:
+          ErrorMessageGenerator.getMandatoryFieldMessage("Bank Account Id"),
+        errorState: "error",
+      };
+      isValid = false;
+    }
+
+    if (isEmptyString(broker_abbr)) {
+      newErrors.broker_abbr = {
+        errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
+          "Broker Abbreviation"
+        ),
+        errorState: "error",
+      };
+      isValid = false;
+    }
+
     setErrors(newErrors);
     return isValid;
   };
@@ -79,25 +130,25 @@ const AddExchange = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      dispatch(createExchange(exchangeData));
-      navigate("/exchange", { state: { newData: exchangeData } });
+      dispatch(createBroker(brokerData));
+      // navigate("/broker", { state: { newData: brokerData } });
     }
   };
 
-  const renderAddExchangeDetailsForm = () => {
+  const renderAddBrokerDetailsForm = () => {
     return (
       <>
-        <Grid container className={styles.addExchange__gridCenter}>
+        <Grid container className={styles.addBroker__gridCenter}>
           <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
-            <Paper className={`${styles.addExchange__formWidth} form_styles`}>
-              <Box className={styles.addExchange__formIcon_wrapper}>
+            <Paper className={`${styles.addBroker__formWidth} form_styles`}>
+              <Box className={styles.addBroker__formIcon_wrapper}>
                 <Typography component="h1" variant="h5">
-                  Add Exchange
+                  Add Broker
                 </Typography>
               </Box>
               <Box
                 component="form"
-                className={styles.addExchange__formContainer}
+                className={styles.addBroker__formContainer}
                 onSubmit={handleSubmit}
                 noValidate
               >
@@ -105,15 +156,27 @@ const AddExchange = () => {
                   margin="normal"
                   required
                   fullWidth
-                  label="Exchange Id"
-                  name="exchange_id"
-                  value={exchange_id}
-                  autoFocus
+                  name="broker_id"
+                  value={broker_id}
+                  label="Broker id"
                   onChange={(e) => onChange(e)}
                 />
-                {error.exchange_id.errorState && (
+                {error.broker_id.errorState && (
+                  <span className="error">{error.broker_id.errorMessage}</span>
+                )}
+
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="broker_name"
+                  value={broker_name}
+                  label="Broker Name"
+                  onChange={(e) => onChange(e)}
+                />
+                {error.broker_name.errorState && (
                   <span className="error">
-                    {error.exchange_id.errorMessage}
+                    {error.broker_name.errorMessage}
                   </span>
                 )}
 
@@ -121,14 +184,14 @@ const AddExchange = () => {
                   margin="normal"
                   required
                   fullWidth
-                  name="exchange_name"
-                  value={exchange_name}
-                  label="Exchange Name"
+                  name="broker_name_ar"
+                  value={broker_name_ar}
+                  label="Broker Name Arabic"
                   onChange={(e) => onChange(e)}
                 />
-                {error.exchange_name.errorState && (
+                {error.broker_name_ar.errorState && (
                   <span className="error">
-                    {error.exchange_name.errorMessage}
+                    {error.broker_name_ar.errorMessage}
                   </span>
                 )}
 
@@ -136,14 +199,59 @@ const AddExchange = () => {
                   margin="normal"
                   required
                   fullWidth
-                  name="exchange_name_ar"
-                  value={exchange_name_ar}
-                  label="Exchange Name Arabic"
+                  name="currency_id"
+                  value={currency_id}
+                  label="Currency Id"
                   onChange={(e) => onChange(e)}
                 />
-                {error.exchange_name_ar.errorState && (
+                {error.currency_id.errorState && (
                   <span className="error">
-                    {error.exchange_name_ar.errorMessage}
+                    {error.currency_id.errorMessage}
+                  </span>
+                )}
+
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="investment_account_id"
+                  value={investment_account_id}
+                  label="Investment Account Id"
+                  onChange={(e) => onChange(e)}
+                />
+                {error.investment_account_id.errorState && (
+                  <span className="error">
+                    {error.investment_account_id.errorMessage}
+                  </span>
+                )}
+
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="bank_account_id"
+                  value={bank_account_id}
+                  label="Bank Account Id"
+                  onChange={(e) => onChange(e)}
+                />
+                {error.bank_account_id.errorState && (
+                  <span className="error">
+                    {error.bank_account_id.errorMessage}
+                  </span>
+                )}
+
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="broker_abbr"
+                  value={broker_abbr}
+                  label="Broker Abbreviation"
+                  onChange={(e) => onChange(e)}
+                />
+                {error.broker_abbr.errorState && (
+                  <span className="error">
+                    {error.broker_abbr.errorMessage}
                   </span>
                 )}
 
@@ -163,7 +271,7 @@ const AddExchange = () => {
     );
   };
 
-  return <>{renderAddExchangeDetailsForm()}</>;
+  return <>{renderAddBrokerDetailsForm()}</>;
 };
 
-export default AddExchange;
+export default AddBroker;

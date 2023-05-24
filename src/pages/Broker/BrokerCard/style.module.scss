@@ -1,11 +1,11 @@
 @import "../../../styles/mixins";
 @import "../../../styles/variables";
 
-.exchangeCard {
+.brokerCard {
   padding: 15px;
   border-radius: 10px;
   cursor: pointer;
-  height: 170px;
+  height: 200px;
   @include card_box_shadow;
   &:hover {
     transform: translate3D(0, -1px, 0) scale(1.03);
@@ -15,12 +15,12 @@
     height: 180px;
   }
 }
-.exchangeCard__containWrapper {
+.brokerCard__containWrapper {
   @include flexbox;
   @include gap(5px);
 }
 
-.exchangeCard__itemKey {
+.brokerCard__itemKey {
   color: var(--emperor-grey);
   font-weight: 600;
   display: inline-block;
@@ -30,7 +30,7 @@
     flex: 1;
   }
 }
-.exchangeCard__itemValue {
+.brokerCard__itemValue {
   text-transform: capitalize;
   display: inline-block;
   flex: 1;
@@ -40,16 +40,16 @@
   }
 }
 
-.exchangeCard__notAvailableText {
+.brokerCard__notAvailableText {
   @include margin_top(2px);
 }
 
-.exchangeCard__Actions {
+.brokerCard__Actions {
   @include flex_center;
   @include gap(5px);
 }
 
-.exchangeCard__btn {
+.brokerCard__btn {
   width: 80px;
   font-size: 0.85rem;
 }

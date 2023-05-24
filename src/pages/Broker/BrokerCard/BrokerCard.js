@@ -4,42 +4,52 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 
-const ExchangeCard = ({ exchange_id, exchange_name, handleDelete }) => {
-  const renderExchangeCard = () => {
+const BrokerCard = ({
+  broker_id,
+  broker_name,
+  broker_name_ar,
+  handleDelete,
+}) => {
+  const renderBrokerCard = () => {
     return (
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
-          <Card className={styles.exchangeCard}>
+          <Card className={styles.brokerCard}>
             <CardContent>
-              <Box className={styles.exchangeCard__containWrapper}>
-                <span className={styles.exchangeCard__itemKey}>
-                  Exchange Id:
-                </span>
-                <span className={styles.exchangeCard__itemValue}>
-                  {exchange_id}
+              <Box className={styles.brokerCard__containWrapper}>
+                <span className={styles.brokerCard__itemKey}>Broker Id:</span>
+                <span className={styles.brokerCard__itemValue}>
+                  {broker_id}
                 </span>
               </Box>
               <br />
-              <Box className={styles.exchangeCard__containWrapper}>
-                <span className={styles.exchangeCard__itemKey}>
-                  Exchange Name:
+              <Box className={styles.brokerCard__containWrapper}>
+                <span className={styles.brokerCard__itemKey}>Broker Name:</span>
+                <span className={styles.brokerCard__itemValue}>
+                  {broker_name || "Not Available"}
                 </span>
-                <span className={styles.exchangeCard__itemValue}>
-                  {exchange_name || "Not Available"}
+              </Box>
+              <br />
+              <Box className={styles.brokerCard__containWrapper}>
+                <span className={styles.brokerCard__itemKey}>
+                  Broker Name (Arabic):
+                </span>
+                <span className={styles.brokerCard__itemValue}>
+                  {broker_name_ar || "Not Available"}
                 </span>
               </Box>
               <br />
             </CardContent>
-            <div className={styles.exchangeCard__Actions}>
-              <Link to={`/exchange/${exchange_id}`}>
-                <Button className={styles.exchangeCard__btn} shape="square">
+            <div className={styles.brokerCard__Actions}>
+              <Link to={`/broker/${broker_id}`}>
+                <Button className={styles.brokerCard__btn} shape="square">
                   View
                 </Button>
               </Link>
               <Button
                 shape="square"
-                className={styles.exchangeCard__btn}
-                onClick={() => handleDelete(exchange_id)}
+                className={styles.brokerCard__btn}
+                onClick={() => handleDelete(broker_id)}
                 variant="filled"
               >
                 Delete
@@ -51,7 +61,7 @@ const ExchangeCard = ({ exchange_id, exchange_name, handleDelete }) => {
     );
   };
 
-  return <>{renderExchangeCard()}</>;
+  return <>{renderBrokerCard()}</>;
 };
 
-export default ExchangeCard;
+export default BrokerCard;

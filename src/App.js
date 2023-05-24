@@ -63,11 +63,23 @@ const CountryListing = lazy(() =>
   import("./pages/Country/CountryListing/CountryListing")
 );
 const AddCountry = lazy(() => import("./pages/Country/AddCountry/AddCountry"));
+
 const CountryDetails = lazy(() =>
   import("./pages/Country/CountryDetails/CountryDetails")
 );
 const UpdateCountry = lazy(() =>
   import("./pages/Country/UpdateCountry/UpdateCountry")
+);
+const BrokerListing = lazy(() =>
+  import("./pages/Broker/BrokerListing/BrokerListing")
+);
+const AddBroker = lazy(() => import("./pages/Broker/AddBroker/AddBroker"));
+
+const BrokerDetails = lazy(() =>
+  import("./pages/Broker/BrokerDetails/BrokerDetails")
+);
+const UpdateBroker = lazy(() =>
+  import("./pages/Broker/UpdateBroker/UpdateBroker")
 );
 
 const App = () => {
@@ -128,6 +140,14 @@ const App = () => {
                     <Route path=":id" element={<CountryDetails />} />
                     <Route path="add" element={<AddCountry />} />
                     <Route path="update/:id" element={<UpdateCountry />} />
+                  </Route>
+                </Route>
+                <Route element={<RequireAuth />}>
+                  <Route path="broker">
+                    <Route index element={<BrokerListing />} />
+                    <Route path=":id" element={<BrokerDetails />} />
+                    <Route path="add" element={<AddBroker />} />
+                    <Route path="update/:id" element={<UpdateBroker />} />
                   </Route>
                 </Route>
               </Route>

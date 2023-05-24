@@ -5,6 +5,7 @@ import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import MoneyIcon from "@mui/icons-material/Money";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import LanguageIcon from "@mui/icons-material/Language";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import {
   List,
   ListItem,
@@ -57,6 +58,11 @@ function SidebarData() {
       label: "Country",
       icon: <LanguageIcon />,
       link: "/country",
+    },
+    {
+      label: "Broker",
+      icon: <PeopleAltIcon />,
+      link: "/broker",
     },
   ];
 

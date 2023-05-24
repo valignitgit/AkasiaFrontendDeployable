@@ -2,7 +2,7 @@
 @import "../../../styles/variables";
 
 .countryListing__container {
-  @include margin_top(30px);
+  @include margin_bottom(30px);
   min-height: 80vh;
 }
 .countryListing__filterContainer {
@@ -33,6 +33,6 @@
   @include margin_bottom(20px);
 }
 
-.addCurrencyButton {
+.addCountryButton {
   @include margin_bottom(20px);
 }

@@ -18,7 +18,6 @@ const BankListing = () => {
   const [bankList, setBankList] = useState(data || []);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState("");
-
   const handleClose = () => {
     setOpen(false);
   };

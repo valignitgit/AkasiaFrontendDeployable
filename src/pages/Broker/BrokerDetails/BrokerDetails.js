@@ -6,67 +6,105 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 import Loader from "../../../components/Loader/Loader";
-import { getExchangeById } from "../../../redux/slices/exchangeSlice";
+import { getBrokerById } from "../../../redux/slices/brokerSlice";
 
-const ExchangeDetails = () => {
+const BrokerDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const currentExchange = useSelector((state) => state.exchange?.data);
-  const { exchange_id, exchange_name, exchange_name_ar } = currentExchange;
+  const currentBroker = useSelector((state) => state.broker?.data);
+  const {
+    broker_id,
+    broker_name,
+    broker_name_ar,
+    currency_id,
+    investment_account_id,
+    bank_account_id,
+    broker_abbr,
+  } = currentBroker;
 
   useEffect(() => {
-    dispatch(getExchangeById(id));
+    dispatch(getBrokerById(id));
   }, []);
 
-  const renderExchangeDetails = () => {
+  const renderBrokerDetails = () => {
     if (
-      typeof currentExchange === "object" &&
-      currentExchange !== null &&
-      !Array.isArray(currentExchange)
+      typeof currentBroker === "object" &&
+      currentBroker !== null &&
+      !Array.isArray(currentBroker)
     ) {
       return (
-        <Grid container className={styles.exchangeDetails__container}>
+        <Grid container className={styles.brokerDetails__container}>
           <Grid item xs={12} sm={8} md={8} lg={5} xl={4}>
-            <h1 className={styles.exchangeDetails__heading}>
-              Exchange Details
-            </h1>
+            <h1 className={styles.brokerDetails__heading}>Broker Details</h1>
 
-            <Card className={styles.exchangeDetails}>
+            <Card className={styles.brokerDetails}>
               <CardContent>
-                <div className={styles.exchangeDetails__body}>
+                <div className={styles.brokerDetails__body}>
                   <div>
-                    <span className={styles.exchangeDetails__itemKey}>
-                      Exchange ID:
+                    <span className={styles.brokerDetails__itemKey}>
+                      Broker ID:
                     </span>
-                    <span className={styles.exchangeDetails__itemValue}>
-                      {exchange_id || "NA"}
+                    <span className={styles.brokerDetails__itemValue}>
+                      {broker_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.exchangeDetails__itemKey}>
-                      Exchange Name:
+                    <span className={styles.brokerDetails__itemKey}>
+                      Broker Name:
                     </span>
-                    <span className={styles.exchangeDetails__itemValue}>
-                      {exchange_name || "NA"}
+                    <span className={styles.brokerDetails__itemValue}>
+                      {broker_name || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.exchangeDetails__itemKey}>
-                      Exchange Name (Arabic):
+                    <span className={styles.brokerDetails__itemKey}>
+                      Broker Name (Arabic):
                     </span>
-                    <span className={`${styles.exchangeDetails__itemValue} `}>
-                      {exchange_name_ar || "NA"}
+                    <span className={`${styles.brokerDetails__itemValue} `}>
+                      {broker_name_ar || "NA"}
+                    </span>
+                  </div>
+                  <div>
+                    <span className={styles.brokerDetails__itemKey}>
+                      Currency ID:
+                    </span>
+                    <span className={styles.brokerDetails__itemValue}>
+                      {currency_id || "NA"}
+                    </span>
+                  </div>
+                  <div>
+                    <span className={styles.brokerDetails__itemKey}>
+                      Investment Account ID:
+                    </span>
+                    <span className={styles.brokerDetails__itemValue}>
+                      {investment_account_id || "NA"}
+                    </span>
+                  </div>
+                  <div>
+                    <span className={styles.brokerDetails__itemKey}>
+                      Bank Account ID:
+                    </span>
+                    <span className={styles.brokerDetails__itemValue}>
+                      {bank_account_id || "NA"}
+                    </span>
+                  </div>
+                  <div>
+                    <span className={styles.brokerDetails__itemKey}>
+                      Broker Abbreviation:
+                    </span>
+                    <span className={styles.brokerDetails__itemValue}>
+                      {broker_abbr || "NA"}
                     </span>
                   </div>
                 </div>
               </CardContent>
 
-              <CardActions className={styles.exchangeDetails__buttonContainer}>
-                <Link to={`/exchange/update/${exchange_id}`}>
+              <CardActions className={styles.brokerDetails__buttonContainer}>
+                <Link to={`/broker/update/${broker_id}`}>
                   <Button
                     variant="filled"
                     shape="square"
-                    className={styles.exchangeDetails__button}
+                    className={styles.brokerDetails__button}
                   >
                     Update
                   </Button>
@@ -81,7 +119,7 @@ const ExchangeDetails = () => {
     }
   };
 
-  return <>{renderExchangeDetails()}</>;
+  return <>{renderBrokerDetails()}</>;
 };
 
-export default ExchangeDetails;
+export default BrokerDetails;

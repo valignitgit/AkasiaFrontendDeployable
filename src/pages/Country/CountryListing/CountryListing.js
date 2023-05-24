@@ -26,7 +26,6 @@ const CountryListing = () => {
   const [countryListing, setCountryListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
-  console.log("countryListing", countryListing);
 
   const handleClose = () => {
     setOpen(false);

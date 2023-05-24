@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
@@ -10,45 +9,43 @@ import styles from "./style.module.scss";
 import Pagination from "@mui/material/Pagination";
 import Button from "../../../components/Button/CustomButton";
 import { useLocation } from "react-router-dom";
-import {
-  deleteExchange,
-  getAllExchanges,
-} from "../../../redux/slices/exchangeSlice";
-import ExchangeCard from "../BrokerCard/BrokerCard";
+import { getAllBrokers, deleteBroker } from "../../../redux/slices/brokerSlice";
+import BrokerCard from "../BrokerCard/BrokerCard";
 
-const ExchangeListing = () => {
+const BrokerListingPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const newData = location.state?.newData;
-  const data = useSelector((state) => state.exchange?.data);
+  const data = useSelector((state) => state.broker?.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState("");
-  const [exchangeListing, setExchangeListing] = useState(data || []);
+  const [brokerListing, setBrokerListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
+
   const handleClose = () => {
     setOpen(false);
   };
 
   useEffect(() => {
-    dispatch(getAllExchanges());
+    dispatch(getAllBrokers());
   }, [dispatch]);
 
   useEffect(() => {
     if (Array.isArray(data)) {
-      setExchangeListing(data);
+      setBrokerListing(data);
     }
   }, [data]);
 
   useEffect(() => {
     if (data) {
-      setExchangeListing(data);
+      setBrokerListing(data);
     }
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     if (newData) {
-      setExchangeListing((prevData) => [...prevData, newData]);
+      setBrokerListing((prevData) => [...prevData, newData]);
     }
   }, [newData]);
 
@@ -58,13 +55,14 @@ const ExchangeListing = () => {
   };
 
   const onDelete = async (id) => {
-    if (id)
-      await dispatch(deleteExchange(id))
+    if (id) {
+      await dispatch(deleteBroker(id))
         .unwrap()
         .then(() => {
           setOpen(false);
-          dispatch(getAllExchanges());
+          dispatch(getAllBrokers());
         });
+    }
   };
 
   const handlePageChange = (event, value) => {
@@ -78,14 +76,14 @@ const ExchangeListing = () => {
 
   const lastDataIndex = page * perPage;
   const firstDataIndex = lastDataIndex - perPage;
-  const currentExchange = Array.isArray(exchangeListing)
-    ? exchangeListing.slice(firstDataIndex, lastDataIndex)
+  const currentBrokers = Array.isArray(brokerListing)
+    ? brokerListing.slice(firstDataIndex, lastDataIndex)
     : [];
 
-  const renderAddExchangeButton = () => (
-    <Link to="/exchange/add">
-      <Button variant="filled" className={styles.addExchangeButton}>
-        Add Exchange
+  const renderAddBrokerButton = () => (
+    <Link to="/broker/add">
+      <Button variant="filled" className={styles.addBrokerButton}>
+        Add Broker
       </Button>
     </Link>
   );
@@ -107,6 +105,7 @@ const ExchangeListing = () => {
         </>
       );
     };
+
     return (
       <>
         <DialogBox
@@ -120,15 +119,15 @@ const ExchangeListing = () => {
     );
   };
 
-  const renderExchangeList = () => {
-    if (Array.isArray(exchangeListing)) {
+  const renderBrokerList = () => {
+    if (Array.isArray(brokerListing)) {
       return (
-        <div className={styles.exchangeListing__container}>
+        <div className={styles.brokerListing__container}>
           <Grid container spacing={2}>
-            {currentExchange.map((exchange) => (
-              <ExchangeCard
-                key={exchange.exchange_id}
-                {...exchange}
+            {currentBrokers.map((broker) => (
+              <BrokerCard
+                key={broker.broker_id}
+                {...broker}
                 handleDelete={handleDelete}
               />
             ))}
@@ -142,10 +141,10 @@ const ExchangeListing = () => {
 
   const renderPagination = () => {
     return (
-      <div className={styles.exchangeListing__paginationContainer}>
+      <div className={styles.brokerListing__paginationContainer}>
         <Pagination
           color="primary"
-          count={Math.ceil(exchangeListing.length / perPage)}
+          count={Math.ceil(brokerListing.length / perPage)}
           page={page}
           onChange={handlePageChange}
         />
@@ -162,12 +161,12 @@ const ExchangeListing = () => {
 
   return (
     <>
-      {renderAddExchangeButton()}
-      {renderExchangeList()}
-      {exchangeListing.length > 0 && renderPagination()}
+      {renderAddBrokerButton()}
+      {renderBrokerList()}
+      {brokerListing.length > 0 && renderPagination()}
       {renderDialog()}
     </>
   );
 };
 
-export default ExchangeListing;
+export default BrokerListingPage;
