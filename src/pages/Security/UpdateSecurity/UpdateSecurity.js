@@ -24,7 +24,7 @@ import { updateSecurity } from "../../../redux/slices/securitySlice";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import SecurityService from "../../../services/SecurityServices";
 import Button from "../../../components/Button/CustomButton";
 
@@ -341,14 +341,24 @@ const AddSecurity = () => {
                   className={styles.addsecurity__checkBoxInput}
                 />
               </Box>
-              <Button
-                variant="filled"
-                type="submit"
-                className={styles.addsecurity__submitBtn}
-                fullWidth
-              >
-                Submit
-              </Button>
+              <div className="buttons_container">
+                <Button
+                  variant="filled"
+                  type="submit"
+                  className={styles.addsecurity__submitBtn}
+                >
+                  Submit
+                </Button>
+                <Link to="/security">
+                  <Button
+                    variant="filled"
+                    type="submit"
+                    className={styles.addBtn}
+                  >
+                    Cancel
+                  </Button>
+                </Link>
+              </div>
             </Box>
           </Paper>
         </Grid>

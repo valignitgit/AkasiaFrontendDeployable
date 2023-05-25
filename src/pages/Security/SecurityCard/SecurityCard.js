@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
 import Button from "../../../components/Button/CustomButton";
 
-const SecurityCard = (card, id) => {
+const SecurityCard = (card) => {
   const { security_id, security_name, security_type, exchange_id } = card;
   return (
     <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
@@ -42,20 +42,28 @@ const SecurityCard = (card, id) => {
           </div>
         </CardContent>
 
-        {id && (
-          <CardActions className={styles.securityCard__buttonContainer}>
-            <Link to={`/security/${security_id}`}>
-              <Button
-                color="success"
-                shape="square"
-                className={styles.securityCard__button}
-                variant="filled"
-              >
-                View
-              </Button>
-            </Link>
-          </CardActions>
-        )}
+        <CardActions className={styles.securityCard__buttonContainer}>
+          <Link to={`/security/${security_id}`}>
+            <Button
+              color="success"
+              shape="square"
+              className={styles.securityCard__button}
+              variant="filled"
+            >
+              View
+            </Button>
+          </Link>
+          <Link to={`/security/update/${security_id}`}>
+            <Button
+              color="success"
+              shape="square"
+              className={styles.securityCard__button}
+              variant="filled"
+            >
+              Edit
+            </Button>
+          </Link>
+        </CardActions>
       </Card>
     </Grid>
   );

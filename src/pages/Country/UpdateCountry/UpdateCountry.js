@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateCountry } from "../../../redux/slices/countrySlice";
 import CountryService from "../../../services/CountryServices";
@@ -170,15 +170,20 @@ const UpdateCountry = () => {
                   {error.country_name_ar.errorMessage}
                 </span>
               )}
-
-              <Button
-                className="mt_10"
-                variant="filled"
-                type="submit"
-                fullWidth
-              >
-                Update
-              </Button>
+              <div className="buttons_container">
+                <Button className="mt_10" variant="filled" type="submit">
+                  Update
+                </Button>
+                <Link to="/country">
+                  <Button
+                    variant="filled"
+                    type="submit"
+                    className={styles.addBtn}
+                  >
+                    Cancel
+                  </Button>
+                </Link>
+              </div>
             </Box>
           </Paper>
         </Grid>

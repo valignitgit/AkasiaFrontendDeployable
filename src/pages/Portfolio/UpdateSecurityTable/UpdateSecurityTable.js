@@ -13,7 +13,6 @@ import {
   TextField,
   InputLabel,
   Box,
-  Typography,
 } from "@mui/material";
 
 import { nanoid } from "nanoid";
@@ -149,14 +148,6 @@ const UpdateSecurityTable = () => {
   return (
     <>
       <Paper className={styles.addSecurityTable__Container}>
-        <Typography
-          component="h1"
-          variant="h5"
-          className={styles.addSecurityTable__heading}
-        >
-          Update Security
-        </Typography>
-
         <Box component="form" className={styles.addSecurityTable__form}>
           <Box className={styles.addSecurityTable_selectInput}>
             <FormControl fullWidth>

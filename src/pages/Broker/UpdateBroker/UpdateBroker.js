@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateBroker } from "../../../redux/slices/brokerSlice";
 import BrokerService from "../../../services/BrokerServices";
@@ -245,15 +245,20 @@ const UpdateBroker = () => {
               {error.broker_abbr.errorState && (
                 <span className="error">{error.broker_abbr.errorMessage}</span>
               )}
-
-              <Button
-                className="mt_10"
-                variant="filled"
-                type="submit"
-                fullWidth
-              >
-                Update
-              </Button>
+              <div className="buttons_container">
+                <Button className="mt_10" variant="filled" type="submit">
+                  Update
+                </Button>
+                <Link to="/broker">
+                  <Button
+                    variant="filled"
+                    type="submit"
+                    className={styles.addBtn}
+                  >
+                    Cancel
+                  </Button>
+                </Link>
+              </div>
             </Box>
           </Paper>
         </Grid>

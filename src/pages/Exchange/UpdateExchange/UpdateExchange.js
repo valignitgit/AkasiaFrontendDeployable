@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateExchange } from "../../../redux/slices/exchangeSlice";
+import {
+  updateExchange,
+  resetExchangeState,
+} from "../../../redux/slices/exchangeSlice";
 import ExchangeService from "../../../services/ExchangeServices";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
@@ -99,9 +102,9 @@ const UpdateExchange = () => {
         const response = await dispatch(
           updateExchange({ id: exchange_id, data: currentExchange })
         ).unwrap();
-        if (response.status === 200 || response.status === 201) {
-          navigate(`/exchange/${exchange_id}`);
-        }
+        console.log(response);
+        dispatch(resetExchangeState());
+        navigate("/exchange");
       } catch (error) {
         console.log(error.response);
       }
@@ -170,15 +173,20 @@ const UpdateExchange = () => {
                   {error.exchange_name_ar.errorMessage}
                 </span>
               )}
-
-              <Button
-                className="mt_10"
-                variant="filled"
-                type="submit"
-                fullWidth
-              >
-                Update
-              </Button>
+              <div className="buttons_container">
+                <Button className="mt_10" variant="filled" type="submit">
+                  Update
+                </Button>
+                <Link to="/exchange">
+                  <Button
+                    variant="filled"
+                    type="submit"
+                    className={styles.addBtn}
+                  >
+                    Cancel
+                  </Button>
+                </Link>
+              </div>
             </Box>
           </Paper>
         </Grid>

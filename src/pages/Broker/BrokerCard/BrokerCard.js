@@ -4,12 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 
-const BrokerCard = ({
-  broker_id,
-  broker_name,
-  broker_name_ar,
-  handleDelete,
-}) => {
+const BrokerCard = ({ broker_id, broker_name, handleDelete }) => {
   const renderBrokerCard = () => {
     return (
       <>
@@ -29,16 +24,6 @@ const BrokerCard = ({
                   {broker_name || "Not Available"}
                 </span>
               </Box>
-              <br />
-              <Box className={styles.brokerCard__containWrapper}>
-                <span className={styles.brokerCard__itemKey}>
-                  Broker Name (Arabic):
-                </span>
-                <span className={styles.brokerCard__itemValue}>
-                  {broker_name_ar || "Not Available"}
-                </span>
-              </Box>
-              <br />
             </CardContent>
             <div className={styles.brokerCard__Actions}>
               <Link to={`/broker/${broker_id}`}>
@@ -46,6 +31,12 @@ const BrokerCard = ({
                   View
                 </Button>
               </Link>
+              <Link to={`/broker/update/${broker_id}`}>
+                <Button className={styles.brokerCard__btn} shape="square">
+                  Edit
+                </Button>
+              </Link>
+
               <Button
                 shape="square"
                 className={styles.brokerCard__btn}

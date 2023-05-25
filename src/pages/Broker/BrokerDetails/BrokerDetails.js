@@ -100,13 +100,13 @@ const BrokerDetails = () => {
               </CardContent>
 
               <CardActions className={styles.brokerDetails__buttonContainer}>
-                <Link to={`/broker/update/${broker_id}`}>
+                <Link to="/broker">
                   <Button
                     variant="filled"
                     shape="square"
                     className={styles.brokerDetails__button}
                   >
-                    Update
+                    Cancel
                   </Button>
                 </Link>
               </CardActions>

@@ -30,7 +30,7 @@ const PortfolioDetails = () => {
           spacing={4}
           className={styles.portfolioDetails__wrapper}
         >
-          <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
+          <Grid item xs={12} sm={6} md={6} lg={5} xl={4}>
             <h2 className={styles.portfolioDetails__heading}>
               Portfolio Details
             </h2>
@@ -139,13 +139,13 @@ const PortfolioDetails = () => {
                 )}
               </CardContent>
               <div className={styles.portfolioDetails__Actions}>
-                <Link to={`/portfolio/update/${id}`}>
+                <Link to="/portfolio">
                   <Button
                     variant="filled"
                     className={styles.portfolioDetails__btn}
                     shape="square"
                   >
-                    Update
+                    Cancel
                   </Button>
                 </Link>
               </div>

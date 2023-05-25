@@ -24,14 +24,13 @@ import { createSecurity } from "../../../redux/slices/securitySlice";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Button from "../../../components/Button/CustomButton";
 
 const AddSecurity = () => {
   const securityTypeOptions = getSecurityTypeList();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(navigate);
   const currencyArray = useSelector((state) => state.currency.data);
   const currencyOptions = getCurrencyList(currencyArray);
   const initialState = {
@@ -326,14 +325,24 @@ const AddSecurity = () => {
                   className={styles.addsecurity__checkBoxInput}
                 />
               </Box>
-              <Button
-                variant="filled"
-                type="submit"
-                className={styles.addsecurity__submitBtn}
-                fullWidth
-              >
-                Submit
-              </Button>
+              <div className="buttons_container">
+                <Button
+                  variant="filled"
+                  type="submit"
+                  className={styles.addsecurity__submitBtn}
+                >
+                  Submit
+                </Button>
+                <Link to="/security">
+                  <Button
+                    variant="filled"
+                    type="submit"
+                    className={styles.addBtn}
+                  >
+                    Cancel
+                  </Button>
+                </Link>
+              </div>
             </Box>
           </Paper>
         </Grid>

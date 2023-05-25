@@ -62,13 +62,13 @@ const CurrencyDetails = () => {
               </CardContent>
 
               <CardActions className={styles.currencyDetails__buttonContainer}>
-                <Link to={`/currency/update/${currency_name}`}>
+                <Link to="/currency">
                   <Button
                     variant="filled"
                     shape="square"
                     className={styles.currencyDetails__button}
                   >
-                    Update
+                    Cancel
                   </Button>
                 </Link>
               </CardActions>

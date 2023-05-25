@@ -13,7 +13,6 @@ import {
   TextField,
   InputLabel,
   Box,
-  Typography,
 } from "@mui/material";
 import Button from "../../../components/Button/CustomButton";
 
@@ -150,14 +149,6 @@ const AddSecurityTable = () => {
   return (
     <>
       <Paper className={styles.addSecurityTable__Container}>
-        <Typography
-          component="h1"
-          variant="h5"
-          className={styles.addSecurityTable__heading}
-        >
-          Add Security
-        </Typography>
-
         <Box component="form" className={styles.addSecurityTable__form}>
           <Box className={styles.addSecurityTable_selectInput}>
             <FormControl fullWidth>

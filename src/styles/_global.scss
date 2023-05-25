@@ -63,7 +63,7 @@ p {
   margin-bottom: 5px;
 }
 
-.text_arabic {
+.text_right {
   text-align: right;
 }
 .grid_container_center {
@@ -131,4 +131,10 @@ p {
 
 .MuiInputLabel-root.Mui-focused {
   color: var(--black);
+}
+
+.buttons_container {
+  @include flex_center;
+  width: 100%;
+  @include gap(10px);
 }

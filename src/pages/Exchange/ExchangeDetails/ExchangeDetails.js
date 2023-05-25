@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 import Loader from "../../../components/Loader/Loader";
-import { getExchangeById } from "../../../redux/slices/exchangeSlice";
+import {
+  getExchangeById,
+  resetExchangeState,
+} from "../../../redux/slices/exchangeSlice";
 
 const ExchangeDetails = () => {
   const { id } = useParams();
@@ -17,6 +20,7 @@ const ExchangeDetails = () => {
 
   useEffect(() => {
     dispatch(getExchangeById(id));
+    dispatch(resetExchangeState());
   }, []);
 
   const renderExchangeDetails = () => {
@@ -63,13 +67,13 @@ const ExchangeDetails = () => {
               </CardContent>
 
               <CardActions className={styles.exchangeDetails__buttonContainer}>
-                <Link to={`/exchange/update/${exchange_id}`}>
+                <Link to="/exchange">
                   <Button
                     variant="filled"
                     shape="square"
                     className={styles.exchangeDetails__button}
                   >
-                    Update
+                    Cancel
                   </Button>
                 </Link>
               </CardActions>

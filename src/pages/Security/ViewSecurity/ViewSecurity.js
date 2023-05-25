@@ -164,13 +164,13 @@ const ViewSecurity = () => {
               </CardContent>
 
               <CardActions className={styles.viewSecurity__buttonContainer}>
-                <Link to={`/security/update/${security_id}`}>
+                <Link to="/security">
                   <Button
                     variant="filled"
                     shape="square"
                     className={styles.viewSecurity__button}
                   >
-                    Update
+                    Cancel
                   </Button>
                 </Link>
               </CardActions>

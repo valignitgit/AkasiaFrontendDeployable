@@ -23,7 +23,10 @@ const PortfolioListing = () => {
   const newData = location.state?.newData;
   const data = useSelector((state) => state.portfolio?.data);
   const [open, setOpen] = useState(false);
-  const [deletedItem, setDeletedItem] = useState("");
+  const [deletedItem, setDeletedItem] = useState({
+    id: "",
+    name: "",
+  });
   const [filter, setFilter] = useState("");
   const [portfolioList, setPortfolioList] = useState(data || []);
   const [page, setPage] = useState(1);
@@ -54,9 +57,12 @@ const PortfolioListing = () => {
       setPortfolioList((prevData) => [...prevData, newData]);
     }
   }, [newData]);
-  const handleDelete = (id) => {
+  const handleDelete = (id, name) => {
     setOpen(true);
-    setDeletedItem(id);
+    setDeletedItem({
+      id,
+      name,
+    });
   };
   const onDelete = async (id) => {
     if (id)
@@ -179,20 +185,24 @@ const PortfolioListing = () => {
           <Button
             variant="filled"
             shape="square"
-            onClick={() => onDelete(deletedItem)}
+            onClick={() => onDelete(deletedItem.id)}
           >
             Delete
           </Button>
         </>
       );
     };
+    const renderDeleteContent = () => {
+      return <div>Are sure you want to delete {deletedItem.name}? </div>;
+    };
+
     return (
       <>
         <DialogBox
           open={open}
           handleClose={handleClose}
           title="Delete"
-          content="Are sure you want to delete?"
+          content={renderDeleteContent()}
           actions={renderActionButtons()}
         />
       </>

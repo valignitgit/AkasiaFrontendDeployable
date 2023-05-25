@@ -56,13 +56,13 @@ const CountryDetails = () => {
               </CardContent>
 
               <CardActions className={styles.countryDetails__buttonContainer}>
-                <Link to={`/country/update/${country_id}`}>
+                <Link to="/country">
                   <Button
                     variant="filled"
                     shape="square"
                     className={styles.countryDetails__button}
                   >
-                    Update
+                    Cancel
                   </Button>
                 </Link>
               </CardActions>

@@ -17,7 +17,10 @@ const BankListing = () => {
   const { data, loading } = useSelector((state) => state.bank);
   const [bankList, setBankList] = useState(data || []);
   const [open, setOpen] = useState(false);
-  const [deletedItem, setDeletedItem] = useState("");
+  const [deletedItem, setDeletedItem] = useState({
+    id: "",
+    name: "",
+  });
   const handleClose = () => {
     setOpen(false);
   };
@@ -43,9 +46,12 @@ const BankListing = () => {
     }
   }, [newData]);
 
-  const handleDelete = (id) => {
+  const handleDelete = (id, name) => {
     setOpen(true);
-    setDeletedItem(id);
+    setDeletedItem({
+      id,
+      name,
+    });
   };
 
   const onDelete = async (id) => {
@@ -76,12 +82,15 @@ const BankListing = () => {
           <Button
             variant="filled"
             shape="square"
-            onClick={() => onDelete(deletedItem)}
+            onClick={() => onDelete(deletedItem.id)}
           >
             Delete
           </Button>
         </>
       );
+    };
+    const renderDeleteContent = () => {
+      return <div>Are sure you want to delete {deletedItem.name}? </div>;
     };
     return (
       <>
@@ -89,7 +98,7 @@ const BankListing = () => {
           open={open}
           handleClose={handleClose}
           title="Delete"
-          content="Are sure you want to delete?"
+          content={renderDeleteContent()}
           actions={renderActionButtons()}
         />
       </>
@@ -113,7 +122,7 @@ const BankListing = () => {
 
     if (Array.isArray(bankList)) {
       return (
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           {bankList?.map((bank) => (
             <BankCard
               key={bank.bank_id}

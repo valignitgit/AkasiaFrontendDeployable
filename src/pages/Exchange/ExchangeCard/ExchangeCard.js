@@ -36,10 +36,16 @@ const ExchangeCard = ({ exchange_id, exchange_name, handleDelete }) => {
                   View
                 </Button>
               </Link>
+              <Link to={`/exchange/update/${exchange_id}`}>
+                <Button className={styles.exchangeCard__btn} shape="square">
+                  Edit
+                </Button>
+              </Link>
+
               <Button
                 shape="square"
                 className={styles.exchangeCard__btn}
-                onClick={() => handleDelete(exchange_id)}
+                onClick={() => handleDelete(exchange_id, exchange_name)}
                 variant="filled"
               >
                 Delete

@@ -36,10 +36,16 @@ const CurrencyCard = ({ currency_id, currency_name, handleDelete }) => {
                   View
                 </Button>
               </Link>
+              <Link to={`/currency/update/${currency_name}`}>
+                <Button className={styles.currencyCard__btn} shape="square">
+                  Edit
+                </Button>
+              </Link>
+
               <Button
                 shape="square"
                 className={styles.currencyCard__btn}
-                onClick={() => handleDelete(currency_name)}
+                onClick={() => handleDelete(currency_name, currency_name)}
                 variant="filled"
               >
                 Delete

@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Box, Card, CardContent } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 import { useDispatch } from "react-redux";
@@ -45,10 +45,20 @@ const CountryCard = ({ country_id, country_name, handleDelete }) => {
               >
                 View
               </Button>
+              <Link to={`/country/update/${country_id}`}>
+                <Button
+                  className={styles.countryCard__btn}
+                  shape="square"
+                  onClick={handleViewCountry}
+                >
+                  Edit
+                </Button>
+              </Link>
+
               <Button
                 shape="square"
                 className={styles.countryCard__btn}
-                onClick={() => handleDelete(country_id)}
+                onClick={() => handleDelete(country_id, country_name)}
                 variant="filled"
               >
                 Delete

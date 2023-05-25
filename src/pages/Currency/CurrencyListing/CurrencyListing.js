@@ -21,11 +21,11 @@ const CurrencyListing = () => {
   const newData = location.state?.newData;
   const data = useSelector((state) => state.currency?.data);
   const [open, setOpen] = useState(false);
-  const [deletedItem, setDeletedItem] = useState("");
+  const [deletedItem, setDeletedItem] = useState({ id: "", name: "" });
   const [currencyListing, setCurrencyListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
-
+  console.log("currencyListing", currencyListing);
   const handleClose = () => {
     setOpen(false);
   };
@@ -51,10 +51,14 @@ const CurrencyListing = () => {
       setCurrencyListing((prevData) => [...prevData, newData]);
     }
   }, [newData]);
-  const handleDelete = (id) => {
+  const handleDelete = (id, name) => {
     setOpen(true);
-    setDeletedItem(id);
+    setDeletedItem({
+      id,
+      name,
+    });
   };
+
   const onDelete = async (id) => {
     if (id)
       await dispatch(deleteCurrency(id))
@@ -98,20 +102,24 @@ const CurrencyListing = () => {
           <Button
             variant="filled"
             shape="square"
-            onClick={() => onDelete(deletedItem)}
+            onClick={() => onDelete(deletedItem.id)}
           >
             Delete
           </Button>
         </>
       );
     };
+    const renderDeleteContent = () => {
+      return <div>Are sure you want to delete {deletedItem.name}? </div>;
+    };
+
     return (
       <>
         <DialogBox
           open={open}
           handleClose={handleClose}
           title="Delete"
-          content="Are sure you want to delete?"
+          content={renderDeleteContent()}
           actions={renderActionButtons()}
         />
       </>

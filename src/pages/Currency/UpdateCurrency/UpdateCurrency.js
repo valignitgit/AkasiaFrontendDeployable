@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
@@ -175,15 +175,24 @@ const UpdateCurrency = () => {
                     {error.currency_name_ar.errorMessage}
                   </span>
                 )}
-
-                <Button
-                  variant="filled"
-                  type="submit"
-                  className={styles.addBtn}
-                  fullWidth
-                >
-                  Update
-                </Button>
+                <div className="buttons_container">
+                  <Button
+                    variant="filled"
+                    type="submit"
+                    className={styles.addBtn}
+                  >
+                    Update
+                  </Button>
+                  <Link to="/currency">
+                    <Button
+                      variant="filled"
+                      type="submit"
+                      className={styles.addBtn}
+                    >
+                      Cancel
+                    </Button>
+                  </Link>
+                </div>
               </Box>
             </Paper>
           </Grid>

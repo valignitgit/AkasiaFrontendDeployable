@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { createBank } from "../../../redux/slices/bankSlice";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
@@ -106,7 +106,6 @@ const AddBank = () => {
                   label="Bank Id"
                   name="bank_id"
                   value={bank_id}
-                  autoFocus
                   onChange={(e) => onChange(e)}
                 />
                 {error.bank_id.errorState && (
@@ -141,14 +140,24 @@ const AddBank = () => {
                   </span>
                 )}
 
-                <Button
-                  variant="filled"
-                  type="submit"
-                  className={styles.addBtn}
-                  fullWidth
-                >
-                  Submit
-                </Button>
+                <div className="buttons_container">
+                  <Button
+                    variant="filled"
+                    type="submit"
+                    className={styles.addBtn}
+                  >
+                    Submit
+                  </Button>
+                  <Link to="/bank">
+                    <Button
+                      variant="filled"
+                      type="submit"
+                      className={styles.addBtn}
+                    >
+                      Cancel
+                    </Button>
+                  </Link>
+                </div>
               </Box>
             </Paper>
           </Grid>

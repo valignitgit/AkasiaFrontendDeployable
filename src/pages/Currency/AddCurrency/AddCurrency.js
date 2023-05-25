@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
@@ -110,7 +110,7 @@ const AddCurrency = () => {
                   fullWidth
                   name="currency_id"
                   value={currency_id}
-                  label="Current Id"
+                  label="Currency Id"
                   onChange={(e) => onChange(e)}
                 />
                 {error.currency_id.errorState && (
@@ -125,7 +125,7 @@ const AddCurrency = () => {
                   fullWidth
                   name="currency_name"
                   value={currency_name}
-                  label="Current Name"
+                  label="Currency Name"
                   onChange={(e) => onChange(e)}
                 />
                 {error.currency_name.errorState && (
@@ -148,15 +148,24 @@ const AddCurrency = () => {
                     {error.currency_name_ar.errorMessage}
                   </span>
                 )}
-
-                <Button
-                  variant="filled"
-                  type="submit"
-                  className={styles.addBtn}
-                  fullWidth
-                >
-                  Submit
-                </Button>
+                <div className="buttons_container">
+                  <Button
+                    variant="filled"
+                    type="submit"
+                    className={styles.addBtn}
+                  >
+                    Submit
+                  </Button>
+                  <Link to="/currency">
+                    <Button
+                      variant="filled"
+                      type="submit"
+                      className={styles.addBtn}
+                    >
+                      Cancel
+                    </Button>
+                  </Link>
+                </div>
               </Box>
             </Paper>
           </Grid>
