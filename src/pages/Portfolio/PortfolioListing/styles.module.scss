@@ -3,8 +3,13 @@
 
 .portfolioListing__container {
   @include margin_bottom(20px);
-  min-height: 60vh;
+  min-height: 70vh;
 }
+.scrollable {
+  overflow-y: scroll;
+  max-height: 60vh;
+}
+
 .portfolioListing__filterContainer {
   @include flexbox;
   @include align_items(center);

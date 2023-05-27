@@ -3,7 +3,7 @@
 
 .brokerListing__container {
   @include margin_bottom(30px);
-  min-height: 80vh;
+  min-height: 70vh;
 }
 .brokerListing__filterContainer {
   @include flexbox;

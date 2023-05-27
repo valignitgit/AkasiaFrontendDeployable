@@ -60,7 +60,9 @@ const BrokerDetails = () => {
                     <span className={styles.brokerDetails__itemKey}>
                       Broker Name (Arabic):
                     </span>
-                    <span className={`${styles.brokerDetails__itemValue} `}>
+                    <span
+                      className={`${styles.brokerDetails__itemValue} text_right`}
+                    >
                       {broker_name_ar || "NA"}
                     </span>
                   </div>

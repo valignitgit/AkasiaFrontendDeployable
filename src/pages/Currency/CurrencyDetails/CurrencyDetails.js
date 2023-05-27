@@ -54,7 +54,9 @@ const CurrencyDetails = () => {
                     <span className={styles.currencyDetails__itemKey}>
                       Currency Name (Arabic):
                     </span>
-                    <span className={`${styles.currencyDetails__itemValue} `}>
+                    <span
+                      className={`${styles.currencyDetails__itemValue} text_right`}
+                    >
                       {currency_name_ar || "NA"}
                     </span>
                   </div>

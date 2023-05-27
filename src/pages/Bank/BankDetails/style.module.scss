@@ -38,7 +38,8 @@
 .bankDetails__itemValue {
   text-transform: capitalize;
   display: inline-block;
-  width: 55%;
+  width: 100%;
+  max-width: 25%;
 }
 
 .bankDetails__buttonContainer {

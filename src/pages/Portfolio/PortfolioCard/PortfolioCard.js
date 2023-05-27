@@ -6,7 +6,6 @@ import Button from "../../../components/Button/CustomButton";
 
 const PortfolioCard = ({
   portfolio_name,
-  portfolio_name_ar,
   risk_level,
   handleDelete,
   portfolio_id,
@@ -23,15 +22,6 @@ const PortfolioCard = ({
                 </span>
                 <span className={styles.portfolioCard__itemValue}>
                   {portfolio_name}
-                </span>
-              </Box>
-              <br />
-              <Box className={styles.portfolioCard__containWrapper}>
-                <span className={styles.portfolioCard__itemKey}>
-                  Portfolio Name Arabic:
-                </span>
-                <span className={styles.portfolioCard__itemValue}>
-                  {portfolio_name_ar || "Not Available"}
                 </span>
               </Box>
               <br />

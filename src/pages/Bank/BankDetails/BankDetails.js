@@ -52,7 +52,9 @@ const BankDetails = () => {
                     <span className={styles.bankDetails__itemKey}>
                       Bank Name (Arabic):
                     </span>
-                    <span className={`${styles.bankDetails__itemValue} `}>
+                    <span
+                      className={`${styles.bankDetails__itemValue} text_right`}
+                    >
                       {bank_name_ar || "NA"}
                     </span>
                   </div>

@@ -59,7 +59,9 @@ const ExchangeDetails = () => {
                     <span className={styles.exchangeDetails__itemKey}>
                       Exchange Name (Arabic):
                     </span>
-                    <span className={`${styles.exchangeDetails__itemValue} `}>
+                    <span
+                      className={`${styles.exchangeDetails__itemValue} text_right`}
+                    >
                       {exchange_name_ar || "NA"}
                     </span>
                   </div>

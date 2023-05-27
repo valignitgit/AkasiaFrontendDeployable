@@ -128,7 +128,7 @@ const CurrencyListing = () => {
   const renderCurrencyList = () => {
     if (Array.isArray(currencyListing)) {
       return (
-        <div className={styles.currencyListinging__container}>
+        <div className={styles.currencyListing__container}>
           <Grid container spacing={2}>
             {currentCurrency.map((currency) => (
               <CurrencyCard

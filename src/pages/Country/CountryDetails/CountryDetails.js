@@ -48,7 +48,9 @@ const CountryDetails = () => {
                     <span className={styles.countryDetails__itemKey}>
                       Country Name (Arabic):
                     </span>
-                    <span className={`${styles.countryDetails__itemValue} `}>
+                    <span
+                      className={`${styles.countryDetails__itemValue} text_right`}
+                    >
                       {country_name_ar || "NA"}
                     </span>
                   </div>

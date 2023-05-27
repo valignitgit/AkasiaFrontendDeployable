@@ -49,7 +49,7 @@ const PortfolioDetails = () => {
                     variant="p"
                     className="text_uppercase"
                   >
-                    {portfolio_name}
+                    {portfolio_name || "NA"}
                   </Typography>
                 </Box>
                 <br />
@@ -61,8 +61,16 @@ const PortfolioDetails = () => {
                   >
                     Portfolio Name Arabic
                   </Typography>
-                  <Typography component="p" variant="p">
-                    {portfolio_name_ar ? portfolio_name_ar : "غير متاح"}
+                  <Typography
+                    component="p"
+                    variant="p"
+                    className={`${
+                      portfolio_name_ar
+                        ? `${styles.portfolioName_arabic} text_right`
+                        : ""
+                    }`}
+                  >
+                    {portfolio_name_ar || "NA"}
                   </Typography>
                 </Box>
                 <br />
@@ -80,7 +88,7 @@ const PortfolioDetails = () => {
                     variant="p"
                     className="text_capitalize"
                   >
-                    {risk_level}
+                    {risk_level || "NA"}
                   </Typography>
                 </Box>
                 <br />
@@ -93,7 +101,7 @@ const PortfolioDetails = () => {
                     Avarage Growth Pecentage
                   </Typography>
                   <Typography component="p" variant="p">
-                    {avg_growth_pct}%
+                    {avg_growth_pct || "NA"}%
                   </Typography>
                 </Box>
                 <br />

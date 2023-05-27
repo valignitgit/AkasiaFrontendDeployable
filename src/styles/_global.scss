@@ -10,6 +10,7 @@ body {
   background-color: var(--light-peach);
   font-family: "Roboto", sans-serif;
   position: relative;
+  overflow: auto;
 }
 
 .active {

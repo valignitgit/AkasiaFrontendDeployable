@@ -67,7 +67,9 @@ const ViewSecurity = () => {
                     <span className={styles.viewSecurity__itemKey}>
                       Security Name (Arabic):
                     </span>
-                    <span className={`${styles.viewSecurity__itemValue} `}>
+                    <span
+                      className={`${styles.viewSecurity__itemValue} text_right`}
+                    >
                       {security_name_ar || "NA"}
                     </span>
                   </div>

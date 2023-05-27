@@ -2,29 +2,10 @@
 @import "../../../styles/variables";
 
 .currencyListing__container {
-  @include margin_top(30px);
-  height: 100vh;
-}
-.currencyListing__filterContainer {
-  @include flexbox;
-  @include align_items(center);
-  @include justify_content(flex-end);
-  @include gap(5px);
   @include margin_bottom(30px);
-
-  @include xs {
-    @include justify_content(flex-start);
-    @include margin_top(10px);
-  }
-  @include sm {
-    @include justify_content(flex-start);
-    @include margin_top(10px);
-  }
+  min-height: 70vh;
 }
 
-.currencyListing__filterSelectInput {
-  width: 200px;
-}
 .currencyListing__paginationContainer {
   @include flexbox;
   @include justify_content(flex-end);
