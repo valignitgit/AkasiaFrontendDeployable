@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { createPortfolio } from "../../../redux/slices/portfolioSlice";
 import {
   Typography,
@@ -289,14 +289,18 @@ const AddPortfolio = () => {
                   </span>
                 )}
               </div>
-              <Button
-                type="submit"
-                variant="filled"
-                fullWidth
-                className={styles.addPortfolio__submitBtn}
-              >
-                Submit
-              </Button>
+              <div className="buttons_container">
+                <Button
+                  type="submit"
+                  variant="filled"
+                  className={styles.addPortfolio__submitBtn}
+                >
+                  Submit
+                </Button>
+                <Link to="/portfolio">
+                  <Button>Cancel</Button>
+                </Link>
+              </div>
             </Box>
           </Grid>
         </Grid>

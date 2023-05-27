@@ -7,10 +7,7 @@
 }
 
 .addSecurityTable__Container {
-  border-radius: 16px;
-  padding: 15px;
-  @include card_box_shadow;
-  @include margin_bottom(30px);
+  @include margin_bottom(8px);
 }
 .addSecurityTable__form {
   @include flexbox;
@@ -38,8 +35,4 @@
 .addSecurityTable__addBtn {
   height: 56px;
   width: 10%;
-}
-.addSecurityTable_dataTableWrapper {
-  border-radius: 20px;
-  @include card_box_shadow;
 }

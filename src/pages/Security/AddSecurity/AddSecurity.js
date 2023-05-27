@@ -13,10 +13,9 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import styles from "./style.module.scss";
-import {
-  getSecurityTypeList,
-  getCurrencyList,
-} from "../../../utils/SecurityUtil.js";
+import { getSecurityTypeList } from "../../../utils/SecurityUtil";
+import { getCurrencyList } from "../../../utils/AppUtil";
+
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCurrency } from "../../../redux/slices/currencySlice";
 import { useState } from "react";

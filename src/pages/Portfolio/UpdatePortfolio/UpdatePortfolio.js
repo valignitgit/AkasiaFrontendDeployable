@@ -8,10 +8,9 @@ import {
   MenuItem,
   FormControl,
   Select,
-  Paper,
   Grid,
 } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { updatePortfolio } from "../../../redux/slices/portfolioSlice";
 import PortfolioService from "../../../services/PortfolioServices";
 import UpdateSecurityTable from "../UpdateSecurityTable/UpdateSecurityTable";
@@ -210,7 +209,7 @@ const UpdatePortfolio = () => {
               noValidate
               className={styles.addPortfolio__formContainer}
             >
-              <Paper className={styles.addPortfolio__formStyles}>
+              <Box className={styles.addPortfolio__formStyles}>
                 <Typography
                   component="h1"
                   variant="h5"
@@ -292,7 +291,7 @@ const UpdatePortfolio = () => {
                     {error.avg_growth_pct.errorMessage}
                   </span>
                 )}
-              </Paper>
+              </Box>
               <UpdateSecurityTable />
               <div className={styles.addPortfolio__errorContainer}>
                 {error.security.errorState && (
@@ -306,14 +305,18 @@ const UpdatePortfolio = () => {
                   </span>
                 )}
               </div>
-              <Button
-                type="submit"
-                variant="filled"
-                fullWidth
-                className={styles.addPortfolio__submitBtn}
-              >
-                Update
-              </Button>
+              <div className="buttons_container">
+                <Button
+                  type="submit"
+                  variant="filled"
+                  className={styles.addPortfolio__submitBtn}
+                >
+                  Update
+                </Button>
+                <Link to="/portfolio">
+                  <Button>Cancel</Button>
+                </Link>
+              </div>
             </Box>
           </Grid>
         </Grid>

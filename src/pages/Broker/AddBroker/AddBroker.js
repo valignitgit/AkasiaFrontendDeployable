@@ -1,14 +1,26 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Box,
+  TextField,
+  Paper,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import Button from "../../../components/Button/CustomButton";
 import styles from "./style.module.scss";
 import { createBroker } from "../../../redux/slices/brokerSlice";
+import { getCurrencyList } from "../../../utils/AppUtil";
+import { getAllCurrency } from "../../../redux/slices/currencySlice";
 
 const AddBroker = () => {
   const initialState = {
@@ -21,6 +33,8 @@ const AddBroker = () => {
     broker_abbr: "",
   };
 
+  const currencyArray = useSelector((state) => state.currency.data);
+  const currencyOptions = getCurrencyList(currencyArray);
   const [brokerData, setBrokerData] = useState(initialState);
   const [error, setErrors] = useState({
     broker_id: getEmptyErrorState(),
@@ -59,6 +73,16 @@ const AddBroker = () => {
       bank_account_id: getEmptyErrorState(),
       broker_abbr: getEmptyErrorState(),
     };
+
+    if (isEmptyString(broker_id)) {
+      newErrors.broker_id = {
+        errorMessage:
+          ErrorMessageGenerator.getMandatoryFieldMessage("Broker Id"),
+        errorState: "error",
+      };
+      isValid = false;
+    }
+
     if (isEmptyString(broker_name)) {
       newErrors.broker_name = {
         errorMessage:
@@ -131,9 +155,12 @@ const AddBroker = () => {
     const isValid = validateForm();
     if (isValid) {
       dispatch(createBroker(brokerData));
-      // navigate("/broker", { state: { newData: brokerData } });
+      navigate("/broker", { state: { newData: brokerData } });
     }
   };
+  useEffect(() => {
+    dispatch(getAllCurrency());
+  }, []);
 
   const renderAddBrokerDetailsForm = () => {
     return (
@@ -195,15 +222,25 @@ const AddBroker = () => {
                   </span>
                 )}
 
-                <TextField
-                  margin="normal"
-                  required
+                <FormControl
                   fullWidth
-                  name="currency_id"
-                  value={currency_id}
-                  label="Currency Id"
-                  onChange={(e) => onChange(e)}
-                />
+                  className={styles.addBroker__selectInput}
+                >
+                  <InputLabel>Currency</InputLabel>
+                  <Select
+                    name="currency_id"
+                    value={currency_id}
+                    label="Currency"
+                    onChange={(e) => onChange(e)}
+                    autoComplete="off"
+                  >
+                    {currencyOptions.map((item) => (
+                      <MenuItem key={item} value={item}>
+                        {item}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
                 {error.currency_id.errorState && (
                   <span className="error">
                     {error.currency_id.errorMessage}

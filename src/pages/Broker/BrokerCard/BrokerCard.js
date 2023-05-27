@@ -40,7 +40,7 @@ const BrokerCard = ({ broker_id, broker_name, handleDelete }) => {
               <Button
                 shape="square"
                 className={styles.brokerCard__btn}
-                onClick={() => handleDelete(broker_id)}
+                onClick={() => handleDelete(broker_id, broker_name)}
                 variant="filled"
               >
                 Delete

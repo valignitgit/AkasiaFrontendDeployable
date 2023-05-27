@@ -6,7 +6,6 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Paper,
   FormControl,
   Select,
   MenuItem,
@@ -148,7 +147,7 @@ const AddSecurityTable = () => {
 
   return (
     <>
-      <Paper className={styles.addSecurityTable__Container}>
+      <Box className={styles.addSecurityTable__Container}>
         <Box component="form" className={styles.addSecurityTable__form}>
           <Box className={styles.addSecurityTable_selectInput}>
             <FormControl fullWidth>
@@ -194,12 +193,9 @@ const AddSecurityTable = () => {
             Add
           </Button>
         </Box>
-      </Paper>
+      </Box>
       {data.length ? (
-        <TableContainer
-          component={Paper}
-          className={styles.addSecurityTable_dataTableWrapper}
-        >
+        <TableContainer className={styles.addSecurityTable_dataTableWrapper}>
           <Table>
             <TableHead>
               <TableRow>

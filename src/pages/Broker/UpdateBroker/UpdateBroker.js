@@ -1,15 +1,27 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateBroker } from "../../../redux/slices/brokerSlice";
 import BrokerService from "../../../services/BrokerServices";
-import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Box,
+  TextField,
+  Paper,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import styles from "../AddBroker/style.module.scss";
 import Button from "../../../components/Button/CustomButton";
+import { getCurrencyList } from "../../../utils/AppUtil";
+import { getAllCurrency } from "../../../redux/slices/currencySlice";
 
 const UpdateBroker = () => {
   const initialState = {
@@ -21,6 +33,8 @@ const UpdateBroker = () => {
     bank_account_id: "",
     broker_abbr: "",
   };
+  const currencyArray = useSelector((state) => state.currency.data);
+  const currencyOptions = getCurrencyList(currencyArray);
   const [currentBroker, setCurrentBroker] = useState(initialState);
   const [error, setErrors] = useState({
     broker_id: getEmptyErrorState(),
@@ -62,6 +76,7 @@ const UpdateBroker = () => {
 
   useEffect(() => {
     getBroker(id);
+    dispatch(getAllCurrency());
   }, []);
 
   const validateForm = () => {
@@ -190,15 +205,22 @@ const UpdateBroker = () => {
                 </span>
               )}
 
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="currency_id"
-                value={currency_id}
-                label="Currency Id"
-                onChange={(e) => onChange(e)}
-              />
+              <FormControl fullWidth className={styles.addBroker__selectInput}>
+                <InputLabel>Currency</InputLabel>
+                <Select
+                  name="currency_id"
+                  value={currency_id}
+                  label="Currency"
+                  onChange={(e) => onChange(e)}
+                  autoComplete="off"
+                >
+                  {currencyOptions.map((item) => (
+                    <MenuItem key={item} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
               {error.currency_id.errorState && (
                 <span className="error">{error.currency_id.errorMessage}</span>
               )}

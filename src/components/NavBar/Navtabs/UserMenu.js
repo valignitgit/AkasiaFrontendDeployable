@@ -24,6 +24,7 @@ function UserMenu() {
   const handleOpenDialog = () => {
     setOpenDialog(true);
     handleCloseMenu();
+    dispatch(toggleMobileOpen());
   };
   const handleCloseDialog = () => {
     setOpenDialog(false);

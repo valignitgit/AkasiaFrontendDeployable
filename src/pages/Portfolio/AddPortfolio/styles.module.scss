@@ -11,13 +11,13 @@
   @include flexbox;
   @include flex_directions(column);
   @include justify_content(center);
+  background-color: var(--default);
+  @include card_box_shadow;
+  padding: 18px;
+  border-radius: 16px;
 }
 .addPortfolio__formStyles {
-  border-radius: 16px;
-  padding: 18px;
-  @include card_box_shadow;
-  background-color: var(--default);
-  @include margin_bottom(30px);
+  @include margin_bottom(8px);
 }
 .addPortfolio__formHeading {
   @include margin_bottom(10px);
