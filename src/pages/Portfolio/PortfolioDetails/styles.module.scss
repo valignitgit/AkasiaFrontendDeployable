@@ -1,45 +1,58 @@
 @import "../../../styles/mixins";
 @import "../../../styles/variables";
 
+.portfolioDetails__container {
+  @include flexbox;
+  @include justify_content(center);
+  @include align_items(center);
+}
+.portfolioDetails__heading {
+  margin-bottom: 30px;
+  text-align: center;
+}
 .portfolioDetails {
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 10px 0px,
-    rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
+  @include card_box_shadow;
+  border-radius: var(--card-border-radius);
+  padding: 18px 20px;
+  @include flex_wrap(wrap);
   cursor: pointer;
-  height: 300px;
-  @include lg_down {
-    height: 320px;
-  }
-
   &:hover {
     transform: translate3D(0, -1px, 0) scale(1.03);
     transition: all 0.4s ease;
   }
 }
-.portfolioDetails__containWrapper {
-  @include flexbox;
-  @include gap(5px);
+
+.portfolioDetails__body {
+  div {
+    @include margin_bottom(15px);
+  }
 }
 
 .portfolioDetails__itemKey {
   color: var(--emperor-grey);
   font-weight: 600;
   display: inline-block;
-  width: 60%;
+  width: 55%;
 }
-// .portfolioDetails__itemValue {
-//   text-transform: capitalize;
-//   display: inline-block;
-//   width: 40%;
-// }
 
-.portfolioName_arabic {
-  width: 20%;
+.portfolioDetails__itemValue {
+  text-transform: capitalize;
+  display: inline-block;
+  width: 45%;
+}
+.portfolioDetails__textArabic {
+  width: 25%;
+}
+.portfolioDetails__buttonContainer {
+  @include flex_center;
+}
+
+.portfolioDetails__button {
+  width: 120px;
 }
 
 .portfolioDetails__portfolioSecuritiesContainer {
-  @include margin_top(2px);
+  @include margin_top(10px);
   @include flexbox;
   @include justify_content(flex-start);
   @include align_items(center);
@@ -54,26 +67,6 @@
   @include gap(10px);
 }
 
-.portfolioDetails__notAvailableText {
-  @include margin_top(2px);
-}
-
-.portfolioDetails__Actions {
-  @include flex_center;
-  @include gap(5px);
-}
-
-.portfolioDetails__btn {
-  width: 110px;
-}
-
-.portfolioDetails__wrapper {
-  height: 50vh;
-  @include justify_content(center);
-  @include align_items(center);
-}
-.portfolioDetails__heading {
-  @include margin_top(15px);
-  @include margin_bottom(25px);
-  text-align: center;
+.portfolioDetails__containWrapper {
+  @include flexbox;
 }

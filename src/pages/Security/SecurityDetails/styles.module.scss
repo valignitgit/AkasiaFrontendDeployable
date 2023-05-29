@@ -1,16 +1,16 @@
 @import "../../../styles/mixins";
 @import "../../../styles/variables";
 
-.viewSecurity__container {
+.securityDetails__container {
   @include flexbox;
   @include justify_content(center);
   @include align_items(center);
 }
-.viewSecurity__heading {
+.securityDetails__heading {
   margin-bottom: 30px;
   text-align: center;
 }
-.viewSecurity {
+.securityDetails {
   @include card_box_shadow;
   border-radius: var(--card-border-radius);
   padding: 18px 20px;
@@ -22,29 +22,29 @@
   }
 }
 
-.viewSecurity__body {
+.securityDetails__body {
   div {
     @include margin_bottom(15px);
   }
 }
 
-.viewSecurity__itemKey {
+.securityDetails__itemKey {
   color: var(--emperor-grey);
   font-weight: 600;
   display: inline-block;
   width: 35%;
 }
 
-.viewSecurity__itemValue {
+.securityDetails__itemValue {
   text-transform: capitalize;
   display: inline-block;
   width: 60%;
 }
 
-.viewSecurity__buttonContainer {
+.securityDetails__buttonContainer {
   @include flex_center;
 }
 
-.viewSecurity__button {
+.securityDetails__button {
   width: 120px;
 }

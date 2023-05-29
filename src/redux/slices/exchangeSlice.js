@@ -3,6 +3,7 @@ import ExchangeService from "../../services/ExchangeServices";
 
 const initialState = {
   data: [],
+  currentData: null,
   loading: false,
   error: null,
 };
@@ -76,13 +77,6 @@ export const deleteExchange = createAsyncThunk(
   }
 );
 
-export const resetExchangeState = createAsyncThunk(
-  "country/reset",
-  async () => {
-    return [];
-  }
-);
-
 const exchangeReducer = createSlice({
   name: "exchange",
   initialState,
@@ -104,8 +98,8 @@ const exchangeReducer = createSlice({
       })
       .addCase(createExchange.fulfilled, (state, action) => {
         state.loading = false;
-        // state.data.push(action.payload);
-        state.data = action.payload;
+        state.data.push(action.payload);
+        //  state.data = action.payload;
       })
       .addCase(createExchange.rejected, (state, action) => {
         state.loading = false;
@@ -116,15 +110,7 @@ const exchangeReducer = createSlice({
       })
       .addCase(getExchangeById.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
-
-        // const { exchange_id } = action.payload;
-        // if (exchange_id) {
-        //   const exchangeItem = state.data.find(
-        //     (item) => item.exchange_id === exchange_id
-        //   );
-        //   state.data = exchangeItem;
-        // }
+        state.currentData = action.payload;
       })
 
       .addCase(getExchangeById.rejected, (state, action) => {
@@ -136,16 +122,16 @@ const exchangeReducer = createSlice({
       })
       .addCase(updateExchange.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
-        // const updatedExchange = action.payload;
+        // state.data = action.payload;
+        const updatedExchange = action.payload;
 
-        // if (updatedExchange.exchange_id) {
-        //   state.data = state.data.map((item) =>
-        //     item.exchange_id === updatedExchange.exchange_id
-        //       ? updatedExchange
-        //       : item
-        //   );
-        // }
+        if (updatedExchange.exchange_id) {
+          state.data = state.data.map((item) =>
+            item.exchange_id === updatedExchange.exchange_id
+              ? updatedExchange
+              : item
+          );
+        }
       })
       .addCase(updateExchange.rejected, (state, action) => {
         state.loading = false;
@@ -156,28 +142,16 @@ const exchangeReducer = createSlice({
       })
       .addCase(deleteExchange.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        //  state.data = action.payload;
 
-        // const { exchange_id } = action.payload;
-        // if (exchange_id) {
-        //   state.data = state.data.filter(
-        //     (item) => item.exchange_id !== exchange_id
-        //   );
-        // }
+        const { exchange_id } = action.payload;
+        if (exchange_id) {
+          state.data = state.data.filter(
+            (item) => item.exchange_id !== exchange_id
+          );
+        }
       })
       .addCase(deleteExchange.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(resetExchangeState.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(resetExchangeState.fulfilled, (state, action) => {
-        state.loading = false;
-        state.data = action.payload;
-        state.error = null;
-      })
-      .addCase(resetExchangeState.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

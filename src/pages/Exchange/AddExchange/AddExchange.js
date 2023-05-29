@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  createExchange,
-  resetExchangeState,
-} from "../../../redux/slices/exchangeSlice";
+import { createExchange } from "../../../redux/slices/exchangeSlice";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString, isArabic } from "../../../utils/Validator";
@@ -83,7 +80,6 @@ const AddExchange = () => {
     const isValid = validateForm();
     if (isValid) {
       dispatch(createExchange(exchangeData));
-      dispatch(resetExchangeState());
       navigate("/exchange", { state: { newData: exchangeData } });
     }
   };

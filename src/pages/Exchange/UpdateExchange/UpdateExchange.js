@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-  updateExchange,
-  resetExchangeState,
-} from "../../../redux/slices/exchangeSlice";
+import { updateExchange } from "../../../redux/slices/exchangeSlice";
 import ExchangeService from "../../../services/ExchangeServices";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
@@ -103,7 +100,6 @@ const UpdateExchange = () => {
           updateExchange({ id: exchange_id, data: currentExchange })
         ).unwrap();
         console.log(response);
-        dispatch(resetExchangeState());
         navigate("/exchange");
       } catch (error) {
         console.log(error.response);

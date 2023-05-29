@@ -6,21 +6,18 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 import Loader from "../../../components/Loader/Loader";
-import {
-  getExchangeById,
-  resetExchangeState,
-} from "../../../redux/slices/exchangeSlice";
+import { getExchangeById } from "../../../redux/slices/exchangeSlice";
 
 const ExchangeDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const currentExchange = useSelector((state) => state.exchange?.data);
-  const { exchange_id, exchange_name, exchange_name_ar } = currentExchange;
+  const currentExchange = useSelector((state) => state.exchange?.currentData);
+  const { exchange_id, exchange_name, exchange_name_ar } =
+    currentExchange || {};
   console.log("currentExchange", currentExchange);
 
   useEffect(() => {
     dispatch(getExchangeById(id));
-    dispatch(resetExchangeState());
   }, []);
 
   const renderExchangeDetails = () => {

@@ -13,7 +13,6 @@ import { useLocation } from "react-router-dom";
 import {
   deleteExchange,
   getAllExchanges,
-  resetExchangeState,
 } from "../../../redux/slices/exchangeSlice";
 import ExchangeCard from "../ExchangeCard/ExchangeCard";
 
@@ -70,7 +69,6 @@ const ExchangeListing = () => {
       await dispatch(deleteExchange(id))
         .unwrap()
         .then(() => {
-          dispatch(resetExchangeState());
           setOpen(false);
           dispatch(getAllExchanges());
         });

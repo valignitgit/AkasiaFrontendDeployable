@@ -26,7 +26,7 @@ const SecurityListing = lazy(() =>
   import("./pages/Security/SecurityListing/SecurityListing")
 );
 const ViewSecurity = lazy(() =>
-  import("./pages/Security/ViewSecurity/ViewSecurity")
+  import("./pages/Security/SecurityDetails/SecurityDetails")
 );
 const AddSecurity = lazy(() =>
   import("./pages/Security/AddSecurity/AddSecurity")
