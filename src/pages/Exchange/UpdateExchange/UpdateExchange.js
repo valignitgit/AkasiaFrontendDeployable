@@ -5,7 +5,7 @@ import { updateExchange } from "../../../redux/slices/exchangeSlice";
 import ExchangeService from "../../../services/ExchangeServices";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString, isArabic } from "../../../utils/Validator";
+import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import styles from "../AddExchange/style.module.scss";
 import Button from "../../../components/Button/CustomButton";
@@ -31,7 +31,6 @@ const UpdateExchange = () => {
     setcurrentExchange({ ...currentExchange, [e.target.name]: e.target.value });
   };
   const { exchange_id, exchange_name, exchange_name_ar } = currentExchange;
-  console.log("currentExchange", currentExchange);
 
   const getExchange = (id) => {
     ExchangeService.getExchangeById(id)
@@ -79,13 +78,6 @@ const UpdateExchange = () => {
         errorState: "error",
       };
       isValid = false;
-    } else if (isArabic(exchange_name_ar)) {
-      newErrors.exchange_name_ar = {
-        errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Exchange Name"),
-        errorState: "error",
-      };
-      isValid = false;
     }
     setErrors(newErrors);
     return isValid;
@@ -96,10 +88,9 @@ const UpdateExchange = () => {
     const isValid = validateForm();
     if (isValid) {
       try {
-        const response = await dispatch(
+        await dispatch(
           updateExchange({ id: exchange_id, data: currentExchange })
         ).unwrap();
-        console.log(response);
         navigate("/exchange");
       } catch (error) {
         console.log(error.response);

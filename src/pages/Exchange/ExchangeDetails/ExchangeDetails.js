@@ -14,7 +14,6 @@ const ExchangeDetails = () => {
   const currentExchange = useSelector((state) => state.exchange?.currentData);
   const { exchange_id, exchange_name, exchange_name_ar } =
     currentExchange || {};
-  console.log("currentExchange", currentExchange);
 
   useEffect(() => {
     dispatch(getExchangeById(id));

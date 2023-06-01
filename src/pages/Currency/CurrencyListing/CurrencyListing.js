@@ -25,7 +25,6 @@ const CurrencyListing = () => {
   const [currencyListing, setCurrencyListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
-  console.log("currencyListing", currencyListing);
   const handleClose = () => {
     setOpen(false);
   };

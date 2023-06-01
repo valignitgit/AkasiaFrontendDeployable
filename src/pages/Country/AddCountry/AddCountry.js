@@ -80,8 +80,6 @@ const AddCountry = () => {
 
         if (res.status === 201 || res.status === 200);
         {
-          console.log("res", res);
-
           dispatch(resetCountryState());
           navigate("/country", { state: { newData: countryData } });
         }

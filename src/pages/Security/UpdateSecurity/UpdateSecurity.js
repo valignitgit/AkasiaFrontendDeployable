@@ -20,7 +20,7 @@ import { getCurrencyList } from "../../../utils/AppUtil";
 import { useState } from "react";
 import { updateSecurity } from "../../../redux/slices/securitySlice";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString, isArabic } from "../../../utils/Validator";
+import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import SecurityService from "../../../services/SecurityServices";
@@ -122,13 +122,6 @@ const AddSecurity = () => {
         errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
           "Security Name Arabic"
         ),
-        errorState: "error",
-      };
-      isValid = false;
-    } else if (isArabic(security_name_ar)) {
-      newErrors.security_name_ar = {
-        errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Security Name"),
         errorState: "error",
       };
       isValid = false;

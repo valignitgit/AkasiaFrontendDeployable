@@ -31,7 +31,6 @@ const UpdateCountry = () => {
     setcurrentCountry({ ...currentCountry, [e.target.name]: e.target.value });
   };
   const { country_id, country_name, country_name_ar } = currentCountry;
-  console.log("currentCountry", currentCountry);
 
   const getCountry = (id) => {
     CountryService.getCountryById(id)

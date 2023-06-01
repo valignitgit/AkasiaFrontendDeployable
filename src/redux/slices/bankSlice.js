@@ -10,14 +10,11 @@ const initialState = {
 export const getAllBank = createAsyncThunk("bank/getAllBank", async () => {
   try {
     const response = await BankService.getAll();
-    console.log("response", response);
     return response.data;
   } catch (error) {
     if (error.response) {
-      console.error("API Error:", error.response);
       throw new Error("API Error: " + error.response.status);
     } else {
-      console.error("Unknown Error:", error);
       throw new Error("Unknown Error occurred while calling the API.");
     }
   }
