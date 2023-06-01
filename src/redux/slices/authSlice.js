@@ -5,9 +5,13 @@ const initialState = {
   data: [],
   loading: false,
   error: null,
+  loginData: {
+    user_id: "",
+    password: "",
+  },
 };
 
-export const login = createAsyncThunk("auth/login", async (data) => {
+export const login = createAsyncThunk("user/login", async (data) => {
   try {
     const response = await AuthServices.login(data);
     return response.data;
@@ -45,6 +49,9 @@ const authReducer = createSlice({
   reducers: {
     setData: (state, action) => {
       state.data = action.payload;
+    },
+    setLoginData: (state, action) => {
+      state.loginData = { ...state.loginData, ...action.payload };
     },
   },
   extraReducers: (builder) => {
@@ -85,5 +92,5 @@ const authReducer = createSlice({
   },
 });
 
-export const { setData } = authReducer.actions;
+export const { setData, setLoginData } = authReducer.actions;
 export default authReducer.reducer;

@@ -21,7 +21,7 @@ import { getAllCurrency } from "../../../redux/slices/currencySlice";
 import { useState } from "react";
 import { createSecurity } from "../../../redux/slices/securitySlice";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString, isArabic } from "../../../utils/Validator";
+import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import { useNavigate, Link } from "react-router-dom";
 import Button from "../../../components/Button/CustomButton";
@@ -112,14 +112,15 @@ const AddSecurity = () => {
         errorState: "error",
       };
       isValid = false;
-    } else if (isArabic(security_name_ar)) {
-      newErrors.security_name_ar = {
-        errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Security Name"),
-        errorState: "error",
-      };
-      isValid = false;
     }
+    // else if (isArabic(security_name_ar)) {
+    //   newErrors.security_name_ar = {
+    //     errorMessage:
+    //       ErrorMessageGenerator.getStringInArabicMessage("Security Name"),
+    //     errorState: "error",
+    //   };
+    //   isValid = false;
+    // }
 
     if (isEmptyString(security_class)) {
       newErrors.security_class = {

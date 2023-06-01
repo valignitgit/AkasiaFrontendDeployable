@@ -19,17 +19,16 @@ import { VisibilityOff, Visibility } from "@mui/icons-material";
 import logo from "../../assets/images/logo.jpeg";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/CustomButton";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { login, setLoginData } from "../../redux/slices/authSlice";
+import { setUserCredentials } from "../../utils/ApiUtil";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const initialState = {
-    user_id: "",
-    password: "",
-  };
-  const [loginData, setLoginData] = useState(initialState);
+
+  const loginData = useSelector((state) => state.auth.loginData);
+
   const [error, setError] = useState({
     user_id: getEmptyErrorState(),
     password: getEmptyErrorState(),
@@ -39,10 +38,8 @@ const Login = () => {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const onChange = (e) => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value,
-    });
+    // Dispatch an action to update the loginData in the Redux store
+    dispatch(setLoginData({ [e.target.name]: e.target.value }));
   };
 
   const validateForm = () => {
@@ -77,13 +74,16 @@ const Login = () => {
     if (isValid) {
       try {
         const response = await dispatch(login(loginData)).unwrap();
+
         if (
           response &&
           response.status === 200 &&
           response.result &&
           response.message === "Successfully Logged in"
         ) {
+          setUserCredentials(user_id, password);
           localStorage.setItem("user", JSON.stringify(response.result));
+
           navigate("/bank");
         } else if (
           response &&

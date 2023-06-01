@@ -5,8 +5,7 @@ import { updateCountry } from "../../../redux/slices/countrySlice";
 import CountryService from "../../../services/CountryServices";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
-// eslint-disable-next-line no-unused-vars
-import { isEmptyString, isArabic } from "../../../utils/Validator";
+import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import styles from "../AddCountry/style.module.scss";
 import Button from "../../../components/Button/CustomButton";
@@ -81,14 +80,6 @@ const UpdateCountry = () => {
       };
       isValid = false;
     }
-    // else if (isArabic(country_name_ar)) {
-    //   newErrors.country_name_ar = {
-    //     errorMessage:
-    //       ErrorMessageGenerator.getStringInArabicMessage("Country Name"),
-    //     errorState: "error",
-    //   };
-    //   isValid = false;
-    // }
     setErrors(newErrors);
     return isValid;
   };

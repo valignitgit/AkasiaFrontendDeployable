@@ -18,7 +18,6 @@ import { setData } from "../../../redux/slices/securityTableSlice";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import {
   isEmptyString,
-  isArabic,
   isFloatNumber,
   isValidDecimalPointValue,
 } from "../../../utils/Validator";
@@ -82,13 +81,6 @@ const UpdatePortfolio = () => {
         errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
           "Portfolio Name Arabic"
         ),
-        errorState: "error",
-      };
-      isValid = false;
-    } else if (isArabic(portfolio_name_ar)) {
-      newErrors.portfolio_name_ar = {
-        errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Portfolio Name"),
         errorState: "error",
       };
       isValid = false;

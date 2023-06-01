@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { createBank } from "../../../redux/slices/bankSlice";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString, isArabic } from "../../../utils/Validator";
+import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import Button from "../../../components/Button/CustomButton";
 import styles from "./style.module.scss";
@@ -58,13 +58,6 @@ const AddBank = () => {
       newErrors.bank_name_ar = {
         errorMessage:
           ErrorMessageGenerator.getMandatoryFieldMessage("Bank Name Arabic"),
-        errorState: "error",
-      };
-      isValid = false;
-    } else if (isArabic(bank_name_ar)) {
-      newErrors.bank_name_ar = {
-        errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Bank Name"),
         errorState: "error",
       };
       isValid = false;

@@ -99,7 +99,6 @@ const exchangeReducer = createSlice({
       .addCase(createExchange.fulfilled, (state, action) => {
         state.loading = false;
         state.data.push(action.payload);
-        //  state.data = action.payload;
       })
       .addCase(createExchange.rejected, (state, action) => {
         state.loading = false;
@@ -122,9 +121,7 @@ const exchangeReducer = createSlice({
       })
       .addCase(updateExchange.fulfilled, (state, action) => {
         state.loading = false;
-        // state.data = action.payload;
         const updatedExchange = action.payload;
-
         if (updatedExchange.exchange_id) {
           state.data = state.data.map((item) =>
             item.exchange_id === updatedExchange.exchange_id
@@ -142,8 +139,6 @@ const exchangeReducer = createSlice({
       })
       .addCase(deleteExchange.fulfilled, (state, action) => {
         state.loading = false;
-        //  state.data = action.payload;
-
         const { exchange_id } = action.payload;
         if (exchange_id) {
           state.data = state.data.filter(

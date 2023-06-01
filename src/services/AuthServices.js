@@ -1,7 +1,6 @@
-import api from "../api/api";
-import loginApi from "../api/qaApi";
+import api from "../api/qaApi";
 const login = (data) => {
-  return loginApi.post("/auth/signin", data);
+  return api.post("/user/login", data);
 };
 
 const logout = () => {
@@ -9,7 +8,7 @@ const logout = () => {
 };
 
 const changePassword = (email, data) => {
-  return api.post(`user/password/change/${email}`, data);
+  return api.post(`auth/password/change/${email}`, data);
 };
 
 const AuthServices = {

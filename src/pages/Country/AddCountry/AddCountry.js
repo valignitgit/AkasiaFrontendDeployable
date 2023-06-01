@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
@@ -8,7 +7,7 @@ import {
 } from "../../../redux/slices/countrySlice";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString, isArabic } from "../../../utils/Validator";
+import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import Button from "../../../components/Button/CustomButton";
 import styles from "./style.module.scss";
@@ -68,14 +67,6 @@ const AddCountry = () => {
       };
       isValid = false;
     }
-    // else if (isArabic(country_name_ar)) {
-    //   newErrors.country_name_ar = {
-    //     errorMessage:
-    //       ErrorMessageGenerator.getStringInArabicMessage("Country Name"),
-    //     errorState: "error",
-    //   };
-    //   isValid = false;
-    // }
     setErrors(newErrors);
     return isValid;
   };

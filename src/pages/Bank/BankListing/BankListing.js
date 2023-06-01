@@ -26,7 +26,8 @@ const BankListing = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllBank());
+    const response = dispatch(getAllBank()).unwrap();
+    console.log(response);
   }, [dispatch]);
 
   useEffect(() => {

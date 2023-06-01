@@ -16,7 +16,7 @@ import {
   Select,
 } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString, isArabic } from "../../../utils/Validator";
+import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import styles from "../AddBroker/style.module.scss";
 import Button from "../../../components/Button/CustomButton";
@@ -116,15 +116,7 @@ const UpdateBroker = () => {
         errorState: "error",
       };
       isValid = false;
-    } else if (isArabic(broker_name_ar)) {
-      newErrors.broker_name_ar = {
-        errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Broker Name"),
-        errorState: "error",
-      };
-      isValid = false;
     }
-
     setErrors(newErrors);
     return isValid;
   };

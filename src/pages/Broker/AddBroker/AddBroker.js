@@ -14,7 +14,7 @@ import {
   Select,
 } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString, isArabic } from "../../../utils/Validator";
+import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import Button from "../../../components/Button/CustomButton";
 import styles from "./style.module.scss";
@@ -96,13 +96,6 @@ const AddBroker = () => {
       newErrors.broker_name_ar = {
         errorMessage:
           ErrorMessageGenerator.getMandatoryFieldMessage("Broker Name Arabic"),
-        errorState: "error",
-      };
-      isValid = false;
-    } else if (isArabic(broker_name_ar)) {
-      newErrors.broker_name_ar = {
-        errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Broker Name"),
         errorState: "error",
       };
       isValid = false;

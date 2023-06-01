@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { createExchange } from "../../../redux/slices/exchangeSlice";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString, isArabic } from "../../../utils/Validator";
+import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import Button from "../../../components/Button/CustomButton";
 import styles from "./style.module.scss";
@@ -60,13 +60,6 @@ const AddExchange = () => {
         errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
           "Exchange Name Arabic"
         ),
-        errorState: "error",
-      };
-      isValid = false;
-    } else if (isArabic(exchange_name_ar)) {
-      newErrors.exchange_name_ar = {
-        errorMessage:
-          ErrorMessageGenerator.getStringInArabicMessage("Exchange Name"),
         errorState: "error",
       };
       isValid = false;

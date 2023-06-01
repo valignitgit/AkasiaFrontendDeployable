@@ -8,8 +8,19 @@ const initialState = {
 };
 
 export const getAllBank = createAsyncThunk("bank/getAllBank", async () => {
-  const res = await BankService.getAll();
-  return res.data;
+  try {
+    const response = await BankService.getAll();
+    console.log("response", response);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      console.error("API Error:", error.response);
+      throw new Error("API Error: " + error.response.status);
+    } else {
+      console.error("Unknown Error:", error);
+      throw new Error("Unknown Error occurred while calling the API.");
+    }
+  }
 });
 
 export const createBank = createAsyncThunk("bank/createBank", async (data) => {
