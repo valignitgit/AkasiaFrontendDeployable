@@ -63,7 +63,7 @@ const CountryDetails = () => {
                     shape="square"
                     className={styles.countryDetails__button}
                   >
-                    Cancel
+                    Ok
                   </Button>
                 </Link>
               </CardActions>

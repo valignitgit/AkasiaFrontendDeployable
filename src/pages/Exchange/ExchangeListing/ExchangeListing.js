@@ -13,6 +13,7 @@ import { useLocation } from "react-router-dom";
 import {
   deleteExchange,
   getAllExchanges,
+  setCurrentData,
 } from "../../../redux/slices/exchangeSlice";
 import ExchangeCard from "../ExchangeCard/ExchangeCard";
 
@@ -35,6 +36,7 @@ const ExchangeListing = () => {
 
   useEffect(() => {
     dispatch(getAllExchanges());
+    dispatch(setCurrentData());
   }, [dispatch]);
 
   useEffect(() => {

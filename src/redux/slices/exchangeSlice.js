@@ -80,6 +80,12 @@ export const deleteExchange = createAsyncThunk(
 const exchangeReducer = createSlice({
   name: "exchange",
   initialState,
+  reducers: {
+    setCurrentData: (state) => {
+      state.currentData = initialState.currentData;
+    },
+  },
+
   extraReducers: (builder) => {
     builder
       .addCase(getAllExchanges.pending, (state) => {
@@ -140,6 +146,7 @@ const exchangeReducer = createSlice({
       .addCase(deleteExchange.fulfilled, (state, action) => {
         state.loading = false;
         const { exchange_id } = action.payload;
+
         if (exchange_id) {
           state.data = state.data.filter(
             (item) => item.exchange_id !== exchange_id
@@ -152,4 +159,5 @@ const exchangeReducer = createSlice({
       });
   },
 });
+export const { setCurrentData } = exchangeReducer.actions;
 export default exchangeReducer.reducer;

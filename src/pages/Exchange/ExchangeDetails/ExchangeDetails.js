@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 import Loader from "../../../components/Loader/Loader";
-import { getExchangeById } from "../../../redux/slices/exchangeSlice";
+import {
+  getExchangeById,
+  setCurrentData,
+} from "../../../redux/slices/exchangeSlice";
 
 const ExchangeDetails = () => {
   const { id } = useParams();
@@ -70,8 +73,9 @@ const ExchangeDetails = () => {
                     variant="filled"
                     shape="square"
                     className={styles.exchangeDetails__button}
+                    onClick={() => dispatch(setCurrentData())}
                   >
-                    Cancel
+                    Ok
                   </Button>
                 </Link>
               </CardActions>

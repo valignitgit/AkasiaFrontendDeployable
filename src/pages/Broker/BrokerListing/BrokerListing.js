@@ -9,7 +9,11 @@ import styles from "./style.module.scss";
 import Pagination from "@mui/material/Pagination";
 import Button from "../../../components/Button/CustomButton";
 import { useLocation } from "react-router-dom";
-import { getAllBrokers, deleteBroker } from "../../../redux/slices/brokerSlice";
+import {
+  getAllBrokers,
+  deleteBroker,
+  setCurrentData,
+} from "../../../redux/slices/brokerSlice";
 import BrokerCard from "../BrokerCard/BrokerCard";
 
 const BrokerListingPage = () => {
@@ -32,6 +36,7 @@ const BrokerListingPage = () => {
 
   useEffect(() => {
     dispatch(getAllBrokers());
+    dispatch(setCurrentData());
   }, [dispatch]);
 
   useEffect(() => {
@@ -64,7 +69,8 @@ const BrokerListingPage = () => {
     if (id) {
       await dispatch(deleteBroker(id))
         .unwrap()
-        .then(() => {
+        .then((res) => {
+          console.log(res);
           setOpen(false);
           dispatch(getAllBrokers());
         });

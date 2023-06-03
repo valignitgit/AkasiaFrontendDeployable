@@ -114,7 +114,7 @@ const PortfolioDetails = () => {
                     className={styles.portfolioDetails__btn}
                     shape="square"
                   >
-                    Cancel
+                    Ok
                   </Button>
                 </Link>
               </div>

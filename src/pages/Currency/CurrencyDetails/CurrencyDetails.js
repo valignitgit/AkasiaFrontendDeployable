@@ -70,7 +70,7 @@ const CurrencyDetails = () => {
                     shape="square"
                     className={styles.currencyDetails__button}
                   >
-                    Cancel
+                    Ok
                   </Button>
                 </Link>
               </CardActions>

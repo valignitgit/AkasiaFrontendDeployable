@@ -174,7 +174,7 @@ const securityDetails = () => {
                     shape="square"
                     className={styles.securityDetails__button}
                   >
-                    Cancel
+                    Ok
                   </Button>
                 </Link>
               </CardActions>

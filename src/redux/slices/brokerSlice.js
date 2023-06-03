@@ -1,42 +1,84 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import BrokerService from "../../services/BrokerServices";
+
 const initialState = {
   data: [],
   loading: false,
+  currentData: null,
   error: null,
 };
 
 export const getAllBrokers = createAsyncThunk("broker/getAll", async () => {
-  const res = await BrokerService.getAllBrokers();
-  return res.data;
+  try {
+    const response = await BrokerService.getAllBrokers();
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
+    }
+    throw error;
+  }
 });
 
 export const createBroker = createAsyncThunk("broker/create", async (data) => {
-  const res = BrokerService.createBroker(data);
-  return res.data;
+  try {
+    const response = await BrokerService.createBroker(data);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
+    }
+    throw error;
+  }
 });
 
 export const getBrokerById = createAsyncThunk("broker/get", async (id) => {
-  const res = await BrokerService.getBrokerById(id);
-  return res.data;
+  try {
+    const response = await BrokerService.getBrokerById(id);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
+    }
+    throw error;
+  }
 });
 
 export const updateBroker = createAsyncThunk(
   "broker/update",
   async ({ id, data }) => {
-    const res = await BrokerService.updateBroker(id, data);
-    return res.data;
+    try {
+      const response = await BrokerService.updateBroker(id, data);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
   }
 );
 
 export const deleteBroker = createAsyncThunk("broker/delete", async (id) => {
-  const res = await BrokerService.deleteBroker(id);
-  return res.data;
+  try {
+    const response = await BrokerService.deleteBroker(id);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
+    }
+    throw error;
+  }
 });
 
 const brokerSlice = createSlice({
   name: "broker",
   initialState,
+  reducers: {
+    setCurrentData: (state) => {
+      state.currentData = initialState.currentData;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllBrokers.pending, (state) => {
@@ -55,7 +97,7 @@ const brokerSlice = createSlice({
       })
       .addCase(createBroker.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.data.push(action.payload);
       })
       .addCase(createBroker.rejected, (state, action) => {
         state.loading = false;
@@ -66,7 +108,7 @@ const brokerSlice = createSlice({
       })
       .addCase(getBrokerById.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.currentData = action.payload;
       })
       .addCase(getBrokerById.rejected, (state, action) => {
         state.loading = false;
@@ -77,7 +119,12 @@ const brokerSlice = createSlice({
       })
       .addCase(updateBroker.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        const updatedBroker = action.payload;
+        if (updatedBroker.broker_id) {
+          state.data = state.data.map((item) =>
+            item.broker_id === updatedBroker.broker_id ? updatedBroker : item
+          );
+        }
       })
       .addCase(updateBroker.rejected, (state, action) => {
         state.loading = false;
@@ -88,7 +135,12 @@ const brokerSlice = createSlice({
       })
       .addCase(deleteBroker.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        const { broker_id } = action.payload;
+        if (broker_id) {
+          state.data = state.data.filter(
+            (item) => item.broker_id !== broker_id
+          );
+        }
       })
       .addCase(deleteBroker.rejected, (state, action) => {
         state.loading = false;
@@ -96,5 +148,5 @@ const brokerSlice = createSlice({
       });
   },
 });
-
+export const { setCurrentData } = brokerSlice.actions;
 export default brokerSlice.reducer;

@@ -68,7 +68,7 @@ const BankDetails = () => {
                     shape="square"
                     className={styles.bankDetails__button}
                   >
-                    Cancel
+                    Ok
                   </Button>
                 </Link>
               </CardActions>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,12 +7,15 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 import Loader from "../../../components/Loader/Loader";
-import { getBrokerById } from "../../../redux/slices/brokerSlice";
+import {
+  getBrokerById,
+  setCurrentData,
+} from "../../../redux/slices/brokerSlice";
 
 const BrokerDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const currentBroker = useSelector((state) => state.broker?.data);
+  const currentBroker = useSelector((state) => state.broker?.currentData);
   const {
     broker_id,
     broker_name,
@@ -20,7 +24,7 @@ const BrokerDetails = () => {
     investment_account_id,
     bank_account_id,
     broker_abbr,
-  } = currentBroker;
+  } = currentBroker || {};
 
   useEffect(() => {
     dispatch(getBrokerById(id));
@@ -107,8 +111,9 @@ const BrokerDetails = () => {
                     variant="filled"
                     shape="square"
                     className={styles.brokerDetails__button}
+                    onClick={() => dispatch(setCurrentData())}
                   >
-                    Cancel
+                    Ok
                   </Button>
                 </Link>
               </CardActions>

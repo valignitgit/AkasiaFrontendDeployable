@@ -65,7 +65,7 @@ const CountryListing = () => {
     if (id)
       await dispatch(deleteCountry(id))
         .unwrap()
-        .then(() => {
+        .then((res) => {
           setOpen(false);
           dispatch(getAllCountry());
         });

@@ -338,7 +338,7 @@ const AddSecurity = () => {
                   type="submit"
                   className={styles.addsecurity__submitBtn}
                 >
-                  Submit
+                  Update
                 </Button>
                 <Link to="/security">
                   <Button

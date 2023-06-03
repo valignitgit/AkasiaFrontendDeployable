@@ -34,7 +34,7 @@ const AddBroker = () => {
   };
 
   const currencyArray = useSelector((state) => state.currency.data);
-  const currencyOptions = getCurrencyList(currencyArray);
+  const currencyOptions = getCurrencyList(currencyArray || []);
   const [brokerData, setBrokerData] = useState(initialState);
   const [error, setErrors] = useState({
     broker_id: getEmptyErrorState(),
