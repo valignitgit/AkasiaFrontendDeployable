@@ -20,7 +20,7 @@ import Button from "../../../components/Button/CustomButton";
 import styles from "./style.module.scss";
 import { createBroker } from "../../../redux/slices/brokerSlice";
 import { getCurrencyList } from "../../../utils/AppUtil";
-import { getAllCurrency } from "../../../redux/slices/currencySlice";
+import { getAllCurrencies } from "../../../redux/slices/currencySlice";
 
 const AddBroker = () => {
   const initialState = {
@@ -152,7 +152,7 @@ const AddBroker = () => {
     }
   };
   useEffect(() => {
-    dispatch(getAllCurrency());
+    dispatch(getAllCurrencies());
   }, []);
 
   const renderAddBrokerDetailsForm = () => {

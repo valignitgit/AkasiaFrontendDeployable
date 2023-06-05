@@ -4,105 +4,147 @@ import BankService from "../../services/BankServices";
 const initialState = {
   data: [],
   loading: false,
+  currentData: null,
   error: null,
 };
 
-export const getAllBank = createAsyncThunk("bank/getAllBank", async () => {
+export const getAllBanks = createAsyncThunk("bank/getAll", async () => {
   try {
-    const response = await BankService.getAll();
+    const response = await BankService.getAllBanks();
     return response.data;
   } catch (error) {
     if (error.response) {
-      throw new Error("API Error: " + error.response.status);
-    } else {
-      throw new Error("Unknown Error occurred while calling the API.");
+      return error.response;
     }
+    throw error;
   }
 });
 
-export const createBank = createAsyncThunk("bank/createBank", async (data) => {
-  const res = BankService.create(data);
-  return res.data;
+export const createBank = createAsyncThunk("bank/create", async (data) => {
+  try {
+    const response = await BankService.createBank(data);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
+    }
+    throw error;
+  }
 });
 
-export const getBankById = createAsyncThunk("bank/getBankById", async (id) => {
-  const res = await BankService.getById(id);
-  return res.data;
+export const getBankById = createAsyncThunk("bank/get", async (id) => {
+  try {
+    const response = await BankService.getBankById(id);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
+    }
+    throw error;
+  }
 });
 
 export const updateBank = createAsyncThunk(
   "bank/update",
   async ({ id, data }) => {
-    const res = await BankService.update(id, data);
-    return res.data;
+    try {
+      const response = await BankService.updateBank(id, data);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
   }
 );
 
-export const deleteBank = createAsyncThunk("bank/deleteBank", async (id) => {
-  const res = await BankService.remove(id);
-  return res.data;
+export const deleteBank = createAsyncThunk("bank/delete", async (id) => {
+  try {
+    const response = await BankService.deleteBank(id);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
+    }
+    throw error;
+  }
 });
 
 const bankSlice = createSlice({
   name: "bank",
   initialState,
-  extraReducers: {
-    [getAllBank.pending]: (state) => {
-      state.loading = true;
-    },
-    [getAllBank.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [getAllBank.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [createBank.pending]: (state) => {
-      state.loading = true;
-    },
-    [createBank.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [createBank.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [getBankById.pending]: (state) => {
-      state.loading = true;
-    },
-    [getBankById.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [getBankById.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [updateBank.pending]: (state) => {
-      state.loading = true;
-    },
-    [updateBank.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [updateBank.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [deleteBank.pending]: (state) => {
-      state.loading = true;
-    },
-    [deleteBank.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [deleteBank.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
+  reducers: {
+    setCurrentData: (state) => {
+      state.currentData = initialState.currentData;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllBanks.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllBanks.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(getAllBanks.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(createBank.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(createBank.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data.push(action.payload);
+      })
+      .addCase(createBank.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getBankById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getBankById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentData = action.payload;
+      })
+      .addCase(getBankById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateBank.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateBank.fulfilled, (state, action) => {
+        state.loading = false;
+        const updatedBank = action.payload;
+        if (updatedBank.bank_id) {
+          state.data = state.data.map((item) =>
+            item.bank_id === updatedBank.bank_id ? updatedBank : item
+          );
+        }
+      })
+      .addCase(updateBank.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteBank.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteBank.fulfilled, (state, action) => {
+        state.loading = false;
+        const { bank_id } = action.payload;
+        if (bank_id) {
+          state.data = state.data.filter((item) => item.bank_id !== bank_id);
+        }
+      })
+      .addCase(deleteBank.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
 });
-
+export const { setCurrentData } = bankSlice.actions;
 export default bankSlice.reducer;

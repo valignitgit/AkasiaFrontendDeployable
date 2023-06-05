@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getSecurityById } from "../../../redux/slices/securitySlice";
+import {
+  getSecurityById,
+  setCurrentData,
+} from "../../../redux/slices/securitySlice";
 import { Grid, Card, CardActions, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
@@ -11,7 +14,7 @@ import Loader from "../../../components/Loader/Loader";
 const securityDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const currentSecurity = useSelector((state) => state.security?.data);
+  const currentSecurity = useSelector((state) => state.security?.currentData);
   const {
     security_id,
     security_name,
@@ -27,7 +30,7 @@ const securityDetails = () => {
     exchange_id,
     is_islamic,
     is_shariah,
-  } = currentSecurity;
+  } = currentSecurity || {};
 
   useEffect(() => {
     dispatch(getSecurityById(id));
@@ -173,6 +176,7 @@ const securityDetails = () => {
                     variant="filled"
                     shape="square"
                     className={styles.securityDetails__button}
+                    onClick={() => dispatch(setCurrentData())}
                   >
                     Ok
                   </Button>

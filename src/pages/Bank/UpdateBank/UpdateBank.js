@@ -33,7 +33,7 @@ const UpdateBank = () => {
   const { bank_id, bank_name, bank_name_ar } = currentBank;
 
   const getBank = (id) => {
-    BankService.getById(id)
+    BankService.getBankById(id)
       .then((res) => {
         setcurrentBank(res.data);
       })

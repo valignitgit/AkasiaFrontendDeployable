@@ -6,13 +6,17 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 import Loader from "../../../components/Loader/Loader";
-import { getCurrencyById } from "../../../redux/slices/currencySlice";
+import {
+  getCurrencyById,
+  setCurrentData,
+} from "../../../redux/slices/currencySlice";
 
 const CurrencyDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const currentCurrency = useSelector((state) => state.currency?.data);
-  const { currency_id, currency_name, currency_name_ar } = currentCurrency;
+  const currentCurrency = useSelector((state) => state.currency?.currentData);
+  const { currency_id, currency_name, currency_name_ar } =
+    currentCurrency || {};
 
   useEffect(() => {
     dispatch(getCurrencyById(id));
@@ -69,6 +73,7 @@ const CurrencyDetails = () => {
                     variant="filled"
                     shape="square"
                     className={styles.currencyDetails__button}
+                    onClick={() => dispatch(setCurrentData())}
                   >
                     Ok
                   </Button>

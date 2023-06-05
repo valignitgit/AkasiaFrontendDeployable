@@ -4,13 +4,14 @@ import CountryService from "../../services/CountryServices";
 const initialState = {
   data: [],
   loading: false,
+  currentData: null,
   error: null,
 };
 
-export const getAllCountry = createAsyncThunk("country/getAll", async () => {
+export const getAllCountries = createAsyncThunk("country/getAll", async () => {
   try {
-    const response = await CountryService.getAllCountry();
-    return response;
+    const response = await CountryService.getAllCountries();
+    return response.data;
   } catch (error) {
     if (error.response) {
       return error.response;
@@ -24,7 +25,7 @@ export const createCountry = createAsyncThunk(
   async (data) => {
     try {
       const response = await CountryService.createCountry(data);
-      return response;
+      return response.data;
     } catch (error) {
       if (error.response) {
         return error.response;
@@ -34,27 +35,24 @@ export const createCountry = createAsyncThunk(
   }
 );
 
-export const getCountryById = createAsyncThunk(
-  "country/getCountryById",
-  async (id) => {
-    try {
-      const response = await CountryService.getCountryById(id);
-      return response;
-    } catch (error) {
-      if (error.response) {
-        return error.response;
-      }
-      throw error;
+export const getCountryById = createAsyncThunk("country/get", async (id) => {
+  try {
+    const response = await CountryService.getCountryById(id);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
     }
+    throw error;
   }
-);
+});
 
 export const updateCountry = createAsyncThunk(
   "country/update",
   async ({ id, data }) => {
     try {
       const response = await CountryService.updateCountry(id, data);
-      return response;
+      return response.data;
     } catch (error) {
       if (error.response) {
         return error.response;
@@ -67,7 +65,7 @@ export const updateCountry = createAsyncThunk(
 export const deleteCountry = createAsyncThunk("country/delete", async (id) => {
   try {
     const response = await CountryService.deleteCountry(id);
-    return response;
+    return response.data;
   } catch (error) {
     if (error.response) {
       return error.response;
@@ -76,24 +74,24 @@ export const deleteCountry = createAsyncThunk("country/delete", async (id) => {
   }
 });
 
-export const resetCountryState = createAsyncThunk("country/reset", async () => {
-  return [];
-});
-
-const countryReducer = createSlice({
+const countrySlice = createSlice({
   name: "country",
   initialState,
-
+  reducers: {
+    setCurrentData: (state) => {
+      state.currentData = initialState.currentData;
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(getAllCountry.pending, (state) => {
+      .addCase(getAllCountries.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getAllCountry.fulfilled, (state, action) => {
+      .addCase(getAllCountries.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
       })
-      .addCase(getAllCountry.rejected, (state, action) => {
+      .addCase(getAllCountries.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
@@ -102,7 +100,7 @@ const countryReducer = createSlice({
       })
       .addCase(createCountry.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.data.push(action.payload);
       })
       .addCase(createCountry.rejected, (state, action) => {
         state.loading = false;
@@ -113,7 +111,7 @@ const countryReducer = createSlice({
       })
       .addCase(getCountryById.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.currentData = action.payload;
       })
       .addCase(getCountryById.rejected, (state, action) => {
         state.loading = false;
@@ -124,7 +122,14 @@ const countryReducer = createSlice({
       })
       .addCase(updateCountry.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        const updatedCountry = action.payload;
+        if (updatedCountry.country_id) {
+          state.data = state.data.map((item) =>
+            item.country_id === updatedCountry.country_id
+              ? updatedCountry
+              : item
+          );
+        }
       })
       .addCase(updateCountry.rejected, (state, action) => {
         state.loading = false;
@@ -135,25 +140,18 @@ const countryReducer = createSlice({
       })
       .addCase(deleteCountry.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        const { country_id } = action.payload;
+        if (country_id) {
+          state.data = state.data.filter(
+            (item) => item.country_id !== country_id
+          );
+        }
       })
       .addCase(deleteCountry.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(resetCountryState.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(resetCountryState.fulfilled, (state, action) => {
-        state.loading = false;
-        state.data = action.payload;
-        state.error = null;
-      })
-      .addCase(resetCountryState.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
-
-export default countryReducer.reducer;
+export const { setCurrentData } = countrySlice.actions;
+export default countrySlice.reducer;

@@ -10,8 +10,9 @@ import Pagination from "@mui/material/Pagination";
 import Button from "../../../components/Button/CustomButton";
 import { useLocation } from "react-router-dom";
 import {
-  getAllCurrency,
+  getAllCurrencies,
   deleteCurrency,
+  setCurrentData,
 } from "../../../redux/slices/currencySlice";
 import CurrencyCard from "../CurrencyCard/CurrencyCard";
 
@@ -30,7 +31,8 @@ const CurrencyListing = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllCurrency());
+    dispatch(getAllCurrencies());
+    dispatch(setCurrentData());
   }, [dispatch]);
 
   useEffect(() => {
@@ -64,7 +66,7 @@ const CurrencyListing = () => {
         .unwrap()
         .then(() => {
           setOpen(false);
-          dispatch(getAllCurrency());
+          dispatch(getAllCurrencies());
         });
   };
 

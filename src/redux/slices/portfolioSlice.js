@@ -4,109 +4,163 @@ import PortfolioService from "../../services/PortfolioServices";
 const initialState = {
   data: [],
   loading: false,
+  currentData: null,
   error: null,
 };
 
-export const getAllPortfolio = createAsyncThunk(
+export const getAllPortfolios = createAsyncThunk(
   "portfolio/getAll",
   async () => {
-    const res = await PortfolioService.getAllPortfolio();
-    return res.data;
+    try {
+      const response = await PortfolioService.getAllPortfolios();
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
   }
 );
 
 export const createPortfolio = createAsyncThunk(
   "portfolio/create",
   async (data) => {
-    const res = PortfolioService.createPortfolio(data);
-    return res.data;
+    try {
+      const response = await PortfolioService.createPortfolio(data);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
   }
 );
 
 export const getPortfolioById = createAsyncThunk(
   "portfolio/get",
   async (id) => {
-    const res = await PortfolioService.getPortfolioById(id);
-    return res.data;
+    try {
+      const response = await PortfolioService.getPortfolioById(id);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
   }
 );
 
 export const updatePortfolio = createAsyncThunk(
   "portfolio/update",
   async ({ id, data }) => {
-    const res = await PortfolioService.updatePortfolio(id, data);
-    return res.data;
+    try {
+      const response = await PortfolioService.updatePortfolio(id, data);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
   }
 );
 
 export const deletePortfolio = createAsyncThunk(
   "portfolio/delete",
   async (id) => {
-    const res = await PortfolioService.deletePortfolio(id);
-    return res.data;
+    try {
+      const response = await PortfolioService.deletePortfolio(id);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
   }
 );
 
 const portfolioSlice = createSlice({
   name: "portfolio",
   initialState,
-  extraReducers: {
-    [getAllPortfolio.pending]: (state) => {
-      state.loading = true;
-    },
-    [getAllPortfolio.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [getAllPortfolio.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [createPortfolio.pending]: (state) => {
-      state.loading = true;
-    },
-    [createPortfolio.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [createPortfolio.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [getPortfolioById.pending]: (state) => {
-      state.loading = true;
-    },
-    [getPortfolioById.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [getPortfolioById.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [updatePortfolio.pending]: (state) => {
-      state.loading = true;
-    },
-    [updatePortfolio.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [updatePortfolio.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [deletePortfolio.pending]: (state) => {
-      state.loading = true;
-    },
-    [deletePortfolio.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [deletePortfolio.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
+  reducers: {
+    setCurrentData: (state) => {
+      state.currentData = initialState.currentData;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllPortfolios.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllPortfolios.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(getAllPortfolios.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(createPortfolio.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(createPortfolio.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data.push(action.payload);
+      })
+      .addCase(createPortfolio.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getPortfolioById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getPortfolioById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentData = action.payload;
+      })
+      .addCase(getPortfolioById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updatePortfolio.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updatePortfolio.fulfilled, (state, action) => {
+        state.loading = false;
+        const updatedPortfolio = action.payload;
+        if (updatedPortfolio.portfolio_id) {
+          state.data = state.data.map((item) =>
+            item.portfolio_id === updatedPortfolio.portfolio_id
+              ? updatedPortfolio
+              : item
+          );
+        }
+      })
+      .addCase(updatePortfolio.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(deletePortfolio.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deletePortfolio.fulfilled, (state, action) => {
+        state.loading = false;
+        const { portfolio_id } = action.payload;
+        if (portfolio_id) {
+          state.data = state.data.filter(
+            (item) => item.portfolio_id !== portfolio_id
+          );
+        }
+      })
+      .addCase(deletePortfolio.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
 });
-
+export const { setCurrentData } = portfolioSlice.actions;
 export default portfolioSlice.reducer;

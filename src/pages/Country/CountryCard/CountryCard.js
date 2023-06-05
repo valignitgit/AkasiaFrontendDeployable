@@ -3,14 +3,10 @@ import { Grid, Box, Card, CardContent } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
-import { useDispatch } from "react-redux";
-import { resetCountryState } from "../../../redux/slices/countrySlice";
 
 const CountryCard = ({ country_id, country_name, handleDelete }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const handleViewCountry = () => {
-    dispatch(resetCountryState());
     navigate(`/country/${country_id}`);
   };
 
@@ -38,13 +34,16 @@ const CountryCard = ({ country_id, country_name, handleDelete }) => {
               <br />
             </CardContent>
             <div className={styles.countryCard__Actions}>
-              <Button
-                className={styles.countryCard__btn}
-                shape="square"
-                onClick={handleViewCountry}
-              >
-                View
-              </Button>
+              <Link to={`/country/${country_id}`}>
+                <Button
+                  className={styles.countryCard__btn}
+                  shape="square"
+                  onClick={handleViewCountry}
+                >
+                  View
+                </Button>
+              </Link>
+
               <Link to={`/country/update/${country_id}`}>
                 <Button
                   className={styles.countryCard__btn}

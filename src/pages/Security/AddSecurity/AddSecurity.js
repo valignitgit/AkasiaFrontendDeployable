@@ -17,7 +17,7 @@ import { getSecurityTypeList } from "../../../utils/SecurityUtil";
 import { getCurrencyList } from "../../../utils/AppUtil";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCurrency } from "../../../redux/slices/currencySlice";
+import { getAllCurrencies } from "../../../redux/slices/currencySlice";
 import { useState } from "react";
 import { createSecurity } from "../../../redux/slices/securitySlice";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
@@ -166,7 +166,7 @@ const AddSecurity = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllCurrency());
+    dispatch(getAllCurrencies());
   }, []);
 
   return (

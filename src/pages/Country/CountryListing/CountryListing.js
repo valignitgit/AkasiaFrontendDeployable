@@ -12,7 +12,8 @@ import Button from "../../../components/Button/CustomButton";
 import { useLocation } from "react-router-dom";
 import {
   deleteCountry,
-  getAllCountry,
+  getAllCountries,
+  setCurrentData,
 } from "../../../redux/slices/countrySlice";
 import CountryCard from "../CountryCard/CountryCard";
 
@@ -20,7 +21,7 @@ const CountryListing = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const newData = location.state?.newData;
-  const data = useSelector((state) => state.country?.data.data);
+  const data = useSelector((state) => state.country?.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState({ id: "", name: "" });
   const [countryListing, setCountryListing] = useState(data || []);
@@ -32,7 +33,8 @@ const CountryListing = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllCountry());
+    dispatch(getAllCountries());
+    dispatch(setCurrentData());
   }, [dispatch]);
 
   useEffect(() => {
@@ -67,7 +69,7 @@ const CountryListing = () => {
         .unwrap()
         .then((res) => {
           setOpen(false);
-          dispatch(getAllCountry());
+          dispatch(getAllCountries());
         });
   };
 

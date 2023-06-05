@@ -1,6 +1,6 @@
 import api from "../api/api";
 
-const getAllCountry = () => {
+const getAllCountries = () => {
   return api.get("/country");
 };
 
@@ -21,7 +21,7 @@ const deleteCountry = (id) => {
 };
 
 const CountryService = {
-  getAllCountry,
+  getAllCountries,
   getCountryById,
   createCountry,
   updateCountry,

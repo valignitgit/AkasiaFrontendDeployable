@@ -1,6 +1,6 @@
 import api from "../api/api";
 
-const getAllCurrency = () => {
+const getAllCurrencies = () => {
   return api.get("/currency");
 };
 
@@ -21,7 +21,7 @@ const deleteCurrency = (id) => {
 };
 
 const CurrencyService = {
-  getAllCurrency,
+  getAllCurrencies,
   getCurrencyById,
   createCurrency,
   updateCurrency,

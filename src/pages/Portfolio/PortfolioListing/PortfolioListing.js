@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
 import {
-  getAllPortfolio,
+  getAllPortfolios,
   deletePortfolio,
+  setCurrentData,
 } from "../../../redux/slices/portfolioSlice";
 import { Link } from "react-router-dom";
 import DialogBox from "../../../components/DialogBox/DialogBox";
@@ -37,7 +38,8 @@ const PortfolioListing = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllPortfolio());
+    dispatch(getAllPortfolios());
+    dispatch(setCurrentData());
   }, [dispatch]);
 
   useEffect(() => {
@@ -70,7 +72,7 @@ const PortfolioListing = () => {
         .unwrap()
         .then(() => {
           setOpen(false);
-          dispatch(getAllPortfolio());
+          dispatch(getAllPortfolios());
         });
   };
 

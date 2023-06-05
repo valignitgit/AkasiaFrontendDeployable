@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  createCountry,
-  resetCountryState,
-} from "../../../redux/slices/countrySlice";
+import { createCountry } from "../../../redux/slices/countrySlice";
 import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
 import { isEmptyString } from "../../../utils/Validator";
@@ -80,7 +77,6 @@ const AddCountry = () => {
 
         if (res.status === 201 || res.status === 200);
         {
-          dispatch(resetCountryState());
           navigate("/country", { state: { newData: countryData } });
         }
       } catch (error) {

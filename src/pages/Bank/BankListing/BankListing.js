@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBank, deleteBank } from "../../../redux/slices/bankSlice";
+import {
+  getAllBanks,
+  deleteBank,
+  setCurrentData,
+} from "../../../redux/slices/bankSlice";
 import Grid from "@mui/material/Grid";
 
 import { Link, useLocation } from "react-router-dom";
@@ -26,7 +30,8 @@ const BankListing = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllBank());
+    dispatch(getAllBanks());
+    dispatch(setCurrentData());
   }, [dispatch]);
 
   useEffect(() => {
@@ -60,7 +65,7 @@ const BankListing = () => {
         .unwrap()
         .then(() => {
           setOpen(false);
-          dispatch(getAllBank());
+          dispatch(getAllBanks());
         });
   };
 

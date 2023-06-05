@@ -1,105 +1,163 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import CurrencyService from "../../services/CurrencyServices";
+
 const initialState = {
   data: [],
   loading: false,
+  currentData: null,
   error: null,
 };
 
-export const getAllCurrency = createAsyncThunk("currency/getAll", async () => {
-  const res = await CurrencyService.getAllCurrency();
-  return res.data;
-});
+export const getAllCurrencies = createAsyncThunk(
+  "currency/getAll",
+  async () => {
+    try {
+      const response = await CurrencyService.getAllCurrencies();
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
+  }
+);
 
 export const createCurrency = createAsyncThunk(
   "currency/create",
   async (data) => {
-    const res = CurrencyService.createCurrency(data);
-    return res.data;
+    try {
+      const response = await CurrencyService.createCurrency(data);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
   }
 );
 
 export const getCurrencyById = createAsyncThunk("currency/get", async (id) => {
-  const res = await CurrencyService.getCurrencyById(id);
-  return res.data;
+  try {
+    const response = await CurrencyService.getCurrencyById(id);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
+    }
+    throw error;
+  }
 });
 
 export const updateCurrency = createAsyncThunk(
   "currency/update",
   async ({ id, data }) => {
-    const res = await CurrencyService.updateCurrency(id, data);
-    return res.data;
+    try {
+      const response = await CurrencyService.updateCurrency(id, data);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
   }
 );
 
 export const deleteCurrency = createAsyncThunk(
   "currency/delete",
   async (id) => {
-    const res = await CurrencyService.deleteCurrency(id);
-    return res.data;
+    try {
+      const response = await CurrencyService.deleteCurrency(id);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      }
+      throw error;
+    }
   }
 );
 
 const currencySlice = createSlice({
   name: "currency",
   initialState,
-  extraReducers: {
-    [getAllCurrency.pending]: (state) => {
-      state.loading = true;
-    },
-    [getAllCurrency.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [getAllCurrency.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [createCurrency.pending]: (state) => {
-      state.loading = true;
-    },
-    [createCurrency.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [createCurrency.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [getCurrencyById.pending]: (state) => {
-      state.loading = true;
-    },
-    [getCurrencyById.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [getCurrencyById.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [updateCurrency.pending]: (state) => {
-      state.loading = true;
-    },
-    [updateCurrency.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [updateCurrency.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    [deleteCurrency.pending]: (state) => {
-      state.loading = true;
-    },
-    [deleteCurrency.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [deleteCurrency.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
+  reducers: {
+    setCurrentData: (state) => {
+      state.currentData = initialState.currentData;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllCurrencies.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllCurrencies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(getAllCurrencies.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(createCurrency.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(createCurrency.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data.push(action.payload);
+      })
+      .addCase(createCurrency.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getCurrencyById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getCurrencyById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentData = action.payload;
+      })
+      .addCase(getCurrencyById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateCurrency.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateCurrency.fulfilled, (state, action) => {
+        state.loading = false;
+        const updatedCurrency = action.payload;
+        if (updatedCurrency.currency_id) {
+          state.data = state.data.map((item) =>
+            item.currency_id === updatedCurrency.currency_id
+              ? updatedCurrency
+              : item
+          );
+        }
+      })
+      .addCase(updateCurrency.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteCurrency.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteCurrency.fulfilled, (state, action) => {
+        state.loading = false;
+        const { currency_id } = action.payload;
+        if (currency_id) {
+          state.data = state.data.filter(
+            (item) => item.currency_id !== currency_id
+          );
+        }
+      })
+      .addCase(deleteCurrency.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
 });
-
+export const { setCurrentData } = currencySlice.actions;
 export default currencySlice.reducer;

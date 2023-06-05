@@ -21,7 +21,7 @@ import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import styles from "../AddBroker/style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 import { getCurrencyList } from "../../../utils/AppUtil";
-import { getAllCurrency } from "../../../redux/slices/currencySlice";
+import { getAllCurrencies } from "../../../redux/slices/currencySlice";
 
 const UpdateBroker = () => {
   const initialState = {
@@ -62,7 +62,6 @@ const UpdateBroker = () => {
     bank_account_id,
     broker_abbr,
   } = currentBroker;
-  console.log("currentBroker", currentBroker);
 
   const getBroker = (id) => {
     BrokerService.getBrokerById(id)
@@ -76,7 +75,7 @@ const UpdateBroker = () => {
 
   useEffect(() => {
     getBroker(id);
-    dispatch(getAllCurrency());
+    dispatch(getAllCurrencies());
   }, []);
 
   const validateForm = () => {

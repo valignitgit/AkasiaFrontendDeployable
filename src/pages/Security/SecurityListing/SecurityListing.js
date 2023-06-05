@@ -3,7 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./styles.module.scss";
 import SecurityCard from "../SecurityCard/SecurityCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllSecurity } from "../../../redux/slices/securitySlice";
+import {
+  getAllSecurities,
+  setCurrentData,
+} from "../../../redux/slices/securitySlice";
 import "./styles.module.scss";
 import Loader from "../../../components/Loader/Loader";
 import { Grid, FormControl, Select, MenuItem, Pagination } from "@mui/material";
@@ -30,7 +33,8 @@ const SecurityListing = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllSecurity());
+    dispatch(getAllSecurities());
+    dispatch(setCurrentData());
   }, [dispatch]);
 
   useEffect(() => {

@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Button from "../../../components/Button/CustomButton";
 import Loader from "../../../components/Loader/Loader";
-import { getBankById } from "../../../redux/slices/bankSlice";
+import { getBankById, setCurrentData } from "../../../redux/slices/bankSlice";
 
 const BankDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const currentBank = useSelector((state) => state.bank?.data);
-  const { bank_id, bank_name, bank_name_ar } = currentBank;
+  const currentBank = useSelector((state) => state.bank?.currentData);
+  const { bank_id, bank_name, bank_name_ar } = currentBank || {};
 
   useEffect(() => {
     dispatch(getBankById(id));
@@ -67,6 +67,7 @@ const BankDetails = () => {
                     variant="filled"
                     shape="square"
                     className={styles.bankDetails__button}
+                    onClick={() => dispatch(setCurrentData())}
                   >
                     Ok
                   </Button>

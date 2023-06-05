@@ -25,7 +25,7 @@ import {
   setEditFormData,
   setEditRowId,
 } from "../../../redux/slices/securityTableSlice";
-import { getAllSecurity } from "../../../redux/slices/securitySlice";
+import { getAllSecurities } from "../../../redux/slices/securitySlice";
 import { isEmptyString } from "../../../utils/Validator";
 import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 import { getEmptyErrorState } from "../../../utils/AppUtil";
@@ -142,7 +142,7 @@ const AddSecurityTable = () => {
     dispatch(setData(newData));
   };
   useEffect(() => {
-    dispatch(getAllSecurity());
+    dispatch(getAllSecurities());
   }, []);
 
   return (

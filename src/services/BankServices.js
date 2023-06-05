@@ -1,31 +1,31 @@
 import api from "../api/api";
 
-const getAll = () => {
+const getAllBanks = () => {
   return api.get("/bank");
 };
 
-const getById = (id) => {
+const getBankById = (id) => {
   return api.get(`/bank/${id}`);
 };
 
-const create = (data) => {
+const createBank = (data) => {
   return api.post("/bank", data);
 };
 
-const update = (id, data) => {
+const updateBank = (id, data) => {
   return api.put(`/bank/${id}`, data);
 };
 
-const remove = (id) => {
+const deleteBank = (id) => {
   return api.delete(`/bank/${id}`);
 };
 
 const BankService = {
-  getAll,
-  getById,
-  create,
-  update,
-  remove,
+  getAllBanks,
+  getBankById,
+  createBank,
+  updateBank,
+  deleteBank,
 };
 
 export default BankService;
