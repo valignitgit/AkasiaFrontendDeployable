@@ -69,8 +69,7 @@ const BrokerListingPage = () => {
     if (id) {
       await dispatch(deleteBroker(id))
         .unwrap()
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           setOpen(false);
           dispatch(getAllBrokers());
         });

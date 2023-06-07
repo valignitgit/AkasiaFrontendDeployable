@@ -21,7 +21,6 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/CustomButton";
 import { useDispatch, useSelector } from "react-redux";
 import { login, setLoginData } from "../../redux/slices/authSlice";
-import { setUserCredentials } from "../../utils/ApiUtil";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -81,7 +80,7 @@ const Login = () => {
           response.result &&
           response.message === "Successfully Logged in"
         ) {
-          setUserCredentials(user_id, password);
+          //setUserCredentials(user_id, password);
           localStorage.setItem("user", JSON.stringify(response.result));
 
           navigate("/bank");

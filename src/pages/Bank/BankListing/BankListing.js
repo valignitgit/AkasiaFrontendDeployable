@@ -5,11 +5,16 @@ import {
   deleteBank,
   setCurrentData,
 } from "../../../redux/slices/bankSlice";
-import Grid from "@mui/material/Grid";
-
 import { Link, useLocation } from "react-router-dom";
 import DialogBox from "../../../components/DialogBox/DialogBox";
-import { Skeleton } from "@mui/material";
+import {
+  Skeleton,
+  Pagination,
+  FormControl,
+  Select,
+  MenuItem,
+  Grid,
+} from "@mui/material";
 import BankCard from "../BankCard/BankCard";
 import styles from "./styles.module.scss";
 import Loader from "../../../components/Loader/Loader";
@@ -25,6 +30,9 @@ const BankListing = () => {
     id: "",
     name: "",
   });
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(12);
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -68,6 +76,21 @@ const BankListing = () => {
           dispatch(getAllBanks());
         });
   };
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const handlePerPageChange = (event) => {
+    setPerPage(parseInt(event.target.value, 10));
+    setPage(1);
+  };
+
+  const lastDataIndex = page * perPage;
+  const firstDataIndex = lastDataIndex - perPage;
+  const currentBanks = Array.isArray(bankList)
+    ? bankList.slice(firstDataIndex, lastDataIndex)
+    : [];
 
   const renderAddBankButton = () => (
     <Link to="/bank/add">
@@ -127,22 +150,45 @@ const BankListing = () => {
 
     if (Array.isArray(bankList)) {
       return (
-        <Grid container spacing={2}>
-          {bankList?.map((bank) => (
-            <BankCard
-              key={bank.bank_id}
-              {...bank}
-              handleDelete={handleDelete}
-            />
-          ))}
-        </Grid>
+        <div className={styles.bankListing__container}>
+          <Grid container spacing={2}>
+            {currentBanks?.map((bank) => (
+              <BankCard
+                key={bank.bank_id}
+                {...bank}
+                handleDelete={handleDelete}
+              />
+            ))}
+          </Grid>
+        </div>
       );
     }
   };
+  const renderPagination = () => {
+    return (
+      <div className={styles.bankListing__paginationContainer}>
+        <Pagination
+          color="primary"
+          count={Math.ceil(bankList.length / perPage)}
+          page={page}
+          onChange={handlePageChange}
+        />
+        <FormControl>
+          <Select value={perPage} onChange={handlePerPageChange}>
+            <MenuItem value={4}>4 per page</MenuItem>
+            <MenuItem value={8}>8 per page</MenuItem>
+            <MenuItem value={12}>12 per page</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+    );
+  };
+
   return (
     <>
       {renderAddBankButton()}
       {renderBankList()}
+      {bankList.length > 0 && renderPagination()}
       {renderDialog()}
     </>
   );

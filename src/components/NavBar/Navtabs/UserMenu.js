@@ -40,7 +40,7 @@ function UserMenu() {
 
   const handleLogout = async () => {
     localStorage.removeItem("user");
-    localStorage.removeItem("userCredentials");
+    //  localStorage.removeItem("userCredentials");
 
     handleCloseMenu();
     handleDrawerToggle();

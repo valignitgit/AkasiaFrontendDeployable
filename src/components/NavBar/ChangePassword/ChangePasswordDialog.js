@@ -57,8 +57,13 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
   };
 
   const handleCancelClick = () => {
-    handleCloseDialog();
     setChangePasswordData(initialState);
+    setError({
+      oldPassword: getEmptyErrorState(),
+      newPassword: getEmptyErrorState(),
+      repeatPassword: getEmptyErrorState(),
+    });
+    handleCloseDialog();
   };
 
   const validateForm = () => {
@@ -98,6 +103,7 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
   };
 
   const handleSubmit = async (e) => {
+    console.log("test");
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
@@ -123,6 +129,7 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
         console.log(error);
       }
     }
+    e.stopPropagation();
   };
 
   const renderDialog = () => {
@@ -131,11 +138,7 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
     };
     const renderChangePasswordForm = () => {
       return (
-        <Box
-          component="form"
-          className={styles.changePassword_form}
-          onSubmit={handleSubmit}
-        >
+        <form className={styles.changePassword_form} onSubmit={handleSubmit}>
           <FormControl
             variant="outlined"
             className={styles.changePassword_formInput}
@@ -232,7 +235,7 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
               Submit
             </Button>
           </Box>
-        </Box>
+        </form>
       );
     };
     return (
