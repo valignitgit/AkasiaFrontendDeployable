@@ -1,5 +1,5 @@
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import "styles/mixins";
+@import "styles/variables";
 
 .brokerListing__container {
   @include margin_bottom(30px);

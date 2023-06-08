@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import CurrencyService from "../../services/CurrencyServices";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import CurrencyService from "services/CurrencyServices";
 
 const initialState = {
   data: [],

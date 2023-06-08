@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Card, CardActions, CardContent } from "@mui/material";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Card, CardActions, CardContent, Grid } from "@mui/material";
+
+import Button from "components/Button/CustomButton";
+import Loader from "components/Loader/Loader";
+
+import { getCurrencyById, setCurrentData } from "redux/slices/currencySlice";
+
 import styles from "./style.module.scss";
-import Button from "../../../components/Button/CustomButton";
-import Loader from "../../../components/Loader/Loader";
-import {
-  getCurrencyById,
-  setCurrentData,
-} from "../../../redux/slices/currencySlice";
 
 const CurrencyDetails = () => {
   const { id } = useParams();

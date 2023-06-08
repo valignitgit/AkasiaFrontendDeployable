@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import BrokerService from "../../services/BrokerServices";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import BrokerService from "services/BrokerServices";
 
 const initialState = {
   data: [],

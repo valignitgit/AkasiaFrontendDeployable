@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
-import { createBank } from "../../../redux/slices/bankSlice";
-import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
-import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString } from "../../../utils/Validator";
-import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
-import Button from "../../../components/Button/CustomButton";
+import { Link, useNavigate } from "react-router-dom";
+import { Box, Grid, Paper, TextField, Typography } from "@mui/material";
+
+import Button from "components/Button/CustomButton";
+
+import { createBank } from "redux/slices/bankSlice";
+
+import { getEmptyErrorState } from "utils/AppUtil";
+import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
+import { isEmptyString } from "utils/Validator";
+
 import styles from "./style.module.scss";
 
 const AddBank = () => {

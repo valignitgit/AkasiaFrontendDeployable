@@ -1,35 +1,39 @@
-import React, { useState, useEffect } from "react";
-import {
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  FormControl,
-  Select,
-  MenuItem,
-  TextField,
-  InputLabel,
-  Box,
-} from "@mui/material";
-
-import { nanoid } from "nanoid";
-import ReadOnlyRow from "./ReadOnlyRow";
-import EditableRow from "./EditableRow";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setData,
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+} from "@mui/material";
+import { nanoid } from "nanoid";
+
+import Button from "components/Button/CustomButton";
+
+import { getAllSecurities } from "redux/slices/securitySlice";
+import {
   setAddFormData,
+  setData,
   setEditFormData,
   setEditRowId,
-} from "../../../redux/slices/securityTableSlice";
-import { getAllSecurities } from "../../../redux/slices/securitySlice";
-import { isEmptyString } from "../../../utils/Validator";
-import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
-import { getEmptyErrorState } from "../../../utils/AppUtil";
+} from "redux/slices/securityTableSlice";
+
+import { getEmptyErrorState } from "utils/AppUtil";
+import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
+import { isEmptyString } from "utils/Validator";
+
+import EditableRow from "./EditableRow";
+import ReadOnlyRow from "./ReadOnlyRow";
+
 import styles from "../AddSecurityTable/styles.module.scss";
-import Button from "../../../components/Button/CustomButton";
 
 const UpdateSecurityTable = () => {
   const [error, setErrors] = useState({

@@ -6,13 +6,13 @@ module.exports = {
         test: /\.module\.css$/i,
         use: [
           // inject CSS into the DOM
-          'style-loader',
+          "style-loader",
           // interprets `@import` and `url()` like `import/require()` and resolves them
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               modules: {
-                localIdentName: '[name]__[local]___[hash:base64:5]',
+                localIdentName: "[name]__[local]___[hash:base64:5]",
               },
             },
           },
@@ -22,18 +22,18 @@ module.exports = {
         test: /\.scss$/,
         use: [
           // inject CSS into the DOM
-          'style-loader',
+          "style-loader",
           // interprets `@import` and `url()` like `import/require()` and resolves them
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               modules: {
-                localIdentName: '[name]__[local]___[hash:base64:5]',
+                localIdentName: "[name]__[local]___[hash:base64:5]",
               },
             },
           },
           // compiles Sass to CSS
-          'sass-loader',
+          "sass-loader",
         ],
       },
     ],

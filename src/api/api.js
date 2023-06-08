@@ -1,5 +1,6 @@
 import axios from "axios";
-import { accessToken } from "../utils/AppUtil";
+
+import { accessToken } from "utils/AppUtil";
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL_DEV,
   headers: {

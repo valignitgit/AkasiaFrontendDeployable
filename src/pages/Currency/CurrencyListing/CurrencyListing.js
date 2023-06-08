@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
-import DialogBox from "../../../components/DialogBox/DialogBox";
-import { FormControl, Select, MenuItem } from "@mui/material";
-import Loader from "../../../components/Loader/Loader";
-import styles from "./style.module.scss";
-import Pagination from "@mui/material/Pagination";
-import Button from "../../../components/Button/CustomButton";
 import { useLocation } from "react-router-dom";
+import { FormControl, MenuItem, Select } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Pagination from "@mui/material/Pagination";
+
+import Button from "components/Button/CustomButton";
+import DialogBox from "components/DialogBox/DialogBox";
+import Loader from "components/Loader/Loader";
+
 import {
-  getAllCurrencies,
   deleteCurrency,
+  getAllCurrencies,
   setCurrentData,
-} from "../../../redux/slices/currencySlice";
+} from "redux/slices/currencySlice";
+
 import CurrencyCard from "../CurrencyCard/CurrencyCard";
+
+import styles from "./style.module.scss";
 
 const CurrencyListing = () => {
   const dispatch = useDispatch();

@@ -1,8 +1,10 @@
 import React from "react";
-import { Grid, Box, Card, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Box, Card, CardContent, Grid } from "@mui/material";
+
+import Button from "components/Button/CustomButton";
+
 import styles from "./style.module.scss";
-import Button from "../../../components/Button/CustomButton";
 
 const CurrencyCard = ({ currency_id, currency_name, handleDelete }) => {
   const renderCurrencyCard = () => {

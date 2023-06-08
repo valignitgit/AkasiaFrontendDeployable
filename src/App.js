@@ -1,9 +1,11 @@
 import React, { lazy, Suspense } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import Layout from "./Layout/Layout";
-import RequireAuth from "./Routes/RequireAuth";
-import PublicRoute from "./Routes/PublicRoute";
+import { Navigate, Route, Routes } from "react-router-dom";
+
 import Loader from "./components/Loader/Loader";
+
+import Layout from "./Layout/Layout";
+import PublicRoute from "./Routes/PublicRoute";
+import RequireAuth from "./Routes/RequireAuth";
 
 const Login = lazy(() => import("./pages/Login/Login"));
 const BankListing = lazy(() => import("./pages/Bank/BankListing/BankListing"));
@@ -92,7 +94,7 @@ const App = () => {
           <Route element={<PublicRoute />}>
             <Route path="/login" element={<Login />} />
           </Route>
-          {/* Public Routes */}
+          {/* Private Routes */}
           <Route element={<RequireAuth />}>
             <Route path="/" element={<Layout />}>
               <Route element={<RequireAuth />}>

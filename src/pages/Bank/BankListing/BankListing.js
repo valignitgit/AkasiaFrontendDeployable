@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllBanks,
-  deleteBank,
-  setCurrentData,
-} from "../../../redux/slices/bankSlice";
 import { Link, useLocation } from "react-router-dom";
-import DialogBox from "../../../components/DialogBox/DialogBox";
 import {
-  Skeleton,
-  Pagination,
   FormControl,
-  Select,
-  MenuItem,
   Grid,
+  MenuItem,
+  Pagination,
+  Select,
+  Skeleton,
 } from "@mui/material";
+
+import Button from "components/Button/CustomButton";
+import DialogBox from "components/DialogBox/DialogBox";
+import Loader from "components/Loader/Loader";
+
+import {
+  deleteBank,
+  getAllBanks,
+  setCurrentData,
+} from "redux/slices/bankSlice";
+
 import BankCard from "../BankCard/BankCard";
+
 import styles from "./styles.module.scss";
-import Loader from "../../../components/Loader/Loader";
-import Button from "../../../components/Button/CustomButton";
+
 const BankListing = () => {
   const dispatch = useDispatch();
   const location = useLocation();

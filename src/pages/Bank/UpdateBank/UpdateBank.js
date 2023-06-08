@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateBank } from "../../../redux/slices/bankSlice";
-import BankService from "../../../services/BankServices";
-import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
-import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString } from "../../../utils/Validator";
-import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Box, Grid, Paper, TextField, Typography } from "@mui/material";
+import BankService from "services/BankServices";
+
+import Button from "components/Button/CustomButton";
+
+import { updateBank } from "redux/slices/bankSlice";
+
+import { getEmptyErrorState } from "utils/AppUtil";
+import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
+import { isEmptyString } from "utils/Validator";
+
 import styles from "../AddBank/style.module.scss";
-import Button from "../../../components/Button/CustomButton";
 
 const UpdateBank = () => {
   const initialState = {

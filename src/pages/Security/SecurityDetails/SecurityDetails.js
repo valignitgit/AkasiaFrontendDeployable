@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getSecurityById,
-  setCurrentData,
-} from "../../../redux/slices/securitySlice";
-import { Grid, Card, CardActions, CardContent } from "@mui/material";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Card, CardActions, CardContent, Grid } from "@mui/material";
+
+import Button from "components/Button/CustomButton";
+import Loader from "components/Loader/Loader";
+
+import { getSecurityById, setCurrentData } from "redux/slices/securitySlice";
+
 import styles from "./styles.module.scss";
-import Button from "../../../components/Button/CustomButton";
-import Loader from "../../../components/Loader/Loader";
 
 const securityDetails = () => {
   const { id } = useParams();

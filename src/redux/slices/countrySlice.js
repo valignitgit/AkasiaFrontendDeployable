@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import CountryService from "../../services/CountryServices";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import CountryService from "services/CountryServices";
 
 const initialState = {
   data: [],

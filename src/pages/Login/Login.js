@@ -1,26 +1,30 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
-  TextField,
-  Paper,
-  Grid,
   Box,
   Container,
   FormControl,
+  Grid,
+  IconButton,
+  InputAdornment,
   InputLabel,
   OutlinedInput,
-  InputAdornment,
-  IconButton,
+  Paper,
+  TextField,
 } from "@mui/material";
+import logo from "assets/images/logo.jpeg";
+
+import Button from "components/Button/CustomButton";
+
+import { login, setLoginData } from "redux/slices/authSlice";
+
+import { getEmptyErrorState } from "utils/AppUtil";
+import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
+import { isEmptyString } from "utils/Validator";
+
 import styles from "./style.module.scss";
-import { getEmptyErrorState } from "../../utils/AppUtil";
-import { isEmptyString } from "../../utils/Validator";
-import ErrorMessageGenerator from "../../utils/ErrorMessageGenerator";
-import { VisibilityOff, Visibility } from "@mui/icons-material";
-import logo from "../../assets/images/logo.jpeg";
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button/CustomButton";
-import { useDispatch, useSelector } from "react-redux";
-import { login, setLoginData } from "../../redux/slices/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();

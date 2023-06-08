@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import styles from "./styles.module.scss";
-import SecurityCard from "../SecurityCard/SecurityCard";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllSecurities,
-  setCurrentData,
-} from "../../../redux/slices/securitySlice";
+import { Link, useLocation } from "react-router-dom";
+import { FormControl, Grid, MenuItem, Pagination, Select } from "@mui/material";
+
+import Button from "components/Button/CustomButton";
+import Loader from "components/Loader/Loader";
+
+import { getAllSecurities, setCurrentData } from "redux/slices/securitySlice";
+
+import SecurityCard from "../SecurityCard/SecurityCard";
+
 import "./styles.module.scss";
-import Loader from "../../../components/Loader/Loader";
-import { Grid, FormControl, Select, MenuItem, Pagination } from "@mui/material";
-import Button from "../../../components/Button/CustomButton";
+import styles from "./styles.module.scss";
 
 const SecurityListing = () => {
   const dispatch = useDispatch();

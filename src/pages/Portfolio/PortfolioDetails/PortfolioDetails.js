@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import { Grid, Card, CardContent } from "@mui/material";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getPortfolioById,
-  setCurrentData,
-} from "../../../redux/slices/portfolioSlice";
-import styles from "./styles.module.scss";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Button from "../../../components/Button/CustomButton";
-import Loader from "../../../components/Loader/Loader";
+import { Card, CardContent, Grid } from "@mui/material";
+
+import Button from "components/Button/CustomButton";
+import Loader from "components/Loader/Loader";
+
+import { getPortfolioById, setCurrentData } from "redux/slices/portfolioSlice";
+
+import styles from "./styles.module.scss";
 
 const PortfolioDetails = () => {
   const { id } = useParams();

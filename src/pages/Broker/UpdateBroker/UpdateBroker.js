@@ -1,27 +1,31 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateBroker } from "../../../redux/slices/brokerSlice";
-import BrokerService from "../../../services/BrokerServices";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
-  Grid,
-  Typography,
   Box,
-  TextField,
-  Paper,
+  FormControl,
+  Grid,
   InputLabel,
   MenuItem,
-  FormControl,
+  Paper,
   Select,
+  TextField,
+  Typography,
 } from "@mui/material";
-import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString } from "../../../utils/Validator";
-import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
+import BrokerService from "services/BrokerServices";
+
+import Button from "components/Button/CustomButton";
+
+import { updateBroker } from "redux/slices/brokerSlice";
+import { getAllCurrencies } from "redux/slices/currencySlice";
+
+import { getEmptyErrorState } from "utils/AppUtil";
+import { getCurrencyList } from "utils/AppUtil";
+import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
+import { isEmptyString } from "utils/Validator";
+
 import styles from "../AddBroker/style.module.scss";
-import Button from "../../../components/Button/CustomButton";
-import { getCurrencyList } from "../../../utils/AppUtil";
-import { getAllCurrencies } from "../../../redux/slices/currencySlice";
 
 const UpdateBroker = () => {
   const initialState = {

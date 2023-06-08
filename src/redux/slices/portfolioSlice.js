@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import PortfolioService from "../../services/PortfolioServices";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import PortfolioService from "services/PortfolioServices";
 
 const initialState = {
   data: [],

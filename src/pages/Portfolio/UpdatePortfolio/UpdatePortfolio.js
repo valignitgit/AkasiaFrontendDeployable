@@ -1,29 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
-  Typography,
   Box,
-  TextField,
+  FormControl,
+  Grid,
   InputLabel,
   MenuItem,
-  FormControl,
   Select,
-  Grid,
+  TextField,
+  Typography,
 } from "@mui/material";
-import { useNavigate, useParams, Link } from "react-router-dom";
-import { updatePortfolio } from "../../../redux/slices/portfolioSlice";
-import PortfolioService from "../../../services/PortfolioServices";
-import UpdateSecurityTable from "../UpdateSecurityTable/UpdateSecurityTable";
-import { setData } from "../../../redux/slices/securityTableSlice";
-import { getEmptyErrorState } from "../../../utils/AppUtil";
+import PortfolioService from "services/PortfolioServices";
+
+import Button from "components/Button/CustomButton";
+
+import { updatePortfolio } from "redux/slices/portfolioSlice";
+import { setData } from "redux/slices/securityTableSlice";
+
+import { getEmptyErrorState } from "utils/AppUtil";
+import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
 import {
   isEmptyString,
   isFloatNumber,
   isValidDecimalPointValue,
-} from "../../../utils/Validator";
-import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
+} from "utils/Validator";
+
+import UpdateSecurityTable from "../UpdateSecurityTable/UpdateSecurityTable";
+
 import styles from "../AddPortfolio/styles.module.scss";
-import Button from "../../../components/Button/CustomButton";
 
 const UpdatePortfolio = () => {
   const initialState = {

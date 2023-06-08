@@ -1,25 +1,28 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import SecurityIcon from "@mui/icons-material/Security";
-import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
-import MoneyIcon from "@mui/icons-material/Money";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import LanguageIcon from "@mui/icons-material/Language";
+import MoneyIcon from "@mui/icons-material/Money";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import SecurityIcon from "@mui/icons-material/Security";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import {
+  Box,
+  Hidden,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Box,
-  Hidden,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
-import styles from "./styles.module.scss";
-import { Link } from "react-router-dom";
+
+import { toggleMobileOpen } from "redux/slices/layoutSlice";
+
 import UserMenu from "../NavBar/Navtabs/UserMenu";
-import { toggleMobileOpen } from "../../redux/slices/layoutSlice";
-import { useDispatch } from "react-redux";
+
+import styles from "./styles.module.scss";
 
 function SidebarData() {
   const dispatch = useDispatch();

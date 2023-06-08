@@ -1,14 +1,14 @@
-import api from "../api/qaApi";
+import api from "api/api";
 const login = (data) => {
   return api.post("/user/login", data);
 };
 
 const logout = () => {
-  return api.post("/auth/logout");
+  return api.post("/user/logout");
 };
 
 const changePassword = (email, data) => {
-  return api.post(`auth/password/change/${email}`, data);
+  return api.post(`user/password/change/${email}`, data);
 };
 
 const AuthServices = {

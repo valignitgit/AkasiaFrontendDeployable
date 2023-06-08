@@ -1,15 +1,19 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useParams, Link } from "react-router-dom";
-import { Grid, Typography, Box, TextField, Paper } from "@mui/material";
-import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString } from "../../../utils/Validator";
-import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
-import Button from "../../../components/Button/CustomButton";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Box, Grid, Paper, TextField, Typography } from "@mui/material";
+import CurrencyService from "services/CurrencyServices";
+
+import Button from "components/Button/CustomButton";
+
+import { updateCurrency } from "redux/slices/currencySlice";
+
+import { getEmptyErrorState } from "utils/AppUtil";
+import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
+import { isEmptyString } from "utils/Validator";
+
 import styles from "../AddCurrency/style.module.scss";
-import { updateCurrency } from "../../../redux/slices/currencySlice";
-import CurrencyService from "../../../services/CurrencyServices";
 
 const UpdateCurrency = () => {
   const initialState = {

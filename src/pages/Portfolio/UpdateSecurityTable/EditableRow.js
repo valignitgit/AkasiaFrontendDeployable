@@ -1,16 +1,16 @@
 import React from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import SaveIcon from "@mui/icons-material/Save";
 import {
-  TableRow,
-  TableCell,
   FormControl,
-  Select,
-  MenuItem,
-  TextField,
   IconButton,
   InputLabel,
+  MenuItem,
+  Select,
+  TableCell,
+  TableRow,
+  TextField,
 } from "@mui/material";
-import SaveIcon from "@mui/icons-material/Save";
-import CloseIcon from "@mui/icons-material/Close";
 
 const EditableRow = ({
   handleEditFormChange,

@@ -1,5 +1,5 @@
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import "styles/mixins";
+@import "styles/variables";
 
 .portfolioListing__container {
   @include margin_bottom(20px);

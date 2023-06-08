@@ -1,30 +1,33 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  Typography,
   Box,
-  TextField,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  Grid,
   InputLabel,
   MenuItem,
-  FormControl,
-  Select,
   Paper,
-  Grid,
-  Checkbox,
-  FormControlLabel,
+  Select,
+  TextField,
+  Typography,
 } from "@mui/material";
-import styles from "./style.module.scss";
-import { getSecurityTypeList } from "../../../utils/SecurityUtil";
-import { getCurrencyList } from "../../../utils/AppUtil";
 
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCurrencies } from "../../../redux/slices/currencySlice";
-import { useState } from "react";
-import { createSecurity } from "../../../redux/slices/securitySlice";
-import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString } from "../../../utils/Validator";
-import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
-import { useNavigate, Link } from "react-router-dom";
-import Button from "../../../components/Button/CustomButton";
+import Button from "components/Button/CustomButton";
+
+import { getAllCurrencies } from "redux/slices/currencySlice";
+import { createSecurity } from "redux/slices/securitySlice";
+
+import { getCurrencyList } from "utils/AppUtil";
+import { getEmptyErrorState } from "utils/AppUtil";
+import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
+import { getSecurityTypeList } from "utils/SecurityUtil";
+import { isEmptyString } from "utils/Validator";
+
+import styles from "./style.module.scss";
 
 const AddSecurity = () => {
   const securityTypeOptions = getSecurityTypeList();

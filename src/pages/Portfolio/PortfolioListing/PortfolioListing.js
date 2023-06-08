@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Grid from "@mui/material/Grid";
-import {
-  getAllPortfolios,
-  deletePortfolio,
-  setCurrentData,
-} from "../../../redux/slices/portfolioSlice";
 import { Link } from "react-router-dom";
-import DialogBox from "../../../components/DialogBox/DialogBox";
-import { Box, FormControl, Select, MenuItem } from "@mui/material";
-import PortfolioCard from "../PortfolioCard/PortfolioCard";
-import Loader from "../../../components/Loader/Loader";
+import { useLocation } from "react-router-dom";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
-import styles from "./styles.module.scss";
+import { Box, FormControl, MenuItem, Select } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import Pagination from "@mui/material/Pagination";
-import Button from "../../../components/Button/CustomButton";
-import { useLocation } from "react-router-dom";
+
+import Button from "components/Button/CustomButton";
+import DialogBox from "components/DialogBox/DialogBox";
+import Loader from "components/Loader/Loader";
+
+import {
+  deletePortfolio,
+  getAllPortfolios,
+  setCurrentData,
+} from "redux/slices/portfolioSlice";
+
+import PortfolioCard from "../PortfolioCard/PortfolioCard";
+
+import styles from "./styles.module.scss";
 
 const PortfolioListing = () => {
   const dispatch = useDispatch();

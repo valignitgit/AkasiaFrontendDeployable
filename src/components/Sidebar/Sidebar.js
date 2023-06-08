@@ -1,8 +1,8 @@
 import React from "react";
-
 import { Box, Drawer } from "@mui/material";
 
 import SidebarData from "./SidebarData";
+
 import styles from "./styles.module.scss";
 
 const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {

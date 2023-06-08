@@ -1,14 +1,14 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-
-import { Box, Menu, MenuItem, Button, Avatar } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import styles from "../style.module.scss";
 import { useDispatch } from "react-redux";
-import { setData } from "../../../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Box, Menu, MenuItem } from "@mui/material";
+
+import { toggleMobileOpen } from "redux/slices/layoutSlice";
+
 import ChangePasswordDialogBox from "../ChangePassword/ChangePasswordDialog";
-import { toggleMobileOpen } from "../../../redux/slices/layoutSlice";
+
+import styles from "../style.module.scss";
 
 function UserMenu() {
   const [anchorEl, setAnchorEl] = useState(null);

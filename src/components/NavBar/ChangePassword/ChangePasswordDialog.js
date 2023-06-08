@@ -1,22 +1,27 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import DialogBox from "../../../components/DialogBox/DialogBox";
+import { useDispatch } from "react-redux";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
   FormControl,
+  Hidden,
+  IconButton,
+  InputAdornment,
   InputLabel,
   OutlinedInput,
-  InputAdornment,
-  IconButton,
 } from "@mui/material";
-import { VisibilityOff, Visibility } from "@mui/icons-material";
-import Button from "../../../components/Button/CustomButton";
+
+import Button from "components/Button/CustomButton";
+import DialogBox from "components/DialogBox/DialogBox";
+
+import { changePassword } from "redux/slices/authSlice";
+
+import { getEmptyErrorState } from "utils/AppUtil";
+import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
+import { isEmptyString } from "utils/Validator";
+
 import styles from "./style.module.scss";
-import { useDispatch } from "react-redux";
-import { changePassword } from "../../../redux/slices/authSlice";
-import { getEmptyErrorState } from "../../../utils/AppUtil";
-import { isEmptyString } from "../../../utils/Validator";
-import ErrorMessageGenerator from "../../../utils/ErrorMessageGenerator";
 
 const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
   const initialState = {
@@ -231,9 +236,16 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
             <Button shape="square" onClick={handleCancelClick}>
               Cancel
             </Button>
-            <Button shape="square" type="submit">
-              Submit
-            </Button>
+            <Hidden mdUp>
+              <Button shape="square" type="submit" onClick={handleSubmit}>
+                Submit
+              </Button>
+            </Hidden>
+            <Hidden mdDown>
+              <Button shape="square" type="submit">
+                Submit
+              </Button>
+            </Hidden>
           </Box>
         </form>
       );

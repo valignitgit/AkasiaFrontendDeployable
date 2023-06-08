@@ -1,17 +1,18 @@
 import React from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import SaveIcon from "@mui/icons-material/Save";
 import {
-  TableRow,
-  TableCell,
+  Box,
   FormControl,
-  Select,
-  MenuItem,
-  TextField,
   IconButton,
   InputLabel,
-  Box,
+  MenuItem,
+  Select,
+  TableCell,
+  TableRow,
+  TextField,
 } from "@mui/material";
-import SaveIcon from "@mui/icons-material/Save";
-import CloseIcon from "@mui/icons-material/Close";
+
 import styles from "./styles.module.scss";
 
 const EditableRow = ({

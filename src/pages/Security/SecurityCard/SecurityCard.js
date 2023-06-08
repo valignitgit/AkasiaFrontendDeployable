@@ -1,8 +1,10 @@
 import React from "react";
-import { Grid, CardActions, Card, CardContent } from "@mui/material";
-import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
-import Button from "../../../components/Button/CustomButton";
+import { Card, CardActions, CardContent, Grid } from "@mui/material";
+
+import Button from "components/Button/CustomButton";
+
+import styles from "./styles.module.scss";
 
 const SecurityCard = (card) => {
   const { security_id, security_name, security_type, exchange_id } = card;

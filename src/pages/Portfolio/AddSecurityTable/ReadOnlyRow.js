@@ -1,8 +1,8 @@
 import React from "react";
-import { TableRow, TableCell } from "@mui/material";
-import { IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import { TableCell, TableRow } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 const ReadOnlyRow = ({ row, handleEditClick, handleDeleteClick }) => {
   return (

@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import ExchangeService from "../../services/ExchangeServices";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import ExchangeService from "services/ExchangeServices";
 
 const initialState = {
   data: [],

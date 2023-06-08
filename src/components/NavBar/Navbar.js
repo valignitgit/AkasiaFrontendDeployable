@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -7,11 +7,12 @@ import Hidden from "@mui/material/Hidden";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
-import { Link } from "react-router-dom";
-import logo from "../../assets/images/logoTransparent.png";
-import styles from "./style.module.scss";
+import api from "api/api";
+import logo from "assets/images/logoTransparent.png";
+
 import UserMenu from "./Navtabs/UserMenu";
-import api from "../../api/api";
+
+import styles from "./style.module.scss";
 
 const Navbar = ({ handleDrawerToggle }) => {
   const isProdEnvironment =
