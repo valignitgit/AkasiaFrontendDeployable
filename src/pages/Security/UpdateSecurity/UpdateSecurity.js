@@ -85,7 +85,7 @@ const AddSecurity = () => {
   const getCurrentSecurity = async (id) => {
     try {
       const { data } = await SecurityService.getSecurityById(id);
-      setCurrentSecurity(data);
+      setCurrentSecurity(data.data);
     } catch (err) {
       alert(err);
     }

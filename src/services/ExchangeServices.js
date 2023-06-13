@@ -12,8 +12,8 @@ const createExchange = (data) => {
   return api.post("/exchange", data);
 };
 
-const updateExchange = (id, data) => {
-  return api.put(`/exchange/${id}`, data);
+const updateExchange = (data) => {
+  return api.put("/exchange", data);
 };
 
 const deleteExchange = (id) => {

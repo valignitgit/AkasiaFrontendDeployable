@@ -39,7 +39,7 @@ const UpdateExchange = () => {
   const getExchange = (id) => {
     ExchangeService.getExchangeById(id)
       .then((res) => {
-        setcurrentExchange(res.data);
+        setcurrentExchange(res.data.data);
       })
       .catch((err) => {
         console.error(err);
@@ -92,10 +92,8 @@ const UpdateExchange = () => {
     const isValid = validateForm();
     if (isValid) {
       try {
-        await dispatch(
-          updateExchange({ id: exchange_id, data: currentExchange })
-        ).unwrap();
-        navigate("/exchange");
+        await dispatch(updateExchange(currentExchange)).unwrap();
+        navigate(`/exchange/${exchange_id}`);
       } catch (error) {
         console.log(error.response);
       }

@@ -12,8 +12,8 @@ const createCountry = (data) => {
   return api.post("/country", data);
 };
 
-const updateCountry = (id, data) => {
-  return api.put(`/country/${id}`, data);
+const updateCountry = (data) => {
+  return api.put("/country", data);
 };
 
 const deleteCountry = (id) => {

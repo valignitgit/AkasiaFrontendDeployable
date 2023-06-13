@@ -39,7 +39,7 @@ const UpdateCountry = () => {
   const getCountry = (id) => {
     CountryService.getCountryById(id)
       .then((res) => {
-        setcurrentCountry(res.data);
+        setcurrentCountry(res.data.data);
       })
       .catch((err) => {
         console.error(err);
@@ -92,9 +92,7 @@ const UpdateCountry = () => {
     const isValid = validateForm();
     if (isValid) {
       try {
-        const response = await dispatch(
-          updateCountry({ id: country_id, data: currentCountry })
-        ).unwrap();
+        const response = await dispatch(updateCountry(currentCountry)).unwrap();
         if (response.status === 200 || response.status === 201) {
           navigate(`/country/${country_id}`);
         }

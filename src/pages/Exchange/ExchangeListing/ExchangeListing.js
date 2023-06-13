@@ -53,7 +53,7 @@ const ExchangeListing = () => {
     if (data) {
       setExchangeListing(data);
     }
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     if (newData) {

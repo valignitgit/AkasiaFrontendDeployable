@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -70,7 +69,7 @@ const UpdateBroker = () => {
   const getBroker = (id) => {
     BrokerService.getBrokerById(id)
       .then((res) => {
-        setCurrentBroker(res.data);
+        setCurrentBroker(res.data.data);
       })
       .catch((err) => {
         console.error(err);
@@ -129,9 +128,8 @@ const UpdateBroker = () => {
     const isValid = validateForm();
     if (isValid) {
       try {
-        const response = await dispatch(
-          updateBroker({ id: broker_id, data: currentBroker })
-        ).unwrap();
+        // eslint-disable-next-line no-unused-vars
+        const response = await dispatch(updateBroker(currentBroker)).unwrap();
         navigate(`/broker/${broker_id}`);
       } catch (error) {
         console.log(error.response);

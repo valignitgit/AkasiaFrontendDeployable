@@ -116,14 +116,6 @@ const AddSecurity = () => {
       };
       isValid = false;
     }
-    // else if (isArabic(security_name_ar)) {
-    //   newErrors.security_name_ar = {
-    //     errorMessage:
-    //       ErrorMessageGenerator.getStringInArabicMessage("Security Name"),
-    //     errorState: "error",
-    //   };
-    //   isValid = false;
-    // }
 
     if (isEmptyString(security_class)) {
       newErrors.security_class = {

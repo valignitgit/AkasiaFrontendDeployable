@@ -43,7 +43,7 @@ const BankListing = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllBanks());
+    dispatch(getAllBanks()).unwrap;
     dispatch(setCurrentData());
   }, [dispatch]);
 

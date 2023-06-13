@@ -39,7 +39,7 @@ const UpdateBank = () => {
   const getBank = (id) => {
     BankService.getBankById(id)
       .then((res) => {
-        setcurrentBank(res.data);
+        setcurrentBank(res.data.data);
       })
       .catch((err) => {
         console.error(err);
@@ -89,8 +89,13 @@ const UpdateBank = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      dispatch(updateBank({ id: bank_id, data: currentBank }));
-      navigate(`/bank/${id}`);
+      try {
+        // eslint-disable-next-line no-unused-vars
+        const response = await dispatch(updateBank(currentBank)).unwrap();
+        navigate(`/bank/${bank_id}`);
+      } catch (error) {
+        console.log(error.response);
+      }
     }
   };
   const renderUpdateBankDetailsForm = () => {

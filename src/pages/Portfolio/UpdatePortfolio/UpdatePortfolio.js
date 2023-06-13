@@ -153,14 +153,14 @@ const UpdatePortfolio = () => {
   const getCurrentPortfolio = async (id) => {
     try {
       const { data } = await PortfolioService.getPortfolioById(id);
-      const { portfolioSecurities } = data;
+      const { portfolioSecurities } = data.data;
       const newPortfolioSecurities = portfolioSecurities.map(
         ({ portfolio_security_id, ...rest }) => ({
           id: portfolio_security_id,
           ...rest,
         })
       );
-      setCurrentPortfolio(data);
+      setCurrentPortfolio(data.data);
       dispatch(setData(newPortfolioSecurities));
     } catch (err) {
       console.error(err);

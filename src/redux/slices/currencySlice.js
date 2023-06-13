@@ -3,6 +3,8 @@ import CurrencyService from "services/CurrencyServices";
 
 const initialState = {
   data: [],
+  status: "",
+  message: "",
   loading: false,
   currentData: null,
   error: null,
@@ -95,7 +97,9 @@ const currencySlice = createSlice({
       })
       .addCase(getAllCurrencies.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data = action.payload.data;
       })
       .addCase(getAllCurrencies.rejected, (state, action) => {
         state.loading = false;
@@ -106,7 +110,9 @@ const currencySlice = createSlice({
       })
       .addCase(createCurrency.fulfilled, (state, action) => {
         state.loading = false;
-        state.data.push(action.payload);
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data.push(action.payload.data);
       })
       .addCase(createCurrency.rejected, (state, action) => {
         state.loading = false;
@@ -117,7 +123,9 @@ const currencySlice = createSlice({
       })
       .addCase(getCurrencyById.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentData = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.currentData = action.payload.data;
       })
       .addCase(getCurrencyById.rejected, (state, action) => {
         state.loading = false;
@@ -128,7 +136,9 @@ const currencySlice = createSlice({
       })
       .addCase(updateCurrency.fulfilled, (state, action) => {
         state.loading = false;
-        const updatedCurrency = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        const updatedCurrency = action.payload.data;
         if (updatedCurrency.currency_id) {
           state.data = state.data.map((item) =>
             item.currency_id === updatedCurrency.currency_id
@@ -147,6 +157,9 @@ const currencySlice = createSlice({
       .addCase(deleteCurrency.fulfilled, (state, action) => {
         state.loading = false;
         const { currency_id } = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+
         if (currency_id) {
           state.data = state.data.filter(
             (item) => item.currency_id !== currency_id

@@ -3,6 +3,8 @@ import BankService from "services/BankServices";
 
 const initialState = {
   data: [],
+  status: "",
+  message: "",
   loading: false,
   currentData: null,
   error: null,
@@ -44,20 +46,17 @@ export const getBankById = createAsyncThunk("bank/get", async (id) => {
   }
 });
 
-export const updateBank = createAsyncThunk(
-  "bank/update",
-  async ({ id, data }) => {
-    try {
-      const response = await BankService.updateBank(id, data);
-      return response.data;
-    } catch (error) {
-      if (error.response) {
-        return error.response;
-      }
-      throw error;
+export const updateBank = createAsyncThunk("bank/update", async (data) => {
+  try {
+    const response = await BankService.updateBank(data);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
     }
+    throw error;
   }
-);
+});
 
 export const deleteBank = createAsyncThunk("bank/delete", async (id) => {
   try {
@@ -86,7 +85,9 @@ const bankSlice = createSlice({
       })
       .addCase(getAllBanks.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data = action.payload.data;
       })
       .addCase(getAllBanks.rejected, (state, action) => {
         state.loading = false;
@@ -97,7 +98,9 @@ const bankSlice = createSlice({
       })
       .addCase(createBank.fulfilled, (state, action) => {
         state.loading = false;
-        state.data.push(action.payload);
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data.push(action.payload.data);
       })
       .addCase(createBank.rejected, (state, action) => {
         state.loading = false;
@@ -108,7 +111,9 @@ const bankSlice = createSlice({
       })
       .addCase(getBankById.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentData = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.currentData = action.payload.data;
       })
       .addCase(getBankById.rejected, (state, action) => {
         state.loading = false;
@@ -119,7 +124,9 @@ const bankSlice = createSlice({
       })
       .addCase(updateBank.fulfilled, (state, action) => {
         state.loading = false;
-        const updatedBank = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        const updatedBank = action.payload.data;
         if (updatedBank.bank_id) {
           state.data = state.data.map((item) =>
             item.bank_id === updatedBank.bank_id ? updatedBank : item
@@ -135,6 +142,8 @@ const bankSlice = createSlice({
       })
       .addCase(deleteBank.fulfilled, (state, action) => {
         state.loading = false;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
         const { bank_id } = action.payload;
         if (bank_id) {
           state.data = state.data.filter((item) => item.bank_id !== bank_id);

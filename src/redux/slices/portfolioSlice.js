@@ -98,7 +98,9 @@ const portfolioSlice = createSlice({
       })
       .addCase(getAllPortfolios.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data = action.payload.data;
       })
       .addCase(getAllPortfolios.rejected, (state, action) => {
         state.loading = false;
@@ -109,7 +111,9 @@ const portfolioSlice = createSlice({
       })
       .addCase(createPortfolio.fulfilled, (state, action) => {
         state.loading = false;
-        state.data.push(action.payload);
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data.push(action.payload.data);
       })
       .addCase(createPortfolio.rejected, (state, action) => {
         state.loading = false;
@@ -120,7 +124,9 @@ const portfolioSlice = createSlice({
       })
       .addCase(getPortfolioById.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentData = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.currentData = action.payload.data;
       })
       .addCase(getPortfolioById.rejected, (state, action) => {
         state.loading = false;
@@ -131,7 +137,9 @@ const portfolioSlice = createSlice({
       })
       .addCase(updatePortfolio.fulfilled, (state, action) => {
         state.loading = false;
-        const updatedPortfolio = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        const updatedPortfolio = action.payload.data;
         if (updatedPortfolio.portfolio_id) {
           state.data = state.data.map((item) =>
             item.portfolio_id === updatedPortfolio.portfolio_id
@@ -149,6 +157,8 @@ const portfolioSlice = createSlice({
       })
       .addCase(deletePortfolio.fulfilled, (state, action) => {
         state.loading = false;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
         const { portfolio_id } = action.payload;
         if (portfolio_id) {
           state.data = state.data.filter(

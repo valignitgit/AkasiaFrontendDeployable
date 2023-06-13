@@ -3,6 +3,8 @@ import ExchangeService from "services/ExchangeServices";
 
 const initialState = {
   data: [],
+  status: "",
+  message: "",
   currentData: null,
   loading: false,
   error: null,
@@ -50,9 +52,9 @@ export const getExchangeById = createAsyncThunk(
 );
 export const updateExchange = createAsyncThunk(
   "exchange/update",
-  async ({ id, data }) => {
+  async (data) => {
     try {
-      const response = await ExchangeService.updateExchange(id, data);
+      const response = await ExchangeService.updateExchange(data);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -93,7 +95,9 @@ const exchangeReducer = createSlice({
       })
       .addCase(getAllExchanges.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data = action.payload.data;
       })
       .addCase(getAllExchanges.rejected, (state, action) => {
         state.loading = false;
@@ -104,7 +108,9 @@ const exchangeReducer = createSlice({
       })
       .addCase(createExchange.fulfilled, (state, action) => {
         state.loading = false;
-        state.data.push(action.payload);
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data.push(action.payload.data);
       })
       .addCase(createExchange.rejected, (state, action) => {
         state.loading = false;
@@ -115,7 +121,9 @@ const exchangeReducer = createSlice({
       })
       .addCase(getExchangeById.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentData = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.currentData = action.payload.data;
       })
 
       .addCase(getExchangeById.rejected, (state, action) => {
@@ -127,7 +135,10 @@ const exchangeReducer = createSlice({
       })
       .addCase(updateExchange.fulfilled, (state, action) => {
         state.loading = false;
-        const updatedExchange = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+
+        const updatedExchange = action.payload.data;
         if (updatedExchange.exchange_id) {
           state.data = state.data.map((item) =>
             item.exchange_id === updatedExchange.exchange_id
@@ -146,6 +157,8 @@ const exchangeReducer = createSlice({
       .addCase(deleteExchange.fulfilled, (state, action) => {
         state.loading = false;
         const { exchange_id } = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
 
         if (exchange_id) {
           state.data = state.data.filter(

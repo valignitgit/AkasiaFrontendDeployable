@@ -12,8 +12,8 @@ const createBank = (data) => {
   return api.post("/bank", data);
 };
 
-const updateBank = (id, data) => {
-  return api.put(`/bank/${id}`, data);
+const updateBank = (data) => {
+  return api.put("/bank", data);
 };
 
 const deleteBank = (id) => {

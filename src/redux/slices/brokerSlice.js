@@ -44,20 +44,17 @@ export const getBrokerById = createAsyncThunk("broker/get", async (id) => {
   }
 });
 
-export const updateBroker = createAsyncThunk(
-  "broker/update",
-  async ({ id, data }) => {
-    try {
-      const response = await BrokerService.updateBroker(id, data);
-      return response.data;
-    } catch (error) {
-      if (error.response) {
-        return error.response;
-      }
-      throw error;
+export const updateBroker = createAsyncThunk("broker/update", async (data) => {
+  try {
+    const response = await BrokerService.updateBroker(data);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return error.response;
     }
+    throw error;
   }
-);
+});
 
 export const deleteBroker = createAsyncThunk("broker/delete", async (id) => {
   try {
@@ -86,7 +83,9 @@ const brokerSlice = createSlice({
       })
       .addCase(getAllBrokers.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data = action.payload.data;
       })
       .addCase(getAllBrokers.rejected, (state, action) => {
         state.loading = false;
@@ -97,7 +96,9 @@ const brokerSlice = createSlice({
       })
       .addCase(createBroker.fulfilled, (state, action) => {
         state.loading = false;
-        state.data.push(action.payload);
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data.push(action.payload.data);
       })
       .addCase(createBroker.rejected, (state, action) => {
         state.loading = false;
@@ -108,7 +109,9 @@ const brokerSlice = createSlice({
       })
       .addCase(getBrokerById.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentData = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.currentData = action.payload.data;
       })
       .addCase(getBrokerById.rejected, (state, action) => {
         state.loading = false;
@@ -119,7 +122,9 @@ const brokerSlice = createSlice({
       })
       .addCase(updateBroker.fulfilled, (state, action) => {
         state.loading = false;
-        const updatedBroker = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        const updatedBroker = action.payload.data;
         if (updatedBroker.broker_id) {
           state.data = state.data.map((item) =>
             item.broker_id === updatedBroker.broker_id ? updatedBroker : item
@@ -135,6 +140,8 @@ const brokerSlice = createSlice({
       })
       .addCase(deleteBroker.fulfilled, (state, action) => {
         state.loading = false;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
         const { broker_id } = action.payload;
         if (broker_id) {
           state.data = state.data.filter(

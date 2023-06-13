@@ -3,6 +3,8 @@ import CountryService from "services/CountryServices";
 
 const initialState = {
   data: [],
+  status: "",
+  message: "",
   loading: false,
   currentData: null,
   error: null,
@@ -38,6 +40,7 @@ export const createCountry = createAsyncThunk(
 export const getCountryById = createAsyncThunk("country/get", async (id) => {
   try {
     const response = await CountryService.getCountryById(id);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -49,9 +52,9 @@ export const getCountryById = createAsyncThunk("country/get", async (id) => {
 
 export const updateCountry = createAsyncThunk(
   "country/update",
-  async ({ id, data }) => {
+  async (data) => {
     try {
-      const response = await CountryService.updateCountry(id, data);
+      const response = await CountryService.updateCountry(data);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -89,7 +92,9 @@ const countrySlice = createSlice({
       })
       .addCase(getAllCountries.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data = action.payload.data;
       })
       .addCase(getAllCountries.rejected, (state, action) => {
         state.loading = false;
@@ -100,7 +105,9 @@ const countrySlice = createSlice({
       })
       .addCase(createCountry.fulfilled, (state, action) => {
         state.loading = false;
-        state.data.push(action.payload);
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data.push(action.payload.data);
       })
       .addCase(createCountry.rejected, (state, action) => {
         state.loading = false;
@@ -111,7 +118,9 @@ const countrySlice = createSlice({
       })
       .addCase(getCountryById.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentData = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.currentData = action.payload.data;
       })
       .addCase(getCountryById.rejected, (state, action) => {
         state.loading = false;
@@ -122,7 +131,9 @@ const countrySlice = createSlice({
       })
       .addCase(updateCountry.fulfilled, (state, action) => {
         state.loading = false;
-        const updatedCountry = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        const updatedCountry = action.payload.data;
         if (updatedCountry.country_id) {
           state.data = state.data.map((item) =>
             item.country_id === updatedCountry.country_id
@@ -141,6 +152,8 @@ const countrySlice = createSlice({
       .addCase(deleteCountry.fulfilled, (state, action) => {
         state.loading = false;
         const { country_id } = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
         if (country_id) {
           state.data = state.data.filter(
             (item) => item.country_id !== country_id

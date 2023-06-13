@@ -44,7 +44,7 @@ const UpdateCurrency = () => {
   const getCurrency = (id) => {
     CurrencyService.getCurrencyById(id)
       .then((res) => {
-        seCurrentCurrency(res.data);
+        seCurrentCurrency(res.data.data);
       })
       .catch((err) => {
         console.error(err);

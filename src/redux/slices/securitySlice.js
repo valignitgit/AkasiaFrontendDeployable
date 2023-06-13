@@ -3,6 +3,8 @@ import SecurityService from "services/SecurityServices";
 
 const initialState = {
   data: [],
+  status: "",
+  message: "",
   loading: false,
   currentData: null,
   error: null,
@@ -65,21 +67,6 @@ export const updateSecurity = createAsyncThunk(
   }
 );
 
-export const deleteSecurity = createAsyncThunk(
-  "security/delete",
-  async (id) => {
-    try {
-      const response = await SecurityService.deleteSecurity(id);
-      return response.data;
-    } catch (error) {
-      if (error.response) {
-        return error.response;
-      }
-      throw error;
-    }
-  }
-);
-
 const securitySlice = createSlice({
   name: "security",
   initialState,
@@ -95,7 +82,9 @@ const securitySlice = createSlice({
       })
       .addCase(getAllSecurities.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data = action.payload.data;
       })
       .addCase(getAllSecurities.rejected, (state, action) => {
         state.loading = false;
@@ -106,7 +95,9 @@ const securitySlice = createSlice({
       })
       .addCase(createSecurity.fulfilled, (state, action) => {
         state.loading = false;
-        state.data.push(action.payload);
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.data.push(action.payload.data);
       })
       .addCase(createSecurity.rejected, (state, action) => {
         state.loading = false;
@@ -117,7 +108,9 @@ const securitySlice = createSlice({
       })
       .addCase(getSecurityById.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentData = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        state.currentData = action.payload.data;
       })
       .addCase(getSecurityById.rejected, (state, action) => {
         state.loading = false;
@@ -128,7 +121,9 @@ const securitySlice = createSlice({
       })
       .addCase(updateSecurity.fulfilled, (state, action) => {
         state.loading = false;
-        const updatedSecurity = action.payload;
+        state.status = action.payload.status.status;
+        state.message = action.payload.status.message;
+        const updatedSecurity = action.payload.data;
         if (updatedSecurity.security_id) {
           state.data = state.data.map((item) =>
             item.security_id === updatedSecurity.security_id
@@ -138,22 +133,6 @@ const securitySlice = createSlice({
         }
       })
       .addCase(updateSecurity.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(deleteSecurity.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(deleteSecurity.fulfilled, (state, action) => {
-        state.loading = false;
-        const { security_id } = action.payload;
-        if (security_id) {
-          state.data = state.data.filter(
-            (item) => item.security_id !== security_id
-          );
-        }
-      })
-      .addCase(deleteSecurity.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

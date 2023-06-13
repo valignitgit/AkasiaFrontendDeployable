@@ -12,8 +12,8 @@ const createBroker = (data) => {
   return api.post("/broker", data);
 };
 
-const updateBroker = (id, data) => {
-  return api.put(`/broker/${id}`, data);
+const updateBroker = (data) => {
+  return api.put("/broker", data);
 };
 
 const deleteBroker = (id) => {
