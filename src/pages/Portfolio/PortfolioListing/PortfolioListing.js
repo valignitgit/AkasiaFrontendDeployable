@@ -33,7 +33,6 @@ const PortfolioListing = () => {
   const [portfolioList, setPortfolioList] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
-  console.log("portfolioList", portfolioList);
   const handleClose = () => {
     setOpen(false);
   };

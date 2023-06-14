@@ -40,7 +40,6 @@ export const createCountry = createAsyncThunk(
 export const getCountryById = createAsyncThunk("country/get", async (id) => {
   try {
     const response = await CountryService.getCountryById(id);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     if (error.response) {

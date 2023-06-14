@@ -77,8 +77,6 @@ const AddBank = () => {
     if (isValid) {
       try {
         const response = await dispatch(createBank(bankData)).unwrap();
-        console.log(response);
-
         if (response.data) {
           navigate("/bank");
         }

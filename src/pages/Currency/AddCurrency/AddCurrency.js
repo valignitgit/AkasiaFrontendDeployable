@@ -81,7 +81,6 @@ const AddCurrency = () => {
     if (isValid) {
       try {
         const response = await dispatch(createCurrency(currencyData)).unwrap();
-        console.log(response);
         if (response.data) {
           navigate("/currency");
         }

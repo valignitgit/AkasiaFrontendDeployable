@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  FormControl,
-  Grid,
-  MenuItem,
-  Pagination,
-  Select,
-  Skeleton,
-} from "@mui/material";
+import { FormControl, Grid, MenuItem, Pagination, Select } from "@mui/material";
 
 import Button from "components/Button/CustomButton";
 import DialogBox from "components/DialogBox/DialogBox";
@@ -26,7 +19,7 @@ import styles from "./styles.module.scss";
 
 const BankListing = () => {
   const dispatch = useDispatch();
-  const { data, loading } = useSelector((state) => state.bank);
+  const data = useSelector((state) => state.bank?.data);
   const [bankList, setBankList] = useState(data || []);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState({
@@ -126,21 +119,6 @@ const BankListing = () => {
     );
   };
   const renderBankList = () => {
-    if (data && data.length === 0) {
-      return <Loader />;
-    }
-    if (!data || loading) {
-      return (
-        <Grid container spacing={3}>
-          {[...Array(8)].map((_, index) => (
-            <Grid item xs={12} sm={6} md={6} lg={3} key={index}>
-              <Skeleton variant="rectangular" width={350} height={200} />
-            </Grid>
-          ))}
-        </Grid>
-      );
-    }
-
     if (Array.isArray(bankList)) {
       return (
         <div className={styles.bankListing__container}>
@@ -155,6 +133,8 @@ const BankListing = () => {
           </Grid>
         </div>
       );
+    } else {
+      return <Loader />;
     }
   };
   const renderPagination = () => {

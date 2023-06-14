@@ -77,16 +77,13 @@ const Login = () => {
     if (isValid) {
       try {
         const response = await dispatch(login(loginData)).unwrap();
-
         if (
           response &&
-          response.status === 200 &&
-          response.result &&
-          response.message === "Successfully Logged in"
+          response.status.status === 200 &&
+          response.data &&
+          response.status.message === "Login Successfull."
         ) {
-          //setUserCredentials(user_id, password);
-          localStorage.setItem("user", JSON.stringify(response.result));
-
+          localStorage.setItem("user", JSON.stringify(response.data));
           navigate("/bank");
         } else if (
           response &&

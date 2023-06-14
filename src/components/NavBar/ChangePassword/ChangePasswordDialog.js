@@ -108,7 +108,6 @@ const ChangePasswordDialog = ({ openDialog, handleCloseDialog }) => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("test");
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
