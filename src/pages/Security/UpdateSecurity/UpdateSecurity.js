@@ -162,9 +162,9 @@ const AddSecurity = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validateForm();
-    const data = { ...currentSecurity };
+    // const data = { ...currentSecurity };
     if (isValid) {
-      await dispatch(updateSecurity({ id, data }))
+      await dispatch(updateSecurity(currentSecurity))
         .unwrap()
         .then(() => {
           navigate(`/security/${id}`);

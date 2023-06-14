@@ -17,7 +17,6 @@ import styles from "../AddCurrency/style.module.scss";
 
 const UpdateCurrency = () => {
   const initialState = {
-    currency: "",
     currency_id: "",
     currency_name: "",
     currency_name_ar: "",
@@ -25,7 +24,6 @@ const UpdateCurrency = () => {
 
   const [currentCurrency, seCurrentCurrency] = useState(initialState);
   const [error, setErrors] = useState({
-    currency: getEmptyErrorState(),
     currency_id: getEmptyErrorState(),
     currency_name: getEmptyErrorState(),
     currency_name_ar: getEmptyErrorState(),
@@ -38,8 +36,7 @@ const UpdateCurrency = () => {
   const onChange = (e) => {
     seCurrentCurrency({ ...currentCurrency, [e.target.name]: e.target.value });
   };
-  const { currency, currency_id, currency_name, currency_name_ar } =
-    currentCurrency;
+  const { currency_id, currency_name, currency_name_ar } = currentCurrency;
 
   const getCurrency = (id) => {
     CurrencyService.getCurrencyById(id)
@@ -58,7 +55,6 @@ const UpdateCurrency = () => {
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
-      currency: getEmptyErrorState(),
       currency_id: getEmptyErrorState(),
       currency_name: getEmptyErrorState(),
       currency_name_ar: getEmptyErrorState(),
@@ -98,13 +94,12 @@ const UpdateCurrency = () => {
     const isValid = validateForm();
     if (isValid) {
       try {
-        const data = await dispatch(
-          updateCurrency({ id: currency_name, data: currentCurrency })
+        const response = await dispatch(
+          updateCurrency(currentCurrency)
         ).unwrap();
-
-        navigate(`/currency/${currency_name}`, {
-          state: { newData: currentCurrency },
-        });
+        if (response.data) {
+          navigate(`/currency/${currency_id}`);
+        }
       } catch (error) {
         console.log("error", error);
       }
@@ -136,6 +131,7 @@ const UpdateCurrency = () => {
                   value={currency_id}
                   label="Current Id"
                   onChange={(e) => onChange(e)}
+                  disabled={true}
                 />
                 {error.currency_id.errorState && (
                   <span className="error">

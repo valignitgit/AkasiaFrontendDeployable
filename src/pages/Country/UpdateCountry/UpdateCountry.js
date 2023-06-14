@@ -34,7 +34,7 @@ const UpdateCountry = () => {
   const onChange = (e) => {
     setcurrentCountry({ ...currentCountry, [e.target.name]: e.target.value });
   };
-  const { country_id, country_name, country_name_ar } = currentCountry;
+  const { country_id, country_name, country_name_ar } = currentCountry || {};
 
   const getCountry = (id) => {
     CountryService.getCountryById(id)
@@ -93,7 +93,7 @@ const UpdateCountry = () => {
     if (isValid) {
       try {
         const response = await dispatch(updateCountry(currentCountry)).unwrap();
-        if (response.status === 200 || response.status === 201) {
+        if (response.data) {
           navigate(`/country/${country_id}`);
         }
       } catch (error) {

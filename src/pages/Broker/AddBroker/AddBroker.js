@@ -150,9 +150,16 @@ const AddBroker = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validateForm();
+
     if (isValid) {
-      dispatch(createBroker(brokerData));
-      navigate("/broker", { state: { newData: brokerData } });
+      try {
+        const response = await dispatch(createBroker(brokerData)).unwrap();
+        if (response.data) {
+          navigate("/broker");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
   useEffect(() => {

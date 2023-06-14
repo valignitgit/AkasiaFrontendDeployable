@@ -55,9 +55,9 @@ export const getPortfolioById = createAsyncThunk(
 
 export const updatePortfolio = createAsyncThunk(
   "portfolio/update",
-  async ({ id, data }) => {
+  async (data) => {
     try {
-      const response = await PortfolioService.updatePortfolio(id, data);
+      const response = await PortfolioService.updatePortfolio(data);
       return response.data;
     } catch (error) {
       if (error.response) {

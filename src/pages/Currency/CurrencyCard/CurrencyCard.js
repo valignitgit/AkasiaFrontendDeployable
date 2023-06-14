@@ -33,12 +33,12 @@ const CurrencyCard = ({ currency_id, currency_name, handleDelete }) => {
               <br />
             </CardContent>
             <div className={styles.currencyCard__Actions}>
-              <Link to={`/currency/${currency_name}`}>
+              <Link to={`/currency/${currency_id}`}>
                 <Button className={styles.currencyCard__btn} shape="square">
                   View
                 </Button>
               </Link>
-              <Link to={`/currency/update/${currency_name}`}>
+              <Link to={`/currency/update/${currency_id}`}>
                 <Button className={styles.currencyCard__btn} shape="square">
                   Edit
                 </Button>
@@ -47,7 +47,7 @@ const CurrencyCard = ({ currency_id, currency_name, handleDelete }) => {
               <Button
                 shape="square"
                 className={styles.currencyCard__btn}
-                onClick={() => handleDelete(currency_name, currency_name)}
+                onClick={() => handleDelete(currency_id, currency_name)}
                 variant="filled"
               >
                 Delete

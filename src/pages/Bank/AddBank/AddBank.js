@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -74,8 +75,16 @@ const AddBank = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      dispatch(createBank(bankData));
-      navigate("/bank", { state: { newData: bankData } });
+      try {
+        const response = await dispatch(createBank(bankData)).unwrap();
+        console.log(response);
+
+        if (response.data) {
+          navigate("/bank");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

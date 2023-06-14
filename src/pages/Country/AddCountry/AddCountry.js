@@ -77,11 +77,10 @@ const AddCountry = () => {
     const isValid = validateForm();
     if (isValid) {
       try {
-        const res = await dispatch(createCountry(countryData)).unwrap();
-
-        if (res.status === 201 || res.status === 200);
+        const response = await dispatch(createCountry(countryData)).unwrap();
+        if (response.data);
         {
-          navigate("/country", { state: { newData: countryData } });
+          navigate("/country");
         }
       } catch (error) {
         console.log(error);

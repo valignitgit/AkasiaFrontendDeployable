@@ -150,13 +150,14 @@ const AddSecurity = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      await dispatch(createSecurity(security))
-        .then(() => {
-          navigate("/security", { state: { newData: security } });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      try {
+        const response = await dispatch(createSecurity(security)).unwrap();
+        if (response.data) {
+          navigate("/security");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

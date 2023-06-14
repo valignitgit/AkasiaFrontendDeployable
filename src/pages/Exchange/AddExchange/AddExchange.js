@@ -76,8 +76,14 @@ const AddExchange = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      dispatch(createExchange(exchangeData));
-      navigate("/exchange", { state: { newData: exchangeData } });
+      try {
+        const response = await dispatch(createExchange(exchangeData)).unwrap();
+        if (response.data) {
+          navigate("/exchange");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

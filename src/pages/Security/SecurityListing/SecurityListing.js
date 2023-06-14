@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FormControl, Grid, MenuItem, Pagination, Select } from "@mui/material";
 
 import Button from "components/Button/CustomButton";
@@ -10,13 +10,10 @@ import { getAllSecurities, setCurrentData } from "redux/slices/securitySlice";
 
 import SecurityCard from "../SecurityCard/SecurityCard";
 
-import "./styles.module.scss";
 import styles from "./styles.module.scss";
 
 const SecurityListing = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const newData = location.state?.newData;
   const data = useSelector((state) => state.security?.data);
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage, setDataPerPage] = useState(12);
@@ -39,22 +36,10 @@ const SecurityListing = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (Array.isArray(data)) {
-      setSecurityList(data);
-    }
-  }, [data]);
-
-  useEffect(() => {
     if (data) {
       setSecurityList(data);
     }
-  });
-
-  useEffect(() => {
-    if (newData) {
-      setSecurityList((prevData) => [...prevData, newData]);
-    }
-  }, [newData]);
+  }, [data]);
 
   const renderAddSecurityButton = () => {
     return (

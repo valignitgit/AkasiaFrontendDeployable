@@ -1,11 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { FormControl, MenuItem, Select } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import Pagination from "@mui/material/Pagination";
+import { FormControl, Grid, MenuItem, Pagination, Select } from "@mui/material";
 
 import Button from "components/Button/CustomButton";
 import DialogBox from "components/DialogBox/DialogBox";
@@ -23,8 +19,6 @@ import styles from "./style.module.scss";
 
 const ExchangeListing = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const newData = location.state?.newData;
   const data = useSelector((state) => state.exchange?.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState({
@@ -44,22 +38,10 @@ const ExchangeListing = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (Array.isArray(data)) {
-      setExchangeListing(data);
-    }
-  }, [data]);
-
-  useEffect(() => {
     if (data) {
       setExchangeListing(data);
     }
   }, [data]);
-
-  useEffect(() => {
-    if (newData) {
-      setExchangeListing((prevData) => [...prevData, newData]);
-    }
-  }, [newData]);
 
   const handleDelete = (id, name) => {
     setOpen(true);

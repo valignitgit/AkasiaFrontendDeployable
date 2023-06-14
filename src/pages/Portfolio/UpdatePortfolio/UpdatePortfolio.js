@@ -183,7 +183,7 @@ const UpdatePortfolio = () => {
     const isValid = validateForm();
 
     if (isValid) {
-      await dispatch(updatePortfolio({ id, data }))
+      await dispatch(updatePortfolio(data))
         .unwrap()
         .then((res) => {
           setCurrentPortfolio(res.data);

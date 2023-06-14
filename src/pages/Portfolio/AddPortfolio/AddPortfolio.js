@@ -166,16 +166,14 @@ const AddPortfolio = () => {
 
     const isValid = validateForm();
     if (isValid) {
-      await dispatch(createPortfolio(data))
-        .unwrap()
-        .then(() => {
-          dispatch(setData([]));
-          setPortfolioData(initialState);
-          navigate("/portfolio", { state: { newData: data } });
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      try {
+        const response = await dispatch(createPortfolio(data)).unwrap();
+        if (response.data) {
+          navigate("/portfolio");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

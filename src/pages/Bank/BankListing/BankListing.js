@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   FormControl,
   Grid,
@@ -26,8 +26,6 @@ import styles from "./styles.module.scss";
 
 const BankListing = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const newData = location.state?.newData;
   const { data, loading } = useSelector((state) => state.bank);
   const [bankList, setBankList] = useState(data || []);
   const [open, setOpen] = useState(false);
@@ -35,6 +33,7 @@ const BankListing = () => {
     id: "",
     name: "",
   });
+
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
 
@@ -43,26 +42,15 @@ const BankListing = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllBanks()).unwrap;
+    dispatch(getAllBanks());
     dispatch(setCurrentData());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (Array.isArray(data)) {
-      setBankList(data);
-    }
-  }, [data]);
   useEffect(() => {
     if (data) {
       setBankList(data);
     }
   }, [data]);
-
-  useEffect(() => {
-    if (newData) {
-      setBankList((prevData) => [...prevData, newData]);
-    }
-  }, [newData]);
 
   const handleDelete = (id, name) => {
     setOpen(true);

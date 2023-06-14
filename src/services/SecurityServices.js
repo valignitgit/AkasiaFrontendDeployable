@@ -12,8 +12,8 @@ const createSecurity = (data) => {
   return api.post("/security", data);
 };
 
-const updateSecurity = (id, data) => {
-  return api.put(`/security/${id}`, data);
+const updateSecurity = (data) => {
+  return api.put("/security", data);
 };
 
 const SecurityService = {

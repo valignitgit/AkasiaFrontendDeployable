@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import { FormControl, MenuItem, Select } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Pagination from "@mui/material/Pagination";
@@ -23,8 +21,6 @@ import styles from "./style.module.scss";
 
 const CountryListing = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const newData = location.state?.newData;
   const data = useSelector((state) => state.country?.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState({ id: "", name: "" });
@@ -42,22 +38,10 @@ const CountryListing = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (Array.isArray(data)) {
-      setCountryListing(data);
-    }
-  }, [data]);
-
-  useEffect(() => {
     if (data) {
       setCountryListing(data);
     }
-  }, []);
-
-  useEffect(() => {
-    if (newData) {
-      setCountryListing((prevData) => [...prevData, newData]);
-    }
-  }, [newData]);
+  }, [data]);
 
   const handleDelete = (id, name) => {
     setOpen(true);
@@ -71,7 +55,7 @@ const CountryListing = () => {
     if (id)
       await dispatch(deleteCountry(id))
         .unwrap()
-        .then((res) => {
+        .then(() => {
           setOpen(false);
           dispatch(getAllCountries());
         });

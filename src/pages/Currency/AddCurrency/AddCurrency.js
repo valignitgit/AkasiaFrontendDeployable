@@ -79,8 +79,15 @@ const AddCurrency = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      dispatch(createCurrency(currencyData));
-      navigate("/currency", { state: { newData: currencyData } });
+      try {
+        const response = await dispatch(createCurrency(currencyData)).unwrap();
+        console.log(response);
+        if (response.data) {
+          navigate("/currency");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

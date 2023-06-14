@@ -12,8 +12,8 @@ const createPortfolio = (data) => {
   return api.post("/portfolio", data);
 };
 
-const updatePortfolio = (id, data) => {
-  return api.patch(`/portfolio/${id}`, data);
+const updatePortfolio = (data) => {
+  return api.patch("/portfolio", data);
 };
 
 const deletePortfolio = (id) => {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import { Box, FormControl, MenuItem, Select } from "@mui/material";
@@ -24,8 +23,6 @@ import styles from "./styles.module.scss";
 
 const PortfolioListing = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const newData = location.state?.newData;
   const data = useSelector((state) => state.portfolio?.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState({
@@ -36,7 +33,7 @@ const PortfolioListing = () => {
   const [portfolioList, setPortfolioList] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
-
+  console.log("portfolioList", portfolioList);
   const handleClose = () => {
     setOpen(false);
   };
@@ -47,22 +44,11 @@ const PortfolioListing = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (Array.isArray(data)) {
+    if (data) {
       setPortfolioList(data);
     }
   }, [data]);
 
-  useEffect(() => {
-    if (data) {
-      setPortfolioList(data);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (newData) {
-      setPortfolioList((prevData) => [...prevData, newData]);
-    }
-  }, [newData]);
   const handleDelete = (id, name) => {
     setOpen(true);
     setDeletedItem({

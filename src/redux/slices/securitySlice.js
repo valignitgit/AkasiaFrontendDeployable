@@ -54,9 +54,9 @@ export const getSecurityById = createAsyncThunk("security/get", async (id) => {
 
 export const updateSecurity = createAsyncThunk(
   "security/update",
-  async ({ id, data }) => {
+  async (data) => {
     try {
-      const response = await SecurityService.updateSecurity(id, data);
+      const response = await SecurityService.updateSecurity(data);
       return response.data;
     } catch (error) {
       if (error.response) {

@@ -54,9 +54,9 @@ export const getCurrencyById = createAsyncThunk("currency/get", async (id) => {
 
 export const updateCurrency = createAsyncThunk(
   "currency/update",
-  async ({ id, data }) => {
+  async (data) => {
     try {
-      const response = await CurrencyService.updateCurrency(id, data);
+      const response = await CurrencyService.updateCurrency(data);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -159,7 +159,6 @@ const currencySlice = createSlice({
         const { currency_id } = action.payload;
         state.status = action.payload.status.status;
         state.message = action.payload.status.message;
-
         if (currency_id) {
           state.data = state.data.filter(
             (item) => item.currency_id !== currency_id

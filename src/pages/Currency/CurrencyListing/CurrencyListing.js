@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import { FormControl, MenuItem, Select } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Pagination from "@mui/material/Pagination";
@@ -22,8 +21,6 @@ import styles from "./style.module.scss";
 
 const CurrencyListing = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const newData = location.state?.newData;
   const data = useSelector((state) => state.currency?.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState({ id: "", name: "" });
@@ -40,22 +37,11 @@ const CurrencyListing = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (Array.isArray(data)) {
-      setCurrencyListing(data);
-    }
-  }, [data]);
-
-  useEffect(() => {
     if (data) {
       setCurrencyListing(data);
     }
   }, [data]);
 
-  useEffect(() => {
-    if (newData) {
-      setCurrencyListing((prevData) => [...prevData, newData]);
-    }
-  }, [newData]);
   const handleDelete = (id, name) => {
     setOpen(true);
     setDeletedItem({

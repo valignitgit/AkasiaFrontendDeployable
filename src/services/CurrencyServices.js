@@ -12,8 +12,8 @@ const createCurrency = (data) => {
   return api.post("/currency", data);
 };
 
-const updateCurrency = (id, data) => {
-  return api.put(`/currency/${id}`, data);
+const updateCurrency = (data) => {
+  return api.put("/currency", data);
 };
 
 const deleteCurrency = (id) => {
