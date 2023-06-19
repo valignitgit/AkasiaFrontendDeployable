@@ -58,9 +58,18 @@ const BrokerListingPage = () => {
     if (id) {
       await dispatch(deleteBroker(id))
         .unwrap()
-        .then(() => {
+        .then((res) => {
+          console.log(res.data);
+
           setOpen(false);
           dispatch(getAllBrokers());
+          if (
+            res.data == null &&
+            res.data.status.status === 400 &&
+            res.data.status.status === "could not execute statement"
+          ) {
+            console.log("not deleted");
+          }
         });
     }
   };

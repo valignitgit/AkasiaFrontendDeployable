@@ -51,13 +51,18 @@ const CurrencyListing = () => {
   };
 
   const onDelete = async (id) => {
-    if (id)
-      await dispatch(deleteCurrency(id))
-        .unwrap()
-        .then(() => {
-          setOpen(false);
-          dispatch(getAllCurrencies());
-        });
+    try {
+      const res = await dispatch(deleteCurrency(id)).unwrap();
+      setOpen(false);
+      dispatch(getAllCurrencies());
+      const { status, message } = res.data.status;
+      if (status === 400 && message === "could not execute statement") {
+        setOpen(false);
+        alert("currency is already referred");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handlePageChange = (event, value) => {
@@ -83,7 +88,7 @@ const CurrencyListing = () => {
     </Link>
   );
 
-  const renderDialog = () => {
+  const renderDeleteDialog = () => {
     const renderActionButtons = () => {
       return (
         <>
@@ -160,7 +165,7 @@ const CurrencyListing = () => {
       {renderAddCurrencyButton()}
       {renderCurrencyList()}
       {currencyListing.length > 0 && renderPagination()}
-      {renderDialog()}
+      {renderDeleteDialog()}
     </>
   );
 };
