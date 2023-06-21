@@ -8,12 +8,15 @@ import Pagination from "@mui/material/Pagination";
 import Button from "components/Button/CustomButton";
 import DialogBox from "components/DialogBox/DialogBox";
 import Loader from "components/Loader/Loader";
+import CustomNotification from "components/Notification/CustomNotification";
 
 import {
   deleteCountry,
   getAllCountries,
   setCurrentData,
 } from "redux/slices/countrySlice";
+
+import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import CountryCard from "../CountryCard/CountryCard";
 
@@ -27,6 +30,27 @@ const CountryListing = () => {
   const [countryListing, setCountryListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
+  const [notification, setNotification] = useState({
+    open: false,
+    type: "",
+    message: "",
+  });
+
+  const handleOpenNotification = (notificationType, notificationMessage) => {
+    setNotification({
+      open: true,
+      type: notificationType,
+      message: notificationMessage,
+    });
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({
+      open: false,
+      type: "",
+      message: "",
+    });
+  };
 
   const handleClose = () => {
     setOpen(false);
@@ -52,13 +76,30 @@ const CountryListing = () => {
   };
 
   const onDelete = async (id) => {
-    if (id)
+    if (id) {
       await dispatch(deleteCountry(id))
         .unwrap()
-        .then(() => {
-          setOpen(false);
-          dispatch(getAllCountries());
+        .then((res) => {
+          if (
+            res.data === null &&
+            res.status.status === 200 &&
+            res.status.message === "Deleted Successfully."
+          ) {
+            setOpen(false);
+            handleOpenNotification(SUCCESS, "Deleted Successfully!");
+            dispatch(getAllCountries());
+          } else if (
+            res.data.data === null &&
+            res.data.status.status === 400 &&
+            (res.data.status.message === "Country Not Deleted Successfully" ||
+              res.data.status.message === "could not execute statement")
+          ) {
+            setOpen(false);
+            handleOpenNotification(ERROR, "Country is already referred!");
+            dispatch(getAllCountries());
+          }
         });
+    }
   };
 
   const handlePageChange = (event, value) => {
@@ -158,12 +199,24 @@ const CountryListing = () => {
     );
   };
 
+  const renderNotification = () => {
+    return (
+      <CustomNotification
+        open={notification.open}
+        type={notification.type}
+        message={notification.message}
+        handleClose={handleCloseNotification}
+      />
+    );
+  };
+
   return (
     <>
       {renderAddCountryButton()}
       {renderCountryList()}
       {renderPagination()}
       {renderDialog()}
+      {renderNotification()}
     </>
   );
 };

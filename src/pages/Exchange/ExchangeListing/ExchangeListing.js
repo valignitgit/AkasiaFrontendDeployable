@@ -6,12 +6,15 @@ import { FormControl, Grid, MenuItem, Pagination, Select } from "@mui/material";
 import Button from "components/Button/CustomButton";
 import DialogBox from "components/DialogBox/DialogBox";
 import Loader from "components/Loader/Loader";
+import CustomNotification from "components/Notification/CustomNotification";
 
 import {
   deleteExchange,
   getAllExchanges,
   setCurrentData,
 } from "redux/slices/exchangeSlice";
+
+import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import ExchangeCard from "../ExchangeCard/ExchangeCard";
 
@@ -28,6 +31,28 @@ const ExchangeListing = () => {
   const [exchangeListing, setExchangeListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
+  const [notification, setNotification] = useState({
+    open: false,
+    type: "",
+    message: "",
+  });
+
+  const handleOpenNotification = (notificationType, notificationMessage) => {
+    setNotification({
+      open: true,
+      type: notificationType,
+      message: notificationMessage,
+    });
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({
+      open: false,
+      type: "",
+      message: "",
+    });
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -52,13 +77,29 @@ const ExchangeListing = () => {
   };
 
   const onDelete = async (id) => {
-    if (id)
+    if (id) {
       await dispatch(deleteExchange(id))
         .unwrap()
-        .then(() => {
-          setOpen(false);
-          dispatch(getAllExchanges());
+        .then((res) => {
+          if (
+            res.data === null &&
+            res.status.status === 200 &&
+            res.status.message === "Deleted Successfully."
+          ) {
+            setOpen(false);
+            handleOpenNotification(SUCCESS, "Deleted Successfully!");
+            dispatch(getAllExchanges());
+          } else if (
+            res.data.data === null &&
+            res.data.status.status === 400 &&
+            res.data.status.message === "could not execute statement"
+          ) {
+            setOpen(false);
+            handleOpenNotification(ERROR, "Exchange is already referred!");
+            dispatch(getAllExchanges());
+          }
         });
+    }
   };
 
   const handlePageChange = (event, value) => {
@@ -158,12 +199,24 @@ const ExchangeListing = () => {
     );
   };
 
+  const renderNotification = () => {
+    return (
+      <CustomNotification
+        open={notification.open}
+        type={notification.type}
+        message={notification.message}
+        handleClose={handleCloseNotification}
+      />
+    );
+  };
+
   return (
     <>
       {renderAddExchangeButton()}
       {renderExchangeList()}
       {exchangeListing.length > 0 && renderPagination()}
       {renderDialog()}
+      {renderNotification()}
     </>
   );
 };

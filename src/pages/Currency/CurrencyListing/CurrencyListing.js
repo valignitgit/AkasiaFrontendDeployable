@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -8,12 +9,15 @@ import Pagination from "@mui/material/Pagination";
 import Button from "components/Button/CustomButton";
 import DialogBox from "components/DialogBox/DialogBox";
 import Loader from "components/Loader/Loader";
+import CustomNotification from "components/Notification/CustomNotification";
 
 import {
   deleteCurrency,
   getAllCurrencies,
   setCurrentData,
 } from "redux/slices/currencySlice";
+
+import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import CurrencyCard from "../CurrencyCard/CurrencyCard";
 
@@ -27,6 +31,28 @@ const CurrencyListing = () => {
   const [currencyListing, setCurrencyListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
+  const [notification, setNotification] = useState({
+    open: false,
+    type: "",
+    message: "",
+  });
+
+  const handleOpenNotification = (notificationType, notificationMessage) => {
+    setNotification({
+      open: true,
+      type: notificationType,
+      message: notificationMessage,
+    });
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({
+      open: false,
+      type: "",
+      message: "",
+    });
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -51,17 +77,31 @@ const CurrencyListing = () => {
   };
 
   const onDelete = async (id) => {
-    try {
-      const res = await dispatch(deleteCurrency(id)).unwrap();
-      setOpen(false);
-      dispatch(getAllCurrencies());
-      const { status, message } = res.data.status;
-      if (status === 400 && message === "could not execute statement") {
-        setOpen(false);
-        alert("currency is already referred");
-      }
-    } catch (e) {
-      console.log(e);
+    if (id) {
+      await dispatch(deleteCurrency(id))
+        .unwrap()
+        .then((res) => {
+          console.log(res);
+          if (
+            res.data === null &&
+            res.status.status === 200 &&
+            res.status.message === "Deleted Successfully."
+          ) {
+            console.log("res", res.status);
+            setOpen(false);
+            handleOpenNotification(SUCCESS, "Deleted Successfully!");
+            dispatch(getAllCurrencies());
+          } else if (
+            res.data.data === null &&
+            res.data.status.status === 400 &&
+            res.data.status.message === "could not execute statement"
+          ) {
+            setOpen(false);
+            handleOpenNotification(ERROR, "Currency is already referred!");
+            dispatch(getAllCurrencies());
+            console.log("not deleted");
+          }
+        });
     }
   };
 
@@ -160,12 +200,24 @@ const CurrencyListing = () => {
     );
   };
 
+  const renderNotification = () => {
+    return (
+      <CustomNotification
+        open={notification.open}
+        type={notification.type}
+        message={notification.message}
+        handleClose={handleCloseNotification}
+      />
+    );
+  };
+
   return (
     <>
       {renderAddCurrencyButton()}
       {renderCurrencyList()}
       {currencyListing.length > 0 && renderPagination()}
       {renderDeleteDialog()}
+      {renderNotification()}
     </>
   );
 };

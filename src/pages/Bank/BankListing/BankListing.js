@@ -6,12 +6,15 @@ import { FormControl, Grid, MenuItem, Pagination, Select } from "@mui/material";
 import Button from "components/Button/CustomButton";
 import DialogBox from "components/DialogBox/DialogBox";
 import Loader from "components/Loader/Loader";
+import CustomNotification from "components/Notification/CustomNotification";
 
 import {
   deleteBank,
   getAllBanks,
   setCurrentData,
 } from "redux/slices/bankSlice";
+
+import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import BankCard from "../BankCard/BankCard";
 
@@ -26,6 +29,27 @@ const BankListing = () => {
     id: "",
     name: "",
   });
+  const [notification, setNotification] = useState({
+    open: false,
+    type: "",
+    message: "",
+  });
+
+  const handleOpenNotification = (notificationType, notificationMessage) => {
+    setNotification({
+      open: true,
+      type: notificationType,
+      message: notificationMessage,
+    });
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({
+      open: false,
+      type: "",
+      message: "",
+    });
+  };
 
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
@@ -54,13 +78,30 @@ const BankListing = () => {
   };
 
   const onDelete = async (id) => {
-    if (id)
+    if (id) {
       await dispatch(deleteBank(id))
         .unwrap()
-        .then(() => {
-          setOpen(false);
-          dispatch(getAllBanks());
+        .then((res) => {
+          console.log(res);
+          if (
+            res.data === null &&
+            res.status.status === 200 &&
+            res.status.message === "Deleted Successfully"
+          ) {
+            setOpen(false);
+            handleOpenNotification(SUCCESS, "Deleted Successfully!");
+            dispatch(getAllBanks());
+          } else if (
+            res.data.data === null &&
+            res.data.status.status === 400 &&
+            res.data.status.message === "could not execute statement"
+          ) {
+            setOpen(false);
+            handleOpenNotification(ERROR, "Bank is already referred!");
+            dispatch(getAllBanks());
+          }
         });
+    }
   };
 
   const handlePageChange = (event, value) => {
@@ -156,6 +197,16 @@ const BankListing = () => {
       </div>
     );
   };
+  const renderNotification = () => {
+    return (
+      <CustomNotification
+        open={notification.open}
+        type={notification.type}
+        message={notification.message}
+        handleClose={handleCloseNotification}
+      />
+    );
+  };
 
   return (
     <>
@@ -163,6 +214,7 @@ const BankListing = () => {
       {renderBankList()}
       {bankList.length > 0 && renderPagination()}
       {renderDialog()}
+      {renderNotification()}
     </>
   );
 };

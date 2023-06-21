@@ -17,10 +17,12 @@ import {
 import logo from "assets/images/logo.jpeg";
 
 import Button from "components/Button/CustomButton";
+import CustomNotification from "components/Notification/CustomNotification";
 
 import { login, setLoginData } from "redux/slices/authSlice";
 
 import { getEmptyErrorState } from "utils/AppUtil";
+import { WARNING } from "utils/constants/constant";
 import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
 import { isEmptyString } from "utils/Validator";
 
@@ -29,6 +31,27 @@ import styles from "./style.module.scss";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [notification, setNotification] = useState({
+    open: false,
+    type: "",
+    message: "",
+  });
+
+  const handleOpen = (notificationType, notificationMessage) => {
+    setNotification({
+      open: true,
+      type: notificationType,
+      message: notificationMessage,
+    });
+  };
+
+  const handleClose = () => {
+    setNotification({
+      open: false,
+      type: "",
+      message: "",
+    });
+  };
 
   const loginData = useSelector((state) => state.auth.loginData);
 
@@ -90,13 +113,14 @@ const Login = () => {
           response.status === 400 &&
           response.data === "Bad credentials"
         ) {
-          alert("Password is incorrect");
+          handleOpen(WARNING, "Password is incorrect!");
+          // alert("Password is incorrect");
         } else if (
           response &&
           response.status === 404 &&
           response.data === "No value present | No User Found"
         ) {
-          alert("User Id is incorrect");
+          handleOpen(WARNING, "User Id is incorrect!");
         }
       } catch (error) {
         console.log("error", error);
@@ -171,6 +195,12 @@ const Login = () => {
               >
                 Login
               </Button>
+              <CustomNotification
+                open={notification.open}
+                type={notification.type}
+                message={notification.message}
+                handleClose={handleClose}
+              />
             </Box>
           </Paper>
         </Grid>

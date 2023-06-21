@@ -8,12 +8,15 @@ import Pagination from "@mui/material/Pagination";
 import Button from "components/Button/CustomButton";
 import DialogBox from "components/DialogBox/DialogBox";
 import Loader from "components/Loader/Loader";
+import CustomNotification from "components/Notification/CustomNotification";
 
 import {
   deleteBroker,
   getAllBrokers,
   setCurrentData,
 } from "redux/slices/brokerSlice";
+
+import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import BrokerCard from "../BrokerCard/BrokerCard";
 
@@ -30,6 +33,26 @@ const BrokerListingPage = () => {
   const [brokerListing, setBrokerListing] = useState(data || []);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
+  const [notification, setNotification] = useState({
+    open: false,
+    type: "",
+    message: "",
+  });
+  const handleOpenNotification = (notificationType, notificationMessage) => {
+    setNotification({
+      open: true,
+      type: notificationType,
+      message: notificationMessage,
+    });
+  };
+
+  const handleCloseNotification = () => {
+    setNotification({
+      open: false,
+      type: "",
+      message: "",
+    });
+  };
 
   const handleClose = () => {
     setOpen(false);
@@ -59,16 +82,23 @@ const BrokerListingPage = () => {
       await dispatch(deleteBroker(id))
         .unwrap()
         .then((res) => {
-          console.log(res.data);
-
-          setOpen(false);
-          dispatch(getAllBrokers());
+          console.log(res);
           if (
-            res.data == null &&
-            res.data.status.status === 400 &&
-            res.data.status.status === "could not execute statement"
+            res.data === null &&
+            res.status.status === 200 &&
+            res.status.message === "Deleted Successfully"
           ) {
-            console.log("not deleted");
+            setOpen(false);
+            handleOpenNotification(SUCCESS, "Deleted Successfully!");
+            dispatch(getAllBrokers());
+          } else if (
+            res.data.data === null &&
+            res.data.status.status === 400 &&
+            res.data.status.message === "could not execute statement"
+          ) {
+            setOpen(false);
+            handleOpenNotification(ERROR, "Broker is already referred!");
+            dispatch(getAllBrokers());
           }
         });
     }
@@ -171,12 +201,24 @@ const BrokerListingPage = () => {
     );
   };
 
+  const renderNotification = () => {
+    return (
+      <CustomNotification
+        open={notification.open}
+        type={notification.type}
+        message={notification.message}
+        handleClose={handleCloseNotification}
+      />
+    );
+  };
+
   return (
     <>
       {renderAddBrokerButton()}
       {renderBrokerList()}
       {brokerListing.length > 0 && renderPagination()}
       {renderDialog()}
+      {renderNotification()}
     </>
   );
 };

@@ -13,7 +13,7 @@ const createPortfolio = (data) => {
 };
 
 const updatePortfolio = (data) => {
-  return api.patch("/portfolio", data);
+  return api.put("/portfolio", data);
 };
 
 const deletePortfolio = (id) => {
