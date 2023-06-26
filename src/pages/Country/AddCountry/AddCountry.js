@@ -142,6 +142,7 @@ const AddCountry = () => {
                   value={country_name_ar}
                   label="Country Name Arabic"
                   onChange={(e) => onChange(e)}
+                  className="textInput__rightAlighed"
                 />
                 {error.country_name_ar.errorState && (
                   <span className="error">
@@ -156,7 +157,7 @@ const AddCountry = () => {
                   >
                     Submit
                   </Button>
-                  <Link to="/exchange">
+                  <Link to="/country">
                     <Button
                       variant="filled"
                       type="submit"

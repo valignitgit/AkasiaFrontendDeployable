@@ -53,11 +53,6 @@ h6,
 p {
   margin: 0;
 }
-.form_styles {
-  padding: 15px;
-  border-radius: 16px;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-}
 .default_margin {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -137,4 +132,61 @@ p {
   @include flex_center;
   width: 100%;
   @include gap(10px);
+  @include margin_top(12px);
+}
+
+.textInput__rightAlighed {
+  .MuiOutlinedInput-input {
+    text-align: right;
+  }
+}
+
+//----- form styles -----//
+
+.form_styles {
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.form__gridCenter {
+  @include align_items(center);
+  @include justify_content(center);
+  margin-top: 50px;
+}
+
+.form__container {
+  @include flexbox;
+  @include flex_directions(column);
+  @include align_items(flex-start);
+  @include justify_content(center);
+  background-color: var(--default);
+  padding: 20px;
+}
+
+.form__headingWrapper {
+  @include flexbox;
+  @include flex_directions(column);
+  @include align_items(center);
+}
+
+.form__icon {
+  background-color: var(--violate);
+}
+.form__submitBtn {
+  @include align_self(center);
+}
+.form__textInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}
+
+.form__selectInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}
+
+.form__checkBoxInput {
+  @include margin_left(0);
+  @include margin_right(0);
 }

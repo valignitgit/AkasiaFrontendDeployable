@@ -189,8 +189,8 @@ const UpdateBroker = () => {
                 name="broker_name_ar"
                 value={broker_name_ar}
                 label="Broker Name Arabic"
-                autoComplete="current-password"
                 onChange={(e) => onChange(e)}
+                className="textInput__rightAlighed"
               />
               {error.broker_name_ar.errorState && (
                 <span className="error">

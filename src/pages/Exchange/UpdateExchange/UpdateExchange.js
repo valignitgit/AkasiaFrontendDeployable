@@ -154,8 +154,8 @@ const UpdateExchange = () => {
                 name="exchange_name_ar"
                 value={exchange_name_ar}
                 label="Exchange Name Arabic"
-                autoComplete="current-password"
                 onChange={(e) => onChange(e)}
+                className="textInput__rightAlighed"
               />
               {error.exchange_name_ar.errorState && (
                 <span className="error">

@@ -178,7 +178,7 @@ const securityDetails = () => {
                     className={styles.securityDetails__button}
                     onClick={() => dispatch(setCurrentData())}
                   >
-                    Ok
+                    Back
                   </Button>
                 </Link>
               </CardActions>

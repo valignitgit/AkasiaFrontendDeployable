@@ -72,7 +72,7 @@ const BankDetails = () => {
                     className={styles.bankDetails__button}
                     onClick={() => dispatch(setCurrentData())}
                   >
-                    Ok
+                    Back
                   </Button>
                 </Link>
               </CardActions>

@@ -71,7 +71,7 @@ const CountryDetails = () => {
                     className={styles.countryDetails__button}
                     onClick={() => dispatch(setCurrentData())}
                   >
-                    Ok
+                    Back
                   </Button>
                 </Link>
               </CardActions>

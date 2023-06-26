@@ -75,7 +75,7 @@ const ExchangeDetails = () => {
                     className={styles.exchangeDetails__button}
                     onClick={() => dispatch(setCurrentData())}
                   >
-                    Ok
+                    Back
                   </Button>
                 </Link>
               </CardActions>

@@ -39,7 +39,7 @@ const PortfolioDetails = () => {
             spacing={4}
             className={styles.portfolioDetails__container}
           >
-            <Grid item xs={12} sm={6} md={6} lg={5} xl={4}>
+            <Grid item xs={12} sm={6} md={6} lg={6} xl={5}>
               <h1 className={styles.portfolioDetails__heading}>
                 Portfolio Details
               </h1>
@@ -124,7 +124,7 @@ const PortfolioDetails = () => {
                       shape="square"
                       onClick={() => dispatch(setCurrentData())}
                     >
-                      Ok
+                      Back
                     </Button>
                   </Link>
                 </div>

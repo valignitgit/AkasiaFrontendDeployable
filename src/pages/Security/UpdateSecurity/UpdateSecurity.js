@@ -233,7 +233,7 @@ const AddSecurity = () => {
                 label="Security Name Arabic"
                 onChange={(e) => onChange(e)}
                 autoComplete="off"
-                className={styles.addsecurity__textInput}
+                className={`${styles.addsecurity__textInput} textInput__rightAlighed`}
               />
               {error.security_name_ar.errorState && (
                 <span className="error">

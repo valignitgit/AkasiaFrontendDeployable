@@ -7,6 +7,7 @@ import countryReducer from "./slices/countrySlice";
 import currencyReducer from "./slices/currencySlice";
 import exchangeReducer from "./slices/exchangeSlice";
 import layoutReducer from "./slices/layoutSlice";
+import paymentChannelReducer from "./slices/paymentChannelSlice";
 import portfolioSecurityReducer from "./slices/portfolioSecuritySlice";
 import portfolioReducer from "./slices/portfolioSlice";
 import securityReducer from "./slices/securitySlice";
@@ -25,6 +26,7 @@ export const store = configureStore({
     exchange: exchangeReducer,
     country: countryReducer,
     broker: brokerReducer,
+    paymentChannel: paymentChannelReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

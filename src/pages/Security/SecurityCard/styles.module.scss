@@ -6,7 +6,7 @@
   border-radius: var(--card-border-radius);
   padding: 12px;
   height: 220px;
-  max-height: 90%;
+  min-height: 90%;
   @include flex_wrap(wrap);
   max-width: 90%;
   width: 450px;
@@ -17,7 +17,7 @@
   }
   @include lg {
     height: 240px;
-    max-height: 80%;
+    min-height: 80%;
   }
 }
 

@@ -183,6 +183,7 @@ const AddSecurityTable = () => {
               placeholder="Weightage"
               label="Weightage"
               value={weightage_pct}
+              className="textInput__rightAlighed"
             />
             {error.weightage.errorState && (
               <span className="error">{error.weightage.errorMessage}</span>

@@ -84,6 +84,20 @@ const UpdateBroker = lazy(() =>
   import("./pages/Broker/UpdateBroker/UpdateBroker")
 );
 
+const PaymentChannelListing = lazy(() =>
+  import("./pages/PaymentChannel/PaymentChannelListing/PaymentChannelListing")
+);
+const AddPaymentChannel = lazy(() =>
+  import("./pages/PaymentChannel/AddPaymentChannel/AddPaymentChannel")
+);
+
+const PaymentChannelDetails = lazy(() =>
+  import("./pages/PaymentChannel/PaymentChannelDetails/PaymentChannelDetails")
+);
+const UpdatePaymentChannel = lazy(() =>
+  import("./pages/PaymentChannel/UpdatePaymentChannel/UpdatePaymentChannel")
+);
+
 const App = () => {
   return (
     <>
@@ -150,6 +164,17 @@ const App = () => {
                     <Route path=":id" element={<BrokerDetails />} />
                     <Route path="add" element={<AddBroker />} />
                     <Route path="update/:id" element={<UpdateBroker />} />
+                  </Route>
+                </Route>
+                <Route element={<RequireAuth />}>
+                  <Route path="payment-channel">
+                    <Route index element={<PaymentChannelListing />} />
+                    <Route path=":id" element={<PaymentChannelDetails />} />
+                    <Route path="add" element={<AddPaymentChannel />} />
+                    <Route
+                      path="update/:id"
+                      element={<UpdatePaymentChannel />}
+                    />
                   </Route>
                 </Route>
               </Route>

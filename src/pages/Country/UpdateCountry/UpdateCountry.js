@@ -154,8 +154,8 @@ const UpdateCountry = () => {
                 name="country_name_ar"
                 value={country_name_ar}
                 label="Country Name Arabic"
-                autoComplete="current-password"
                 onChange={(e) => onChange(e)}
+                className="textInput__rightAlighed"
               />
               {error.country_name_ar.errorState && (
                 <span className="error">

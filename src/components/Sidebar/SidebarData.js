@@ -6,6 +6,7 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import LanguageIcon from "@mui/icons-material/Language";
 import MoneyIcon from "@mui/icons-material/Money";
+import PaymentIcon from "@mui/icons-material/Payment";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import SecurityIcon from "@mui/icons-material/Security";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
@@ -66,6 +67,11 @@ function SidebarData() {
       label: "Broker",
       icon: <PeopleAltIcon />,
       link: "/broker",
+    },
+    {
+      label: "Payment Channel",
+      icon: <PaymentIcon />,
+      link: "/payment-channel",
     },
   ];
 

@@ -166,15 +166,15 @@ const PortfolioListing = () => {
   const currentPortfolio = Array.isArray(portfolioList)
     ? portfolioList.slice(firstDataIndex, lastDataIndex)
     : [];
-  const renderAddPortfolioButton = () => (
-    <Link to="/portfolio/add">
-      <Button variant="filled">Add Portfolio</Button>
-    </Link>
-  );
+
   const renderFilterDropDown = () => {
     return (
       <>
-        <Box>
+        <Box className={styles.porfolioListing__buttonsContainer}>
+          <Link to="/portfolio/add">
+            <Button variant="filled">Add Portfolio</Button>
+          </Link>
+
           <Box className={styles.portfolioListing__filterContainer}>
             <Button
               variant="filled"
@@ -291,7 +291,7 @@ const PortfolioListing = () => {
 
   return (
     <>
-      {renderAddPortfolioButton()}
+      {/* {renderAddPortfolioButton()} */}
       {portfolioList.length > 0 && renderFilterDropDown()}
       {renderPortfolioList()}
       {portfolioList.length > 0 && renderPagination()}

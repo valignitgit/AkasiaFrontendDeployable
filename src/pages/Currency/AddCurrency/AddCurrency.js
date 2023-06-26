@@ -145,6 +145,7 @@ const AddCurrency = () => {
                   value={currency_name_ar}
                   label="Currency Name Arabic"
                   onChange={(e) => onChange(e)}
+                  className="textInput__rightAlighed"
                 />
                 {error.currency_name_ar.errorState && (
                   <span className="error">

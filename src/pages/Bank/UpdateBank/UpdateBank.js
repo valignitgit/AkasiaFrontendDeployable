@@ -150,7 +150,7 @@ const UpdateBank = () => {
                 name="bank_name_ar"
                 value={bank_name_ar}
                 label="Bank Name Arabic"
-                autoComplete="current-password"
+                className="textInput__rightAlighed"
                 onChange={(e) => onChange(e)}
               />
               {error.bank_name_ar.errorState && (

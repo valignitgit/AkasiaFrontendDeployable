@@ -219,6 +219,7 @@ const AddBroker = () => {
                   value={broker_name_ar}
                   label="Broker Name Arabic"
                   onChange={(e) => onChange(e)}
+                  className="textInput__rightAlighed"
                 />
                 {error.broker_name_ar.errorState && (
                   <span className="error">

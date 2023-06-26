@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Box } from "@mui/material";
 
 import Navbar from "components/NavBar/Navbar";
@@ -11,10 +11,18 @@ import { toggleMobileOpen } from "redux/slices/layoutSlice";
 const Layout = () => {
   const mobileOpen = useSelector((state) => state.layout.mobileOpen);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const containerRef = useRef(null);
 
   const handleDrawerToggle = () => {
     dispatch(toggleMobileOpen());
   };
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = 0;
+    }
+  }, [location]);
 
   return (
     <>
@@ -29,6 +37,7 @@ const Layout = () => {
           overflow: "auto",
           maxHeight: "calc(100vh - 70px)",
         }}
+        ref={containerRef}
       >
         <Box
           sx={{
@@ -37,6 +46,8 @@ const Layout = () => {
               sm: "15px",
               md: "12px 16px 30px 260px",
             },
+            // overflow: "auto",
+            // maxHeight: "100%",
           }}
         >
           <Outlet />

@@ -223,7 +223,7 @@ const AddPortfolio = () => {
                   label="Portfolio Name Arabic"
                   onChange={(e) => onChange(e)}
                   autoComplete="off"
-                  className={styles.addPortfolio__textInput}
+                  className={`${styles.addPortfolio__textInput} textInput__rightAlighed`}
                 />
                 {error.portfolio_name_ar.errorState && (
                   <span className="error">
@@ -263,7 +263,7 @@ const AddPortfolio = () => {
                   onChange={(e) => onChange(e)}
                   placeholder="Enter the value in decimal point like 15.5"
                   autoComplete="off"
-                  className={styles.addPortfolio__textInput}
+                  className={`${styles.addPortfolio__textInput} textInput__rightAlighed`}
                 />
                 {error.avg_growth_pct.errorState && (
                   <span className="error">

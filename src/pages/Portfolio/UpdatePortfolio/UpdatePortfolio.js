@@ -241,7 +241,7 @@ const UpdatePortfolio = () => {
                   label="Portfolio Name Arabic"
                   onChange={(e) => onChange(e)}
                   autoComplete="off"
-                  className={styles.addPortfolio__textInput}
+                  className={`${styles.addPortfolio__textInput} textInput__rightAlighed`}
                 />
                 {error.portfolio_name_ar.errorState && (
                   <span className="error">

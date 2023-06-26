@@ -143,6 +143,7 @@ const AddExchange = () => {
                   value={exchange_name_ar}
                   label="Exchange Name Arabic"
                   onChange={(e) => onChange(e)}
+                  className="textInput__rightAlighed"
                 />
                 {error.exchange_name_ar.errorState && (
                   <span className="error">
