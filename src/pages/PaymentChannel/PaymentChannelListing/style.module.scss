@@ -1,12 +1,12 @@
 @import "styles/mixins";
 @import "styles/variables";
 
-.currencyListing__container {
+.paymentChannelListing__container {
   @include margin_bottom(30px);
   min-height: 70vh;
 }
 
-.currencyListing__paginationContainer {
+.paymentChannelListing__paginationContainer {
   @include flexbox;
   @include justify_content(flex-end);
   @include align_items(center);
@@ -14,6 +14,6 @@
   @include margin_bottom(20px);
 }
 
-.addCurrencyButton {
+.addPaymentChannelButton {
   @include margin_bottom(20px);
 }

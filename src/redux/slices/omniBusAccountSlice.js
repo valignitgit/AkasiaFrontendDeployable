@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import PaymentChannelService from "services/PaymentChannelServices";
+import OmniBusAccountService from "services/OmniBusAccountServices";
 
 const initialState = {
   data: [
@@ -18,7 +18,7 @@ const initialState = {
   message: "",
   loading: false,
   currentData: {
-    paymentChannelId: undefined,
+    omniBusAccountId: undefined,
     currency_name: "Saudi Riyal",
     currency_name_ar: "Saudi Riyal",
   },
@@ -26,11 +26,11 @@ const initialState = {
   error: null,
 };
 
-export const getAllPaymentChannels = createAsyncThunk(
-  "paymentChannel/getAll",
+export const getAllOmniBusAccounts = createAsyncThunk(
+  "omniBusAccount/getAll",
   async () => {
     try {
-      const response = await PaymentChannelService.getAllPaymentChannels();
+      const response = await OmniBusAccountService.getAllOmniBusAccounts();
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -41,11 +41,11 @@ export const getAllPaymentChannels = createAsyncThunk(
   }
 );
 
-export const createPaymentChannel = createAsyncThunk(
-  "paymentChannel/create",
+export const createOmniBusAccount = createAsyncThunk(
+  "omniBusAccount/create",
   async (data) => {
     try {
-      const response = await PaymentChannelService.createPaymentChannel(data);
+      const response = await OmniBusAccountService.createOmniBusAccount(data);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -56,11 +56,11 @@ export const createPaymentChannel = createAsyncThunk(
   }
 );
 
-export const getPaymentChannelById = createAsyncThunk(
-  "paymentChannel/get",
+export const getOmniBusAccountById = createAsyncThunk(
+  "omniBusAccount/get",
   async (id) => {
     try {
-      const response = await PaymentChannelService.getPaymentChannelById(id);
+      const response = await OmniBusAccountService.getOmniBusAccountById(id);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -71,11 +71,11 @@ export const getPaymentChannelById = createAsyncThunk(
   }
 );
 
-export const updatePaymentChannel = createAsyncThunk(
-  "paymentChannel/update",
+export const updateOmniBusAccount = createAsyncThunk(
+  "omniBusAccount/update",
   async (data) => {
     try {
-      const response = await PaymentChannelService.updatePaymentChannel(data);
+      const response = await OmniBusAccountService.updateOmniBusAccount(data);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -86,11 +86,11 @@ export const updatePaymentChannel = createAsyncThunk(
   }
 );
 
-export const deletePaymentChannel = createAsyncThunk(
-  "paymentChannel/delete",
+export const deleteOmniBusAccount = createAsyncThunk(
+  "omniBusAccount/delete",
   async (id) => {
     try {
-      const response = await PaymentChannelService.deletePaymentChannel(id);
+      const response = await OmniBusAccountService.deleteOmniBusAccount(id);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -101,8 +101,8 @@ export const deletePaymentChannel = createAsyncThunk(
   }
 );
 
-const paymentChannelSlice = createSlice({
-  name: "paymentChannel",
+const omniBusAccountSlice = createSlice({
+  name: "omniBusAccount",
   initialState,
   reducers: {
     setCurrentData: (state) => {
@@ -111,84 +111,84 @@ const paymentChannelSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getAllPaymentChannels.pending, (state) => {
+      .addCase(getAllOmniBusAccounts.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getAllPaymentChannels.fulfilled, (state, action) => {
+      .addCase(getAllOmniBusAccounts.fulfilled, (state, action) => {
         state.loading = false;
         state.status = action.payload.status.status;
         state.message = action.payload.status.message;
         state.data = action.payload.data;
       })
-      .addCase(getAllPaymentChannels.rejected, (state, action) => {
+      .addCase(getAllOmniBusAccounts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(createPaymentChannel.pending, (state) => {
+      .addCase(createOmniBusAccount.pending, (state) => {
         state.loading = true;
       })
-      .addCase(createPaymentChannel.fulfilled, (state, action) => {
+      .addCase(createOmniBusAccount.fulfilled, (state, action) => {
         state.loading = false;
         state.status = action.payload.status.status;
         state.message = action.payload.status.message;
         state.data.push(action.payload.data);
       })
-      .addCase(createPaymentChannel.rejected, (state, action) => {
+      .addCase(createOmniBusAccount.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(getPaymentChannelById.pending, (state) => {
+      .addCase(getOmniBusAccountById.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getPaymentChannelById.fulfilled, (state, action) => {
+      .addCase(getOmniBusAccountById.fulfilled, (state, action) => {
         state.loading = false;
         state.status = action.payload.status.status;
         state.message = action.payload.status.message;
         state.currentData = action.payload.data;
       })
-      .addCase(getPaymentChannelById.rejected, (state, action) => {
+      .addCase(getOmniBusAccountById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(updatePaymentChannel.pending, (state) => {
+      .addCase(updateOmniBusAccount.pending, (state) => {
         state.loading = true;
       })
-      .addCase(updatePaymentChannel.fulfilled, (state, action) => {
+      .addCase(updateOmniBusAccount.fulfilled, (state, action) => {
         state.loading = false;
         state.status = action.payload.status.status;
         state.message = action.payload.status.message;
-        const updatedPaymentChannel = action.payload.data;
-        if (updatedPaymentChannel.paymentChannel_id) {
+        const updatedOmniBusAccount = action.payload.data;
+        if (updatedOmniBusAccount.omniBusAccount_id) {
           state.data = state.data.map((item) =>
-            item.paymentChannel_id === updatedPaymentChannel.paymentChannel_id
-              ? updatedPaymentChannel
+            item.omniBusAccount_id === updatedOmniBusAccount.omniBusAccount_id
+              ? updatedOmniBusAccount
               : item
           );
         }
       })
-      .addCase(updatePaymentChannel.rejected, (state, action) => {
+      .addCase(updateOmniBusAccount.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(deletePaymentChannel.pending, (state) => {
+      .addCase(deleteOmniBusAccount.pending, (state) => {
         state.loading = true;
       })
-      .addCase(deletePaymentChannel.fulfilled, (state, action) => {
+      .addCase(deleteOmniBusAccount.fulfilled, (state, action) => {
         state.loading = false;
-        const { paymentChannel_id } = action.payload;
+        const { omniBusAccount_id } = action.payload;
         state.status = action.payload.status.status;
         state.message = action.payload.status.message;
-        if (paymentChannel_id) {
+        if (omniBusAccount_id) {
           state.data = state.data.filter(
-            (item) => item.paymentChannel_id !== paymentChannel_id
+            (item) => item.omniBusAccount_id !== omniBusAccount_id
           );
         }
       })
-      .addCase(deletePaymentChannel.rejected, (state, action) => {
+      .addCase(deleteOmniBusAccount.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
-export const { setCurrentData } = paymentChannelSlice.actions;
-export default paymentChannelSlice.reducer;
+export const { setCurrentData } = omniBusAccountSlice.actions;
+export default omniBusAccountSlice.reducer;

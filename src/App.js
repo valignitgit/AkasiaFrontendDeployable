@@ -97,6 +97,19 @@ const PaymentChannelDetails = lazy(() =>
 const UpdatePaymentChannel = lazy(() =>
   import("./pages/PaymentChannel/UpdatePaymentChannel/UpdatePaymentChannel")
 );
+const OmniBusAccountListing = lazy(() =>
+  import("./pages/OmniBusAccount/OmniBusAccountListing/OmniBusAccountListing")
+);
+const AddOmniBusAccount = lazy(() =>
+  import("./pages/OmniBusAccount/AddOmniBusAccount/AddOmniBusAccount")
+);
+
+const OmniBusAccountDetails = lazy(() =>
+  import("./pages/OmniBusAccount/OmniBusAccountDetails/OmniBusAccountDetails")
+);
+const UpdateOmniBusAccount = lazy(() =>
+  import("./pages/OmniBusAccount/UpdateOmniBusAccount/UpdateOmniBusAccount")
+);
 
 const App = () => {
   return (
@@ -174,6 +187,17 @@ const App = () => {
                     <Route
                       path="update/:id"
                       element={<UpdatePaymentChannel />}
+                    />
+                  </Route>
+                </Route>
+                <Route element={<RequireAuth />}>
+                  <Route path="omnibus-account">
+                    <Route index element={<OmniBusAccountListing />} />
+                    <Route path=":id" element={<OmniBusAccountDetails />} />
+                    <Route path="add" element={<AddOmniBusAccount />} />
+                    <Route
+                      path="update/:id"
+                      element={<UpdateOmniBusAccount />}
                     />
                   </Route>
                 </Route>

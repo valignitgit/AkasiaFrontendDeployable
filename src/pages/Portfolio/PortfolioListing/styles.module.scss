@@ -5,10 +5,6 @@
   @include margin_bottom(20px);
   min-height: 70vh;
 }
-.scrollable {
-  overflow-y: scroll;
-  min-height: 60vh;
-}
 
 .porfolioListing__buttonsContainer {
   @include flexbox;

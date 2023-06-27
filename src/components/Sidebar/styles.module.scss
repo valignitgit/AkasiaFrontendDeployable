@@ -1,19 +1,6 @@
 @import "styles/variables";
 @import "styles/mixins";
 
-// // .sidebar {
-// //   background-color: var(--light-belge2) !important;
-// // }
-
-// .sidebar__menu {
-//   color: var(--dark-maroon);
-//   padding: 10px;
-// }
-
-// .sidebar__menuIcon {
-//   color: var(--dark-maroon);
-// }
-
 .logoContainer {
   @include flexbox;
   @include align_items(center);

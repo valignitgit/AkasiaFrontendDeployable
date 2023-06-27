@@ -1,0 +1,12 @@
+@import "styles/mixins";
+@import "styles/variables";
+
+.addOmniBusAccount__selectInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}
+
+.addOmniBusAccount__textInput {
+  @include margin_top(8px);
+  @include margin_bottom(8px);
+}

@@ -6,48 +6,70 @@ import Button from "components/Button/CustomButton";
 
 import styles from "./style.module.scss";
 
-const CurrencyCard = ({ currency_id, currency_name, handleDelete }) => {
-  const renderCurrencyCard = () => {
+const PaymentChannelCard = ({
+  paymentChannelId,
+  paymentChannelName,
+  paymentChannelNameAr,
+  handleDelete,
+}) => {
+  const renderPaymentChannelCard = () => {
     return (
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
-          <Card className={styles.currencyCard}>
+          <Card className={styles.paymentChannelCard}>
             <CardContent>
-              <Box className={styles.currencyCard__containWrapper}>
-                <span className={styles.currencyCard__itemKey}>
-                  Currency Id:
+              <Box className={styles.paymentChannelCard__containWrapper}>
+                <span className={styles.paymentChannelCard__itemKey}>
+                  Payment Channel ID:
                 </span>
-                <span className={styles.currencyCard__itemValue}>
-                  {currency_id}
+                <span className={styles.paymentChannelCard__itemValue}>
+                  {paymentChannelId}
                 </span>
               </Box>
               <br />
-              <Box className={styles.currencyCard__containWrapper}>
-                <span className={styles.currencyCard__itemKey}>
-                  Currency Name:
+              <Box className={styles.paymentChannelCard__containWrapper}>
+                <span className={styles.paymentChannelCard__itemKey}>
+                  Payment Channel Name:
                 </span>
-                <span className={styles.currencyCard__itemValue}>
-                  {currency_name || "Not Available"}
+                <span className={styles.paymentChannelCard__itemValue}>
+                  {paymentChannelName || "Not Available"}
+                </span>
+              </Box>
+              <br />
+              <Box className={styles.paymentChannelCard__containWrapper}>
+                <span className={styles.paymentChannelCard__itemKey}>
+                  Payment Channel Name (Arabic):
+                </span>
+                <span className={styles.paymentChannelCard__itemValue}>
+                  {paymentChannelNameAr || "Not Available"}
                 </span>
               </Box>
               <br />
             </CardContent>
-            <div className={styles.currencyCard__Actions}>
-              <Link to={`/currency/${currency_id}`}>
-                <Button className={styles.currencyCard__btn} shape="square">
+            <div className={styles.paymentChannelCard__Actions}>
+              <Link to={`/payment-channel/${paymentChannelId}`}>
+                <Button
+                  className={styles.paymentChannelCard__btn}
+                  shape="square"
+                >
                   View
                 </Button>
               </Link>
-              <Link to={`/currency/update/${currency_id}`}>
-                <Button className={styles.currencyCard__btn} shape="square">
+              <Link to={`/payment-channel/update/${paymentChannelId}`}>
+                <Button
+                  className={styles.paymentChannelCard__btn}
+                  shape="square"
+                >
                   Edit
                 </Button>
               </Link>
 
               <Button
                 shape="square"
-                className={styles.currencyCard__btn}
-                onClick={() => handleDelete(currency_id, currency_name)}
+                className={styles.paymentChannelCard__btn}
+                onClick={() =>
+                  handleDelete(paymentChannelId, paymentChannelName)
+                }
                 variant="filled"
               >
                 Delete
@@ -58,7 +80,8 @@ const CurrencyCard = ({ currency_id, currency_name, handleDelete }) => {
       </>
     );
   };
-  return <>{renderCurrencyCard()}</>;
+
+  return <>{renderPaymentChannelCard()}</>;
 };
 
-export default CurrencyCard;
+export default PaymentChannelCard;

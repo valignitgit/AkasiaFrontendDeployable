@@ -6,7 +6,7 @@ import SidebarData from "./SidebarData";
 import styles from "./styles.module.scss";
 
 const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
-  const drawerWidth = 250;
+  const drawerWidth = 290;
 
   return (
     <Box

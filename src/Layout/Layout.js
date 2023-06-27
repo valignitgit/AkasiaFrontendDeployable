@@ -44,7 +44,7 @@ const Layout = () => {
             padding: {
               xs: "15px",
               sm: "15px",
-              md: "12px 16px 30px 260px",
+              md: "12px 16px 30px 305px",
             },
             // overflow: "auto",
             // maxHeight: "100%",

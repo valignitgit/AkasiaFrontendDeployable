@@ -12,23 +12,23 @@ import Loader from "components/Loader/Loader";
 import CustomNotification from "components/Notification/CustomNotification";
 
 import {
-  deletePaymentChannel,
-  getAllPaymentChannels,
+  deleteOmniBusAccount,
+  getAllOmniBusAccounts,
   setCurrentData,
-} from "redux/slices/paymentChannelSlice";
+} from "redux/slices/omniBusAccountSlice";
 
 import { ERROR, SUCCESS } from "utils/constants/constant";
 
-import PaymentChannelCard from "../PaymentChannelCard/PaymentChannelCard";
+import OmniBusAccountCard from "../OmniBusAccountCard/OmniBusAccountCard";
 
 import styles from "./style.module.scss";
 
-const PaymentChannelListing = () => {
+const OmniBusAccountListing = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.paymentChannel?.data);
+  const data = useSelector((state) => state.omniBusAccount?.data);
   const [open, setOpen] = useState(false);
   const [deletedItem, setDeletedItem] = useState({ id: "", name: "" });
-  const [paymentChannelListing, setPaymentChannelListing] = useState(
+  const [omniBusAccountListing, setOmniBusAccountListing] = useState(
     data || []
   );
   const [page, setPage] = useState(1);
@@ -60,13 +60,13 @@ const PaymentChannelListing = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllPaymentChannels());
+    dispatch(getAllOmniBusAccounts());
     dispatch(setCurrentData());
   }, [dispatch]);
 
   useEffect(() => {
     if (data) {
-      setPaymentChannelListing(data);
+      setOmniBusAccountListing(data);
     }
   }, [data]);
 
@@ -80,7 +80,7 @@ const PaymentChannelListing = () => {
 
   const onDelete = async (id) => {
     if (id) {
-      await dispatch(deletePaymentChannel(id))
+      await dispatch(deleteOmniBusAccount(id))
         .unwrap()
         .then((res) => {
           console.log(res);
@@ -92,7 +92,7 @@ const PaymentChannelListing = () => {
             console.log("res", res.status);
             setOpen(false);
             handleOpenNotification(SUCCESS, "Deleted Successfully!");
-            dispatch(getAllPaymentChannels());
+            dispatch(getAllOmniBusAccounts());
           } else if (
             res.data.data === null &&
             res.data.status.status === 400 &&
@@ -101,9 +101,9 @@ const PaymentChannelListing = () => {
             setOpen(false);
             handleOpenNotification(
               ERROR,
-              "Payment Channel is already referred!"
+              "OmniBus Account is already referred!"
             );
-            dispatch(getAllPaymentChannels());
+            dispatch(getAllOmniBusAccounts());
             console.log("not deleted");
           }
         });
@@ -121,14 +121,14 @@ const PaymentChannelListing = () => {
 
   const lastDataIndex = page * perPage;
   const firstDataIndex = lastDataIndex - perPage;
-  const currentPaymentChannels = Array.isArray(paymentChannelListing)
-    ? paymentChannelListing.slice(firstDataIndex, lastDataIndex)
+  const currentOmniBusAccounts = Array.isArray(omniBusAccountListing)
+    ? omniBusAccountListing.slice(firstDataIndex, lastDataIndex)
     : [];
 
-  const renderAddPaymentChannelButton = () => (
-    <Link to="/payment-channel/add">
-      <Button variant="filled" className={styles.addPaymentChannelButton}>
-        Add Payment Channel
+  const renderAddOmniBusAccountButton = () => (
+    <Link to="/omnibus-account/add">
+      <Button variant="filled" className={styles.addOmniBusAccountButton}>
+        Add OmniBus Account
       </Button>
     </Link>
   );
@@ -167,15 +167,15 @@ const PaymentChannelListing = () => {
     );
   };
 
-  const renderPaymentChannelList = () => {
-    if (Array.isArray(paymentChannelListing)) {
+  const renderOmniBusAccountList = () => {
+    if (Array.isArray(omniBusAccountListing)) {
       return (
-        <div className={styles.paymentChannelListing__container}>
+        <div className={styles.omniBusAccountListing__container}>
           <Grid container spacing={2}>
-            {currentPaymentChannels.map((paymentChannel) => (
-              <PaymentChannelCard
-                key={paymentChannel.paymentChannelId}
-                {...paymentChannel}
+            {currentOmniBusAccounts.map((omniBusAccount) => (
+              <OmniBusAccountCard
+                key={omniBusAccount.omnibusAccountId}
+                {...omniBusAccount}
                 handleDelete={handleDelete}
               />
             ))}
@@ -189,10 +189,10 @@ const PaymentChannelListing = () => {
 
   const renderPagination = () => {
     return (
-      <div className={styles.paymentChannelListing__paginationContainer}>
+      <div className={styles.omniBusAccountListing__paginationContainer}>
         <Pagination
           color="primary"
-          count={Math.ceil(paymentChannelListing.length / perPage)}
+          count={Math.ceil(omniBusAccountListing.length / perPage)}
           page={page}
           onChange={handlePageChange}
         />
@@ -220,13 +220,13 @@ const PaymentChannelListing = () => {
 
   return (
     <>
-      {renderAddPaymentChannelButton()}
-      {renderPaymentChannelList()}
-      {paymentChannelListing.length > 0 && renderPagination()}
+      {renderAddOmniBusAccountButton()}
+      {renderOmniBusAccountList()}
+      {omniBusAccountListing.length > 0 && renderPagination()}
       {renderDeleteDialog()}
       {renderNotification()}
     </>
   );
 };
 
-export default PaymentChannelListing;
+export default OmniBusAccountListing;

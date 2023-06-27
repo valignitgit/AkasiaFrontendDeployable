@@ -228,7 +228,7 @@ const AddSecurity = () => {
 
               <FormControl
                 fullWidth
-                className={styles.addsecurity__selectInput}
+                className={styles.addOmniBusAccount__selectInput}
               >
                 <InputLabel>Security Class</InputLabel>
                 <Select

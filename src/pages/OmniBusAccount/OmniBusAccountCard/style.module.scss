@@ -1,11 +1,11 @@
 @import "styles/mixins";
 @import "styles/variables";
 
-.paymentChannelCard {
+.omniBusAccountCard {
   padding: 15px;
   border-radius: 10px;
   cursor: pointer;
-  height: 250px;
+  height: 150px;
   @include card_box_shadow;
   &:hover {
     transform: translate3D(0, -1px, 0) scale(1.03);
@@ -15,12 +15,12 @@
     height: 180px;
   }
 }
-.paymentChannelCard__containWrapper {
+.omniBusAccountCard__containWrapper {
   @include flexbox;
   @include gap(5px);
 }
 
-.paymentChannelCard__itemKey {
+.omniBusAccountCard__itemKey {
   color: var(--emperor-grey);
   font-weight: 600;
   display: inline-block;
@@ -30,7 +30,7 @@
     flex: 1;
   }
 }
-.paymentChannelCard__itemValue {
+.omniBusAccountCard__itemValue {
   text-transform: capitalize;
   display: inline-block;
   flex: 1;
@@ -40,16 +40,16 @@
   }
 }
 
-.paymentChannelCard__notAvailableText {
+.omniBusAccountCard__notAvailableText {
   @include margin_top(2px);
 }
 
-.paymentChannelCard__Actions {
+.omniBusAccountCard__Actions {
   @include flex_center;
   @include gap(5px);
 }
 
-.paymentChannelCard__btn {
+.omniBusAccountCard__btn {
   width: 80px;
   font-size: 0.85rem;
 }
