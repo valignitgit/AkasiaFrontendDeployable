@@ -20,7 +20,7 @@ const OmniBusAccountCard = ({
             <CardContent>
               <Box className={styles.omniBusAccountCard__containWrapper}>
                 <span className={styles.omniBusAccountCard__itemKey}>
-                  OmniBus Account ID:
+                  Omnibus Account ID:
                 </span>
                 <span className={styles.omniBusAccountCard__itemValue}>
                   {omnibusAccountId}

@@ -48,7 +48,7 @@ const OmniBusAccountDetails = () => {
         <Grid container className={styles.omniBusAccountDetails__container}>
           <Grid item xs={12} sm={8} md={8} lg={5} xl={4}>
             <h1 className={styles.omniBusAccountDetails__heading}>
-              OmniBus Account Details
+              Omnibus Account Details
             </h1>
 
             <Card className={styles.omniBusAccountDetails}>
@@ -56,7 +56,7 @@ const OmniBusAccountDetails = () => {
                 <div className={styles.omniBusAccountDetails__body}>
                   <div>
                     <span className={styles.omniBusAccountDetails__itemKey}>
-                      OmniBus Account ID:
+                      Omnibus Account ID:
                     </span>
                     <span className={styles.omniBusAccountDetails__itemValue}>
                       {omnibusAccountId || "NA"}

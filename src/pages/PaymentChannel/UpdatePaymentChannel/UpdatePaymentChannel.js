@@ -22,6 +22,7 @@ const UpdatePaymentChannel = () => {
 
   const [currentPaymentChannel, setCurrentPaymentChannel] =
     useState(initialState);
+
   const [error, setErrors] = useState({
     paymentChannelId: getEmptyErrorState(),
     paymentChannelName: getEmptyErrorState(),
@@ -43,7 +44,7 @@ const UpdatePaymentChannel = () => {
   const getCurrentPaymentChannel = (id) => {
     PaymentChannelService.getPaymentChannelById(id)
       .then((res) => {
-        currentPaymentChannel(res.data.data);
+        setCurrentPaymentChannel(res.data.data);
       })
       .catch((err) => {
         console.error(err);
@@ -101,7 +102,7 @@ const UpdatePaymentChannel = () => {
           updatePaymentChannel(currentPaymentChannel)
         ).unwrap();
         if (response.data) {
-          navigate("/payment-channel");
+          navigate(`/payment-channel/${id}`);
         }
       } catch (error) {
         console.error(error);

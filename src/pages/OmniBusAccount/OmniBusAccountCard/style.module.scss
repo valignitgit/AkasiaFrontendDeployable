@@ -5,7 +5,7 @@
   padding: 15px;
   border-radius: 10px;
   cursor: pointer;
-  height: 150px;
+  height: 180px;
   @include card_box_shadow;
   &:hover {
     transform: translate3D(0, -1px, 0) scale(1.03);
@@ -24,7 +24,7 @@
   color: var(--emperor-grey);
   font-weight: 600;
   display: inline-block;
-  flex: 1;
+  width: 55%;
   font-size: 0.9rem;
   @include lg_down {
     flex: 1;
@@ -33,7 +33,7 @@
 .omniBusAccountCard__itemValue {
   text-transform: capitalize;
   display: inline-block;
-  flex: 1;
+  width: 45%;
   font-size: 0.9rem;
   @include lg_down {
     flex: 1;

@@ -128,7 +128,7 @@ const OmniBusAccountListing = () => {
   const renderAddOmniBusAccountButton = () => (
     <Link to="/omnibus-account/add">
       <Button variant="filled" className={styles.addOmniBusAccountButton}>
-        Add OmniBus Account
+        Add Omnibus Account
       </Button>
     </Link>
   );

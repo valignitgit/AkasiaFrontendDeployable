@@ -240,7 +240,7 @@ const UpdateOmniBusAccount = () => {
             <Paper className="form_styles">
               <Box className="form__headingWrapper">
                 <Typography component="h1" variant="h5">
-                  Add OmniBus Account
+                  Update Omnibus Account
                 </Typography>
               </Box>
               <Box

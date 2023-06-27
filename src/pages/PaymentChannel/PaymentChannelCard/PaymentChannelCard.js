@@ -9,7 +9,6 @@ import styles from "./style.module.scss";
 const PaymentChannelCard = ({
   paymentChannelId,
   paymentChannelName,
-  paymentChannelNameAr,
   handleDelete,
 }) => {
   const renderPaymentChannelCard = () => {
@@ -17,7 +16,9 @@ const PaymentChannelCard = ({
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <Card className={styles.paymentChannelCard}>
-            <CardContent>
+            <CardContent
+              className={styles.paymentChannelCard__contentContainer}
+            >
               <Box className={styles.paymentChannelCard__containWrapper}>
                 <span className={styles.paymentChannelCard__itemKey}>
                   Payment Channel ID:
@@ -36,16 +37,8 @@ const PaymentChannelCard = ({
                 </span>
               </Box>
               <br />
-              <Box className={styles.paymentChannelCard__containWrapper}>
-                <span className={styles.paymentChannelCard__itemKey}>
-                  Payment Channel Name (Arabic):
-                </span>
-                <span className={styles.paymentChannelCard__itemValue}>
-                  {paymentChannelNameAr || "Not Available"}
-                </span>
-              </Box>
-              <br />
             </CardContent>
+
             <div className={styles.paymentChannelCard__Actions}>
               <Link to={`/payment-channel/${paymentChannelId}`}>
                 <Button

@@ -1,23 +1,23 @@
 import api from "api/api";
 
 const getAllPaymentChannels = () => {
-  return api.get("/paymentChannel");
+  return api.get("/paymentchannel");
 };
 
 const getPaymentChannelById = (id) => {
-  return api.get(`/paymentChannel/${id}`);
+  return api.get(`/paymentchannel/${id}`);
 };
 
 const createPaymentChannel = (data) => {
-  return api.post("/paymentChannel", data);
+  return api.post("/paymentchannel", data);
 };
 
 const updatePaymentChannel = (data) => {
-  return api.put("/paymentChannel", data);
+  return api.put("/paymentchannel", data);
 };
 
 const deletePaymentChannel = (id) => {
-  return api.delete(`/paymentChannel/${id}`);
+  return api.delete(`/paymentchannel/${id}`);
 };
 
 const PaymentChannelService = {

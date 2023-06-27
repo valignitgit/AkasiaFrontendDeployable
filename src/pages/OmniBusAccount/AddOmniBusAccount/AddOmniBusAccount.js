@@ -50,8 +50,6 @@ const AddOmniBusAccount = () => {
     companyCode: getEmptyErrorState(),
     accountSlNum: getEmptyErrorState(),
     accountCurrencyId: getEmptyErrorState(),
-    bankBalanceAmt: getEmptyErrorState(),
-    bankAvailableNum: getEmptyErrorState(),
   });
   const currencyList = useSelector((state) => state.currency.data);
   const currencyOptions = getListByKey(currencyList, "currency_id");
@@ -77,8 +75,6 @@ const AddOmniBusAccount = () => {
     companyCode,
     accountSlNum,
     accountCurrencyId,
-    bankBalanceAmt,
-    bankAvailableNum,
   } = omniBusAccountData;
 
   const validateForm = () => {
@@ -92,8 +88,6 @@ const AddOmniBusAccount = () => {
       companyCode: getEmptyErrorState(),
       accountSlNum: getEmptyErrorState(),
       accountCurrencyId: getEmptyErrorState(),
-      bankBalanceAmt: getEmptyErrorState(),
-      bankAvailableNum: getEmptyErrorState(),
     };
 
     if (isEmptyString(omnibusAccountId)) {
@@ -170,26 +164,6 @@ const AddOmniBusAccount = () => {
       isValid = false;
     }
 
-    if (isEmptyString(bankBalanceAmt)) {
-      newErrors.bankBalanceAmt = {
-        errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
-          "Bank Balance Amount"
-        ),
-        errorState: "error",
-      };
-      isValid = false;
-    }
-
-    if (isEmptyString(bankAvailableNum)) {
-      newErrors.bankAvailableNum = {
-        errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
-          "Bank Available Number"
-        ),
-        errorState: "error",
-      };
-      isValid = false;
-    }
-
     setErrors(newErrors);
     return isValid;
   };
@@ -224,7 +198,7 @@ const AddOmniBusAccount = () => {
             <Paper className="form_styles">
               <Box className="form__headingWrapper">
                 <Typography component="h1" variant="h5">
-                  Add OmniBus Account
+                  Add Omnibus Account
                 </Typography>
               </Box>
               <Box

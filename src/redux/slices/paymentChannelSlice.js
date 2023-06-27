@@ -2,27 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import PaymentChannelService from "services/PaymentChannelServices";
 
 const initialState = {
-  data: [
-    {
-      currency_id: "SAR",
-      currency_name: "Saudi Riyal",
-      currency_name_ar: "Saudi Riyal",
-    },
-    {
-      currency_id: "USD",
-      currency_name: "US Dollar",
-      currency_name_ar: "US Dollar",
-    },
-  ],
+  data: [],
   status: "",
   message: "",
   loading: false,
-  currentData: {
-    paymentChannelId: undefined,
-    currency_name: "Saudi Riyal",
-    currency_name_ar: "Saudi Riyal",
-  },
-
+  currentData: null,
   error: null,
 };
 
