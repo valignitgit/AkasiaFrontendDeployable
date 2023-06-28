@@ -9,7 +9,7 @@ import MoneyIcon from "@mui/icons-material/Money";
 import PaymentIcon from "@mui/icons-material/Payment";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import SecurityIcon from "@mui/icons-material/Security";
-import SwitchAccountIcon from "@mui/icons-material/SwitchAccount";
+// import SwitchAccountIcon from "@mui/icons-material/SwitchAccount";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import {
   Box,
@@ -74,11 +74,11 @@ function SidebarData() {
       icon: <PaymentIcon />,
       link: "/payment-channel",
     },
-    {
-      label: "Omnibus Account",
-      icon: <SwitchAccountIcon />,
-      link: "/omnibus-account",
-    },
+    // {
+    //   label: "Omnibus Account",
+    //   icon: <SwitchAccountIcon />,
+    //   link: "/omnibus-account",
+    // },
   ];
 
   return (

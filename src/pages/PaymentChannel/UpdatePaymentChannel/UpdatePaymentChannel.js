@@ -135,6 +135,7 @@ const UpdatePaymentChannel = () => {
                   value={paymentChannelId}
                   label="Payment Channel Id"
                   onChange={(e) => onChange(e)}
+                  disabled
                 />
                 {error.paymentChannelId.errorState && (
                   <span className="error">

@@ -17,7 +17,7 @@ const PortfolioCard = ({
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <Card className={styles.portfolio__card}>
-            <CardContent>
+            <CardContent className="card__contentContainer">
               <Box className={styles.portfolioCard__containWrapper}>
                 <span className={styles.portfolioCard__itemKey}>
                   Portfolio Name:

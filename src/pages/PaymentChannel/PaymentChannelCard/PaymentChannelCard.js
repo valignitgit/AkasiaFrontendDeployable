@@ -16,9 +16,7 @@ const PaymentChannelCard = ({
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <Card className={styles.paymentChannelCard}>
-            <CardContent
-              className={styles.paymentChannelCard__contentContainer}
-            >
+            <CardContent className="card__contentContainer">
               <Box className={styles.paymentChannelCard__containWrapper}>
                 <span className={styles.paymentChannelCard__itemKey}>
                   Payment Channel ID:

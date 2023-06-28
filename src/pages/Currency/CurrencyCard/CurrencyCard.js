@@ -12,7 +12,7 @@ const CurrencyCard = ({ currency_id, currency_name, handleDelete }) => {
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <Card className={styles.currencyCard}>
-            <CardContent>
+            <CardContent className="card__contentContainer">
               <Box className={styles.currencyCard__containWrapper}>
                 <span className={styles.currencyCard__itemKey}>
                   Currency Id:

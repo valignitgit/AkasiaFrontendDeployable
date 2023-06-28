@@ -12,7 +12,7 @@ const BankCard = ({ bank_id, bank_name, handleDelete }) => {
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <Card className={styles.bankCard}>
-            <CardContent>
+            <CardContent className="card__contentContainer">
               <Box className={styles.bankCard__containWrapper}>
                 <Typography
                   component="h4"

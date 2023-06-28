@@ -12,7 +12,7 @@ const BrokerCard = ({ broker_id, broker_name, handleDelete }) => {
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <Card className={styles.brokerCard}>
-            <CardContent>
+            <CardContent className="card__contentContainer">
               <Box className={styles.brokerCard__containWrapper}>
                 <span className={styles.brokerCard__itemKey}>Broker Id:</span>
                 <span className={styles.brokerCard__itemValue}>

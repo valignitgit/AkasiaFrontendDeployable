@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
@@ -190,7 +191,7 @@ const App = () => {
                     />
                   </Route>
                 </Route>
-                <Route element={<RequireAuth />}>
+                {/* <Route element={<RequireAuth />}>
                   <Route path="omnibus-account">
                     <Route index element={<OmniBusAccountListing />} />
                     <Route path=":id" element={<OmniBusAccountDetails />} />
@@ -200,7 +201,7 @@ const App = () => {
                       element={<UpdateOmniBusAccount />}
                     />
                   </Route>
-                </Route>
+                </Route> */}
               </Route>
             </Route>
           </Route>

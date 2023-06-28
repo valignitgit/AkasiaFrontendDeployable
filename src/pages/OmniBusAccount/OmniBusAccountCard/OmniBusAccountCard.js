@@ -8,7 +8,6 @@ import styles from "./style.module.scss";
 
 const OmniBusAccountCard = ({
   omnibusAccountId,
-  bankAccountNum,
   bankAccountName,
   handleDelete,
 }) => {
@@ -17,7 +16,7 @@ const OmniBusAccountCard = ({
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <Card className={styles.omniBusAccountCard}>
-            <CardContent>
+            <CardContent className="card__contentContainer">
               <Box className={styles.omniBusAccountCard__containWrapper}>
                 <span className={styles.omniBusAccountCard__itemKey}>
                   Omnibus Account ID:
@@ -29,10 +28,10 @@ const OmniBusAccountCard = ({
               <br />
               <Box className={styles.omniBusAccountCard__containWrapper}>
                 <span className={styles.omniBusAccountCard__itemKey}>
-                  Bank Account Number:
+                  Bank Account Name
                 </span>
                 <span className={styles.omniBusAccountCard__itemValue}>
-                  {bankAccountNum}
+                  {bankAccountName}
                 </span>
               </Box>
               <br />

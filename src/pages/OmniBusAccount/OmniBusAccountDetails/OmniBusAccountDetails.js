@@ -29,7 +29,7 @@ const OmniBusAccountDetails = () => {
     bankId,
     companyCode,
     accountSlNum,
-    accountCurrencyId,
+    currencyId,
     bankBalanceAmt,
     bankAvailableNum,
   } = currentOmniBusAccount || {};
@@ -75,7 +75,7 @@ const OmniBusAccountDetails = () => {
                       Bank Account IBAN:
                     </span>
                     <span
-                      className={`${styles.omniBusAccountDetails__itemValue} text_right`}
+                      className={`${styles.omniBusAccountDetails__itemValue} `}
                     >
                       {bankAccountIban || "NA"}
                     </span>
@@ -85,7 +85,7 @@ const OmniBusAccountDetails = () => {
                       Bank Account Name:
                     </span>
                     <span
-                      className={`${styles.omniBusAccountDetails__itemValue} text_right`}
+                      className={`${styles.omniBusAccountDetails__itemValue} `}
                     >
                       {bankAccountName || "NA"}
                     </span>
@@ -95,7 +95,7 @@ const OmniBusAccountDetails = () => {
                       Bank ID:
                     </span>
                     <span
-                      className={`${styles.omniBusAccountDetails__itemValue} text_right`}
+                      className={`${styles.omniBusAccountDetails__itemValue} `}
                     >
                       {bankId || "NA"}
                     </span>
@@ -105,7 +105,7 @@ const OmniBusAccountDetails = () => {
                       Company Code:
                     </span>
                     <span
-                      className={`${styles.omniBusAccountDetails__itemValue} text_right`}
+                      className={`${styles.omniBusAccountDetails__itemValue} `}
                     >
                       {companyCode || "NA"}
                     </span>
@@ -115,7 +115,7 @@ const OmniBusAccountDetails = () => {
                       Account Serial Number:
                     </span>
                     <span
-                      className={`${styles.omniBusAccountDetails__itemValue} text_right`}
+                      className={`${styles.omniBusAccountDetails__itemValue} `}
                     >
                       {accountSlNum || "NA"}
                     </span>
@@ -125,9 +125,9 @@ const OmniBusAccountDetails = () => {
                       Account Currency ID:
                     </span>
                     <span
-                      className={`${styles.omniBusAccountDetails__itemValue} text_right`}
+                      className={`${styles.omniBusAccountDetails__itemValue} `}
                     >
-                      {accountCurrencyId || "NA"}
+                      {currencyId || "NA"}
                     </span>
                   </div>
                   <div>
@@ -135,7 +135,7 @@ const OmniBusAccountDetails = () => {
                       Bank Balance Amount:
                     </span>
                     <span
-                      className={`${styles.omniBusAccountDetails__itemValue} text_right`}
+                      className={`${styles.omniBusAccountDetails__itemValue} `}
                     >
                       {bankBalanceAmt || "NA"}
                     </span>
@@ -145,7 +145,7 @@ const OmniBusAccountDetails = () => {
                       Bank Available Number:
                     </span>
                     <span
-                      className={`${styles.omniBusAccountDetails__itemValue} text_right`}
+                      className={`${styles.omniBusAccountDetails__itemValue} `}
                     >
                       {bankAvailableNum || "NA"}
                     </span>

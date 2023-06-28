@@ -17,7 +17,7 @@ const CountryCard = ({ country_id, country_name, handleDelete }) => {
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
           <Card className={styles.countryCard}>
-            <CardContent>
+            <CardContent className="card__contentContainer">
               <Box className={styles.countryCard__containWrapper}>
                 <span className={styles.countryCard__itemKey}>Country Id:</span>
                 <span className={styles.countryCard__itemValue}>

@@ -4,7 +4,7 @@
 .paymentChannelCard {
   padding: 15px;
   border-radius: 10px;
-  min-height: 170px;
+  min-height: 150px;
   cursor: pointer;
   @include card_box_shadow;
   &:hover {
@@ -16,7 +16,7 @@
   // }
 }
 .paymentChannelCard__contentContainer {
-  min-height: 80px;
+  height: 80px;
 }
 .paymentChannelCard__containWrapper {
   @include flexbox;

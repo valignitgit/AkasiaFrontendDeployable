@@ -53,7 +53,7 @@ const PaymentChannelDetails = () => {
                   </div>
                   <div>
                     <span className={styles.paymentChannelDetails__itemKey}>
-                      Payment Channel Name
+                      Payment Channel Name:
                     </span>
                     <span className={styles.paymentChannelDetails__itemValue}>
                       {paymentChannelName || "NA"}
@@ -61,7 +61,7 @@ const PaymentChannelDetails = () => {
                   </div>
                   <div>
                     <span className={styles.paymentChannelDetails__itemKey}>
-                      Payment Channel Name Arabic
+                      Payment Channel Name Arabic:
                     </span>
                     <span
                       className={`${styles.paymentChannelDetails__itemValue} text_right`}

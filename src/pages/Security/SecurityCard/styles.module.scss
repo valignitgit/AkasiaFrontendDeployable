@@ -5,19 +5,14 @@
   @include card_box_shadow;
   border-radius: var(--card-border-radius);
   padding: 12px;
-  height: 220px;
-  min-height: 90%;
+  min-height: 220px;
   @include flex_wrap(wrap);
-  max-width: 90%;
-  width: 450px;
+  // max-width: 90%;
+  // width: 450px;
   cursor: pointer;
   &:hover {
     transform: translate3D(0, -1px, 0) scale(1.03);
     transition: all 0.4s ease;
-  }
-  @include lg {
-    height: 240px;
-    min-height: 80%;
   }
 }
 

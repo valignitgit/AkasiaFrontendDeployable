@@ -24,7 +24,7 @@ import { updateOmniBusAccount } from "redux/slices/omniBusAccountSlice";
 import { getEmptyErrorState } from "utils/AppUtil";
 import { getListByKey } from "utils/AppUtil";
 import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
-import { isEmptyString } from "utils/Validator";
+import { isCompanyCode, isEmptyString, isIbaNumber } from "utils/Validator";
 
 import styles from "../AddOmniBusAccount/style.module.scss";
 
@@ -37,7 +37,7 @@ const UpdateOmniBusAccount = () => {
     bankId: "",
     companyCode: "",
     accountSlNum: "",
-    accountCurrencyId: "",
+    currencyId: "",
     bankBalanceAmt: "",
     bankAvailableNum: "",
   };
@@ -51,8 +51,7 @@ const UpdateOmniBusAccount = () => {
     bankAccountName: getEmptyErrorState(),
     bankId: getEmptyErrorState(),
     companyCode: getEmptyErrorState(),
-    accountSlNum: getEmptyErrorState(),
-    accountCurrencyId: getEmptyErrorState(),
+    currencyId: getEmptyErrorState(),
     bankBalanceAmt: getEmptyErrorState(),
     bankAvailableNum: getEmptyErrorState(),
   });
@@ -61,6 +60,7 @@ const UpdateOmniBusAccount = () => {
   const dispatch = useDispatch();
   const currencyList = useSelector((state) => state.currency.data);
   const currencyOptions = getListByKey(currencyList, "currency_id");
+  console.log(currencyOptions);
   const BankList = useSelector((state) => state.bank.data);
   const BankOptions = getListByKey(BankList, "bank_id");
 
@@ -77,12 +77,10 @@ const UpdateOmniBusAccount = () => {
     bankAccountName,
     bankId,
     companyCode,
-    accountSlNum,
-    accountCurrencyId,
+    currencyId,
     bankBalanceAmt,
     bankAvailableNum,
   } = currentOmniBusAccount;
-
   const getCurrentOmniBusAccount = (id) => {
     OmniBusAccountService.getOmniBusAccountById(id)
       .then((res) => {
@@ -106,8 +104,7 @@ const UpdateOmniBusAccount = () => {
       bankAccountName: getEmptyErrorState(),
       bankId: getEmptyErrorState(),
       companyCode: getEmptyErrorState(),
-      accountSlNum: getEmptyErrorState(),
-      accountCurrencyId: getEmptyErrorState(),
+      currencyId: getEmptyErrorState(),
       bankBalanceAmt: getEmptyErrorState(),
       bankAvailableNum: getEmptyErrorState(),
     };
@@ -133,8 +130,15 @@ const UpdateOmniBusAccount = () => {
 
     if (isEmptyString(bankAccountIban)) {
       newErrors.bankAccountIban = {
-        errorMessage:
-          ErrorMessageGenerator.getMandatoryFieldMessage("Bank Account IBAN"),
+        errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
+          "International Bank Account Number"
+        ),
+        errorState: "error",
+      };
+      isValid = false;
+    } else if (isIbaNumber(bankAccountIban)) {
+      newErrors.bankAccountIban = {
+        errorMessage: ErrorMessageGenerator.getIbaNumberMessage("IBN"),
         errorState: "error",
       };
       isValid = false;
@@ -164,42 +168,19 @@ const UpdateOmniBusAccount = () => {
         errorState: "error",
       };
       isValid = false;
-    }
-
-    if (isEmptyString(accountSlNum)) {
-      newErrors.accountSlNum = {
-        errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
-          "Account Serial Number"
-        ),
+    } else if (isCompanyCode(companyCode)) {
+      newErrors.companyCode = {
+        errorMessage:
+          ErrorMessageGenerator.getThreeDigitNumberMessage("Company Code"),
         errorState: "error",
       };
       isValid = false;
     }
 
-    if (isEmptyString(accountCurrencyId)) {
-      newErrors.accountCurrencyId = {
+    if (isEmptyString(currencyId)) {
+      newErrors.currencyId = {
         errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
           "Account Currency Id"
-        ),
-        errorState: "error",
-      };
-      isValid = false;
-    }
-
-    if (isEmptyString(bankBalanceAmt)) {
-      newErrors.bankBalanceAmt = {
-        errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
-          "Bank Balance Amount"
-        ),
-        errorState: "error",
-      };
-      isValid = false;
-    }
-
-    if (isEmptyString(bankAvailableNum)) {
-      newErrors.bankAvailableNum = {
-        errorMessage: ErrorMessageGenerator.getMandatoryFieldMessage(
-          "Bank Available Number"
         ),
         errorState: "error",
       };
@@ -219,7 +200,7 @@ const UpdateOmniBusAccount = () => {
           updateOmniBusAccount(currentOmniBusAccount)
         ).unwrap();
         if (response.data) {
-          navigate("/omnibus-account");
+          navigate(`/omnibus-account/${omnibusAccountId}`);
         }
       } catch (error) {
         console.error(error);
@@ -255,9 +236,10 @@ const UpdateOmniBusAccount = () => {
                   fullWidth
                   name="omnibusAccountId"
                   value={omnibusAccountId}
-                  label="OmniBus Account ID"
+                  label="Omnibus Account ID"
                   onChange={onChange}
                   className={styles.addOmniBusAccount__textInput}
+                  disabled
                 />
                 {error.omnibusAccountId.errorState && (
                   <span className="error">
@@ -287,7 +269,7 @@ const UpdateOmniBusAccount = () => {
                   fullWidth
                   name="bankAccountIban"
                   value={bankAccountIban}
-                  label="Bank Account IBAN"
+                  label="International Bank Account Number"
                   onChange={onChange}
                   className={styles.addOmniBusAccount__textInput}
                 />
@@ -353,31 +335,15 @@ const UpdateOmniBusAccount = () => {
                   </span>
                 )}
 
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="accountSlNum"
-                  value={accountSlNum}
-                  label="Account Serial Number"
-                  onChange={onChange}
-                  className={styles.addOmniBusAccount__textInput}
-                />
-                {error.accountSlNum.errorState && (
-                  <span className="error">
-                    {error.accountSlNum.errorMessage}
-                  </span>
-                )}
-
                 <FormControl
                   fullWidth
                   className={styles.addOmniBusAccount__selectInput}
                 >
-                  <InputLabel>Account Currency Id</InputLabel>
+                  <InputLabel>Currency Id</InputLabel>
                   <Select
-                    name="accountCurrencyId"
-                    value={accountCurrencyId}
-                    label="Account Currency Id"
+                    name="currencyId"
+                    value={currencyId}
+                    label="Currency Id"
                     onChange={(e) => onChange(e)}
                     autoComplete="off"
                   >
@@ -389,10 +355,8 @@ const UpdateOmniBusAccount = () => {
                   </Select>
                 </FormControl>
 
-                {error.accountCurrencyId.errorState && (
-                  <span className="error">
-                    {error.accountCurrencyId.errorMessage}
-                  </span>
+                {error.currencyId.errorState && (
+                  <span className="error">{error.currencyId.errorMessage}</span>
                 )}
 
                 <div className="buttons_container">

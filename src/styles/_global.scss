@@ -190,3 +190,9 @@ p {
   @include margin_left(0);
   @include margin_right(0);
 }
+
+//------Card styles-------//
+
+.card__contentContainer {
+  height: 70px;
+}
