@@ -28,3 +28,7 @@ export const isIbaNumber = (value) => {
 export const isCompanyCode = (value) => {
   return !/^\d{3}$/.test(value);
 };
+
+export const isNumber = (value) => {
+  return !/^[0-9]+$/.test(value);
+};
