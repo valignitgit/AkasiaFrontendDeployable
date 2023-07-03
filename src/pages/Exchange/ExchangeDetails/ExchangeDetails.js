@@ -29,37 +29,37 @@ const ExchangeDetails = () => {
       !Array.isArray(currentExchange)
     ) {
       return (
-        <Grid container className={styles.exchangeDetails__container}>
+        <Grid container className="Details__container">
           <Grid item xs={12} sm={8} md={8} lg={5} xl={4}>
-            <h1 className={styles.exchangeDetails__heading}>
+            <h1 className="Details__heading">
               Exchange Details
             </h1>
 
-            <Card className={styles.exchangeDetails}>
+            <Card className="Details">
               <CardContent>
-                <div className={styles.exchangeDetails__body}>
+                <div className="Details__body">
                   <div>
-                    <span className={styles.exchangeDetails__itemKey}>
+                    <span className={`${styles.exchangeDetails__itemKey_width} Details__itemKey`}>
                       Exchange ID:
                     </span>
-                    <span className={styles.exchangeDetails__itemValue}>
+                    <span className={`${styles.exchangeDetails__itemValue_width} Details__itemValue`}>
                       {exchange_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.exchangeDetails__itemKey}>
+                    <span className={`${styles.exchangeDetails__itemKey_width} Details__itemKey`}>
                       Exchange Name:
                     </span>
-                    <span className={styles.exchangeDetails__itemValue}>
+                    <span className={`${styles.exchangeDetails__itemValue_width} Details__itemValue`}>
                       {exchange_name || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.exchangeDetails__itemKey}>
+                    <span className={`${styles.exchangeDetails__itemKey_width} Details__itemKey`}>
                       Exchange Name (Arabic):
                     </span>
                     <span
-                      className={`${styles.exchangeDetails__itemValue} text_right`}
+                      className={`${styles.exchangeDetails__itemValue_width} Details__itemValue text_right`}
                     >
                       {exchange_name_ar || "NA"}
                     </span>
@@ -67,12 +67,12 @@ const ExchangeDetails = () => {
                 </div>
               </CardContent>
 
-              <CardActions className={styles.exchangeDetails__buttonContainer}>
+              <CardActions className="Details__buttonContainer">
                 <Link to="/exchange">
                   <Button
                     variant="filled"
                     shape="square"
-                    className={styles.exchangeDetails__button}
+                    className="Details__button"
                     onClick={() => dispatch(setCurrentData())}
                   >
                     Back

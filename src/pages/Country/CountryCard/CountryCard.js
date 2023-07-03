@@ -4,8 +4,6 @@ import { Box, Card, CardContent, Grid } from "@mui/material";
 
 import Button from "components/Button/CustomButton";
 
-import styles from "./style.module.scss";
-
 const CountryCard = ({ country_id, country_name, handleDelete }) => {
   const navigate = useNavigate();
   const handleViewCountry = () => {
@@ -16,29 +14,29 @@ const CountryCard = ({ country_id, country_name, handleDelete }) => {
     return (
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
-          <Card className={styles.countryCard}>
+          <Card className="Card">
             <CardContent className="card__contentContainer">
-              <Box className={styles.countryCard__containWrapper}>
-                <span className={styles.countryCard__itemKey}>Country Id:</span>
-                <span className={styles.countryCard__itemValue}>
+              <Box className="Card__containWrapper">
+                <span className="Card__itemKey">Country Id:</span>
+                <span className="Card__itemValue">
                   {country_id}
                 </span>
               </Box>
               <br />
-              <Box className={styles.countryCard__containWrapper}>
-                <span className={styles.countryCard__itemKey}>
+              <Box className="Card__containWrapper">
+                <span className="Card__itemKey">
                   Country Name:
                 </span>
-                <span className={styles.countryCard__itemValue}>
+                <span className="Card__itemValue">
                   {country_name || "Not Available"}
                 </span>
               </Box>
               <br />
             </CardContent>
-            <div className={styles.countryCard__Actions}>
+            <div className="Card__Actions">
               <Link to={`/country/${country_id}`}>
                 <Button
-                  className={styles.countryCard__btn}
+                  className="Card__btn"
                   shape="square"
                   onClick={handleViewCountry}
                 >
@@ -48,7 +46,7 @@ const CountryCard = ({ country_id, country_name, handleDelete }) => {
 
               <Link to={`/country/update/${country_id}`}>
                 <Button
-                  className={styles.countryCard__btn}
+                  className="Card__btn"
                   shape="square"
                   onClick={handleViewCountry}
                 >
@@ -58,7 +56,7 @@ const CountryCard = ({ country_id, country_name, handleDelete }) => {
 
               <Button
                 shape="square"
-                className={styles.countryCard__btn}
+                className="Card__btn"
                 onClick={() => handleDelete(country_id, country_name)}
                 variant="filled"
               >

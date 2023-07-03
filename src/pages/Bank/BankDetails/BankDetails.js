@@ -28,35 +28,35 @@ const BankDetails = () => {
       !Array.isArray(currentBank)
     ) {
       return (
-        <Grid container className={styles.bankDetails__container}>
+        <Grid container className="Details__container">
           <Grid item xs={12} sm={8} md={8} lg={5} xl={4}>
-            <h1 className={styles.bankDetails__heading}>Bank Details</h1>
+            <h1 className="Details__heading">Bank Details</h1>
 
-            <Card className={styles.bankDetails}>
+            <Card className="Details">
               <CardContent>
-                <div className={styles.bankDetails__body}>
+                <div className="Details__body">
                   <div>
-                    <span className={styles.bankDetails__itemKey}>
+                    <span className={`${styles.bankDetails__itemKey_width} Details__itemKey`}>
                       Bank ID:
                     </span>
-                    <span className={styles.bankDetails__itemValue}>
+                    <span className={`${styles.bankDetails__itemValue_width} Details__itemValue`}>
                       {bank_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.bankDetails__itemKey}>
+                    <span className={`${styles.bankDetails__itemKey_width} Details__itemKey`}>
                       Bank Name:
                     </span>
-                    <span className={styles.bankDetails__itemValue}>
+                    <span className={`${styles.bankDetails__itemValue_width} Details__itemValue`}>
                       {bank_name || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.bankDetails__itemKey}>
+                    <span className={`${styles.bankDetails__itemKey_width} Details__itemKey`}>
                       Bank Name (Arabic):
                     </span>
                     <span
-                      className={`${styles.bankDetails__itemValue} text_right`}
+                      className={`${styles.bankDetails__itemValue_width} Details__itemValue text_right`}
                     >
                       {bank_name_ar || "NA"}
                     </span>
@@ -64,12 +64,12 @@ const BankDetails = () => {
                 </div>
               </CardContent>
 
-              <CardActions className={styles.bankDetails__buttonContainer}>
+              <CardActions className="Details__buttonContainer">
                 <Link to={"/bank"}>
                   <Button
                     variant="filled"
                     shape="square"
-                    className={styles.bankDetails__button}
+                    className="Details__button"
                     onClick={() => dispatch(setCurrentData())}
                   >
                     Back

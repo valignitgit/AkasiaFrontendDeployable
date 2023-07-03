@@ -34,37 +34,37 @@ const PaymentChannelDetails = () => {
       !Array.isArray(currentPaymentChannel)
     ) {
       return (
-        <Grid container className={styles.paymentChannelDetails__container}>
+        <Grid container className="Details__container">
           <Grid item xs={12} sm={8} md={8} lg={5} xl={4}>
-            <h1 className={styles.paymentChannelDetails__heading}>
+            <h1 className="Details__heading">
               Payment Channel Details
             </h1>
 
-            <Card className={styles.paymentChannelDetails}>
+            <Card className="Details">
               <CardContent>
-                <div className={styles.paymentChannelDetails__body}>
+                <div className="Details__body">
                   <div>
-                    <span className={styles.paymentChannelDetails__itemKey}>
+                    <span className={`${styles.paymentChannelDetails__itemKey_width} Details__itemKey`}>
                       Payment Channel ID:
                     </span>
-                    <span className={styles.paymentChannelDetails__itemValue}>
+                    <span className={`${styles.paymentChannelDetails__itemValue_width} Details__itemValue`}>
                       {paymentChannelId || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.paymentChannelDetails__itemKey}>
+                    <span className={`${styles.paymentChannelDetails__itemKey_width} Details__itemKey`}>
                       Payment Channel Name:
                     </span>
-                    <span className={styles.paymentChannelDetails__itemValue}>
+                    <span className={`${styles.paymentChannelDetails__itemValue_width} Details__itemValue`}>
                       {paymentChannelName || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.paymentChannelDetails__itemKey}>
+                    <span className={`${styles.paymentChannelDetails__itemKey_width} Details__itemKey`}>
                       Payment Channel Name Arabic:
                     </span>
                     <span
-                      className={`${styles.paymentChannelDetails__itemValue} text_right`}
+                      className={`${styles.paymentChannelDetails__itemValue_width} Details__itemValue text_right`}
                     >
                       {paymentChannelNameAr || "NA"}
                     </span>
@@ -73,13 +73,13 @@ const PaymentChannelDetails = () => {
               </CardContent>
 
               <CardActions
-                className={styles.paymentChannelDetails__buttonContainer}
+                className="Details__buttonContainer"
               >
                 <Link to="/payment-channel">
                   <Button
                     variant="filled"
                     shape="square"
-                    className={styles.paymentChannelDetails__button}
+                    className="Details__button"
                     onClick={() => dispatch(setCurrentData())}
                   >
                     Back

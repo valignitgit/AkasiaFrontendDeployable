@@ -133,14 +133,14 @@ const Login = () => {
       <Grid container className={styles.loginContainer}>
         <Grid item xs={12} sm={12} md={6} lg={5}>
           <Paper className={`${styles.login__form} form_styles`}>
-            <Box className={styles.login__formIcon_wrapper}>
+            <Box className="form__headingWrapper">
               <Box className={styles.login__logoContainer}>
                 <img src={logo} alt={logo} className={styles.login__logo} />
               </Box>
             </Box>
             <Box
               component="form"
-              className={styles.login__formContainer}
+              className="form__container"
               onSubmit={handleSubmit}
             >
               <TextField
@@ -151,7 +151,7 @@ const Login = () => {
                 label="User Id"
                 onChange={(e) => onChange(e)}
                 autoComplete="off"
-                className={styles.login__textInput}
+                className="form__textInput"
               />
               {error.user_id.errorState && (
                 <span className="error">{error.user_id.errorMessage}</span>
@@ -160,7 +160,7 @@ const Login = () => {
               <FormControl
                 fullWidth
                 variant="outlined"
-                className={styles.login__textInput}
+                className="form__textInput"
               >
                 <InputLabel>Password</InputLabel>
                 <OutlinedInput

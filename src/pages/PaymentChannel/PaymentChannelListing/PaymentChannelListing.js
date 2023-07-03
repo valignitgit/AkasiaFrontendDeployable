@@ -21,7 +21,6 @@ import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import PaymentChannelCard from "../PaymentChannelCard/PaymentChannelCard";
 
-import styles from "./style.module.scss";
 
 const PaymentChannelListing = () => {
   const dispatch = useDispatch();
@@ -127,7 +126,7 @@ const PaymentChannelListing = () => {
 
   const renderAddPaymentChannelButton = () => (
     <Link to="/payment-channel/add">
-      <Button variant="filled" className={styles.addPaymentChannelButton}>
+      <Button variant="filled" className="Listing__addButton">
         Add Payment Channel
       </Button>
     </Link>
@@ -170,7 +169,7 @@ const PaymentChannelListing = () => {
   const renderPaymentChannelList = () => {
     if (Array.isArray(paymentChannelListing)) {
       return (
-        <div className={styles.paymentChannelListing__container}>
+        <div className="Listing__container">
           <Grid container spacing={2}>
             {currentPaymentChannels.map((paymentChannel) => (
               <PaymentChannelCard
@@ -189,7 +188,7 @@ const PaymentChannelListing = () => {
 
   const renderPagination = () => {
     return (
-      <div className={styles.paymentChannelListing__paginationContainer}>
+      <div className="Listing__paginationContainer">
         <Pagination
           color="primary"
           count={Math.ceil(paymentChannelListing.length / perPage)}

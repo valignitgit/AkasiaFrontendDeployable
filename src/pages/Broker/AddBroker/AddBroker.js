@@ -24,8 +24,6 @@ import { getCurrencyList } from "utils/AppUtil";
 import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
 import { isEmptyString } from "utils/Validator";
 
-import styles from "./style.module.scss";
-
 const AddBroker = () => {
   const initialState = {
     broker_id: "",
@@ -169,17 +167,17 @@ const AddBroker = () => {
   const renderAddBrokerDetailsForm = () => {
     return (
       <>
-        <Grid container className={styles.addBroker__gridCenter}>
+        <Grid container className="form__gridCenter">
           <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
-            <Paper className={`${styles.addBroker__formWidth} form_styles`}>
-              <Box className={styles.addBroker__formIcon_wrapper}>
+            <Paper className="form_styles">
+              <Box className="form__headingWrapper">
                 <Typography component="h1" variant="h5">
                   Add Broker
                 </Typography>
               </Box>
               <Box
                 component="form"
-                className={styles.addBroker__formContainer}
+                className="form__container"
                 onSubmit={handleSubmit}
                 noValidate
               >
@@ -229,7 +227,7 @@ const AddBroker = () => {
 
                 <FormControl
                   fullWidth
-                  className={styles.addBroker__selectInput}
+                  className="form__selectInput"
                 >
                   <InputLabel>Currency</InputLabel>
                   <Select
@@ -300,15 +298,12 @@ const AddBroker = () => {
                   <Button
                     variant="filled"
                     type="submit"
-                    className={styles.addBtn}
                   >
                     Submit
                   </Button>
                   <Link to="/broker">
                     <Button
                       variant="filled"
-                      type="submit"
-                      className={styles.addBtn}
                     >
                       Cancel
                     </Button>

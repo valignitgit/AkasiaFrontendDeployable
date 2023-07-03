@@ -20,8 +20,6 @@ import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import CountryCard from "../CountryCard/CountryCard";
 
-import styles from "./style.module.scss";
-
 const CountryListing = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.country?.data);
@@ -119,7 +117,7 @@ const CountryListing = () => {
 
   const renderAddCountryButton = () => (
     <Link to="/country/add">
-      <Button variant="filled" className={styles.addCountryButton}>
+      <Button variant="filled" className="Listing__addButton">
         Add Country
       </Button>
     </Link>
@@ -162,7 +160,7 @@ const CountryListing = () => {
   const renderCountryList = () => {
     if (Array.isArray(countryListing)) {
       return (
-        <div className={styles.countryListing__container}>
+        <div className="Listing__container">
           <Grid container spacing={2}>
             {currentCountry.map((country) => (
               <CountryCard
@@ -181,7 +179,7 @@ const CountryListing = () => {
 
   const renderPagination = () => {
     return (
-      <div className={styles.countryListing__paginationContainer}>
+      <div className="Listing__paginationContainer">
         <Pagination
           color="primary"
           count={Math.ceil(countryListing.length / perPage)}

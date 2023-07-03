@@ -20,7 +20,6 @@ import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import BrokerCard from "../BrokerCard/BrokerCard";
 
-import styles from "./style.module.scss";
 
 const BrokerListingPage = () => {
   const dispatch = useDispatch();
@@ -82,7 +81,6 @@ const BrokerListingPage = () => {
       await dispatch(deleteBroker(id))
         .unwrap()
         .then((res) => {
-          console.log(res);
           if (
             res.data === null &&
             res.status.status === 200 &&
@@ -121,7 +119,7 @@ const BrokerListingPage = () => {
 
   const renderAddBrokerButton = () => (
     <Link to="/broker/add">
-      <Button variant="filled" className={styles.addBrokerButton}>
+      <Button variant="filled" className="Listing__addButton">
         Add Broker
       </Button>
     </Link>
@@ -164,7 +162,7 @@ const BrokerListingPage = () => {
   const renderBrokerList = () => {
     if (Array.isArray(brokerListing)) {
       return (
-        <div className={styles.brokerListing__container}>
+        <div className="Listing__container">
           <Grid container spacing={2}>
             {currentBrokers.map((broker) => (
               <BrokerCard
@@ -183,7 +181,7 @@ const BrokerListingPage = () => {
 
   const renderPagination = () => {
     return (
-      <div className={styles.brokerListing__paginationContainer}>
+      <div className="Listing__paginationContainer">
         <Pagination
           color="primary"
           count={Math.ceil(brokerListing.length / perPage)}

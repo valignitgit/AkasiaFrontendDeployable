@@ -18,7 +18,6 @@ import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import ExchangeCard from "../ExchangeCard/ExchangeCard";
 
-import styles from "./style.module.scss";
 
 const ExchangeListing = () => {
   const dispatch = useDispatch();
@@ -119,7 +118,7 @@ const ExchangeListing = () => {
 
   const renderAddExchangeButton = () => (
     <Link to="/exchange/add">
-      <Button variant="filled" className={styles.addExchangeButton}>
+      <Button variant="filled" className="Listing__addButton">
         Add Exchange
       </Button>
     </Link>
@@ -162,7 +161,7 @@ const ExchangeListing = () => {
   const renderExchangeList = () => {
     if (Array.isArray(exchangeListing)) {
       return (
-        <div className={styles.exchangeListing__container}>
+        <div className="Listing__container">
           <Grid container spacing={2}>
             {currentExchange.map((exchange) => (
               <ExchangeCard
@@ -181,7 +180,7 @@ const ExchangeListing = () => {
 
   const renderPagination = () => {
     return (
-      <div className={styles.exchangeListing__paginationContainer}>
+      <div className="Listing__paginationContainer">
         <Pagination
           color="primary"
           count={Math.ceil(exchangeListing.length / perPage)}

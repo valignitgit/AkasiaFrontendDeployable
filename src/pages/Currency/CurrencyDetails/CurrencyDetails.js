@@ -29,37 +29,37 @@ const CurrencyDetails = () => {
       !Array.isArray(currentCurrency)
     ) {
       return (
-        <Grid container className={styles.currencyDetails__container}>
+        <Grid container className="Details__container">
           <Grid item xs={12} sm={8} md={8} lg={5} xl={4}>
-            <h1 className={styles.currencyDetails__heading}>
+            <h1 className="Details__heading">
               Currency Details
             </h1>
 
-            <Card className={styles.currencyDetails}>
+            <Card className="Details">
               <CardContent>
-                <div className={styles.currencyDetails__body}>
+                <div className="Details__body">
                   <div>
-                    <span className={styles.currencyDetails__itemKey}>
+                    <span className={`${styles.currencyDetails__itemKey_width} Details__itemKey`}>
                       Currency ID:
                     </span>
-                    <span className={styles.currencyDetails__itemValue}>
+                    <span className={`${styles.currencyDetails__itemValue_width} Details__itemValue`}>
                       {currency_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.currencyDetails__itemKey}>
+                    <span className={`${styles.currencyDetails__itemKey_width} Details__itemKey`}>
                       Currency Name:
                     </span>
-                    <span className={styles.currencyDetails__itemValue}>
+                    <span className={`${styles.currencyDetails__itemValue_width} Details__itemValue`}>
                       {currency_name || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.currencyDetails__itemKey}>
+                    <span className={`${styles.currencyDetails__itemKey_width} Details__itemKey`}>
                       Currency Name (Arabic):
                     </span>
                     <span
-                      className={`${styles.currencyDetails__itemValue} text_right`}
+                      className={`${styles.currencyDetails__itemValue_width} Details__itemValue text_right`}
                     >
                       {currency_name_ar || "NA"}
                     </span>
@@ -67,12 +67,12 @@ const CurrencyDetails = () => {
                 </div>
               </CardContent>
 
-              <CardActions className={styles.currencyDetails__buttonContainer}>
+              <CardActions className="Details__buttonContainer">
                 <Link to="/currency">
                   <Button
                     variant="filled"
                     shape="square"
-                    className={styles.currencyDetails__button}
+                    className="Details__button"
                     onClick={() => dispatch(setCurrentData())}
                   >
                     Back

@@ -25,7 +25,7 @@ const Layout = () => {
   }, [location]);
 
   return (
-    <>
+    <div style={{ overflow: "hidden" }}>
       <Navbar handleDrawerToggle={handleDrawerToggle} />
       <Sidebar
         mobileOpen={mobileOpen}
@@ -46,14 +46,12 @@ const Layout = () => {
               sm: "15px",
               md: "12px 16px 30px 305px",
             },
-            // overflow: "auto",
-            // maxHeight: "100%",
           }}
         >
           <Outlet />
         </Box>
       </Box>
-    </>
+    </div>
   );
 };
 

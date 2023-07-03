@@ -4,63 +4,61 @@ import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 
 import Button from "components/Button/CustomButton";
 
-import styles from "./style.module.scss";
-
 const BankCard = ({ bank_id, bank_name, handleDelete }) => {
   const renderBankCard = () => {
     return (
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
-          <Card className={styles.bankCard}>
+          <Card className="Card">
             <CardContent className="card__contentContainer">
-              <Box className={styles.bankCard__containWrapper}>
+              <Box className="Card__containWrapper">
                 <Typography
                   component="h4"
                   variant="p"
-                  className={styles.bankCard__itemKey}
+                  className="Card__itemKey"
                 >
                   Bank Id:
                 </Typography>
                 <Typography
                   component="p"
                   variant="p"
-                  className={styles.bankCard__itemValue}
+                  className="Card__itemValue"
                 >
                   {bank_id}
                 </Typography>
               </Box>
               <br />
-              <Box className={styles.bankCard__containWrapper}>
+              <Box className="Card__containWrapper">
                 <Typography
                   component="h4"
                   variant="p"
-                  className={styles.bankCard__itemKey}
+                  className="Card__itemKey"
                 >
                   Bank Name:
                 </Typography>
                 <Typography
                   component="p"
                   variant="p"
-                  className={styles.bankCard__itemValue}
+                  className="Card__itemValue"
                 >
                   {bank_name}
                 </Typography>
               </Box>
             </CardContent>
-            <div className={styles.bankCard__Actions}>
+            <div className="Card__Actions">
               <Link to={`/bank/${bank_id}`}>
-                <Button className={styles.bankCard__btn} shape="square">
+                <Button className="Card__btn" shape="square">
                   View
                 </Button>
               </Link>
               <Link to={`/bank/update/${bank_id}`}>
-                <Button className={styles.bankCard__btn} shape="square">
+                <Button className="Card__btn" shape="square">
                   Edit
                 </Button>
               </Link>
 
               <Button
-                className={styles.bankCard__btn}
+                className="Card__btn"
                 onClick={() => handleDelete(bank_id, bank_name)}
                 shape="square"
                 variant="filled"

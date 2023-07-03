@@ -21,8 +21,6 @@ import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import CurrencyCard from "../CurrencyCard/CurrencyCard";
 
-import styles from "./style.module.scss";
-
 const CurrencyListing = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.currency?.data);
@@ -122,7 +120,7 @@ const CurrencyListing = () => {
 
   const renderAddCurrencyButton = () => (
     <Link to="/currency/add">
-      <Button variant="filled" className={styles.addCurrencyButton}>
+      <Button variant="filled" className="Listing__addButton">
         Add Currency
       </Button>
     </Link>
@@ -164,7 +162,7 @@ const CurrencyListing = () => {
   const renderCurrencyList = () => {
     if (Array.isArray(currencyListing)) {
       return (
-        <div className={styles.currencyListing__container}>
+        <div className="Listing__container">
           <Grid container spacing={2}>
             {currentCurrency.map((currency) => (
               <CurrencyCard
@@ -182,7 +180,7 @@ const CurrencyListing = () => {
   };
   const renderPagination = () => {
     return (
-      <div className={styles.currencyListing__paginationContainer}>
+      <div className="Listing__paginationContainer">
         <Pagination
           color="primary"
           count={Math.ceil(currencyListing.length / perPage)}

@@ -191,8 +191,124 @@ p {
   @include margin_right(0);
 }
 
-//------Card styles-------//
+//----- listing styles -----//
+.Listing__container {
+  @include margin_bottom(30px);
+  min-height: 70vh;
+}
+.Listing__paginationContainer {
+  @include flexbox;
+  @include justify_content(flex-end);
+  @include align_items(center);
+  width: 100%;
+  @include margin_bottom(20px);
+}
 
+.Listing__addButton {
+  @include margin_bottom(20px);
+}
+
+//----- Details styles -----//
+.Details__container {
+  @include flexbox;
+  @include justify_content(center);
+  @include align_items(center);
+}
+.Details__heading {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.Details {
+  @include card_box_shadow;
+  border-radius: var(--card-border-radius);
+  padding: 18px 20px;
+  @include flex_wrap(wrap);
+  cursor: pointer;
+  &:hover {
+    transform: translate3D(0, -1px, 0) scale(1.03);
+    transition: all 0.4s ease;
+  }
+}
+
+.Details__body {
+  div {
+    @include margin_bottom(15px);
+  }
+}
+
+.Details__itemKey {
+  color: var(--emperor-grey);
+  font-weight: 600;
+  display: inline-block;
+  flex: 1;
+}
+
+.Details__itemValue {
+  text-transform: capitalize;
+  display: inline-block;
+  flex: 1;
+  word-wrap: break-word;
+}
+
+.Details__buttonContainer {
+  @include flex_center;
+}
+
+.Details__button {
+  width: 120px;
+}
+
+//----- Cards styles -----//
+
+.Card {
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 150px;
+  @include card_box_shadow;
+  &:hover {
+    transform: translate3D(0, -1px, 0) scale(1.03);
+    transition: all 0.4s ease;
+  }
+}
+.Card__containWrapper {
+  @include flexbox;
+  @include gap(5px);
+}
+
+.Card__itemKey {
+  color: var(--emperor-grey);
+  font-weight: 600;
+  display: inline-block;
+  flex: 1;
+  font-size: 0.9rem;
+  @include lg_down {
+    flex: 1;
+  }
+}
+.Card__itemValue {
+  text-transform: capitalize;
+  display: inline-block;
+  flex: 1;
+  font-size: 0.9rem;
+  @include lg_down {
+    flex: 1;
+  }
+}
+
+.Card__notAvailableText {
+  @include margin_top(2px);
+}
+
+.Card__Actions {
+  @include flex_center;
+  @include gap(5px);
+}
+
+.Card__btn {
+  width: 80px;
+  font-size: 0.85rem;
+}
 .card__contentContainer {
   height: 70px;
 }

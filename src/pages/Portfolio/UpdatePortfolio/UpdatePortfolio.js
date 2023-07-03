@@ -198,7 +198,7 @@ const UpdatePortfolio = () => {
   const renderUpdatePortfolioDetailsForm = () => {
     return (
       <>
-        <Grid container className={styles.addPortfolio__gridCenter}>
+        <Grid container className="form__gridCenter">
           <Grid item xs={12} sm={12} md={8} lg={5} xl={5}>
             <Box
               component="form"
@@ -224,7 +224,7 @@ const UpdatePortfolio = () => {
                   label="Portfolio Name"
                   onChange={(e) => onChange(e)}
                   autoComplete="off"
-                  className={styles.addPortfolio__textInput}
+                  className="form__textInput"
                 />
                 {error.portfolio_name.errorState && (
                   <span className="error">
@@ -241,7 +241,7 @@ const UpdatePortfolio = () => {
                   label="Portfolio Name Arabic"
                   onChange={(e) => onChange(e)}
                   autoComplete="off"
-                  className={`${styles.addPortfolio__textInput} textInput__rightAlighed`}
+                  className="form__textInput textInput__rightAlighed"
                 />
                 {error.portfolio_name_ar.errorState && (
                   <span className="error">
@@ -251,7 +251,7 @@ const UpdatePortfolio = () => {
 
                 <FormControl
                   fullWidth
-                  className={styles.addPortfolio__selectInput}
+                  className="form__selectInput"
                 >
                   <InputLabel>Risk Level</InputLabel>
                   <Select
@@ -281,7 +281,7 @@ const UpdatePortfolio = () => {
                   onChange={(e) => onChange(e)}
                   placeholder="Enter the value in decimal point like 15.5"
                   autoComplete="off"
-                  className={styles.addPortfolio__textInput}
+                  className="form__textInput"
                 />
                 {error.avg_growth_pct.errorState && (
                   <span className="error">
@@ -306,7 +306,7 @@ const UpdatePortfolio = () => {
                 <Button
                   type="submit"
                   variant="filled"
-                  className={styles.addPortfolio__submitBtn}
+                  className="form__submitBtn"
                 >
                   Update
                 </Button>

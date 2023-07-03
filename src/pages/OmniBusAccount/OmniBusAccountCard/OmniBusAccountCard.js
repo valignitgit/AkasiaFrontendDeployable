@@ -4,8 +4,6 @@ import { Box, Card, CardContent, Grid } from "@mui/material";
 
 import Button from "components/Button/CustomButton";
 
-import styles from "./style.module.scss";
-
 const OmniBusAccountCard = ({
   omnibusAccountId,
   bankAccountName,
@@ -15,47 +13,33 @@ const OmniBusAccountCard = ({
     return (
       <>
         <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
-          <Card className={styles.omniBusAccountCard}>
+          <Card className="Card">
             <CardContent className="card__contentContainer">
-              <Box className={styles.omniBusAccountCard__containWrapper}>
-                <span className={styles.omniBusAccountCard__itemKey}>
-                  Omnibus Account ID:
-                </span>
-                <span className={styles.omniBusAccountCard__itemValue}>
-                  {omnibusAccountId}
-                </span>
+              <Box className="Card__containWrapper">
+                <span className="Card__itemKey">Omnibus Account ID:</span>
+                <span className="Card__itemValue">{omnibusAccountId}</span>
               </Box>
               <br />
-              <Box className={styles.omniBusAccountCard__containWrapper}>
-                <span className={styles.omniBusAccountCard__itemKey}>
-                  Bank Account Name
-                </span>
-                <span className={styles.omniBusAccountCard__itemValue}>
-                  {bankAccountName}
-                </span>
+              <Box className="Card__containWrapper">
+                <span className="Card__itemKey">Bank Account Name:</span>
+                <span className="Card__itemValue">{bankAccountName}</span>
               </Box>
               <br />
             </CardContent>
-            <div className={styles.omniBusAccountCard__Actions}>
+            <div className="Card__Actions">
               <Link to={`/omnibus-account/${omnibusAccountId}`}>
-                <Button
-                  className={styles.omniBusAccountCard__btn}
-                  shape="square"
-                >
+                <Button className="Card__btn" shape="square">
                   View
                 </Button>
               </Link>
               <Link to={`/omnibus-account/update/${omnibusAccountId}`}>
-                <Button
-                  className={styles.omniBusAccountCard__btn}
-                  shape="square"
-                >
+                <Button className="Card__btn" shape="square">
                   Edit
                 </Button>
               </Link>
               <Button
                 shape="square"
-                className={styles.omniBusAccountCard__btn}
+                className="Card__btn"
                 onClick={() => handleDelete(omnibusAccountId, bankAccountName)}
                 variant="filled"
               >

@@ -21,7 +21,6 @@ import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import OmniBusAccountCard from "../OmniBusAccountCard/OmniBusAccountCard";
 
-import styles from "./style.module.scss";
 
 const OmniBusAccountListing = () => {
   const dispatch = useDispatch();
@@ -127,7 +126,7 @@ const OmniBusAccountListing = () => {
 
   const renderAddOmniBusAccountButton = () => (
     <Link to="/omnibus-account/add">
-      <Button variant="filled" className={styles.addOmniBusAccountButton}>
+      <Button variant="filled" className="Listing__addButton">
         Add Omnibus Account
       </Button>
     </Link>
@@ -170,7 +169,7 @@ const OmniBusAccountListing = () => {
   const renderOmniBusAccountList = () => {
     if (Array.isArray(omniBusAccountListing)) {
       return (
-        <div className={styles.omniBusAccountListing__container}>
+        <div className="Listing__container">
           <Grid container spacing={2}>
             {currentOmniBusAccounts.map((omniBusAccount) => (
               <OmniBusAccountCard
@@ -189,7 +188,7 @@ const OmniBusAccountListing = () => {
 
   const renderPagination = () => {
     return (
-      <div className={styles.omniBusAccountListing__paginationContainer}>
+      <div className="Listing__paginationContainer">
         <Pagination
           color="primary"
           count={Math.ceil(omniBusAccountListing.length / perPage)}

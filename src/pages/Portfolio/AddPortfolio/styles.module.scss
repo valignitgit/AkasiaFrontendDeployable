@@ -1,12 +1,6 @@
 @import "styles/mixins";
 @import "styles/variables";
 
-.addPortfolio__gridCenter {
-  @include align_items(center);
-  @include justify_content(center);
-  margin-top: 50px;
-}
-
 .addPortfolio__formContainer {
   @include flexbox;
   @include flex_directions(column);
@@ -22,29 +16,6 @@
 .addPortfolio__formHeading {
   @include margin_bottom(10px);
   text-align: center;
-}
-
-.addPortfolio__formIcon_wrapper {
-  @include flexbox;
-  @include flex_directions(column);
-  @include align_items(center);
-}
-.addPortfolio__formIcon {
-  background-color: var(--violate);
-}
-.addPortfolio__textInput {
-  @include margin_top(8px);
-  @include margin_bottom(8px);
-}
-
-.addPortfolio__selectInput {
-  @include margin_top(8px);
-  @include margin_bottom(8px);
-}
-
-.addPortfolio__checkBoxInput {
-  @include margin_left(0);
-  @include margin_right(0);
 }
 
 .addPortfolio__errorContainer {

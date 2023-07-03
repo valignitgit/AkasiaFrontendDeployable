@@ -10,7 +10,6 @@ import { getAllSecurities, setCurrentData } from "redux/slices/securitySlice";
 
 import SecurityCard from "../SecurityCard/SecurityCard";
 
-import styles from "./styles.module.scss";
 
 const SecurityListing = () => {
   const dispatch = useDispatch();
@@ -44,7 +43,7 @@ const SecurityListing = () => {
   const renderAddSecurityButton = () => {
     return (
       <Link to="/security/add">
-        <Button variant="filled" className={styles.addSecurityButton}>
+        <Button variant="filled" className="Listing__addButton">
           Add Security
         </Button>
       </Link>
@@ -53,7 +52,7 @@ const SecurityListing = () => {
   const renderSecurityCards = () => {
     if (Array.isArray(securityList)) {
       return (
-        <div className={styles.securityListing_container}>
+        <div className="Listing__container">
           <Grid container spacing={2}>
             {currentSecurityPage.map((card) => (
               <SecurityCard
@@ -71,7 +70,7 @@ const SecurityListing = () => {
   };
   const renderPagination = () => {
     return (
-      <div className={styles.securityListing__paginationContainer}>
+      <div className="Listing__paginationContainer">
         <Pagination
           color="primary"
           count={Math.ceil(securityList.length / dataPerPage)}

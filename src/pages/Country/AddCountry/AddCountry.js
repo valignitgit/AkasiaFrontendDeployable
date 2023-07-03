@@ -11,7 +11,6 @@ import { getEmptyErrorState } from "utils/AppUtil";
 import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
 import { isEmptyString } from "utils/Validator";
 
-import styles from "./style.module.scss";
 
 const AddCountry = () => {
   const initialState = {
@@ -91,17 +90,17 @@ const AddCountry = () => {
   const renderAddCountryDetailsForm = () => {
     return (
       <>
-        <Grid container className={styles.addCountry__gridCenter}>
+        <Grid container className="form__gridCenter">
           <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
-            <Paper className={`${styles.addCountry__formWidth} form_styles`}>
-              <Box className={styles.addCountry__formIcon_wrapper}>
+            <Paper className="form_styles">
+              <Box className="form__headingWrapper">
                 <Typography component="h1" variant="h5">
                   Add Country
                 </Typography>
               </Box>
               <Box
                 component="form"
-                className={styles.addCountry__formContainer}
+                className="form__container"
                 onSubmit={handleSubmit}
                 noValidate
               >
@@ -153,15 +152,12 @@ const AddCountry = () => {
                   <Button
                     variant="filled"
                     type="submit"
-                    className={styles.addBtn}
                   >
                     Submit
                   </Button>
-                  <Link to="/country">
+                  <Link to="/exchange">
                     <Button
                       variant="filled"
-                      type="submit"
-                      className={styles.addBtn}
                     >
                       Cancel
                     </Button>

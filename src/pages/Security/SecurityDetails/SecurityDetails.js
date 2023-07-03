@@ -43,139 +43,139 @@ const securityDetails = () => {
       !Array.isArray(currentSecurity)
     ) {
       return (
-        <Grid container className={styles.securityDetails__container}>
+        <Grid container className="Details__container">
           <Grid item xs={12} sm={6} md={6} lg={5} xl={4}>
-            <h1 className={styles.securityDetails__heading}>
+            <h1 className="Details__heading">
               Security Details
             </h1>
 
-            <Card className={styles.securityDetails}>
+            <Card className="Details">
               <CardContent>
-                <div className={styles.securityDetails__body}>
+                <div className="Details__body">
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Security ID:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {security_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Security Name:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {security_name || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Security Name (Arabic):
                     </span>
                     <span
-                      className={`${styles.securityDetails__itemValue} text_right`}
+                      className={`${styles.securityDetails__itemValue_width} Details__itemValue text_right`}
                     >
                       {security_name_ar || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Security Ref:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {security_ref || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Currency ID:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {currency_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Market Price Amount:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {market_price_amt || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Security Class:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {security_class || "NA"}
                     </span>
                   </div>
 
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Security Type:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {security_type || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Is Tradable:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {is_tradable || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Is Marginable:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {is_marginable || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Is Fractionable:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {is_fractionable || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Exchange ID:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {exchange_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Is Islamic:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {is_islamic || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.securityDetails__itemKey}>
+                    <span className={`${styles.securityDetails__itemKey_width} Details__itemKey`}>
                       Is Shariah:
                     </span>
-                    <span className={styles.securityDetails__itemValue}>
+                    <span className={`${styles.securityDetails__itemValue_width} Details__itemValue`}>
                       {is_shariah || "NA"}
                     </span>
                   </div>
                 </div>
               </CardContent>
 
-              <CardActions className={styles.securityDetails__buttonContainer}>
+              <CardActions className="Details__buttonContainer">
                 <Link to="/security">
                   <Button
                     variant="filled"
                     shape="square"
-                    className={styles.securityDetails__button}
+                    className="Details__button"
                     onClick={() => dispatch(setCurrentData())}
                   >
                     Back

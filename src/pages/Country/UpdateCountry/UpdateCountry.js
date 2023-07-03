@@ -12,7 +12,6 @@ import { getEmptyErrorState } from "utils/AppUtil";
 import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
 import { isEmptyString } from "utils/Validator";
 
-import styles from "../AddCountry/style.module.scss";
 
 const UpdateCountry = () => {
   const initialState = {
@@ -104,17 +103,17 @@ const UpdateCountry = () => {
 
   const renderUpdateCountryDetailsForm = () => {
     return (
-      <Grid container className={styles.addCountry__gridCenter}>
+      <Grid container className="form__gridCenter">
         <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
-          <Paper className={`${styles.addCountry__formWidth} form_styles`}>
-            <Box className={styles.addCountry__formIcon_wrapper}>
+          <Paper className="form_styles">
+            <Box className="form__headingWrapper">
               <Typography component="h1" variant="h5">
                 Update Country
               </Typography>
             </Box>
             <Box
               component="form"
-              className={styles.addCountry__formContainer}
+              className="form__container"
               onSubmit={handleSubmit}
               noValidate
             >
@@ -154,6 +153,7 @@ const UpdateCountry = () => {
                 name="country_name_ar"
                 value={country_name_ar}
                 label="Country Name Arabic"
+                autoComplete="current-password"
                 onChange={(e) => onChange(e)}
                 className="textInput__rightAlighed"
               />
@@ -163,14 +163,12 @@ const UpdateCountry = () => {
                 </span>
               )}
               <div className="buttons_container">
-                <Button className="mt_10" variant="filled" type="submit">
+                <Button  variant="filled" type="submit">
                   Update
                 </Button>
                 <Link to="/country">
                   <Button
                     variant="filled"
-                    type="submit"
-                    className={styles.addBtn}
                   >
                     Cancel
                   </Button>

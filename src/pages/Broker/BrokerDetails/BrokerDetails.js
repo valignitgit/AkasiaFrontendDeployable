@@ -37,80 +37,80 @@ const BrokerDetails = () => {
       !Array.isArray(currentBroker)
     ) {
       return (
-        <Grid container className={styles.brokerDetails__container}>
+        <Grid container className="Details__container">
           <Grid item xs={12} sm={8} md={8} lg={5} xl={4}>
-            <h1 className={styles.brokerDetails__heading}>Broker Details</h1>
+            <h1 className="Details__heading">Broker Details</h1>
 
-            <Card className={styles.brokerDetails}>
+            <Card className="Details">
               <CardContent>
-                <div className={styles.brokerDetails__body}>
+                <div className="Details__body">
                   <div>
-                    <span className={styles.brokerDetails__itemKey}>
+                    <span className={`${styles.brokerDetails__itemKey_width} Details__itemKey`}>
                       Broker ID:
                     </span>
-                    <span className={styles.brokerDetails__itemValue}>
+                    <span className={`${styles.brokerDetails__itemValue_width} Details__itemValue`}>
                       {broker_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.brokerDetails__itemKey}>
+                    <span className={`${styles.brokerDetails__itemKey_width} Details__itemKey`}>
                       Broker Name:
                     </span>
-                    <span className={styles.brokerDetails__itemValue}>
+                    <span className={`${styles.brokerDetails__itemValue_width} Details__itemValue`}>
                       {broker_name || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.brokerDetails__itemKey}>
+                    <span className={`${styles.brokerDetails__itemKey_width} Details__itemKey`}>
                       Broker Name (Arabic):
                     </span>
                     <span
-                      className={`${styles.brokerDetails__itemValue} text_right`}
+                      className={`${styles.brokerDetails__itemValue_width} Details__itemValue text_right`}
                     >
                       {broker_name_ar || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.brokerDetails__itemKey}>
+                    <span className={`${styles.brokerDetails__itemKey_width} Details__itemKey`}>
                       Currency ID:
                     </span>
-                    <span className={styles.brokerDetails__itemValue}>
+                    <span className={`${styles.brokerDetails__itemValue_width} Details__itemValue`}>
                       {currency_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.brokerDetails__itemKey}>
+                    <span className={`${styles.brokerDetails__itemKey_width} Details__itemKey`}>
                       Investment Account ID:
                     </span>
-                    <span className={styles.brokerDetails__itemValue}>
+                    <span className={`${styles.brokerDetails__itemValue_width} Details__itemValue`}>
                       {investment_account_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.brokerDetails__itemKey}>
+                    <span className={`${styles.brokerDetails__itemKey_width} Details__itemKey`}>
                       Bank Account ID:
                     </span>
-                    <span className={styles.brokerDetails__itemValue}>
+                    <span className={`${styles.brokerDetails__itemValue_width} Details__itemValue`}>
                       {bank_account_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.brokerDetails__itemKey}>
+                    <span className={`${styles.brokerDetails__itemKey_width} Details__itemKey`}>
                       Broker Abbreviation:
                     </span>
-                    <span className={styles.brokerDetails__itemValue}>
+                    <span className={`${styles.brokerDetails__itemValue_width} Details__itemValue`}>
                       {broker_abbr || "NA"}
                     </span>
                   </div>
                 </div>
               </CardContent>
 
-              <CardActions className={styles.brokerDetails__buttonContainer}>
+              <CardActions className="Details__buttonContainer">
                 <Link to="/broker">
                   <Button
                     variant="filled"
                     shape="square"
-                    className={styles.brokerDetails__button}
+                    className="Details__button"
                     onClick={() => dispatch(setCurrentData())}
                   >
                     Back

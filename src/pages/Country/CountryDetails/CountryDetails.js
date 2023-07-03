@@ -27,35 +27,35 @@ const CountryDetails = () => {
       !Array.isArray(currentCountry)
     ) {
       return (
-        <Grid container className={styles.countryDetails__container}>
+        <Grid container className="Details__container">
           <Grid item xs={12} sm={8} md={8} lg={5} xl={4}>
-            <h1 className={styles.countryDetails__heading}>Country Details</h1>
+            <h1 className="Details__heading">Country Details</h1>
 
-            <Card className={styles.countryDetails}>
+            <Card className="Details">
               <CardContent>
-                <div className={styles.countryDetails__body}>
+                <div className="Details__body">
                   <div>
-                    <span className={styles.countryDetails__itemKey}>
+                    <span className={`${styles.countryDetails__itemKey_width} Details__itemKey`}>
                       Country ID:
                     </span>
-                    <span className={styles.countryDetails__itemValue}>
+                    <span className={`${styles.countryDetails__itemValue_width} Details__itemValue`}>
                       {country_id || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.countryDetails__itemKey}>
+                    <span className={`${styles.countryDetails__itemKey_width} Details__itemKey`}>
                       Country Name:
                     </span>
-                    <span className={styles.countryDetails__itemValue}>
+                    <span className={`${styles.countryDetails__itemValue_width} Details__itemValue`}>
                       {country_name || "NA"}
                     </span>
                   </div>
                   <div>
-                    <span className={styles.countryDetails__itemKey}>
+                    <span className={`${styles.countryDetails__itemKey_width} Details__itemKey`}>
                       Country Name (Arabic):
                     </span>
                     <span
-                      className={`${styles.countryDetails__itemValue} text_right`}
+                      className={`${styles.countryDetails__itemValue_width} Details__itemValue text_right`}
                     >
                       {country_name_ar || "NA"}
                     </span>
@@ -63,12 +63,12 @@ const CountryDetails = () => {
                 </div>
               </CardContent>
 
-              <CardActions className={styles.countryDetails__buttonContainer}>
+              <CardActions className="Details__buttonContainer">
                 <Link to="/country">
                   <Button
                     variant="filled"
                     shape="square"
-                    className={styles.countryDetails__button}
+                    className="Details__button"
                     onClick={() => dispatch(setCurrentData())}
                   >
                     Back

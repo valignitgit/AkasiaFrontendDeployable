@@ -18,8 +18,6 @@ import { ERROR, SUCCESS } from "utils/constants/constant";
 
 import BankCard from "../BankCard/BankCard";
 
-import styles from "./styles.module.scss";
-
 const BankListing = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.bank?.data);
@@ -121,7 +119,7 @@ const BankListing = () => {
 
   const renderAddBankButton = () => (
     <Link to="/bank/add">
-      <Button variant="filled" className={styles.addBankButton}>
+      <Button variant="filled" className="Listing__addButton">
         Add Bank
       </Button>
     </Link>
@@ -162,7 +160,7 @@ const BankListing = () => {
   const renderBankList = () => {
     if (Array.isArray(bankList)) {
       return (
-        <div className={styles.bankListing__container}>
+        <div className="Listing__container">
           <Grid container spacing={2}>
             {currentBanks?.map((bank) => (
               <BankCard
@@ -180,7 +178,7 @@ const BankListing = () => {
   };
   const renderPagination = () => {
     return (
-      <div className={styles.bankListing__paginationContainer}>
+      <div className="Listing__paginationContainer">
         <Pagination
           color="primary"
           count={Math.ceil(bankList.length / perPage)}

@@ -1,50 +1,11 @@
 @import "styles/mixins";
 @import "styles/variables";
 
-.exchangeDetails__container {
-  @include flexbox;
-  @include justify_content(center);
-  @include align_items(center);
-}
-.exchangeDetails__heading {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.exchangeDetails {
-  @include card_box_shadow;
-  border-radius: var(--card-border-radius);
-  padding: 18px 20px;
-  @include flex_wrap(wrap);
-  cursor: pointer;
-  &:hover {
-    transform: translate3D(0, -1px, 0) scale(1.03);
-    transition: all 0.4s ease;
-  }
-}
-
-.exchangeDetails__body {
-  div {
-    @include margin_bottom(15px);
-  }
-}
-
-.exchangeDetails__itemKey {
-  color: var(--emperor-grey);
-  font-weight: 600;
-  display: inline-block;
+.exchangeDetails__itemKey_width {
   width: 45%;
 }
 
-.exchangeDetails__itemValue {
-  text-transform: capitalize;
-  display: inline-block;
+.exchangeDetails__itemValue_width {
   width: 35%;
 }
 
-.exchangeDetails__buttonContainer {
-  @include flex_center;
-}
-
-.exchangeDetails__button {
-  width: 120px;
-}

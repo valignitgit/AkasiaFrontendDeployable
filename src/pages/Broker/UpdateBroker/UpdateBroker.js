@@ -24,7 +24,7 @@ import { getCurrencyList } from "utils/AppUtil";
 import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
 import { isEmptyString } from "utils/Validator";
 
-import styles from "../AddBroker/style.module.scss";
+
 
 const UpdateBroker = () => {
   const initialState = {
@@ -139,17 +139,17 @@ const UpdateBroker = () => {
 
   const renderUpdateBrokerDetailsForm = () => {
     return (
-      <Grid container className={styles.addBroker__gridCenter}>
+      <Grid container className="form__gridCenter">
         <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
-          <Paper className={`${styles.addBroker__formWidth} form_styles`}>
-            <Box className={styles.addBroker__formIcon_wrapper}>
+          <Paper className="form_styles">
+            <Box className="form__headingWrapper">
               <Typography component="h1" variant="h5">
                 Update Broker
               </Typography>
             </Box>
             <Box
               component="form"
-              className={styles.addBroker__formContainer}
+              className="form__container"
               onSubmit={handleSubmit}
               noValidate
             >
@@ -189,6 +189,7 @@ const UpdateBroker = () => {
                 name="broker_name_ar"
                 value={broker_name_ar}
                 label="Broker Name Arabic"
+                autoComplete="current-password"
                 onChange={(e) => onChange(e)}
                 className="textInput__rightAlighed"
               />
@@ -198,7 +199,7 @@ const UpdateBroker = () => {
                 </span>
               )}
 
-              <FormControl fullWidth className={styles.addBroker__selectInput}>
+              <FormControl fullWidth className="form__selectInput">
                 <InputLabel>Currency</InputLabel>
                 <Select
                   name="currency_id"
@@ -261,14 +262,12 @@ const UpdateBroker = () => {
                 <span className="error">{error.broker_abbr.errorMessage}</span>
               )}
               <div className="buttons_container">
-                <Button className="mt_10" variant="filled" type="submit">
+                <Button  variant="filled" type="submit">
                   Update
                 </Button>
                 <Link to="/broker">
                   <Button
                     variant="filled"
-                    type="submit"
-                    className={styles.addBtn}
                   >
                     Cancel
                   </Button>

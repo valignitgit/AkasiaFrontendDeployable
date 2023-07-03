@@ -27,8 +27,6 @@ import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
 import { getSecurityTypeList } from "utils/SecurityUtil";
 import { isEmptyString } from "utils/Validator";
 
-import styles from "./style.module.scss";
-
 const AddSecurity = () => {
   const securityTypeOptions = getSecurityTypeList();
   const dispatch = useDispatch();
@@ -167,17 +165,17 @@ const AddSecurity = () => {
 
   return (
     <>
-      <Grid container className={styles.addsecurity__gridCenter}>
+      <Grid container className="form__gridCenter">
         <Grid item xs={12} sm={10} md={7} lg={6} xl={4}>
           <Paper className="form_styles">
-            <Box className={styles.addsecurity__formIcon_wrapper}>
+            <Box className="form__headingWrapper">
               <Typography component="h1" variant="h5">
                 Add Security
               </Typography>
             </Box>
             <Box
               component="form"
-              className={styles.addsecurity__formContainer}
+              className="form__container"
               onSubmit={handleSubmit}
             >
               <TextField
@@ -188,7 +186,7 @@ const AddSecurity = () => {
                 label="Security Id"
                 onChange={(e) => onChange(e)}
                 autoComplete="off"
-                className={styles.addsecurity__textInput}
+                className="form__textInput"
               />
               {error.security_id.errorState && (
                 <span className="error">{error.security_id.errorMessage}</span>
@@ -202,7 +200,7 @@ const AddSecurity = () => {
                 label="Security Name"
                 onChange={(e) => onChange(e)}
                 autoComplete="off"
-                className={styles.addsecurity__textInput}
+                className="form__textInput"
               />
               {error.security_name.errorState && (
                 <span className="error">
@@ -218,7 +216,7 @@ const AddSecurity = () => {
                 label="Security Name Arabic"
                 onChange={(e) => onChange(e)}
                 autoComplete="off"
-                className={`${styles.addsecurity__textInput} textInput__rightAlighed`}
+                className="form__textInput textInput__rightAlighed"
               />
               {error.security_name_ar.errorState && (
                 <span className="error">
@@ -228,7 +226,7 @@ const AddSecurity = () => {
 
               <FormControl
                 fullWidth
-                className={styles.addOmniBusAccount__selectInput}
+                className="form__selectInput"
               >
                 <InputLabel>Security Class</InputLabel>
                 <Select
@@ -249,7 +247,7 @@ const AddSecurity = () => {
 
               <FormControl
                 fullWidth
-                className={styles.addsecurity__selectInput}
+                className="form__selectInput"
               >
                 <InputLabel>Security Type</InputLabel>
                 <Select
@@ -274,7 +272,7 @@ const AddSecurity = () => {
 
               <FormControl
                 fullWidth
-                className={styles.addsecurity__selectInput}
+                className="form__selectInput"
               >
                 <InputLabel>Currency</InputLabel>
                 <Select
@@ -306,7 +304,7 @@ const AddSecurity = () => {
                   }
                   label="Is Islamic"
                   labelPlacement="start"
-                  className={styles.addsecurity__checkBoxInput}
+                  className="form__checkBoxInput"
                 />
                 <FormControlLabel
                   control={
@@ -318,22 +316,20 @@ const AddSecurity = () => {
                   }
                   label="Is Sharia"
                   labelPlacement="start"
-                  className={styles.addsecurity__checkBoxInput}
+                  className="form__checkBoxInput"
                 />
               </Box>
               <div className="buttons_container">
                 <Button
                   variant="filled"
                   type="submit"
-                  className={styles.addsecurity__submitBtn}
+                  className="form__submitBtn"
                 >
                   Submit
                 </Button>
                 <Link to="/security">
                   <Button
                     variant="filled"
-                    type="submit"
-                    className={styles.addBtn}
                   >
                     Cancel
                   </Button>

@@ -11,8 +11,6 @@ import { getEmptyErrorState } from "utils/AppUtil";
 import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
 import { isEmptyString } from "utils/Validator";
 
-import styles from "./style.module.scss";
-
 const AddExchange = () => {
   const initialState = {
     exchange_id: "",
@@ -90,17 +88,17 @@ const AddExchange = () => {
   const renderAddExchangeDetailsForm = () => {
     return (
       <>
-        <Grid container className={styles.addExchange__gridCenter}>
+        <Grid container className="form__gridCenter">
           <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
-            <Paper className={`${styles.addExchange__formWidth} form_styles`}>
-              <Box className={styles.addExchange__formIcon_wrapper}>
+            <Paper className="form_styles">
+              <Box className="form__headingWrapper">
                 <Typography component="h1" variant="h5">
                   Add Exchange
                 </Typography>
               </Box>
               <Box
                 component="form"
-                className={styles.addExchange__formContainer}
+                className="form__container"
                 onSubmit={handleSubmit}
                 noValidate
               >
@@ -154,15 +152,12 @@ const AddExchange = () => {
                   <Button
                     variant="filled"
                     type="submit"
-                    className={styles.addBtn}
                   >
                     Submit
                   </Button>
                   <Link to="/exchange">
                     <Button
                       variant="filled"
-                      type="submit"
-                      className={styles.addBtn}
                     >
                       Cancel
                     </Button>

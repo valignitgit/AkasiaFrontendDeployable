@@ -1,50 +1,10 @@
 @import "styles/mixins";
 @import "styles/variables";
 
-.omniBusAccountDetails__container {
-  @include flexbox;
-  @include justify_content(center);
-  @include align_items(center);
-}
-.omniBusAccountDetails__heading {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.omniBusAccountDetails {
-  @include card_box_shadow;
-  border-radius: var(--card-border-radius);
-  padding: 18px 20px;
-  @include flex_wrap(wrap);
-  cursor: pointer;
-  &:hover {
-    transform: translate3D(0, -1px, 0) scale(1.03);
-    transition: all 0.4s ease;
-  }
-}
-
-.omniBusAccountDetails__body {
-  div {
-    @include margin_bottom(15px);
-  }
-}
-
-.omniBusAccountDetails__itemKey {
-  color: var(--emperor-grey);
-  font-weight: 600;
-  display: inline-block;
+.omniBusAccountDetails__itemKey_width {
   width: 45%;
 }
 
-.omniBusAccountDetails__itemValue {
-  text-transform: capitalize;
-  display: inline-block;
+.omniBusAccountDetails__itemValue_width {
   width: 30%;
-}
-
-.omniBusAccountDetails__buttonContainer {
-  @include flex_center;
-}
-
-.omniBusAccountDetails__button {
-  width: 120px;
 }

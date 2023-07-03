@@ -24,8 +24,6 @@ import { getListByKey } from "utils/AppUtil";
 import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
 import { isCompanyCode, isEmptyString, isIbaNumber } from "utils/Validator";
 
-import styles from "./style.module.scss";
-
 const AddOmniBusAccount = () => {
   const initialState = {
     omnibusAccountId: "",
@@ -172,7 +170,6 @@ const AddOmniBusAccount = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validateForm();
-    console.log(isValid);
 
     if (isValid) {
       try {
@@ -218,7 +215,7 @@ const AddOmniBusAccount = () => {
                   value={omnibusAccountId}
                   label="Omnibus Account ID"
                   onChange={onChange}
-                  className={styles.addOmniBusAccount__textInput}
+                  className="form__textInput"
                 />
                 {error.omnibusAccountId.errorState && (
                   <span className="error">
@@ -234,7 +231,7 @@ const AddOmniBusAccount = () => {
                   value={bankAccountNum}
                   label="Bank Account Number"
                   onChange={onChange}
-                  className={styles.addOmniBusAccount__textInput}
+                  className="form__textInput"
                 />
                 {error.bankAccountNum.errorState && (
                   <span className="error">
@@ -250,7 +247,7 @@ const AddOmniBusAccount = () => {
                   value={bankAccountIban}
                   label="International Bank Account Number"
                   onChange={onChange}
-                  className={styles.addOmniBusAccount__textInput}
+                  className="form__textInput"
                 />
                 {error.bankAccountIban.errorState && (
                   <span className="error">
@@ -266,7 +263,7 @@ const AddOmniBusAccount = () => {
                   value={bankAccountName}
                   label="Bank Account Name"
                   onChange={onChange}
-                  className={styles.addOmniBusAccount__textInput}
+                  className="form__textInput"
                 />
                 {error.bankAccountName.errorState && (
                   <span className="error">
@@ -276,7 +273,7 @@ const AddOmniBusAccount = () => {
 
                 <FormControl
                   fullWidth
-                  className={styles.addOmniBusAccount__selectInput}
+                  className="form__selectInput"
                 >
                   <InputLabel>Bank Id</InputLabel>
                   <Select
@@ -306,7 +303,7 @@ const AddOmniBusAccount = () => {
                   value={companyCode}
                   label="Company Code"
                   onChange={onChange}
-                  className={styles.addOmniBusAccount__textInput}
+                  className="form__textInput"
                 />
                 {error.companyCode.errorState && (
                   <span className="error">
@@ -316,7 +313,7 @@ const AddOmniBusAccount = () => {
 
                 <FormControl
                   fullWidth
-                  className={styles.addOmniBusAccount__selectInput}
+                  className="form__selectInput"
                 >
                   <InputLabel>Currency Id</InputLabel>
                   <Select

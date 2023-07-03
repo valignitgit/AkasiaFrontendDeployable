@@ -12,7 +12,7 @@ import { getEmptyErrorState } from "utils/AppUtil";
 import ErrorMessageGenerator from "utils/ErrorMessageGenerator";
 import { isEmptyString } from "utils/Validator";
 
-import styles from "../AddBank/style.module.scss";
+import styles from "styles/_global.scss";
 
 const UpdateBank = () => {
   const initialState = {
@@ -100,17 +100,17 @@ const UpdateBank = () => {
   };
   const renderUpdateBankDetailsForm = () => {
     return (
-      <Grid container className={styles.addBank__gridCenter}>
+      <Grid container className="form__gridCenter">
         <Grid item xs={12} sm={10} md={6} lg={6} xl={4}>
           <Paper className={`${styles.addBank__formWidth} form_styles`}>
-            <Box className={styles.addBank__formIcon_wrapper}>
+            <Box className="form__headingWrapper">
               <Typography component="h1" variant="h5">
                 Update Bank
               </Typography>
             </Box>
             <Box
               component="form"
-              className={styles.addBank__formContainer}
+              className="form__container"
               onSubmit={handleSubmit}
               noValidate
             >
@@ -150,21 +150,20 @@ const UpdateBank = () => {
                 name="bank_name_ar"
                 value={bank_name_ar}
                 label="Bank Name Arabic"
-                className="textInput__rightAlighed"
+                autoComplete="current-password"
                 onChange={(e) => onChange(e)}
+                className="textInput__rightAlighed"
               />
               {error.bank_name_ar.errorState && (
                 <span className="error">{error.bank_name_ar.errorMessage}</span>
               )}
               <div className="buttons_container">
-                <Button className="mt_10" variant="filled" type="submit">
+                <Button  variant="filled" type="submit">
                   Update
                 </Button>
                 <Link to="/bank">
                   <Button
                     variant="filled"
-                    type="submit"
-                    className={styles.addBtn}
                   >
                     Cancel
                   </Button>
