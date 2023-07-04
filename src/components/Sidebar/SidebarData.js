@@ -2,15 +2,18 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import LanguageIcon from "@mui/icons-material/Language";
-import MoneyIcon from "@mui/icons-material/Money";
-import PaymentIcon from "@mui/icons-material/Payment";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import SecurityIcon from "@mui/icons-material/Security";
-import SwitchAccountIcon from "@mui/icons-material/SwitchAccount";
-import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import {
+  AccountBalance as AccountBalanceIcon,
+  CurrencyExchange as CurrencyExchangeIcon,
+  Groups as GroupsIcon,
+  Language as LanguageIcon,
+  Money as MoneyIcon,
+  Payment as PaymentIcon,
+  PeopleAlt as PeopleAltIcon,
+  Security as SecurityIcon,
+  SwitchAccount as SwitchAccountIcon,
+  WorkOutline as WorkOutlineIcon,
+} from "@mui/icons-material";
 import {
   Box,
   Hidden,
@@ -78,6 +81,11 @@ function SidebarData() {
       label: "Omnibus Account",
       icon: <SwitchAccountIcon />,
       link: "/omnibus-account",
+    },
+    {
+      label: "Customer",
+      icon: <GroupsIcon />,
+      link: "/customer/:id",
     },
   ];
 

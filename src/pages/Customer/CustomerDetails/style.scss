@@ -1,0 +1,38 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.customerdetails__container {
+  @include flex_center;
+  padding-top: 20px;
+}
+
+.customerdetails__container__gridItem {
+  background-color: var(--default);
+  @include flex_center;
+  margin: 0 auto;
+  @include card_box_shadow;
+  border-radius: var(--card-border-radius);
+}
+
+.customerDetails__tabs {
+  .MuiTabs-flexContainer {
+    flex-wrap: wrap;
+  }
+}
+
+.customerDetails__tab {
+  text-transform: none;
+  font-size: 16px;
+}
+
+.customerDetails__tab__active {
+  .MuiButtonBase-root-MuiTab-root.Mui-selected {
+    color: var(--light-belge2);
+  }
+}
+
+.customerDetails__tab.Mui-selected {
+  //   background-color: var(--dark-maroon);
+  //   color: var(--default);
+  border-bottom: none;
+}

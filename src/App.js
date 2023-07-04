@@ -111,6 +111,13 @@ const UpdateOmniBusAccount = lazy(() =>
   import("./pages/OmniBusAccount/UpdateOmniBusAccount/UpdateOmniBusAccount")
 );
 
+const CustomerListing = lazy(() =>
+  import("./pages/Customer/CustomerListing/CustomerListing")
+);
+const CustomerDetails = lazy(() =>
+  import("./pages/Customer/CustomerDetails/CustomerDetails")
+);
+
 const App = () => {
   return (
     <>
@@ -199,6 +206,12 @@ const App = () => {
                       path="update/:id"
                       element={<UpdateOmniBusAccount />}
                     />
+                  </Route>
+                </Route>
+                <Route element={<RequireAuth />}>
+                  <Route path="customer">
+                    <Route index element={<CustomerListing />} />
+                    <Route path=":id" element={<CustomerDetails />} />
                   </Route>
                 </Route>
               </Route>

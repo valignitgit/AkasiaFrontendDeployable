@@ -5,6 +5,7 @@ import bankReducer from "./slices/bankSlice";
 import brokerReducer from "./slices/brokerSlice";
 import countryReducer from "./slices/countrySlice";
 import currencyReducer from "./slices/currencySlice";
+import customerReducer from "./slices/customerSlice";
 import exchangeReducer from "./slices/exchangeSlice";
 import layoutReducer from "./slices/layoutSlice";
 import omniBusAccountReducer from "./slices/omniBusAccountSlice";
@@ -29,6 +30,7 @@ export const store = configureStore({
     broker: brokerReducer,
     paymentChannel: paymentChannelReducer,
     omniBusAccount: omniBusAccountReducer,
+    customer: customerReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
