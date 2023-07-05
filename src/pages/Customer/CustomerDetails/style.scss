@@ -12,6 +12,10 @@
   margin: 0 auto;
   @include card_box_shadow;
   border-radius: var(--card-border-radius);
+  & > div {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
 }
 
 .customerDetails__tabs {
@@ -35,4 +39,32 @@
   //   background-color: var(--dark-maroon);
   //   color: var(--default);
   border-bottom: none;
+}
+.customerDetails__table__container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.customerDetails__table {
+  th,
+  td {
+    padding: 12px;
+  }
+
+  th {
+    background-color: #f5f5f5;
+  }
+
+  td {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.customerDetails__button__container {
+  @include flex_center;
+  margin-top: 20px;
+  gap: 10px;
+
+  button {
+    width: 100px;
+  }
 }

@@ -34,9 +34,9 @@ export const getCustomerById = createAsyncThunk("customer/get", async (id) => {
 
 export const updateCustomer = createAsyncThunk(
   "customer/update",
-  async (data) => {
+  async ({ data, id }) => {
     try {
-      const response = await CustomerService.updateCustomer(data);
+      const response = await CustomerService.updateCustomer(data, id);
       return response.data;
     } catch (error) {
       if (error.response) {

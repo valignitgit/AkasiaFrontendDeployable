@@ -8,8 +8,8 @@ const getCustomerById = (id) => {
   return api.get(`/customer/${id}`);
 };
 
-const updateCustomer = (data) => {
-  return api.put("/customer", data);
+const updateCustomer = (data, id) => {
+  return api.put(`/customer/${id}`, data);
 };
 
 const CustomerService = {

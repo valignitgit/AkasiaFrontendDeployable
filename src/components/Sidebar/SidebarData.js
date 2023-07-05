@@ -85,7 +85,7 @@ function SidebarData() {
     {
       label: "Customer",
       icon: <GroupsIcon />,
-      link: "/customer/:id",
+      link: "/customer",
     },
   ];
 
