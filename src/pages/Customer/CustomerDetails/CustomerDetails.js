@@ -17,34 +17,33 @@ import {
 } from "@mui/material";
 
 import Button from "components/Button/CustomButton";
+import Loader from "components/Loader/Loader";
 
 import { getCustomerById, updateCustomer } from "redux/slices/customerSlice";
 
-import { customerTabData } from "utils/constants/customerDetailsData";
+import { convertSnakeCaseToTitleCase } from "utils/AppUtil";
+import {
+  customerTabData,
+  propertyMappings,
+} from "utils/constants/customerDetailsData";
 
 import "./style.scss";
 
-const transformPropertyName = (propertyName) => {
-  const words = propertyName.split("_");
-  const transformedWords = words.map((word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  });
-  return transformedWords.join(" ");
-};
 const CustomerDetails = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
   const currentCustomer = useSelector((state) => state.customer.currentData);
   const [sortedCustomerTabData, setSortedCustomerTabData] = useState([]);
-  const [updatedData, setUpdatedData] = useState([]);
-
+  const [originalCustomerData, setOriginalCustomerData] = useState([]);
+  const [inputErrors, setInputErrors] = useState({});
   const [activeTab, setActiveTab] = useState(0);
   const [editMode, setEditMode] = useState(false);
-
+  console.log(currentCustomer);
   const handleTabChange = (e, newValue) => {
-    console.log(newValue);
-    setActiveTab(newValue);
+    if (!editMode) {
+      setActiveTab(newValue);
+    }
   };
 
   const handleEditClick = () => {
@@ -52,39 +51,61 @@ const CustomerDetails = () => {
   };
 
   const handleSaveClick = async () => {
-    const data = sortedCustomerTabData[activeTab]; // Get the updated active tab data
-
+    const data = sortedCustomerTabData[activeTab];
+    const tabName = data.key;
     let updatedActiveTabData = { customer_id: id };
     data.properties.forEach((property) => {
       updatedActiveTabData[property.name] = property.value;
     });
-    console.log(updatedActiveTabData);
     try {
       const res = await dispatch(
         updateCustomer({
-          id: "address",
+          id: tabName,
           data: updatedActiveTabData,
         })
-      );
-      console.log(res);
+      ).unwrap();
+      if (res.status.status === 201 && res.data) {
+        dispatch(getCustomerById(id));
+        setInputErrors({});
+        setEditMode(false);
+      }
     } catch (error) {
       console.log(error);
     }
-    setEditMode(false);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSaveClick();
+    }
   };
 
   const handleCancelClick = () => {
+    setInputErrors({});
+    setSortedCustomerTabData(originalCustomerData);
     setEditMode(false);
   };
 
   const handleInputChange = (e, property) => {
-    const { value } = e.target;
+    const { name, value } = e.target;
+    let updatedValue = value;
+    let updatedErrors = { ...inputErrors };
+
+    if (name === "current_account_num") {
+      if (!/^\d+$/.test(value)) {
+        updatedErrors[name] = "Invalid input. Only numbers are allowed.";
+        updatedValue = "";
+      } else {
+        delete updatedErrors[name];
+      }
+    }
+
     setSortedCustomerTabData((prevData) => {
       const newData = sortedCustomerTabData.map((tab) => {
         if (tab.name === sortedCustomerTabData[activeTab].name) {
           const updatedProperties = tab.properties.map((prop) => {
             if (prop.name === property.name) {
-              return { ...prop, editedValue: value };
+              return { ...prop, value: updatedValue };
             }
             return prop;
           });
@@ -97,6 +118,8 @@ const CustomerDetails = () => {
       });
       return newData;
     });
+
+    setInputErrors(updatedErrors);
   };
 
   useEffect(() => {
@@ -104,16 +127,6 @@ const CustomerDetails = () => {
   }, []);
 
   useEffect(() => {
-    const propertyMappings = {
-      Overview: "overview",
-      Address: "address",
-      Employment: "employment",
-      Income: "income",
-      "Risk Appetite": "risk_appetite",
-      Compliance: "compliance",
-      "Bank Account": "bank_account",
-    };
-
     const transformedData =
       typeof currentCustomer === "object" && currentCustomer !== null
         ? customerTabData.map((tab) => {
@@ -122,10 +135,8 @@ const CustomerDetails = () => {
             );
             const propertiesWithValues = properties.map((property) => ({
               name: property,
-              displayName: transformPropertyName(property),
+              displayName: convertSnakeCaseToTitleCase(property),
               value: currentCustomer[property],
-              editedValue: currentCustomer[property],
-              key: propertyMappings[property.toLowerCase().replace(/ /g, "_")],
             }));
             return {
               name: tab.name,
@@ -136,114 +147,120 @@ const CustomerDetails = () => {
         : [];
 
     setSortedCustomerTabData(transformedData);
+    setOriginalCustomerData(transformedData);
   }, [currentCustomer]);
 
   const activeTabData = sortedCustomerTabData[activeTab]?.properties || [];
-  console.log(activeTabData);
-  // const [activeTabDetails, setActiveTabDetails] = useState(
-  //   {
-  //     tabName: activeTabData.name || "",
-  //     tabIndex: activeTab,
-  //     tabKey: activeTabData.key || "",
-  //     tabData: activeTabData,
-  //   } || {}
-  // );
-  // console.log(activeTabDetails);
-  console.log(sortedCustomerTabData);
-  return (
-    <Grid container className="customerdetails__container">
-      <Grid
-        item
-        // md={10}
-        lg={8}
-        className="customerdetails__container__gridItem"
+
+  const renderTabs = () => {
+    if (currentCustomer === null || Object.keys(currentCustomer).length === 0) {
+      return <Loader />;
+    }
+
+    return (
+      <Tabs
+        value={activeTab}
+        onChange={handleTabChange}
+        className="customerDetails__tabs"
+        textColor="secondary"
+        indicatorColor="secondary"
       >
-        <div>
-          <Tabs
-            value={activeTab}
-            onChange={handleTabChange}
-            className="customerDetails__tabs"
-            textColor="secondary"
-            indicatorColor="secondary"
-          >
-            {sortedCustomerTabData.map((tab, index) => (
-              <Tab
-                key={index}
-                label={tab.name}
-                className="customerDetails__tab"
-              />
-            ))}
-          </Tabs>
-          <div className="customerDetails__table__container">
-            <TableContainer
-              component={Paper}
-              className="customerDetails__table"
-            >
-              <Table className="customerDetails__table__content">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Property</TableCell>
-                    <TableCell>Value</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {activeTabData &&
-                    activeTabData.map((property, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{property.displayName}</TableCell>
-                        <TableCell>
-                          {editMode ? (
-                            <TextField
-                              // label={property.displayName}
-                              name={property.name}
-                              value={property.editedValue}
-                              onChange={(e) => handleInputChange(e, property)}
-                            />
-                          ) : property.value !== null ? (
-                            property.value
-                          ) : (
-                            "NA"
+        {sortedCustomerTabData.map((tab, index) => (
+          <Tab
+            key={index}
+            label={tab.name}
+            className="customerDetails__tab"
+            disabled={editMode && index !== activeTab}
+          />
+        ))}
+      </Tabs>
+    );
+  };
+
+  const renderTabDetailsTable = () => {
+    if (currentCustomer === null || Object.keys(currentCustomer).length === 0) {
+      return;
+    }
+
+    return (
+      <div className="customerDetails__table__container">
+        <TableContainer component={Paper} className="customerDetails__table">
+          <Table className="customerDetails__table__content">
+            <TableHead>
+              <TableRow>
+                <TableCell>Property</TableCell>
+                <TableCell>Value</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {activeTabData &&
+                activeTabData.map((property, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{property.displayName}</TableCell>
+                    <TableCell>
+                      {editMode ? (
+                        <div className="customerDetails__table__editinput__container">
+                          <TextField
+                            name={property.name}
+                            value={property.value}
+                            onChange={(e) => handleInputChange(e, property)}
+                            onKeyPress={handleKeyPress}
+                          />
+                          {inputErrors[property.name] && (
+                            <span className="error">
+                              {inputErrors[property.name]}
+                            </span>
                           )}
-                        </TableCell>
-                        <TableCell></TableCell>
-                      </TableRow>
-                    ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            {!editMode ? (
-              <div className="customerDetails__button__container">
-                {/* {activeTab !== 0 && (
-                  <Button
-                    onClick={handleEditClick}
-                    shape="square"
-                    variant="filled"
-                    type="submit"
-                  >
-                    Edit
-                  </Button>
-                )} */}
-              </div>
-            ) : (
-              <div className="customerDetails__button__container">
-                <Button
-                  onClick={handleSaveClick}
-                  shape="square"
-                  variant="filled"
-                  type="submit"
-                >
-                  Save
-                </Button>
-                <Button
-                  onClick={handleCancelClick}
-                  shape="square"
-                  variant="filled"
-                >
-                  Cancel
-                </Button>
-              </div>
+                        </div>
+                      ) : property.value !== null ? (
+                        property.value
+                      ) : (
+                        "NA"
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {!editMode ? (
+          <div className="customerDetails__button__container">
+            {activeTab !== 0 && (
+              <Button
+                onClick={handleEditClick}
+                shape="square"
+                variant="filled"
+                type="submit"
+              >
+                Edit
+              </Button>
             )}
           </div>
+        ) : (
+          <div className="customerDetails__button__container">
+            <Button
+              onClick={handleSaveClick}
+              shape="square"
+              variant="filled"
+              type="submit"
+            >
+              Save
+            </Button>
+            <Button onClick={handleCancelClick} shape="square" variant="filled">
+              Cancel
+            </Button>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <Grid container className="customerdetails__container">
+      <Grid item lg={8} className="customerdetails__container__gridItem">
+        <div>
+          {renderTabs()}
+          {renderTabDetailsTable()}
         </div>
       </Grid>
     </Grid>

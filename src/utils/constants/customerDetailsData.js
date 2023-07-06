@@ -1,12 +1,13 @@
-export const customerTabLabels = [
-  "Overview",
-  "Address",
-  "Employment",
-  "Income",
-  "Risk Appetite",
-  "Compliance",
-  "Bank Account",
-];
+export const propertyMappings = {
+  Overview: "overview",
+  Address: "address",
+  Employment: "employment",
+  Income: "income",
+  "Risk Appetite": "risk_appetite",
+  Compliance: "compliance",
+  "Bank Account": "bank_account",
+};
+
 export const customerTabData = [
   {
     name: "Overview",

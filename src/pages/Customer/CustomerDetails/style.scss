@@ -58,6 +58,10 @@
     border-bottom: 1px solid #ddd;
   }
 }
+.customerDetails__table__editinput__container {
+  @include flexbox;
+  @include flex_directions(column);
+}
 
 .customerDetails__button__container {
   @include flex_center;
