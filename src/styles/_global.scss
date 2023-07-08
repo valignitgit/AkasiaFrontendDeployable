@@ -312,3 +312,12 @@ p {
 .card__contentContainer {
   height: 70px;
 }
+
+.MuiTab-root.Mui-selected {
+  background-color: var(--dark-maroon);
+  color: var(--default);
+  border-radius: 1.5rem;
+}
+.MuiTabs-indicator {
+  background-color: transparent;
+}

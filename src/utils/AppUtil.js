@@ -25,3 +25,21 @@ export const convertSnakeCaseToTitleCase = (str) => {
   });
   return transformedWords.join(" ").trim();
 };
+
+export const shouldRenderRadioButtons = (propertyName) => {
+  const radioProperties = [
+    "is_income_business",
+    "is_income_employment",
+    "is_income_family",
+    "is_income_inheritance",
+    "is_income_business",
+    "is_income_invest",
+    "is_income_savings",
+    "is_statutory_info_1",
+    "is_statutory_info_2",
+    "is_statutory_info_3",
+    "is_statutory_info_4",
+    "is_statutory_info_5",
+  ];
+  return radioProperties.includes(propertyName);
+};
