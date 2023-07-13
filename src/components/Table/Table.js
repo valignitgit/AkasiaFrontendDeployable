@@ -18,9 +18,9 @@ import {
 import "./style.scss";
 
 const CustomTable = ({ columns, rows, onRowClick, activeRow, pagination }) => {
+  const rowsPerPageOptions = [10, 20, 30];
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const rowsPerPageOptions = [10, 25, 50];
 
   const handleRowClick = (rowId) => {
     if (onRowClick) {
@@ -31,6 +31,15 @@ const CustomTable = ({ columns, rows, onRowClick, activeRow, pagination }) => {
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
   };
+
+  const handleRowsPerPageChange = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const startIndex = page * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const currentPage = rows.slice(startIndex, endIndex);
 
   return (
     <>
@@ -44,7 +53,7 @@ const CustomTable = ({ columns, rows, onRowClick, activeRow, pagination }) => {
             </TableRow>
           </TableHead>
           <TableBody className="custom__table__body">
-            {rows.map((row) => (
+            {currentPage.map((row) => (
               <TableRow
                 key={row.id}
                 onClick={() => handleRowClick(row.id)}
@@ -63,6 +72,9 @@ const CustomTable = ({ columns, rows, onRowClick, activeRow, pagination }) => {
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
       />
     </>
   );

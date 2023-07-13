@@ -5,7 +5,7 @@ export const propertyMappings = {
   Income: "income",
   "Risk Appetite": "risk_appetite",
   Compliance: "compliance",
-  "Bank Account": "bank_account",
+  "Bank Account": "bankaccount",
 };
 
 export const customerTabData = [

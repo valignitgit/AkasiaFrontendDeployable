@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import {
   AccountBalance as AccountBalanceIcon,
   CurrencyExchange as CurrencyExchangeIcon,
-  Groups as GroupsIcon,
+  // Groups as GroupsIcon,
   Language as LanguageIcon,
   Money as MoneyIcon,
   Payment as PaymentIcon,
@@ -82,11 +82,11 @@ function SidebarData() {
       icon: <SwitchAccountIcon />,
       link: "/omnibus-account",
     },
-    {
-      label: "Customer",
-      icon: <GroupsIcon />,
-      link: "/customer",
-    },
+    // {
+    //   label: "Customer",
+    //   icon: <GroupsIcon />,
+    //   link: "/customer",
+    // },
   ];
 
   return (

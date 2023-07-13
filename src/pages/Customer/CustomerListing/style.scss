@@ -3,11 +3,11 @@
 
 .customerListing__container {
   @include flex_center;
-  padding: 20px;
+  // padding: 20px;
 }
 
 .customerListing__gridItem {
   background-color: var(--default);
-  // padding: 40px 30px;
+  padding: 40px 30px;
   border-radius: 12px;
 }
