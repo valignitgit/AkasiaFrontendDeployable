@@ -8,16 +8,13 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://165.232.177.225:9091/v2/bank",
-          {
-            headers: {
-              "Content-type": "application/json",
-              Authorization:
-                "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb2JpbGVVc2VyQHZhbGlnbml0LmNvbSIsImlhdCI6MTY4NjA0MDIyNH0.yCl0D0q_qq6p5-V80eAJjSLhm41z_n6cDUWoBew-_cI",
-            },
-          }
-        );
+        const response = await axios.get("https://robo.mod5r.com/v2/bank", {
+          headers: {
+            "Content-type": "application/json",
+            Authorization:
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb2JpbGVVc2VyQHZhbGlnbml0LmNvbSIsImlhdCI6MTY4NjA0MDIyNH0.yCl0D0q_qq6p5-V80eAJjSLhm41z_n6cDUWoBew-_cI",
+          },
+        });
         setData(response.data.data);
       } catch (error) {
         console.error(error);
