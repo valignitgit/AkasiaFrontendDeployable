@@ -1,0 +1,33 @@
+body {
+  background-color: #fbf8f1;
+  margin: 0 auto;
+}
+
+.page-container {
+  background-color: #ffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  max-width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+  padding: 16px;
+  text-transform: capitalize;
+}
+
+.responsive-table th {
+  background-color: #f2f2f2;
+}
